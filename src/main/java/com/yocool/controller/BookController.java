@@ -1,7 +1,7 @@
 package com.yocool.controller;
 
-import com.yocool.model.Book;
-import com.yocool.repo.BookRepository;
+import com.yocool.model.User;
+import com.yocool.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,28 +12,27 @@ import java.util.Map;
  * 控制器
  */
 @RestController
-@RequestMapping("/book")
+@RequestMapping("/user")
 public class BookController {
 
     @Autowired
-    private BookRepository bookRepository;
+    private UserRepository userRepository;
 
     @RequestMapping(method = RequestMethod.POST)
-    public Map<String, Object> createBook(@RequestBody Map<String, Object> bookMap){
-        Book book = new Book(bookMap.get("name").toString(),
-                bookMap.get("isbn").toString(),
-                bookMap.get("author").toString(),
-                Integer.parseInt(bookMap.get("pages").toString()));
+    public Map<String, Object> createUser(@RequestBody Map<String, Object> userMap){
+        User user = new User(userMap.get("username").toString(),
+                userMap.get("password").toString(),
+                userMap.get("email").toString());
 
-        bookRepository.save(book);
+        userRepository.save(user);
         Map<String, Object> response = new LinkedHashMap<String, Object>();
-        response.put("message", "Book created successfully");
-        response.put("book", book);
+        response.put("message", "User created successfully");
+        response.put("user", user);
         return response;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/{bookId}")
-    public Book getBookDetails(@PathVariable("bookId") String bookId){
-        return bookRepository.findOne(bookId);
+    @RequestMapping(method = RequestMethod.GET, value="/{uid}")
+    public User getUserDetail(@PathVariable("uid") String uid){
+        return userRepository.findOne(uid);
     }
 }

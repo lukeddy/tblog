@@ -1,12 +1,14 @@
 package com.yocool;
 
-import com.yocool.model.Customer;
-import com.yocool.repo.CustomerRepository;
+import com.yocool.model.User;
+import com.yocool.repo.UserRepository;
+import com.yocool.utils.CommonProps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.util.DigestUtils;
 
 /**
  * 应用启动入口类
@@ -16,7 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TBlogApplication implements CommandLineRunner {
 
 	@Autowired
-	private CustomerRepository customerRepository;
+	private UserRepository  userRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TBlogApplication.class, args);
@@ -29,30 +31,25 @@ public class TBlogApplication implements CommandLineRunner {
      */
 	@Override
 	public void run(String... strings) throws Exception {
-		customerRepository.deleteAll();
-
-		//添加内容
-		customerRepository.save(new Customer("小五", "王"));
-		customerRepository.save(new Customer("大大", "张"));
-		customerRepository.save(new Customer("小夏", "李"));
-		customerRepository.save(new Customer("天天", "李"));
-
-		//查询所有内容
-		System.out.println("-------------------------------");
-		for (Customer customer : customerRepository.findAll()) {
-			System.out.println(customer);
-		}
-		System.out.println();
-
-		//根据firstName查询内容
-		System.out.println("--------------------------------");
-		System.out.println(customerRepository.findByFirstName("小五"));
-
-		//根据lastName查询
-		System.out.println("--------------------------------");
-		for (Customer customer : customerRepository.findByLastName("李")) {
-			System.out.println(customer);
-		}
-		//TODO 更新
+		initUser();
 	}
+
+	/**
+	 * 初始化系统管理员
+	 */
+	private void initUser(){
+		User u=userRepository.findByUsername(CommonProps.ADMIN_NAME);
+		if(null==u){
+			u=new User();
+			u.setUsername(CommonProps.ADMIN_NAME);
+			u.setPassword(DigestUtils.md5DigestAsHex(CommonProps.ADMIN_PWD.getBytes()));
+			u.setEmail(CommonProps.ADMIN_EMAIL);
+			userRepository.save(u);
+			System.out.println("初始化管理员账号成功！");
+		}else{
+			System.out.println("管理员账号已经存在");
+		}
+	}
+
+
 }
