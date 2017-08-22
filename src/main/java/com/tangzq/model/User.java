@@ -1,4 +1,4 @@
-package com.yocool.model;
+package com.tangzq.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @ToString
-public class User{
+public class User {
     @Id
     private String id;
     private String username;

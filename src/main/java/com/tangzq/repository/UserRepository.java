@@ -1,6 +1,6 @@
-package com.yocool.repo;
+package com.tangzq.repository;
 
-import com.yocool.model.User;
+import com.tangzq.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,10 +8,11 @@ import org.springframework.stereotype.Repository;
  * User文档操作类
  */
 @Repository
-public interface UserRepository extends MongoRepository<User,String> {
+public interface UserRepository extends MongoRepository<User, String> {
 
     /**
      * 用户名查找用户
+     *
      * @param username
      * @return
      */
@@ -19,6 +20,7 @@ public interface UserRepository extends MongoRepository<User,String> {
 
     /**
      * 邮件查找用户
+     *
      * @param email
      * @return
      */
@@ -26,10 +28,11 @@ public interface UserRepository extends MongoRepository<User,String> {
 
     /**
      * 用户名就、密码查找
+     *
      * @param username
      * @param password
      * @return
      */
-    User findByUsernameAndPassword(String username,String password);
+    User findByUsernameAndPassword(String username, String password);
 
 }

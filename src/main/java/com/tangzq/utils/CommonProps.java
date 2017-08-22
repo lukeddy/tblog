@@ -1,4 +1,4 @@
-package com.yocool.utils;
+package com.tangzq.utils;
 
 /**
  * 系统级信息
