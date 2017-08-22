@@ -1,3 +1,4 @@
 .idea
 tblog.iml
 target
+src/main/resources/.DS_Store

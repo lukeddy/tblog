@@ -13,7 +13,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/user")
-public class BookController {
+public class UserController {
 
     @Autowired
     private UserRepository userRepository;
