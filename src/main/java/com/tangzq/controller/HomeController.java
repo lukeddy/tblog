@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.jws.soap.SOAPBinding;
@@ -32,11 +33,27 @@ public class HomeController {
      * @return
      */
     @RequestMapping(value = "/home")
-    public String index(
-            ModelMap modelMap
-    ) {
+    public String index( ModelMap modelMap) {
         modelMap.addAttribute("appName", myService.getAppName());
         return "index";
+    }
+
+    /**
+     * 登陆页面
+     * @return
+     */
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+
+    /**
+     * 关于页面
+     * @return
+     */
+    @RequestMapping(value = "/about")
+    public String about() {
+        return "about";
     }
 
 
