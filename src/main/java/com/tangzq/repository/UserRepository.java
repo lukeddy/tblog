@@ -2,13 +2,14 @@ package com.tangzq.repository;
 
 import com.tangzq.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
  * User文档操作类
  */
 @Repository
-public interface UserRepository extends MongoRepository<User, String> {
+public interface UserRepository extends CrudRepository<User, String> {
 
     /**
      * 用户名查找用户
@@ -34,5 +35,6 @@ public interface UserRepository extends MongoRepository<User, String> {
      * @return
      */
     User findByUsernameAndPassword(String username, String password);
+
 
 }

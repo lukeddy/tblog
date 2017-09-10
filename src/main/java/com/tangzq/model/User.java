@@ -10,9 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @ToString
-public class User {
-    @Id
-    private String id;
+public class User extends BaseModel<String>{
+
     private String username;
     private String password;
     private String email;
@@ -24,5 +23,9 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public boolean isNew() {
+        return getId()==null;
     }
 }

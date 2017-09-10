@@ -1,15 +1,23 @@
 package com.tangzq.test;
 
 
+import com.mongodb.Mongo;
 import com.tangzq.model.User;
 import com.tangzq.repository.UserRepository;
 import com.tangzq.utils.CommonProps;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.util.Assert;
 import org.springframework.util.DigestUtils;
 
+import java.util.Date;
 import java.util.List;
 
 public class TestUserRepository extends TestBase {
@@ -25,6 +33,8 @@ public class TestUserRepository extends TestBase {
             u.setUsername(CommonProps.ADMIN_NAME);
             u.setPassword(DigestUtils.md5DigestAsHex(CommonProps.ADMIN_PWD.getBytes()));
             u.setEmail(CommonProps.ADMIN_EMAIL);
+            u.setCreateAt(new Date());
+            u.setUpdateAt(new Date());
             userRepository.save(u);
             System.out.println("初始化管理员账号成功！");
         }else{
@@ -35,7 +45,7 @@ public class TestUserRepository extends TestBase {
 
     @Test
     public void testFindAll(){
-        List<User> users=userRepository.findAll();
+        List<User> users=(List<User>)userRepository.findAll();
         Assert.isTrue(!users.isEmpty(),"没有用户信息");
         for(User u:users){
             System.out.println(u);
@@ -51,7 +61,7 @@ public class TestUserRepository extends TestBase {
 
     @Test
     public void testFindById(){
-        User user=userRepository.findOne("599c1f9077c8cf04cd6b859e");
+        User user=userRepository.findOne("59b50c1777c8f880f5d5207d");
         Assert.notNull(user,"");
         System.out.println(user);
     }
@@ -87,4 +97,17 @@ public class TestUserRepository extends TestBase {
         }
     }
 
+    @Test
+    public void testUpdate(){
+        User tmpUser=userRepository.findOne("59b5132777c8f22ff6b0da91");
+        Assert.notNull(tmpUser,"");
+        tmpUser.setEmail("abcdef@gmail.com");
+        userRepository.save(tmpUser);
+    }
+
+
+    @Test
+    public void testDelete(){
+        userRepository.delete("59b5132777c8f22ff6b0da91");
+    }
 }
