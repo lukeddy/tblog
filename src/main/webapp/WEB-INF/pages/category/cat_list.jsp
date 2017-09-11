@@ -29,8 +29,8 @@
                                     <tr>
                                         <td>${cat.catName}</td>
                                         <td>${cat.catDir}</td>
-                                        <td>${cat.createAt}</td>
-                                        <td>${cat.updateAt}</td>
+                                        <td>${cat.createAtFormatted}</td>
+                                        <td>${cat.updateAtFormatted}</td>
                                         <td>
                                             <a href="${contextPath}/cat/edit/${cat.id}">修改</a>
                                         </td>
