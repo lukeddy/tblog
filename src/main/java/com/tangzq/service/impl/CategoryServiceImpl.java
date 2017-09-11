@@ -6,6 +6,7 @@ import com.tangzq.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -37,10 +38,12 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     public Category updateById(Category cat, String id) {
-        if(null==findById(id)){
+        Category catInDB=findById(id);
+        if(null==catInDB){
             return null;
         }
         cat.setId(id);
+        cat.setCreateAt(catInDB.getCreateAt()==null?new Date():catInDB.getCreateAt());
         return categoryRepository.save(cat);
     }
 
