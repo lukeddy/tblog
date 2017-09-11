@@ -21,7 +21,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "/article/{aid}",method = RequestMethod.GET)
     public String index(@PathVariable("aid") String aid,ModelMap model) {
-        //TODO
+        //TODO 获取当前文章信息
         System.out.println(aid);
         model.addAttribute("atitle","我是文章标题");
         return "article";

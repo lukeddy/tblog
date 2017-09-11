@@ -1,19 +1,12 @@
 package com.tangzq.test;
 
 
-import com.mongodb.Mongo;
 import com.tangzq.model.User;
 import com.tangzq.repository.UserRepository;
 import com.tangzq.utils.CommonProps;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.util.Assert;
 import org.springframework.util.DigestUtils;
 
@@ -62,6 +55,13 @@ public class TestUserRepository extends TestBase {
     @Test
     public void testFindById(){
         User user=userRepository.findOne("59b50c1777c8f880f5d5207d");
+        Assert.notNull(user,"");
+        System.out.println(user);
+    }
+
+    @Test
+    public void testFindByEmail(){
+        User user=userRepository.findByEmail(CommonProps.ADMIN_EMAIL);
         Assert.notNull(user,"");
         System.out.println(user);
     }
