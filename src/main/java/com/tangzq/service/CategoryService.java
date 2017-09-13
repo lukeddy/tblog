@@ -1,6 +1,7 @@
 package com.tangzq.service;
 
 import com.tangzq.model.Category;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -19,6 +20,14 @@ public interface CategoryService {
      * @return
      */
     Category findById(String id);
+
+    /**
+     * 分页查找
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    Page<Category> findByPage(int pageNo, int pageSize);
 
     /**
      * 找到所有栏目信息

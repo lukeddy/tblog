@@ -5,6 +5,7 @@ import com.tangzq.service.CategoryService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.util.Assert;
 
 import java.util.Date;
@@ -66,5 +67,16 @@ public class TestCategoryService extends TestBase {
     public void testDeleteCategory(){
         String deleteCatId="59b67c3b77c8698b908553dc";
         categoryService.deleteCategory(deleteCatId);
+    }
+
+    @Test
+    public void testFindByPage(){
+        Page<Category> page=categoryService.findByPage(2,6);
+        Assert.notNull(page,"");
+        System.out.println(page.hasPrevious());
+        System.out.println(page.getNumber());
+        System.out.println(page.getTotalPages());
+        System.out.println(page.getTotalElements());
+        System.out.println(page.getContent());
     }
 }

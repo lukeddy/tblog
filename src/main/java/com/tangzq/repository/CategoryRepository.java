@@ -2,6 +2,7 @@ package com.tangzq.repository;
 
 import com.tangzq.model.Category;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  * 栏目文档操作类
  */
 @Repository
-public interface CategoryRepository extends CrudRepository<Category,String> {
+public interface CategoryRepository extends PagingAndSortingRepository<Category,String> {
 
     /**
      * 目录名字必须唯一

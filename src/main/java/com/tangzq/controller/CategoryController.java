@@ -2,6 +2,7 @@ package com.tangzq.controller;
 
 import com.tangzq.model.Category;
 import com.tangzq.service.CategoryService;
+import com.tangzq.vo.PageVo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,9 +31,8 @@ public class CategoryController {
      * @return
      */
     @RequestMapping(value="/list",method = RequestMethod.GET)
-    public String listCategory(ModelMap model){
-        model.addAttribute("catList",categoryService.findAll());
-        //TODO 分页加载
+    public String listCategory(PageVo pageVo, ModelMap model){
+        model.addAttribute("pager",categoryService.findByPage(pageVo.getPageNO(),pageVo.getPageSize()));
         return "category/cat_list";
     }
 
