@@ -2,6 +2,7 @@ package com.tangzq.controller;
 
 import com.tangzq.service.MyService;
 import com.tangzq.service.UserService;
+import com.tangzq.utils.CommonProps;
 import com.tangzq.utils.ValidateCode;
 import com.tangzq.vo.LoginUserVo;
 import org.apache.commons.lang.StringUtils;
@@ -74,7 +75,7 @@ public class HomeController {
             redirectAttributes.addFlashAttribute("message","用户名或者密码错误");
             return "redirect:/login";
         }
-        session.setAttribute("loginUser",userService.findUser(user.getUsername(),user.getPassword()));
+        session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,userService.findUser(user.getUsername(),user.getPassword()));
         return "index";
     }
 
@@ -92,6 +93,19 @@ public class HomeController {
         response.setContentType("image/jpeg");
         BufferedImage bim = ValidateCode.generateImageCode(verifyCode, 90, 30, 3, true, Color.WHITE, Color.BLACK, null);
         ImageIO.write(bim, "JPEG", response.getOutputStream());
+    }
+
+
+    /**
+     * 退出系统
+     * @param session
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value="/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/login";
     }
 
     /**

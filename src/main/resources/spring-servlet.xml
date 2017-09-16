@@ -29,10 +29,19 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <bean
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!-- 拦截器,多个拦截器，顺序执行 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/cat/**"/>
+            <mvc:mapping path="/topic/**"/>
+            <bean class="com.tangzq.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 
 </beans>

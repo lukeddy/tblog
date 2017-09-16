@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -59,8 +60,11 @@
                 <li><a href="${contextPath}/about">关于</a></li>
                 <li><a href="${contextPath}/login">注册</a></li>
                 <li><a href="${contextPath}/login">登陆</a></li>
-                <li><a href="${contextPath}/cat/list">栏目管理</a></li>
-                <li><a href="${contextPath}/topic/list">帖子管理</a></li>
+                <c:if test="${not empty loginUser}">
+                    <li><a href="${contextPath}/cat/list">栏目管理</a></li>
+                    <li><a href="${contextPath}/topic/list">帖子管理</a></li>
+                    <li><a href="${contextPath}/logout">退出</a></li>
+                </c:if>
             </ul>
         </div>
     </div>
