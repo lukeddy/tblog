@@ -131,4 +131,18 @@ public class TopicController {
     }
 
 
+
+    /**
+     * 删除帖子
+     * @param topicID
+     * @return
+     */
+    @RequestMapping(value="/del/{topicID}",method = RequestMethod.GET)
+    public String delTopic(@PathVariable("topicID") String topicID, RedirectAttributes redirectAttributes){
+        topicService.deleteById(topicID);
+        redirectAttributes.addFlashAttribute("messageSuc","帖子删除成功");
+        return "redirect:/topic/list";
+    }
+
+
 }

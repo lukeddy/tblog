@@ -31,6 +31,7 @@
                                         <td>${topic.updateAtFormatted}</td>
                                         <td>
                                             <a href="${contextPath}/topic/edit/${topic.id}">修改</a>
+                                            <a href="${contextPath}/topic/del/${topic.id}">删除</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

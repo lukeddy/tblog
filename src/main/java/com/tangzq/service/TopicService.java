@@ -45,4 +45,11 @@ public interface TopicService {
      * @return
      */
     Topic updateById(TopicVo vo, String id);
+
+
+    /**
+     * 删除帖子
+     * @param topicId
+     */
+    void deleteById(String topicId);
 }

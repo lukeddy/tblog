@@ -89,5 +89,9 @@ public class TopicServiceImpl implements TopicService {
         return topicRepository.save(topicInDB);
     }
 
+    public void deleteById(String topicId) {
+        topicRepository.delete(topicId);
+    }
+
 
 }
