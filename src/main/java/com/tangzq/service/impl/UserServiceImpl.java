@@ -15,12 +15,17 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public User findUser(String username, String password) {
+        String encrypedPwd= DigestUtils.md5DigestAsHex(CommonProps.ADMIN_PWD.getBytes());
+        return userRepository.findByUsernameAndPassword(username,encrypedPwd);
+    }
+
     public boolean isUserValid(String username, String password) {
         if(StringUtils.isEmpty(username)||StringUtils.isEmpty(password)){
             return false;
         }
-        String encrypedPwd= DigestUtils.md5DigestAsHex(CommonProps.ADMIN_PWD.getBytes());
-        User user=userRepository.findByUsernameAndPassword(username,encrypedPwd);
+
+        User user=findUser(username,password);
         if(null!=user){
             return true;
         }

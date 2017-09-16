@@ -4,9 +4,11 @@ package com.tangzq.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -30,6 +32,22 @@ public abstract class BaseModel<ID extends Serializable> implements Persistable<
     @Field("update_at")
     @LastModifiedDate
     private Date updateAt;
+
+
+    @Transient
+    private String createAtFormatted;
+
+    @Transient
+    private String updateAtFormatted;
+
+
+    public String getCreateAtFormatted() {
+        return null==getCreateAt()?null: DateFormatUtils.format(getCreateAt(),"yyyy-MM-dd HH:mm:ss");
+    }
+
+    public String getUpdateAtFormatted() {
+        return null==getUpdateAt()?null:DateFormatUtils.format(getUpdateAt(),"yyyy-MM-dd HH:mm:ss");
+    }
 
 
 }

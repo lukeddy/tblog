@@ -74,6 +74,7 @@ public class HomeController {
             redirectAttributes.addFlashAttribute("message","用户名或者密码错误");
             return "redirect:/login";
         }
+        session.setAttribute("loginUser",userService.findUser(user.getUsername(),user.getPassword()));
         return "index";
     }
 

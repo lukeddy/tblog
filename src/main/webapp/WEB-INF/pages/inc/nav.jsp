@@ -60,6 +60,7 @@
                 <li><a href="${contextPath}/login">注册</a></li>
                 <li><a href="${contextPath}/login">登陆</a></li>
                 <li><a href="${contextPath}/cat/list">栏目管理</a></li>
+                <li><a href="${contextPath}/topic/list">帖子管理</a></li>
             </ul>
         </div>
     </div>
