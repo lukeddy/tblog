@@ -37,9 +37,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">内容:</div>
-                                        <textarea name="content" class="form-control" rows="12" placeholder="请输入帖子内容">${topicVo.content}</textarea>
+                                    <%--<div class="input-group">--%>
+                                        <%--<div class="input-group-addon">内容:</div>--%>
+                                        <%--<textarea name="content" class="form-control" rows="12" placeholder="请输入帖子内容">${topicVo.content}</textarea>--%>
+                                    <%--</div>--%>
+                                    <div id="editormd">
+                                        <textarea style="display:none;" name="content">${topicVo.content}</textarea>
                                     </div>
                                 </div>
                                 <div class="checkbox">
@@ -57,7 +60,7 @@
                                 <div class="form-group">
                                     <div class="text-center">
                                         <input type="hidden" name="authorId" value="${loginUser.id}">
-                                        <button class="btn btn-success" type="submit">新建</button>
+                                        <button class="btn btn-success" id="submit" type="submit">新建</button>
                                         <button class="btn btn-default" type="reset">清空</button>
                                     </div>
                                 </div>
@@ -70,3 +73,64 @@
     </div>
 </div>
 <jsp:include page="../inc/footer.jsp"></jsp:include>
+<script>
+    var editor;
+    $(function() {
+        editor = createEditorMd("editormd", "#submit");
+    });
+
+    /**
+     * 创建Markdown编辑器封装方法
+     * @param divId
+     * @param submitId
+     * @param markdown
+     * @returns {*}
+     */
+    function createEditorMd(divId, submitId, markdown) {
+        var editor = editormd(divId, {
+            height           : 500,
+            markdown         : markdown,
+            tex              : true,
+            tocm             : true,
+            emoji            : true,
+            taskList         : true,
+            codeFold         : true,
+            searchReplace    : true,
+            htmlDecode       : "style,script,iframe",
+            flowChart        : true,
+            sequenceDiagram  : true,
+            autoFocus: false,
+            path: "${contextPath}/js/editormd/lib/",
+            placeholder: "Markdown，提交前请查看预览格式是否正确",
+            saveHTMLToTextarea: true,
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png"],
+            imageUploadURL: "${contextPath}/upload/image",
+            toolbarIcons: function() {
+                return ["undo", "redo", "|", "bold", "italic", "quote", "|",
+                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "|",
+                    "goto-line", "watch", "preview", "fullscreen", "|",
+                    "help", "info"]
+            },
+            onfullscreen : function() {
+                this.editor.css("border-radius", 0).css("z-index", 120);
+            },
+            onfullscreenExit : function() {
+                this.editor.css({
+                    zIndex : 10,
+                    border : "none",
+                    "border-radius" : "5px"
+                });
+
+                this.resize();
+            },
+            onchange: function() {
+                $(submitId).attr('disabled', this.getMarkdown().trim() == "");
+            }
+        });
+
+        return editor;
+    }
+</script>

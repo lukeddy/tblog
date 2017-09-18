@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Date;
-
 /**
  * 帖子控制器
  */
@@ -68,6 +66,7 @@ public class TopicController {
                 ||StringUtils.isEmpty(vo.getTitle())
                 ||StringUtils.isEmpty(vo.getContent())){
             model.addAttribute("messageErr","帖子栏目，标题，内容不能为空");
+            model.addAttribute("catList",categoryService.findAll());
             model.addAttribute("topicVo",vo);
             return "topic/topic_add";
         }
@@ -78,6 +77,7 @@ public class TopicController {
             return "redirect:/topic/list";
         }else{
             redirectAttributes.addFlashAttribute("messageErr","帖子创建失败");
+            model.addAttribute("catList",categoryService.findAll());
             model.addAttribute("topicVo",vo);
             return "topic/topic_add";
         }

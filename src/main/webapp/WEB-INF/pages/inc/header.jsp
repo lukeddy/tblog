@@ -16,6 +16,7 @@
     <link rel="icon" href="${contextPath}/images/echo-logo.png" type="image/x-icon"/>
     <!-- style -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/js/editormd/css/editormd.css" rel="stylesheet">
     <link href="${contextPath}/css/site.css" rel="stylesheet">
     <title>TBlo社区</title>
 </head>
