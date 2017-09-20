@@ -162,12 +162,87 @@
                 </div>
             </div>
         </div>
+
+        <div id="reply">
+            <form action="/comment/${topic.id}" method="post" class="form-vertical" id="reply-form" role="form">
+                <fieldset>
+                    <div class="form-group">
+                        <label>新回复</label>
+                        <div id="editormd">
+                            <textarea style="display: none;"></textarea>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="回复" id="submit">
+                </fieldset>
+            </form>
+        </div>
+
     </div>
 </div>
 <jsp:include page="../inc/footer.jsp"></jsp:include>
 <script>
-    $(function(){
+    var editor, editor_edit;
+    $(document).ready(function(){
+        $('#submit').attr('disabled', true);
+
+        editor = createEditorMd("editormd", "#submit");
+
         $('.editormd-preview-container pre').addClass("prettyprint linenums");
         prettyPrint();
     });
+
+    /**
+     * 创建Markdown编辑器封装方法
+     * @param divId
+     * @param submitId
+     * @param markdown
+     * @returns {*}
+     */
+    function createEditorMd(divId, submitId, markdown) {
+        var editor = editormd(divId, {
+            height           : 300,
+            markdown         : markdown,
+            tex              : true,
+            tocm             : true,
+            emoji            : true,
+            taskList         : true,
+            codeFold         : true,
+            searchReplace    : true,
+            htmlDecode       : "style,script,iframe",
+            flowChart        : true,
+            sequenceDiagram  : true,
+            autoFocus: false,
+            path: "${contextPath}/js/editormd/lib/",
+            placeholder: "Markdown，提交前请查看预览格式是否正确",
+            saveHTMLToTextarea: true,
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png"],
+            imageUploadURL: "${contextPath}/upload/image",
+            toolbarIcons: function() {
+                return ["undo", "redo", "|", "bold", "italic", "quote", "|",
+                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "|",
+                    "goto-line", "watch", "preview", "fullscreen", "|",
+                    "help", "info"]
+            },
+            onfullscreen : function() {
+                this.editor.css("border-radius", 0).css("z-index", 120);
+            },
+            onfullscreenExit : function() {
+                this.editor.css({
+                    zIndex : 10,
+                    border : "none",
+                    "border-radius" : "5px"
+                });
+
+                this.resize();
+            },
+            onchange: function() {
+                $(submitId).attr('disabled', this.getMarkdown().trim() == "");
+            }
+        });
+
+        return editor;
+    }
 </script>

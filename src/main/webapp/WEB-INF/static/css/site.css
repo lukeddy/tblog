@@ -46,9 +46,9 @@ body {
   color: #838383
 }
 
-#content .changes span:before {
-  content: "•"
-}
+/*#content .changes span:before {*/
+  /*content: "•"*/
+/*}*/
 
 #content .changes a {
   color: inherit
