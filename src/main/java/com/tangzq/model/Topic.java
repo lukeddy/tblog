@@ -14,7 +14,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Topic extends BaseModel<String>{
 
     private String title;
-    private String content;
+    private String contentMD;
+    private String contentHTML;
     private String authorId;
     private boolean top=false;// 置顶帖
     private boolean good=false;// 精华帖

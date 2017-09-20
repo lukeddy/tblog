@@ -42,7 +42,8 @@
                                         <%--<textarea name="content" class="form-control" rows="12" placeholder="请输入帖子内容">${topicVo.content}</textarea>--%>
                                     <%--</div>--%>
                                     <div id="editormd">
-                                        <textarea style="display:none;" name="content">${topicVo.content}</textarea>
+                                        <textarea class="editormd-markdown-textarea" name="contentMD" id="contentMD">${topicVo.contentMD}</textarea>
+                                        <textarea class="editormd-html-textarea" name="contentHTML" id="contentHTML">${topicVo.contentHTML}</textarea>
                                     </div>
                                 </div>
                                 <div class="checkbox">
@@ -127,7 +128,11 @@
                 this.resize();
             },
             onchange: function() {
+                //$('#contentHTML').html(this.getPreviewedHTML());
                 $(submitId).attr('disabled', this.getMarkdown().trim() == "");
+                //console.log(this.getHTML());
+                //console.log("====================");
+                //console.log(this.getPreviewedHTML());
             }
         });
 

@@ -30,6 +30,7 @@
                                         <td>${topic.createAtFormatted}</td>
                                         <td>${topic.updateAtFormatted}</td>
                                         <td>
+                                            <a href="${contextpath}/topic/show/${topic.id}" target="_blank">查看</a>
                                             <a href="${contextPath}/topic/edit/${topic.id}">修改</a>
                                             <a href="${contextPath}/topic/del/${topic.id}">删除</a>
                                         </td>
@@ -44,7 +45,7 @@
                             <!--分页结束-->
                         </c:if>
                         <c:if test="${empty pager.content}">
-                            <p class="text-center">还没有创建文章</p>
+                            <p class="text-center">还没有创建帖子</p>
                         </c:if>
                     </div>
                 </div>

@@ -64,7 +64,7 @@ public class TopicController {
                                    RedirectAttributes redirectAttributes){
         if(null==vo|| StringUtils.isEmpty(vo.getCatId())
                 ||StringUtils.isEmpty(vo.getTitle())
-                ||StringUtils.isEmpty(vo.getContent())){
+                ||StringUtils.isEmpty(vo.getContentMD())){
             model.addAttribute("messageErr","帖子栏目，标题，内容不能为空");
             model.addAttribute("catList",categoryService.findAll());
             model.addAttribute("topicVo",vo);
@@ -113,7 +113,7 @@ public class TopicController {
 
         if(null==vo|| StringUtils.isEmpty(vo.getCatId())
                 ||StringUtils.isEmpty(vo.getTitle())
-                ||StringUtils.isEmpty(vo.getContent())){
+                ||StringUtils.isEmpty(vo.getContentMD())){
             model.addAttribute("messageErr","帖子栏目，标题，内容不能为空");
             model.addAttribute("topicVo",vo);
             return "topic/topic_edit";
@@ -145,4 +145,9 @@ public class TopicController {
     }
 
 
+    @RequestMapping(value="/show/{topicID}")
+    public String showTopic(@PathVariable("topicID")String topicID,ModelMap model){
+        model.addAttribute("topic",topicService.findTopicById(topicID));
+        return "topic/topic_show";
+    }
 }

@@ -13,7 +13,8 @@ public class TopicVo{
     private String topicId;
     private String catId; //栏目ID
     private String title;
-    private String content;
+    private String contentMD; //Markdown格式内容
+    private String contentHTML; //HTML格式内容
     private String authorId;
     private boolean top;// 置顶帖
     private boolean good;// 精华帖

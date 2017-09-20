@@ -39,7 +39,8 @@ public class TopicServiceImpl implements TopicService {
         topic.setAuthorId(vo.getAuthorId());
         topic.setCatId(vo.getCatId());
         topic.setTitle(vo.getTitle());
-        topic.setContent(vo.getContent());
+        topic.setContentMD(vo.getContentMD());
+        topic.setContentHTML(vo.getContentHTML());
         topic.setContentIsHTML(vo.isContentIsHTML());
         topic.setTop(vo.isTop());
         topic.setGood(vo.isGood());
@@ -65,7 +66,8 @@ public class TopicServiceImpl implements TopicService {
         vo.setAuthorId(topic.getAuthorId());
         vo.setCatId(topic.getCatId());
         vo.setTitle(topic.getTitle());
-        vo.setContent(topic.getContent());
+        vo.setContentMD(topic.getContentMD());
+        vo.setContentHTML(topic.getContentHTML());
         vo.setContentIsHTML(topic.isContentIsHTML());
         vo.setTop(topic.isTop());
         vo.setGood(topic.isGood());
@@ -81,7 +83,8 @@ public class TopicServiceImpl implements TopicService {
         topicInDB.setCatId(vo.getCatId());
         topicInDB.setTitle(vo.getTitle());
         topicInDB.setAuthorId(vo.getAuthorId());
-        topicInDB.setContent(vo.getContent());
+        topicInDB.setContentMD(vo.getContentMD());
+        topicInDB.setContentHTML(vo.getContentHTML());
         topicInDB.setContentIsHTML(vo.isContentIsHTML());
         topicInDB.setTop(vo.isTop());
         topicInDB.setGood(vo.isGood());
