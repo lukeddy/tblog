@@ -62,6 +62,7 @@
                                     <div class="text-center">
                                         <input type="hidden" name="id" value="${topicVo.topicId}">
                                         <input type="hidden" name="authorId" value="${topicVo.authorId}">
+                                        <input type="hidden" name="authorName" value="${topicVo.authorName}">
                                         <button class="btn btn-success" id="submit" type="submit">修改</button>
                                         <button class="btn btn-default" type="reset">清空</button>
                                     </div>

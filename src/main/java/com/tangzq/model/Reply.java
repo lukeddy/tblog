@@ -6,16 +6,17 @@ import lombok.ToString;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "comments")
+@Document(collection = "replys")
 @Getter
 @Setter
 @ToString
-public class Comment extends BaseModel<String> {
+public class Reply extends BaseModel<String> {
 
-    private String commentContent;
+    private String contentMD;
+    private String contentHTML;
     private ObjectId topicId;
     private ObjectId authorId;
-    private ObjectId replyCommentId;
+    private ObjectId replyId;
     private boolean contentIsHTML;
     private int thumbsUPCount;
     private boolean deleted;

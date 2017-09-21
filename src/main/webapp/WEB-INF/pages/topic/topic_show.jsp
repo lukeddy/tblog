@@ -7,7 +7,7 @@
             <div class='header topic_header'>
                 <h1 class="topic_full_title">${topic.title}</h1>
                 <div class="changes">
-                    <span>时间：${topic.createAtFormatted}</span><span>作者：<a href="/user/abc1231hahaha">${topic.authorId}</a></span><span> ${topic.visitCount}次浏览</span>
+                    <span>${topic.friendlyTime}</span><span>&nbsp;&nbsp;作者：<a href="/user/abc1231hahaha">${topic.authorName}</a></span><span>&nbsp;&nbsp; ${topic.visitCount}次浏览</span>
                 </div>
             </div>
             <div class='inner topic'>

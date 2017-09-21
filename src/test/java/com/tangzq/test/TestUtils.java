@@ -1,9 +1,13 @@
 package com.tangzq.test;
 
+import com.tangzq.utils.DateUtils;
 import com.tangzq.utils.UploadUtil;
 import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.time.DateUtils;
 import org.junit.Test;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TestUtils {
 
@@ -16,6 +20,13 @@ public class TestUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testDateUtils() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
+        Date date = format.parse("2017-09-21 20:48:10");
+        System.out.println(DateUtils.getFriendlyTime(date));
     }
 
 }

@@ -61,6 +61,7 @@
                                 <div class="form-group">
                                     <div class="text-center">
                                         <input type="hidden" name="authorId" value="${loginUser.id}">
+                                        <input type="hidden" name="authorName" value="${loginUser.username}">
                                         <button class="btn btn-success" id="submit" type="submit">新建</button>
                                         <button class="btn btn-default" type="reset">清空</button>
                                     </div>

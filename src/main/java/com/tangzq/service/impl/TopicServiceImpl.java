@@ -37,6 +37,7 @@ public class TopicServiceImpl implements TopicService {
         }
         Topic topic=new Topic();
         topic.setAuthorId(vo.getAuthorId());
+        topic.setAuthorName(vo.getAuthorName());
         topic.setCatId(vo.getCatId());
         topic.setTitle(vo.getTitle());
         topic.setContentMD(vo.getContentMD());
@@ -63,6 +64,7 @@ public class TopicServiceImpl implements TopicService {
         }
         TopicVo vo=new TopicVo();
         vo.setTopicId(topic.getId());
+        vo.setAuthorName(topic.getAuthorName());
         vo.setAuthorId(topic.getAuthorId());
         vo.setCatId(topic.getCatId());
         vo.setTitle(topic.getTitle());
@@ -83,6 +85,7 @@ public class TopicServiceImpl implements TopicService {
         topicInDB.setCatId(vo.getCatId());
         topicInDB.setTitle(vo.getTitle());
         topicInDB.setAuthorId(vo.getAuthorId());
+        topicInDB.setAuthorName(vo.getAuthorName());
         topicInDB.setContentMD(vo.getContentMD());
         topicInDB.setContentHTML(vo.getContentHTML());
         topicInDB.setContentIsHTML(vo.isContentIsHTML());
