@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand hidden-sm" href="/">
-                <img src="#" alt="网站LOGO">
+                <span class="tblog-logo">tBlog</span>
             </a>
         </div>
         <form id='search_form' class="navbar-form navbar-left">
