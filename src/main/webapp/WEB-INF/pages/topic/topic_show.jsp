@@ -162,7 +162,6 @@
                 </div>
             </div>
         </div>
-
         <div id="reply">
             <form action="/comment/${topic.id}" method="post" class="form-vertical" id="reply-form" role="form">
                 <fieldset>
@@ -176,7 +175,6 @@
                 </fieldset>
             </form>
         </div>
-
     </div>
 </div>
 <jsp:include page="../inc/footer.jsp"></jsp:include>

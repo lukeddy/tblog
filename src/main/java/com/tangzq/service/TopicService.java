@@ -52,4 +52,9 @@ public interface TopicService {
      * @param topicId
      */
     void deleteById(String topicId);
+
+    /**
+     * 更新访问次数
+     */
+    void increseVisitCount(String topicId);
 }
