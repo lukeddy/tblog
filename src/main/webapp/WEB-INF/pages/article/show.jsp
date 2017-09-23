@@ -25,7 +25,7 @@
                     <span class="col_fade">${article.topic.replyCount} 回复</span>
                 </div>
                 <c:forEach items="${article.replyList}" var="reply" varStatus="status">
-                    <div class="cell reply_area reply_item" reply_id="${reply.id}" reply_to_id="" id="${reply.id}">
+                    <div class="cell reply_area reply_item editormd-preview-container" reply_id="${reply.id}" reply_to_id="" id="${reply.id}">
                         <div class="author_content">
                             <a href="/user/captainblue2013" class="user_avatar">
                                 <img src="https://avatars1.githubusercontent.com/u/3942299?v=4&amp;s=120" title="captainblue2013"></a>
@@ -43,13 +43,13 @@
                               <span></span>
                               <c:if test="${not empty loginUser}">
                                   <c:if test="${loginUser.id==reply.authorId}">
-                                    <a href="javascript:;" id="btnReplyEdit" data-id="${reply.id}" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <a href="${contextPath}/article/reply/del/${article.topic.id}/${reply.id}" title="删除"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                                    <a href="javascript:;" class="edit-reply" reply-id="${reply.id}" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>
+                                    <a href="${contextPath}/article/${article.topic.id}/reply/${reply.id}/del/" title="删除"><i class="glyphicon glyphicon-remove-circle"></i></a>
                                   </c:if>
                              </c:if>
                             </div>
                         </div>
-                        <div class="reply_content from-captainblue2013">
+                        <div class="reply_content from-${reply.authorId}">
                             <div class="markdown-text"><p>${reply.contentHTML}</p></div>
                         </div>
                         <div class="clearfix">
@@ -78,24 +78,65 @@
                     </fieldset>
                 </form>
             </div>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">编辑评论</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="post" class="form-vertical" id="edit-comment-form" role="form">
+                                <div class="form-group">
+                                    <div id="editormd-edit">
+                                        <textarea style="display: none;" id="comment-markdown"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-info" id="edit-submit">提交</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </c:if>
         <c:if test="${empty loginUser}">
             <div class="content" style="padding: 2em;">
                 需要 <a href="${contextPath}/login" class="btn btn-primary">登录</a> 后方可回复, 如果你还没有账号你可以 <a href="${contextPath}/signup" class="btn btn-danger">注册</a> 一个帐号。
             </div>
         </c:if>
+
+
     </div>
 </div>
 <jsp:include page="../inc/footer.jsp"></jsp:include>
 <script>
     var editor, editor_edit;
     $(document).ready(function(){
+
+        $('.edit-reply').click(function(){
+            var replyId = $(this).attr('reply-id');
+            $.getJSON("${contextPath}/article/reply/" + replyId + ".json", function (data) {
+                $('#edit-comment-form').attr('action', '/article/${article.topic.id}/reply/' + replyId + '/edit');
+                $('#myModal').on('shown.bs.modal', function (e) {
+                    if (editor_edit) {
+                        editor_edit.setMarkdown(data.contentMD);
+                    } else {
+                        editor_edit = createEditorMd("editormd-edit", "#edit-submit", data.contentMD);
+                    }
+                });
+                $('#myModal').modal({});
+            });
+        });
+
         $('#submit').attr('disabled', true);
 
         editor = createEditorMd("editormd", "#submit");
 
         $('.editormd-preview-container pre').addClass("prettyprint linenums");
         prettyPrint();
+
+
     });
 
     /**

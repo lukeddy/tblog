@@ -21,6 +21,10 @@ public class ReplyServiceImpl implements ReplyService {
     @Autowired
     private TopicService topicService;
 
+    public Reply getReply(String replyID) {
+        return replyRepository.findOne(replyID);
+    }
+
     public Reply addReply(ReplyVo vo) {
         Reply savedReply=replyRepository.save(convertVoToReply(vo));
         if(null!=savedReply&&savedReply.getId()!=null){
@@ -29,6 +33,17 @@ public class ReplyServiceImpl implements ReplyService {
             return savedReply;
         }
         return null;
+    }
+
+    public Reply updateReplyContent(String replyId, String contentMD, String contentHTML) {
+        Reply replyInDB=getReply(replyId);
+        if(null==replyInDB){
+            return null;
+        }
+        replyInDB.setContentMD(contentMD);
+        replyInDB.setContentHTML(contentHTML);
+        replyInDB.setUpdateAt(new Date());
+        return replyRepository.save(replyInDB);
     }
 
     private Reply convertVoToReply(ReplyVo vo){
