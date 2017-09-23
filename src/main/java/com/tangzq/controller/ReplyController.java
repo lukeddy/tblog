@@ -27,7 +27,7 @@ public class ReplyController {
         }
         Reply reply=replyService.addReply(vo);
         if(null!=reply&&reply.getId()!=null){
-            return "redirect:/topic/show/"+topicID;
+            return "redirect:/topic/show/"+topicID+"#"+reply.getId();
         }else{
             redirectAttributes.addFlashAttribute("messageSuc","评论添加失败！");
             return "redirect:/topic/show/"+topicID;
