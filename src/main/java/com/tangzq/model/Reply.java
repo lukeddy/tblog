@@ -14,9 +14,9 @@ public class Reply extends BaseModel<String> {
 
     private String contentMD;
     private String contentHTML;
-    private ObjectId topicId;
-    private ObjectId authorId;
-    private ObjectId replyId;
+    private String topicId;
+    private String authorId;
+    private String replyId;
     private boolean contentIsHTML;
     private int thumbsUPCount;
     private boolean deleted;

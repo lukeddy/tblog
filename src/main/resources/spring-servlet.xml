@@ -36,7 +36,10 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/cat/**"/>
-            <mvc:mapping path="/topic/**"/>
+            <mvc:mapping path="/topic/list/**"/>
+            <mvc:mapping path="/topic/create/**"/>
+            <mvc:mapping path="/topic/edit/**"/>
+            <mvc:mapping path="/topic/del/**"/>
             <bean class="com.tangzq.interceptor.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

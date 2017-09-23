@@ -5,7 +5,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * 主题操作类
+ * 帖子操作类
  */
 @Repository
 public interface TopicRepository extends PagingAndSortingRepository<Topic,String> {

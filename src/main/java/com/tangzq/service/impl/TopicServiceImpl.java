@@ -101,6 +101,9 @@ public class TopicServiceImpl implements TopicService {
 
     public void increseVisitCount(String topicId) {
         Topic topicInDB=findTopicById(topicId);
+        if(null==topicInDB){
+            return;
+        }
         int visitCount=topicInDB.getVisitCount();
         topicInDB.setVisitCount(visitCount+1);
         topicRepository.save(topicInDB);

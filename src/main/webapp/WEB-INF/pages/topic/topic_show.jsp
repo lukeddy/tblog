@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inc/header.jsp"></jsp:include>
 <div id='main'>
     <jsp:include page="../inc/sidebar.jsp"></jsp:include>
@@ -20,7 +21,7 @@
         </div>
         <div class="panel">
             <div class="header">
-                <span class="col_fade">5 回复</span>
+                <span class="col_fade">${topic.replyCount} 回复</span>
             </div>
             <div class="cell reply_area reply_item" reply_id="5975655d0c87675e746747c5" reply_to_id="" id="5975655d0c87675e746747c5">
                 <div class="author_content">
@@ -162,19 +163,30 @@
                 </div>
             </div>
         </div>
-        <div id="reply">
-            <form action="/comment/${topic.id}" method="post" class="form-vertical" id="reply-form" role="form">
-                <fieldset>
-                    <div class="form-group">
-                        <label>新回复</label>
-                        <div id="editormd">
-                            <textarea style="display: none;"></textarea>
+        <c:if test="${not empty loginUser}">
+            <jsp:include page="../inc/msgbox.jsp"></jsp:include>
+            <div id="reply">
+                <form action="${contextPath}/reply/add/${topic.id}" method="post" class="form-vertical" id="reply-form" role="form">
+                    <fieldset>
+                        <div class="form-group">
+                            <label>新回复</label>
+                            <div id="editormd">
+                                <textarea class="editormd-markdown-textarea" name="contentMD" id="contentMD"></textarea>
+                                <textarea class="editormd-html-textarea" name="contentHTML" id="contentHTML"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <input type="submit" class="btn btn-primary" value="回复" id="submit">
-                </fieldset>
-            </form>
-        </div>
+                        <input type="hidden" name="topicId" value="${topic.id}">
+                        <input type="hidden" name="authorId" value="${loginUser.id}">
+                        <input type="submit" class="btn btn-primary" value="回复" id="submit">
+                    </fieldset>
+                </form>
+            </div>
+        </c:if>
+        <c:if test="${empty loginUser}">
+            <div class="content" style="padding: 2em;">
+                需要 <a href="${contextPath}/login" class="btn btn-primary">登录</a> 后方可回复, 如果你还没有账号你可以 <a href="${contextPath}/signup" class="btn btn-danger">注册</a> 一个帐号。
+            </div>
+        </c:if>
     </div>
 </div>
 <jsp:include page="../inc/footer.jsp"></jsp:include>
