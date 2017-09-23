@@ -117,5 +117,15 @@ public class TopicServiceImpl implements TopicService {
         topicRepository.save(topicInDB);
     }
 
+    public void decreaseReplyCount(String topicId) {
+        Topic topicInDB=findTopicById(topicId);
+        if(null==topicInDB){
+            return;
+        }
+        int replyCount=topicInDB.getReplyCount()>1?topicInDB.getReplyCount()-1:0;
+        topicInDB.setReplyCount(replyCount);
+        topicRepository.save(topicInDB);
+    }
+
 
 }

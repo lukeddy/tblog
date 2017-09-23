@@ -41,6 +41,12 @@
                                 <span class="up-count"></span>
                               </span>
                               <span></span>
+                              <c:if test="${not empty loginUser}">
+                                  <c:if test="${loginUser.id==reply.authorId}">
+                                    <a href="javascript:;" id="btnReplyEdit" data-id="${reply.id}" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>
+                                    <a href="${contextPath}/article/reply/del/${article.topic.id}/${reply.id}" title="删除"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                                  </c:if>
+                             </c:if>
                             </div>
                         </div>
                         <div class="reply_content from-captainblue2013">

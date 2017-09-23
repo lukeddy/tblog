@@ -23,4 +23,10 @@ public interface ReplyService {
     List<Reply> findReplyByTopicId(String topicId);
 
 
+    /**
+     * 删除评论
+     * @param replyId
+     * @param topicId
+     */
+    void deleteReply(String replyId,String topicId);
 }

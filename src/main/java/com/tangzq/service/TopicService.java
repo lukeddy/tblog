@@ -58,8 +58,14 @@ public interface TopicService {
     void increaseVisitCount(String topicId);
 
     /**
-     * 更新恢复次数
+     * 更新评论次数
      * @param topicId
      */
     void increaseReplyCount(String topicId);
+
+    /**
+     * 减少评论次数
+     * @param topicId
+     */
+    void decreaseReplyCount(String topicId);
 }

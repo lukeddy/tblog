@@ -52,4 +52,9 @@ public class ReplyServiceImpl implements ReplyService {
     public List<Reply> findReplyByTopicId(String topicId) {
         return replyRepository.findAllByTopicId(topicId);
     }
+
+    public void deleteReply(String replyId,String topicId) {
+        replyRepository.delete(replyId);
+        topicService.decreaseReplyCount(topicId);
+    }
 }
