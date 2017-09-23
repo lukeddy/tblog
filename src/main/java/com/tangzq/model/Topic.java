@@ -1,11 +1,9 @@
 package com.tangzq.model;
 
 
-import com.tangzq.utils.DateUtils;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "topics")
@@ -30,13 +28,10 @@ public class Topic extends BaseModel<String>{
     private boolean contentIsHTML;
     private boolean deleted=false;
     private String catId; //栏目ID
-    private String friendlyTime;
+
 
     public boolean isNew() {
         return getId()==null;
     }
 
-    public String getFriendlyTime() {
-        return DateUtils.getFriendlyTime(getCreateAt());
-    }
 }

@@ -144,11 +144,4 @@ public class TopicController {
         return "redirect:/topic/list";
     }
 
-
-    @RequestMapping(value="/show/{topicID}")
-    public String showTopic(@PathVariable("topicID")String topicID,ModelMap model){
-        topicService.increseVisitCount(topicID);
-        model.addAttribute("topic",topicService.findTopicById(topicID));
-        return "topic/topic_show";
-    }
 }

@@ -3,6 +3,7 @@ package com.tangzq.service.impl;
 import com.tangzq.model.Reply;
 import com.tangzq.repository.ReplyRepository;
 import com.tangzq.service.ReplyService;
+import com.tangzq.service.TopicService;
 import com.tangzq.vo.ReplyVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,17 @@ public class ReplyServiceImpl implements ReplyService {
     @Autowired
     private ReplyRepository replyRepository;
 
+    @Autowired
+    private TopicService topicService;
+
     public Reply addReply(ReplyVo vo) {
-        Reply reply=convertVoToReply(vo);
-        return reply==null?null:replyRepository.save(reply);
+        Reply savedReply=replyRepository.save(convertVoToReply(vo));
+        if(null!=savedReply&&savedReply.getId()!=null){
+            //更新帖子评论次数
+            topicService.increaseReplyCount(savedReply.getTopicId());
+            return savedReply;
+        }
+        return null;
     }
 
     private Reply convertVoToReply(ReplyVo vo){

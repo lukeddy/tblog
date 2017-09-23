@@ -1,6 +1,7 @@
 package com.tangzq.model;
 
 
+import com.tangzq.utils.DateUtils;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -40,6 +41,9 @@ public abstract class BaseModel<ID extends Serializable> implements Persistable<
     @Transient
     private String updateAtFormatted;
 
+    @Transient
+    private String friendlyTime;
+
 
     public String getCreateAtFormatted() {
         return null==getCreateAt()?null: DateFormatUtils.format(getCreateAt(),"yyyy-MM-dd HH:mm:ss");
@@ -49,5 +53,8 @@ public abstract class BaseModel<ID extends Serializable> implements Persistable<
         return null==getUpdateAt()?null:DateFormatUtils.format(getUpdateAt(),"yyyy-MM-dd HH:mm:ss");
     }
 
+    public String getFriendlyTime() {
+        return DateUtils.getFriendlyTime(getCreateAt());
+    }
 
 }

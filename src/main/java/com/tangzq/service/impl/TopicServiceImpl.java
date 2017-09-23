@@ -99,13 +99,21 @@ public class TopicServiceImpl implements TopicService {
         topicRepository.delete(topicId);
     }
 
-    public void increseVisitCount(String topicId) {
+    public void increaseVisitCount(String topicId) {
         Topic topicInDB=findTopicById(topicId);
         if(null==topicInDB){
             return;
         }
-        int visitCount=topicInDB.getVisitCount();
-        topicInDB.setVisitCount(visitCount+1);
+        topicInDB.setVisitCount(topicInDB.getVisitCount()+1);
+        topicRepository.save(topicInDB);
+    }
+
+    public void increaseReplyCount(String topicId) {
+        Topic topicInDB=findTopicById(topicId);
+        if(null==topicInDB){
+            return;
+        }
+        topicInDB.setReplyCount(topicInDB.getReplyCount()+1);
         topicRepository.save(topicInDB);
     }
 

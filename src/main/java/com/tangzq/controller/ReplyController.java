@@ -23,14 +23,14 @@ public class ReplyController {
                            RedirectAttributes redirectAttributes){
         if(null==vo|| StringUtils.isEmpty(vo.getContentMD())){
             redirectAttributes.addFlashAttribute("messageSuc","评论内容不能为空!");
-            return "redirect:/topic/show/"+topicID;
+            return "redirect:/article/"+topicID;
         }
         Reply reply=replyService.addReply(vo);
         if(null!=reply&&reply.getId()!=null){
-            return "redirect:/topic/show/"+topicID+"#"+reply.getId();
+            return "redirect:/article/"+topicID+"#"+reply.getId();
         }else{
             redirectAttributes.addFlashAttribute("messageSuc","评论添加失败！");
-            return "redirect:/topic/show/"+topicID;
+            return "redirect:/article/"+topicID;
         }
     }
 

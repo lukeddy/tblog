@@ -55,5 +55,11 @@ public interface TopicService {
     /**
      * 更新访问次数
      */
-    void increseVisitCount(String topicId);
+    void increaseVisitCount(String topicId);
+
+    /**
+     * 更新恢复次数
+     * @param topicId
+     */
+    void increaseReplyCount(String topicId);
 }
