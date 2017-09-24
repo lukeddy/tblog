@@ -9,11 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand hidden-sm" href="/">
-                <span class="logo">
-                      <span class="triangle-up"></span>
-                      <span class="tblog-txt">tBlog</span>
-                </span>
-                <%--<span class="tblog-logo">tBlog</span>--%>
+                <span class="tblog-leaf-logo">&nbsp;</span>
             </a>
         </div>
         <form id='search_form' class="navbar-form navbar-left">

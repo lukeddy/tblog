@@ -1283,3 +1283,14 @@ textarea.editor {
   left: 5px;
   top: 21px;
 }
+
+
+.tblog-leaf-logo{
+  display: block;
+  width:80px;
+  height:30px;
+  background-size:cover;
+  background-image: url("../images/tblog-leaf-logo.png");
+  margin-left: 50px;
+  margin-top: -6px;
+}
