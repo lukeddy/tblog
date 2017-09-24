@@ -15,6 +15,7 @@ public class User extends BaseModel<String>{
     private String username;
     private String password;
     private String email;
+    private String avatarURL;
 
     public User() {
     }

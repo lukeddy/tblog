@@ -1248,3 +1248,7 @@ textarea.editor {
   width: 38px;
   background: url("../images/top.png") no-repeat
 }
+
+.error {
+  color: red; font-weight: bold;
+}

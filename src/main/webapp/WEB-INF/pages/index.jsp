@@ -55,7 +55,9 @@
                     </jsp:include>
                     <!--分页结束-->
                 </c:if>
-                <c:if test="${empty pager.content}">还没有帖子</c:if>
+                <c:if test="${empty pager.content}">
+                    <p class="text-center">还没有帖子</p>
+                </c:if>
         </div>
     </div>
     </div>

@@ -1,8 +1,17 @@
 package com.tangzq.service;
 
 import com.tangzq.model.User;
+import com.tangzq.vo.RegisterUserVo;
 
 public interface UserService {
+
+
+    /**
+     * 创建用户
+     * @param vo
+     * @return
+     */
+    User createUser(RegisterUserVo vo);
 
 
     /**
@@ -22,5 +31,18 @@ public interface UserService {
     boolean isUserValid(String username,String password);
 
 
+    /**
+     * 使用用户名查找用户
+     * @param username
+     * @return
+     */
+    User findUserByUsername(String username);
+
+    /**
+     * 使用邮箱查找用户
+     * @param email
+     * @return
+     */
+    User findUserByEmail(String email);
 
 }

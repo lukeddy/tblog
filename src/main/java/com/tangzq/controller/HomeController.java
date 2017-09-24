@@ -1,5 +1,6 @@
 package com.tangzq.controller;
 
+import com.tangzq.model.User;
 import com.tangzq.service.CategoryService;
 import com.tangzq.service.TopicService;
 import com.tangzq.service.UserService;
@@ -8,11 +9,15 @@ import com.tangzq.utils.ValidateCode;
 import com.tangzq.vo.IndexVo;
 import com.tangzq.vo.LoginUserVo;
 import com.tangzq.vo.PageVo;
+import com.tangzq.vo.RegisterUserVo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -21,6 +26,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -62,6 +68,58 @@ public class HomeController {
     }
 
     /**
+     * 注册页面
+     * @return
+     */
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
+    public String register(ModelMap model) {
+        model.addAttribute("userForm",new RegisterUserVo());
+        return "register";
+    }
+
+
+    /**
+     * 用户登录
+     * @return
+     */
+    @RequestMapping(value="/register",method = RequestMethod.POST)
+    public String doegister(@Valid @ModelAttribute("userForm") RegisterUserVo registerUser, BindingResult result,
+                            HttpSession session,
+                            ModelMap model,
+                            RedirectAttributes redirectAttributes){
+
+        if(result.hasErrors()){
+            return "register";
+        }
+
+        String vcodeInSession = (String) session.getAttribute(VCODE_SESSION_KEY);
+        String submitCode = registerUser.getValidateCode();
+        if (!StringUtils.equals(vcodeInSession,submitCode)) {
+            result.rejectValue("validateCode",null,"验证码错误!");
+        }
+        if(null!=userService.findUserByUsername(registerUser.getUsername())){
+            result.rejectValue("username",null,"该用户名已经存在");
+        }
+        if(null!=userService.findUserByEmail(registerUser.getEmail())){
+            result.rejectValue("email",null,"该邮箱已经被注册");
+        }
+        if(result.hasErrors()){
+            return "register";
+        }
+
+        User savedUser=userService.createUser(registerUser);
+        if(null!=savedUser&&savedUser.getId()!=null){
+            redirectAttributes.addFlashAttribute("messageSuc","注册成功！");
+            return "redirect:/register";
+        }else{
+            model.addAttribute("messageErr","注册失败");
+            model.addAttribute("vo",registerUser);
+            return "register";
+        }
+    }
+
+
+    /**
      * 登陆页面
      * @return
      */
@@ -92,6 +150,8 @@ public class HomeController {
         session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,userService.findUser(user.getUsername(),user.getPassword()));
         return "index";
     }
+
+
 
     /**
      * 生成验证码

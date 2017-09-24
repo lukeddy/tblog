@@ -1,6 +1,7 @@
 package com.tangzq.test;
 
 import com.tangzq.utils.DateUtils;
+import com.tangzq.utils.GravatarUtils;
 import com.tangzq.utils.UploadUtil;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
@@ -27,6 +28,12 @@ public class TestUtils {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
         Date date = format.parse("2017-09-21 20:48:10");
         System.out.println(DateUtils.getFriendlyTime(date));
+    }
+
+    @Test
+    public void testGravatar(){
+        String headerURL= GravatarUtils.makeGravatar("23424aaa@gmail.com");
+        System.out.println(headerURL);
     }
 
 }

@@ -4,6 +4,11 @@
 <div id='main'>
     <jsp:include page="../inc/sidebar.jsp"></jsp:include>
     <div id='content'>
+        <ul class='breadcrumb'>
+            <li><a href='/'><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
+            <li><a href='${contextPath}/?tab=${article.topic.catDir}'>${article.topic.catName}</a><span class='divider'></span></li>
+        </ul>
+        <br>
         <div class='panel'>
             <div class='header topic_header'>
                 <h1 class="topic_full_title">${article.topic.title}</h1>
@@ -102,7 +107,7 @@
         </c:if>
         <c:if test="${empty loginUser}">
             <div class="content" style="padding: 2em;">
-                需要 <a href="${contextPath}/login" class="btn btn-primary">登录</a> 后方可回复, 如果你还没有账号你可以 <a href="${contextPath}/signup" class="btn btn-danger">注册</a> 一个帐号。
+                需要 <a href="${contextPath}/login" class="btn btn-primary">登录</a> 后方可回复, 如果你还没有账号你可以 <a href="${contextPath}/register" class="btn btn-danger">注册</a> 一个帐号。
             </div>
         </c:if>
 
