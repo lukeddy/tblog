@@ -7,9 +7,28 @@
         <div class="panel">
             <div class="header">
                 <a href="${contextPath}/?tab=all" class='topic-tab <c:if test="${indexVo.tab=='all'}">current-tab</c:if>'>全部</a>
-                <c:forEach items="${catList}" var="cat">
-                    <a href="${contextPath}/?tab=${cat.catDir}" class='topic-tab <c:if test="${indexVo.tab==cat.catDir}">current-tab</c:if>'>${cat.catName}</a>
-                </c:forEach>
+                <c:choose>
+                    <c:when test="${catList.size()<=8}">
+                        <c:forEach items="${catList}" var="cat">
+                           <a href="${contextPath}/?tab=${cat.catDir}" class='topic-tab <c:if test="${indexVo.tab==cat.catDir}">current-tab</c:if>'>${cat.catName}</a>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${catList}" var="cat" begin="0" end="7">
+                            <a href="${contextPath}/?tab=${cat.catDir}" class='topic-tab <c:if test="${indexVo.tab==cat.catDir}">current-tab</c:if>'>${cat.catName}</a>
+                        </c:forEach>
+                           <span class="dropdown">
+                                <a href="#" class="dropdown-toggle topic-tab" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <c:forEach items="${catList}" var="cat" begin="8" end="${catList.size()-1}">
+                                        <li class="topic-tab">
+                                            <a href="${contextPath}/?tab=${cat.catDir}" class='topic-tab <c:if test="${indexVo.tab==cat.catDir}">current-tab</c:if>'>${cat.catName}</a>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                           </span>
+                    </c:otherwise>
+                </c:choose>
             </div>
             <div class="inner no-padding">
                 <c:if test="${not empty pager.content}">
