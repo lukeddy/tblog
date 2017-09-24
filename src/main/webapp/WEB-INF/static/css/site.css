@@ -1254,3 +1254,32 @@ textarea.editor {
 .error {
   color: red; font-weight: bold;
 }
+
+.logo{
+  background: #fff;
+  padding: 5px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-left: 50px;
+  margin-top: -14px;
+  border: 1px dotted #009F7B;
+  border-radius: 60px;
+  position:relative;
+}
+.logo .triangle-up{
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 18px solid #009F7B;
+}
+.logo .tblog-txt{
+  color: #009F7B;
+  font-weight: 400;
+  font-size: 15px;
+  position: absolute;
+  left: 5px;
+  top: 21px;
+}
