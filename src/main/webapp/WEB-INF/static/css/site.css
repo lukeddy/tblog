@@ -774,9 +774,11 @@ textarea#title {
   margin-top: -12px;
   color: #fff;
   text-align: center;
-  background-color: #563d7c;
-  border: 2px dotted #cdbfe3;
+  /* background-color: #563d7c; */
+  /* border: 2px dotted #cdbfe3; */
   border-radius: 15%;
+  text-shadow: brown;
+  text-shadow: 5px 5px 8px lightgreen;
 }
 
 .breadcrumb,.pagination ul,.span-common {
