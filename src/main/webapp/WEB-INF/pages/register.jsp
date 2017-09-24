@@ -15,7 +15,7 @@
             <div class='inner'>
                 <div class="row"  id="login-box" style="width:480px;margin:0 auto 5% auto;">
                     <jsp:include page="inc/msgbox.jsp"></jsp:include>
-                    <form:form action="${contextPath}/register" commandName="userForm" method="post">
+                    <form:form action="${contextPath}/register" commandName="registerForm" method="post">
                         <h3 class="form-signin-header text-center">用户注册</h3>
                         <div class="form-group">
                             <div class="input-group">

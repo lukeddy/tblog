@@ -73,7 +73,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/register",method = RequestMethod.GET)
     public String register(ModelMap model) {
-        model.addAttribute("userForm",new RegisterUserVo());
+        model.addAttribute("registerForm",new RegisterUserVo());
         return "register";
     }
 
@@ -83,7 +83,7 @@ public class HomeController {
      * @return
      */
     @RequestMapping(value="/register",method = RequestMethod.POST)
-    public String doegister(@Valid @ModelAttribute("userForm") RegisterUserVo registerUser, BindingResult result,
+    public String doegister(@Valid @ModelAttribute("registerForm") RegisterUserVo registerUser, BindingResult result,
                             HttpSession session,
                             ModelMap model,
                             RedirectAttributes redirectAttributes){
@@ -124,7 +124,8 @@ public class HomeController {
      * @return
      */
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String login() {
+    public String login(ModelMap model) {
+        model.addAttribute("loginForm",new LoginUserVo());
         return "login";
     }
 
@@ -133,22 +134,28 @@ public class HomeController {
      * @return
      */
     @RequestMapping(value="/login",method = RequestMethod.POST)
-    public String doLogin(LoginUserVo user, HttpSession session,
+    public String doLogin(@Valid @ModelAttribute("loginForm") LoginUserVo user,BindingResult result,
+                          HttpSession session,
                           RedirectAttributes redirectAttributes){
+
+        if(result.hasErrors()){
+            return "login";
+        }
 
         String vcodeInSession = (String) session.getAttribute(VCODE_SESSION_KEY);
         String submitCode = user.getValidateCode();
 
-        if (StringUtils.isEmpty(submitCode) || !StringUtils.equals(vcodeInSession,submitCode)) {
-            redirectAttributes.addFlashAttribute("message","验证码错误！");
-            return "redirect:/login";
+        if (!StringUtils.equals(vcodeInSession,submitCode)) {
+            result.rejectValue("validateCode",null,"验证码错误!");
+            return "login";
         }
         if(!userService.isUserValid(user.getUsername(),user.getPassword())){
-            redirectAttributes.addFlashAttribute("message","用户名或者密码错误");
-            return "redirect:/login";
+            redirectAttributes.addFlashAttribute("messageErr","用户名或者密码错误");
+            return "login";
         }
+
         session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,userService.findUser(user.getUsername(),user.getPassword()));
-        return "index";
+        return "redirect:/home";
     }
 
 

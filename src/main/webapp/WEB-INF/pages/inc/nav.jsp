@@ -58,8 +58,10 @@
                 <%--</ul>--%>
                 <%--</li>--%>
                 <li><a href="${contextPath}/about">关于</a></li>
-                <li><a href="${contextPath}/register">注册</a></li>
-                <li><a href="${contextPath}/login">登陆</a></li>
+                <c:if test="${empty loginUser}">
+                   <li><a href="${contextPath}/register">注册</a></li>
+                   <li><a href="${contextPath}/login">登陆</a></li>
+                </c:if>
                 <c:if test="${not empty loginUser}">
                     <li><a href="${contextPath}/cat/list">栏目管理</a></li>
                     <li><a href="${contextPath}/topic/list">帖子管理</a></li>
