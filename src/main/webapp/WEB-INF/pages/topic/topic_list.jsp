@@ -20,6 +20,7 @@
                             <table class="table">
                                 <tr>
                                     <th>帖子标题</th>
+                                    <th>栏目</th>
                                     <th>创建日期</th>
                                     <th>更新日期</th>
                                     <th>操作</th>
@@ -27,6 +28,7 @@
                                 <c:forEach items="${pager.content}" var="topic">
                                     <tr>
                                         <td>${topic.title}</td>
+                                        <td>${topic.catName},${topic.catDir}</td>
                                         <td>${topic.createAtFormatted}</td>
                                         <td>${topic.updateAtFormatted}</td>
                                         <td>

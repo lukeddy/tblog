@@ -1,6 +1,7 @@
 package com.tangzq.service;
 
 import com.tangzq.model.Topic;
+import com.tangzq.vo.IndexVo;
 import com.tangzq.vo.TopicVo;
 import org.springframework.data.domain.Page;
 
@@ -13,6 +14,13 @@ public interface TopicService {
      * @return
      */
     Page<Topic> findByPage(int pageNo, int pageSize);
+
+    /**
+     *
+     * @param vo
+     * @return
+     */
+    Page<Topic> findByPage(IndexVo vo);
 
     /**
      * 新增帖子

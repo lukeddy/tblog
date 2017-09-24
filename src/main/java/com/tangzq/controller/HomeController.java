@@ -1,12 +1,16 @@
 package com.tangzq.controller;
 
-import com.tangzq.service.MyService;
+import com.tangzq.service.CategoryService;
+import com.tangzq.service.TopicService;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.CommonProps;
 import com.tangzq.utils.ValidateCode;
+import com.tangzq.vo.IndexVo;
 import com.tangzq.vo.LoginUserVo;
+import com.tangzq.vo.PageVo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,23 +31,33 @@ import java.io.IOException;
 @Controller
 public class HomeController {
 
-    @Autowired
-    private MyService myService;
+    public static final String VCODE_SESSION_KEY="validateCode";
+
+    @Value("${appname}")
+    private String configAppName;
 
     @Autowired
     private UserService userService;
 
-    public static final String VCODE_SESSION_KEY="validateCode";
+
+    @Autowired
+    private TopicService topicService;
+
+    @Autowired
+    private CategoryService categoryService;
 
 
     /**
      * 跳转到首页
-     *
+     * @param vo 首页参数封装
+     * @param modelMap
      * @return
      */
     @RequestMapping(value = "/home")
-    public String index( ModelMap modelMap) {
-        modelMap.addAttribute("appName", myService.getAppName());
+    public String index(IndexVo vo, ModelMap modelMap) {
+        modelMap.addAttribute("pager",topicService.findByPage(vo));
+        modelMap.addAttribute("catList",categoryService.findAll());
+        modelMap.addAttribute("indexVo",vo);
         return "index";
     }
 

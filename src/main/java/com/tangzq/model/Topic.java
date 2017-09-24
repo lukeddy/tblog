@@ -28,6 +28,8 @@ public class Topic extends BaseModel<String>{
     private boolean contentIsHTML;
     private boolean deleted=false;
     private String catId; //栏目ID
+    private String catName;
+    private String catDir;
 
 
     public boolean isNew() {
