@@ -1294,3 +1294,9 @@ textarea.editor {
   margin-left: 50px;
   margin-top: -6px;
 }
+
+.highlight{
+  color: #c00;
+  font-style: normal;
+  font-weight: normal;
+}

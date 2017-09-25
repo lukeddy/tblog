@@ -22,7 +22,7 @@
                     </div>
                 </form>
                 <c:if test="${not empty pager.content}">
-                    <div id="topic_list">
+                    <div class="search-result">
                         <c:forEach items="${pager.content}" var="topic">
                           <div class="cell">
                             <a class="user_avatar pull-left" href="${contextPath}/user/${topic.authorName}">
@@ -67,3 +67,13 @@
     </div>
 </div>
 <jsp:include page="inc/footer.jsp"></jsp:include>
+<script src="${contextPath}/js/mark/mark.js"></script>
+<script>
+    $(document).ready(function(){
+        var instance = new Mark(document.querySelector("div.search-result"));
+        instance.mark("${searchVo.keywords}", {
+            "element": "span",
+            "className": "highlight"
+        });
+    });
+</script>
