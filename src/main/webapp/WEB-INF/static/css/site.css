@@ -1316,8 +1316,8 @@ textarea.editor {
 
 .img-circle{
   display:inline-block;
-  width:4.5em;
-  height:4.5em;
+  width:4em;
+  height:4em;
   border-radius: 50%;
   margin-right:10px;
 }

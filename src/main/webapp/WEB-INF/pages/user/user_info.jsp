@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <jsp:include page="../inc/header.jsp"></jsp:include>
   <div id="main">
-      <div id="container">
+      <div class="container">
           <div class="row">
               <div class="col-md-3 left sidebar">
                   <jsp:include page="user_sidebar.jsp">
@@ -84,9 +84,7 @@
                           </div>
                       </form:form>
                   </div>
-
               </div>
-
           </div>
       </div>
   </div>

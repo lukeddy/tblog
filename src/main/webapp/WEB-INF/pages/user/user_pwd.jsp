@@ -21,7 +21,6 @@
                         <div class="form-group">
                             <label for="oldPwd" class="col-md-2 control-label">当前密码</label>
                             <div class="col-lg-6">
-                                <%--<input type="password" name="current_password" id="current_password" class="form-control">--%>
                                 <form:password path="oldPwd" cssClass="form-control" id="oldPwd"/>
                             </div>
                             <form:errors path="oldPwd" cssClass="error"/>
@@ -30,7 +29,6 @@
                         <div class="form-group">
                             <label for="newPwd" class="col-md-2 control-label">新密码</label>
                             <div class="col-lg-6">
-                                <%--<input type="password" name="new_password" id="new_password" class="form-control">--%>
                                 <form:password path="newPwd" cssClass="form-control" id="newPwd"/>
                             </div>
                             <form:errors path="newPwd" cssClass="error"/>
@@ -39,7 +37,6 @@
                         <div class="form-group">
                             <label for="repeatNewPwd" class="col-md-2 control-label">新密码确认</label>
                             <div class="col-lg-6">
-                                <%--<input type="password" name="confirm_password" id="confirm_password" class="form-control">--%>
                                 <form:password path="repeatNewPwd" cssClass="form-control" id="repeatNewPwd"/>
                             </div>
                             <form:errors path="repeatNewPwd" cssClass="error"/>
