@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <jsp:include page="../inc/header.jsp"></jsp:include>
   <div id="main">
       <div id="container">
@@ -14,7 +15,7 @@
                       <li class="active">个人资料</li>
                   </ul>
                   <div class="wrapper">
-                      <form action="/user_center/edit_info" method="post" class="form-horizontal" role="form">
+                      <form:form action="${contextPath}/user/profile/${loginUser.id}" commandName="userInfoForm" method="post" cssClass="form-horizontal">
                           <div class="form-group">
                               <label class="col-lg-2 control-label">用户名</label>
                               <div class="col-lg-6">
@@ -25,61 +26,62 @@
                           <div class="form-group">
                               <label for="email" class="col-lg-2 control-label">电子邮件</label>
                               <div class="col-lg-10">
-                                  <input type="text" value="${loginUser.email}" name="email" id="email" class="form-control">
+                                  <form:input path="email" cssClass="form-control" id="email"/>
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label for="website" class="col-lg-2 control-label">个人网站</label>
                               <div class="col-lg-10">
-                                  <input type="text" value="www.shikezhi.com" name="website" id="website" class="form-control">
+                                  <form:input path="website" cssClass="form-control" id="website"/>
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label for="location" class="col-lg-2 control-label">所在地</label>
                               <div class="col-lg-10">
-                                  <input type="text" value="成都" name="location" id="location" class="form-control" placeholder="城市名即可，如苏州">
+                                  <form:input path="location" cssClass="form-control" id="location" placeholder="城市名即可，如苏州"/>
                               </div>
                           </div>
 
                           <div class="form-group">
-                              <label for="tagline" class="col-lg-2 control-label">签名</label>
+                              <label for="slogan" class="col-lg-2 control-label">签名</label>
                               <div class="col-lg-10">
-                                  <input type="text" value="心云" name="tagline" id="tagline" class="form-control">
+                                  <form:input path="slogan" cssClass="form-control" id="slogan"/>
                               </div>
                           </div>
 
                           <div class="form-group">
-                              <label for="bio" class="col-lg-2 control-label">个人简介</label>
+                              <label for="selfDesc" class="col-lg-2 control-label">个人简介</label>
                               <div class="col-lg-10">
-                                  <textarea id="bio" name="bio" class="form-control">游离于IT世界多年，Java&amp;Android&amp;python&amp;php&amp;golang&amp;nodejs玩转</textarea>
+                                  <form:textarea path="selfDesc" cssClass="form-control"></form:textarea>
                               </div>
                           </div>
                           <hr>
 
                           <div class="form-group">
-                              <label for="github_username" class="col-lg-2 control-label">GitHub用户名</label>
+                              <label for="githubUsername" class="col-lg-2 control-label">GitHub用户名</label>
                               <div class="col-lg-10">
-                                  <input type="text" value="tzq668766" name="github_username" id="github_username" class="form-control">
+                                  <form:input path="socialInfo.githubUsername" cssClass="form-control" id="githubUsername"/>
                               </div>
                           </div>
 
                           <div class="form-group">
-                              <label for="weibo" class="col-lg-2 control-label">新浪微博</label>
+                              <label for="weiboUsername" class="col-lg-2 control-label">新浪微博</label>
                               <div class="col-lg-10">
                                   <div class="input-group">
                                       <span class="input-group-addon">http://weibo.com/</span>
-                                      <input type="text" value="francistangzq" name="weibo" id="weibo" class="form-control">
+                                      <form:input path="socialInfo.weiboUsername" cssClass="form-control" id="weiboUsername"/>
                                   </div>
                               </div>
                           </div>
                           <div class="form-group">
                               <div class="col-lg-offset-2 col-lg-10">
+                                  <form:hidden path="id"/>
                                   <input type="submit" class="btn btn-primary" value="保存设置">
                               </div>
                           </div>
-                      </form>
+                      </form:form>
                   </div>
 
               </div>

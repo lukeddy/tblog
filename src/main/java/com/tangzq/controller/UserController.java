@@ -4,7 +4,6 @@ import com.tangzq.model.User;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.CommonProps;
 import com.tangzq.utils.UploadUtil;
-import com.tangzq.vo.AvatarVo;
 import com.tangzq.vo.UserPwdVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,10 +39,29 @@ public class UserController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/{uid}",method = RequestMethod.GET)
+    @RequestMapping(value = "/profile/{uid}",method = RequestMethod.GET)
     public String index(@PathVariable("uid") String uid,ModelMap model) {
-        model.addAttribute("user",userService.getUser(uid));
-        return "user/user_main";
+        model.addAttribute("userInfoForm",userService.getUser(uid));
+        return "user/user_info";
+    }
+
+
+    /**
+     * 更新用户资料
+     * @param user
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/profile/{uid}",method = RequestMethod.POST)
+    public String doUpdateInfo(@ModelAttribute("userInfoForm")User user,ModelMap model,RedirectAttributes redirectAttributes) {
+        User updatedUser=userService.updateUserInfo(user);
+        if(null!=updatedUser&&updatedUser.getUsername()!=null){
+            redirectAttributes.addFlashAttribute("messageSuc","用户信息修改成功");
+            return "redirect:/user/profile/"+updatedUser.getId();
+        }else{
+            model.addAttribute("messageErr","用户信息修改失败");
+            return "user/user_info";
+        }
     }
 
 

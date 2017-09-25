@@ -1,9 +1,9 @@
 package com.tangzq.model;
 
+import com.tangzq.model.embed.SocialInfo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
@@ -16,6 +16,14 @@ public class User extends BaseModel<String>{
     private String password;
     private String email;
     private String avatarURL;
+
+    private String website;
+    private String location;
+    private String slogan;
+    private String selfDesc;
+
+    private SocialInfo socialInfo;
+
 
     public User() {
     }

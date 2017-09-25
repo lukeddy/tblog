@@ -53,6 +53,14 @@ public interface UserService {
     User findUserByEmail(String email);
 
     /**
+     * 更新用户信息
+     * @param user
+     * @return
+     */
+    User updateUserInfo(User user);
+
+
+    /**
      * 修改用户密码
      * @param userId
      * @param newPwd

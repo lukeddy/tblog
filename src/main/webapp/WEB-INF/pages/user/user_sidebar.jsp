@@ -12,7 +12,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    <a href="${contextPath}/user/${loginUser.id}" class='list-group-item heading <c:if test="${'userinfo'==param.activeTab}">active</c:if>'>个人资料</a>
+    <a href="${contextPath}/user/profile/${loginUser.id}" class='list-group-item heading <c:if test="${'userinfo'==param.activeTab}">active</c:if>'>个人资料</a>
     <a href="${contextPath}/user/changePwd" class='list-group-item <c:if test="${'changepwd'==param.activeTab}">active</c:if>'>修改密码</a>
     <a href="${contextPath}/user/changeAvatar" class='list-group-item <c:if test="${'changeavatar'==param.activeTab}">active</c:if>'>修改头像</a>
 </div>

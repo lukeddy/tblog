@@ -62,6 +62,25 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
+    public User updateUserInfo(User user) {
+        if(null==user||user.getId()==null){
+            return null;
+        }
+        User userInDB=userRepository.findOne(user.getId());
+        if(null==userInDB){
+            return null;
+        }
+        user.setUsername(userInDB.getUsername());
+        user.setPassword(userInDB.getPassword());
+        user.setAvatarURL(userInDB.getAvatarURL());
+        if(null==user.getEmail()){
+            user.setEmail(userInDB.getEmail());
+        }
+        user.setCreateAt(userInDB.getCreateAt());
+        user.setUpdateAt(new Date());
+        return userRepository.save(user);
+    }
+
     public User updatePwd(String userId, String newPwd) {
         User userInDb=getUser(userId);
         if(null==userInDb){
