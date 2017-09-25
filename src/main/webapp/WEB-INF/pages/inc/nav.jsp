@@ -20,7 +20,7 @@
                 </div>
             </div>
         </form>
-        <div class="navbar-collapse collapse pull-right" style="height: 1px;">
+        <div class="navbar-collapse collapse pull-right">
             <ul class="nav navbar-nav">
                 <li><a href="/">首页</a></li>
                 <li><a href="${contextPath}/about">关于</a></li>
@@ -34,8 +34,8 @@
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">${loginUser.username}<b class="caret"></b></a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="${contextPath}/user/info/${loginUser.username}" target="_blank"><i class="glyphicon glyphicon-user"></i> 用户中心</a></li>
-                            <li><a href="${contextPath}/user/changePwd" target="_blank"><i class="glyphicon glyphicon-edit"></i> 修改密码</a></li>
+                            <li><a href="${contextPath}/user/info/${loginUser.username}"><i class="glyphicon glyphicon-user"></i> 用户中心</a></li>
+                            <li><a href="${contextPath}/user/changePwd"><i class="glyphicon glyphicon-edit"></i> 修改密码</a></li>
                             <li class="divider"></li>
                             <li><a href="${contextPath}/logout"><i class="glyphicon glyphicon-off"></i>退出</a></li>
                         </ul>

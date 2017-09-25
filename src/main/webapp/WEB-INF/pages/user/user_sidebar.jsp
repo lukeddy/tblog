@@ -4,11 +4,11 @@
 <div class="list-group">
     <div class="list-group-item">
         <div class="pull-left avatar">
-            <img class="img-circle" style="display: inline-block;width:55px;height:55px;border-radius: 50%;" src="${loginUser.avatarURL}">
+            <img class="img-circle" src="${loginUser.avatarURL}">
         </div>
         <div class="pull-left info">
-            <h4>${loginUser.username}</h4>
-            <p>${loginUser.email}</p>
+            <h4 style="margin-bottom: 0px;margin-top:20px;">${loginUser.username}</h4>
+            <p><a href="mailto:${loginUser.email}">${loginUser.email}</a></p>
         </div>
         <div class="clearfix"></div>
     </div>

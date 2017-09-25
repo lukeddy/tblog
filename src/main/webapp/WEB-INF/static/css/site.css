@@ -1287,12 +1287,12 @@ textarea.editor {
 
 .tblog-leaf-logo{
   display: block;
-  width:80px;
-  height:30px;
-  background-size:cover;
-  background-image: url("../images/logo/tblog-leaf-logo-color6.png");
-  margin-left: 50px;
-  margin-top: -6px;
+  width: 120px;
+  height: 53px;
+  background-size: cover;
+  background-image: url(../images/logo/tblog-leaf-logo3.png);
+  margin-left: 36px;
+  margin-top: -18px;
 }
 
 .highlight{
@@ -1312,4 +1312,12 @@ textarea.editor {
   -moz-border-radius: 4px;
   -o-border-radius: 4px;
   -khtml-border-radius: 4px;
+}
+
+.img-circle{
+  display:inline-block;
+  width:4.5em;
+  height:4.5em;
+  border-radius: 50%;
+  margin-right:10px;
 }
