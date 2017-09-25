@@ -22,24 +22,25 @@
                             <label for="oldPwd" class="col-md-2 control-label">当前密码</label>
                             <div class="col-lg-6">
                                 <form:password path="oldPwd" cssClass="form-control" id="oldPwd"/>
+                                <form:errors path="oldPwd" cssClass="error"/>
                             </div>
-                            <form:errors path="oldPwd" cssClass="error"/>
                         </div>
 
                         <div class="form-group">
                             <label for="newPwd" class="col-md-2 control-label">新密码</label>
                             <div class="col-lg-6">
                                 <form:password path="newPwd" cssClass="form-control" id="newPwd"/>
+                                <form:errors path="newPwd" cssClass="error"/>
                             </div>
-                            <form:errors path="newPwd" cssClass="error"/>
                         </div>
 
                         <div class="form-group">
                             <label for="repeatNewPwd" class="col-md-2 control-label">新密码确认</label>
                             <div class="col-lg-6">
                                 <form:password path="repeatNewPwd" cssClass="form-control" id="repeatNewPwd"/>
+                                <form:errors path="repeatNewPwd" cssClass="error"/>
                             </div>
-                            <form:errors path="repeatNewPwd" cssClass="error"/>
+
                         </div>
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">

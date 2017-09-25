@@ -54,6 +54,8 @@
                                 <button class="btn btn-default" type="reset">重置</button>
                             </div>
                         </div>
+                        <br>
+                        <p>已经有账户？点击<a href="${contextPath}/login">登陆</a></p>
                     </form:form>
                 </div>
             </div>
