@@ -23,43 +23,6 @@
         <div class="navbar-collapse collapse pull-right" style="height: 1px;">
             <ul class="nav navbar-nav">
                 <li><a href="/">首页</a></li>
-                <%--<li class="dropdown">--%>
-                <%--<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Bootstrap2中文文档<b class="caret"></b></a>--%>
-                <%--<ul class="dropdown-menu">--%>
-                <%--<li class="">--%>
-                <%--<a href="http://v2.bootcss.com/getting-started.html" target="_blank">新手入门</a>--%>
-                <%--</li>--%>
-                <%--<li class="">--%>
-                <%--<a href="http://v2.bootcss.com/scaffolding.html" target="_blank">API</a>--%>
-                <%--</li>--%>
-                <%--<li class="">--%>
-                <%--<a href="http://v2.bootcss.com/base-css.html" target="_blank">注册</a>--%>
-                <%--</li>--%>
-                <%--<li class="">--%>
-                <%--<a href="http://v2.bootcss.com/components.html" target="_blank">登录</a>--%>
-                <%--</li>--%>
-                <%--</ul>--%>
-                <%--</li>--%>
-                <%--<li class="dropdown">--%>
-                <%--<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Bootstrap3中文文档<b class="caret"></b></a>--%>
-                <%--<ul class="dropdown-menu">--%>
-                <%--<li>--%>
-                <%--<a href="http://v3.bootcss.com/getting-started/" target="_blank">起步</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                <%--<a href="http://v3.bootcss.com/css/" target="_blank">CSS</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                <%--<a href="http://v3.bootcss.com/components/" target="_blank">组件</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                <%--<a href="http://v3.bootcss.com/javascript/" target="_blank">JavaScript插件</a>--%>
-                <%--</li>--%>
-                <%--<li>--%>
-                <%--<a href="http://v3.bootcss.com/customize/" target="_blank">定制</a>--%>
-                <%--</li>--%>
-                <%--</ul>--%>
-                <%--</li>--%>
                 <li><a href="${contextPath}/about">关于</a></li>
                 <c:if test="${empty loginUser}">
                    <li><a href="${contextPath}/register">注册</a></li>
