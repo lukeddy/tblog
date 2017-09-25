@@ -102,7 +102,7 @@ public class HomeController {
         if (!StringUtils.equals(vcodeInSession,submitCode)) {
             result.rejectValue("validateCode",null,"验证码错误!");
         }
-        if(null!=userService.findUserByUsername(registerUser.getUsername())){
+        if(null!=userService.findByUsername(registerUser.getUsername())){
             result.rejectValue("username",null,"该用户名已经存在");
         }
         if(null!=userService.findUserByEmail(registerUser.getEmail())){

@@ -3,6 +3,7 @@ package com.tangzq.controller;
 import com.tangzq.model.User;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.CommonProps;
+import com.tangzq.utils.GravatarUtils;
 import com.tangzq.utils.UploadUtil;
 import com.tangzq.vo.UserPwdVo;
 import org.slf4j.Logger;
@@ -146,5 +147,38 @@ public class UserController {
             return "user/user_avatar";
         }
     }
+
+    /**
+     * 使用Avatar头像
+     * @param username
+     * @param session
+     * @param model
+     * @param redirectAttributes
+     * @return
+     */
+    @RequestMapping(value="/{username}/getAvatar/{email}")
+    public String doGetAvatar(@PathVariable("username")String username,
+                              @PathVariable("email")String email,
+                               HttpSession session,
+                               ModelMap model,
+                               RedirectAttributes redirectAttributes){
+
+        User user=userService.findByUsername(username);
+        if(null==user){
+            model.addAttribute("messageErr","无法获取用户信息");
+            return "user/user_avatar";
+        }
+        User updatedUser= userService.updateAvatar(user.getId(), GravatarUtils.makeGravatar(email));
+        if(null!=updatedUser&&updatedUser.getId()!=null){
+            session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,updatedUser);
+            redirectAttributes.addFlashAttribute("messageSuc","获取Avatar头像成功");
+            return "redirect:/user/changeAvatar";
+        }else{
+            model.addAttribute("messageErr","获取Avatar头像失败");
+            return "user/user_avatar";
+        }
+
+    }
+
 
 }

@@ -43,7 +43,7 @@ public interface UserService {
      * @param username
      * @return
      */
-    User findUserByUsername(String username);
+    User findByUsername(String username);
 
     /**
      * 使用邮箱查找用户
