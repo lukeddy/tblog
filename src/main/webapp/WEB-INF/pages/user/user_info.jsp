@@ -16,7 +16,7 @@
                   </ul>
                   <div class="wrapper">
                       <jsp:include page="../inc/msgbox.jsp"></jsp:include>
-                      <form:form action="${contextPath}/user/profile/${loginUser.id}" commandName="userInfoForm" method="post" cssClass="form-horizontal">
+                      <form:form action="${contextPath}/user/info/${loginUser.username}" commandName="userInfoForm" method="post" cssClass="form-horizontal">
                           <div class="form-group">
                               <label class="col-lg-2 control-label">用户名</label>
                               <div class="col-lg-6">

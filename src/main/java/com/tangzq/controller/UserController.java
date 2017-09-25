@@ -36,13 +36,14 @@ public class UserController {
 
     /**
      * 用户主页
-     * @param uid
+     * @param username
      * @param model
      * @return
      */
-    @RequestMapping(value = "/profile/{uid}",method = RequestMethod.GET)
-    public String index(@PathVariable("uid") String uid,ModelMap model) {
-        model.addAttribute("userInfoForm",userService.getUser(uid));
+    @RequestMapping(value = "/info/{username}",method = RequestMethod.GET)
+    public String profilePage(@PathVariable("username") String username,ModelMap model) {
+        User user=userService.findByUsername(username);
+        model.addAttribute("userInfoForm",user==null?new User():user);
         return "user/user_info";
     }
 
@@ -53,12 +54,12 @@ public class UserController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/profile/{uid}",method = RequestMethod.POST)
+    @RequestMapping(value = "/info/{username}",method = RequestMethod.POST)
     public String doUpdateInfo(@ModelAttribute("userInfoForm")User user,ModelMap model,RedirectAttributes redirectAttributes) {
         User updatedUser=userService.updateUserInfo(user);
         if(null!=updatedUser&&updatedUser.getUsername()!=null){
             redirectAttributes.addFlashAttribute("messageSuc","用户信息修改成功");
-            return "redirect:/user/profile/"+updatedUser.getId();
+            return "redirect:/user/info/"+updatedUser.getUsername();
         }else{
             model.addAttribute("messageErr","用户信息修改失败");
             return "user/user_info";

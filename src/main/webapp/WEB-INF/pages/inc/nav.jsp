@@ -34,7 +34,7 @@
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">${loginUser.username}<b class="caret"></b></a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="${contextPath}/user/profile/${loginUser.id}" target="_blank"><i class="glyphicon glyphicon-user"></i> 用户中心</a></li>
+                            <li><a href="${contextPath}/user/info/${loginUser.username}" target="_blank"><i class="glyphicon glyphicon-user"></i> 用户中心</a></li>
                             <li><a href="${contextPath}/user/changePwd" target="_blank"><i class="glyphicon glyphicon-edit"></i> 修改密码</a></li>
                             <li class="divider"></li>
                             <li><a href="${contextPath}/logout"><i class="glyphicon glyphicon-off"></i>退出</a></li>
