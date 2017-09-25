@@ -2,6 +2,7 @@ package com.tangzq.controller;
 
 import com.tangzq.model.User;
 import com.tangzq.service.UserService;
+import com.tangzq.utils.CommonProps;
 import com.tangzq.utils.UploadUtil;
 import com.tangzq.vo.AvatarVo;
 import com.tangzq.vo.UserPwdVo;
@@ -16,6 +17,7 @@ import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -97,6 +99,7 @@ public class UserController {
     @RequestMapping(value="/changeAvatar",method = RequestMethod.POST)
     public String doChangeAvatar(@RequestParam("file")MultipartFile file,
                                  @RequestParam("uid")String uid,
+                                 HttpSession session,
                                  ModelMap model,
                                  RedirectAttributes redirectAttributes){
 
@@ -112,6 +115,7 @@ public class UserController {
             logger.info("头像保存成功，全路径为："+absolutePath);
             User user=userService.updateAvatar(uid,relativePath);
             if(null!=user&&user.getId()!=null){
+                session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,user);
                 redirectAttributes.addFlashAttribute("messageSuc","头像修改成功");
                 return "redirect:/user/changeAvatar";
             }else{
