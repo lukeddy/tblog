@@ -8,12 +8,12 @@
         <div class='panel'>
             <div class='header'>
                 <ul class='breadcrumb'>
-                    <li><a href='/'>主页</a><span class='divider'>/</span></li>
+                    <li><a href='/'>主页</a><span class='divider'></span></li>
                     <li class='active'>注册</li>
                 </ul>
             </div>
             <div class='inner'>
-                <div class="row"  id="login-box" style="width:480px;margin:0 auto 5% auto;">
+                <div class="row"  id="login-box" style="width:480px;margin:0 auto;">
                     <jsp:include page="inc/msgbox.jsp"></jsp:include>
                     <form:form action="${contextPath}/register" commandName="registerForm" method="post">
                         <h3 class="form-signin-header text-center">用户注册</h3>
@@ -46,10 +46,14 @@
                             </div>
                             <form:errors path="validateCode" cssClass="error"/>
                         </div>
-                        <div class="form-group">
-                            <div class="pull-right"></div>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-success" type="submit">注册</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-default" type="reset">重置</button>
+                            </div>
                         </div>
-                        <button class="btn btn-lg btn-success btn-block" type="submit">注册</button>
                     </form:form>
                 </div>
             </div>

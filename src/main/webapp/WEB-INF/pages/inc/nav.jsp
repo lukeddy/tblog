@@ -12,9 +12,12 @@
                 <span class="tblog-leaf-logo">&nbsp;</span>
             </a>
         </div>
-        <form id='search_form' class="navbar-form navbar-left">
+        <form class="navbar-form navbar-left" action="${contextPath}/search">
             <div class="form-group">
-                <input type="text" class="form-control search-query" placeholder="">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                    <input type="text" name="keywords" class="form-control" placeholder="">
+                </div>
             </div>
         </form>
         <div class="navbar-collapse collapse pull-right" style="height: 1px;">

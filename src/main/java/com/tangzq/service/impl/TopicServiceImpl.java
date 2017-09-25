@@ -7,7 +7,9 @@ import com.tangzq.repository.TopicRepository;
 import com.tangzq.service.CategoryService;
 import com.tangzq.service.TopicService;
 import com.tangzq.vo.IndexVo;
+import com.tangzq.vo.SearchVo;
 import com.tangzq.vo.TopicVo;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.repository.query.parser.Part;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -45,6 +48,17 @@ public class TopicServiceImpl implements TopicService {
             Sort sort = new Sort(Sort.Direction.DESC, "create_at");
             Pageable pageable = new PageRequest(vo.getPageNO()-1, vo.getPageSize(), sort);
             return topicRepository.findByCatDir(vo.getTab(),pageable);
+        }
+    }
+
+    public Page<Topic> search(SearchVo searchVo) {
+        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        Pageable pageable = new PageRequest(searchVo.getPageNO()-1, searchVo.getPageSize(), sort);
+
+        if(StringUtils.isEmpty(searchVo.getKeywords())){
+            return topicRepository.findAll(pageable);
+        }else{
+            return topicRepository.findByTitleLike(searchVo.getKeywords(),pageable);
         }
     }
 

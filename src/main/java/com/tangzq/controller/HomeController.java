@@ -6,10 +6,7 @@ import com.tangzq.service.TopicService;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.CommonProps;
 import com.tangzq.utils.ValidateCode;
-import com.tangzq.vo.IndexVo;
-import com.tangzq.vo.LoginUserVo;
-import com.tangzq.vo.PageVo;
-import com.tangzq.vo.RegisterUserVo;
+import com.tangzq.vo.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +17,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.imageio.ImageIO;
@@ -65,6 +63,13 @@ public class HomeController {
         modelMap.addAttribute("catList",categoryService.findAll());
         modelMap.addAttribute("indexVo",vo);
         return "index";
+    }
+
+    @RequestMapping(value="/search")
+    public String search(SearchVo searchVo, ModelMap modelMap){
+        modelMap.addAttribute("searchVo",searchVo);
+        modelMap.addAttribute("pager",topicService.search(searchVo));
+        return "search";
     }
 
     /**

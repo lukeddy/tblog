@@ -12,6 +12,20 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TopicRepository extends PagingAndSortingRepository<Topic,String> {
 
+    /**
+     * 按栏目分类查找
+     * @param catDir
+     * @param pageable
+     * @return
+     */
     Page<Topic> findByCatDir(String catDir, Pageable pageable);
+
+    /**
+     * 标题模糊查询
+     * @param title
+     * @param pageable
+     * @return
+     */
+    Page<Topic> findByTitleLike(String title,Pageable pageable);
 
 }
