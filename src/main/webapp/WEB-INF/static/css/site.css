@@ -812,12 +812,12 @@ textarea#title {
   /*padding: 3px 14px*/
 /*}*/
 
-.breadcrumb {
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: 0 0
-}
+/*.breadcrumb {*/
+  /*padding: 0;*/
+  /*margin: 0;*/
+  /*border: none;*/
+  /*background: 0 0*/
+/*}*/
 
 .nav-pills {
   margin: 0 0 10px
@@ -1300,4 +1300,16 @@ textarea.editor {
   font-style: normal;
   font-weight: normal;
   text-decoration: underline;
+}
+
+.wrapper{
+  margin-bottom: 20px;
+  padding: 8px;
+  background-color: white;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  -khtml-border-radius: 4px;
 }

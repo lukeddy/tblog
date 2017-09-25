@@ -141,6 +141,7 @@ public class HomeController {
     @RequestMapping(value="/login",method = RequestMethod.POST)
     public String doLogin(@Valid @ModelAttribute("loginForm") LoginUserVo user,BindingResult result,
                           HttpSession session,
+                          ModelMap model,
                           RedirectAttributes redirectAttributes){
 
         if(result.hasErrors()){
@@ -155,7 +156,7 @@ public class HomeController {
             return "login";
         }
         if(!userService.isUserValid(user.getUsername(),user.getPassword())){
-            redirectAttributes.addFlashAttribute("messageErr","用户名或者密码错误");
+            model.addAttribute("messageErr","用户名或者密码错误");
             return "login";
         }
 

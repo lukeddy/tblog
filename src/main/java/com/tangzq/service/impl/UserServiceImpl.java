@@ -33,8 +33,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    public User getUser(String uid) {
+        return userRepository.findOne(uid);
+    }
+
     public User findUser(String username, String password) {
-        String encrypedPwd= DigestUtils.md5DigestAsHex(CommonProps.ADMIN_PWD.getBytes());
+        String encrypedPwd= DigestUtils.md5DigestAsHex(password.getBytes());
         return userRepository.findByUsernameAndPassword(username,encrypedPwd);
     }
 
@@ -56,5 +60,24 @@ public class UserServiceImpl implements UserService {
 
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public User updatePwd(String userId, String newPwd) {
+        User userInDb=getUser(userId);
+        if(null==userInDb){
+            return null;
+        }
+        String encrypedNewPwd= DigestUtils.md5DigestAsHex(newPwd.getBytes());
+        userInDb.setPassword(encrypedNewPwd);
+        return userRepository.save(userInDb);
+    }
+
+    public User updateAvatar(String userId, String avatarURL) {
+        User userInDb=getUser(userId);
+        if(null==userInDb){
+            return null;
+        }
+        userInDb.setAvatarURL(avatarURL);
+        return userRepository.save(userInDb);
     }
 }

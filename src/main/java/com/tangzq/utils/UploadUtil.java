@@ -1,6 +1,7 @@
 package com.tangzq.utils;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.RandomStringUtils;
 
 import javax.imageio.ImageIO;
@@ -16,6 +17,8 @@ public class UploadUtil {
 	private final static SimpleDateFormat sdfDays = new SimpleDateFormat("yyyyMMdd");
 
 	public static final String UPLOAD_FOLDER="upload";
+
+	public static final String UPLOAD_AVATAR_FOLDER=UPLOAD_FOLDER+"/avatar";
 
 	/**
 	 * 创建文件，如果文件夹不存在将被创建
@@ -45,7 +48,11 @@ public class UploadUtil {
 
 
 	public static String getRelativePath(String filename){
-		return "/"+UPLOAD_FOLDER+"/"+ getDays()+"/"+ filename;
+		return "/"+UPLOAD_FOLDER+"/"+ getDays()+"/"+ getNewFilename(filename);
+	}
+
+	public static String getRelativeAvatarPath(String filename){
+		return "/"+UPLOAD_AVATAR_FOLDER+"/"+getNewFilename(filename);
 	}
 
 	public static String getDays() {
@@ -132,6 +139,16 @@ public class UploadUtil {
 				input.close();
 			}
 		}
+	}
+
+
+	/**
+	 * 规范文件名
+	 * @param originalFilename
+	 * @return
+	 */
+	private static String getNewFilename(String originalFilename){
+		return RandomStringUtils.randomNumeric(16)+"."+ FilenameUtils.getExtension(originalFilename);
 	}
 
 	/**

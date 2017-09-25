@@ -31,7 +31,7 @@ public class UploadController {
     public void uploadImg(HttpServletResponse response, @RequestParam(value = "editormd-image-file", required = false) MultipartFile file){
         try {
             String rootPath= ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(".");
-            String relativePath = UploadUtil.getRelativePath(getNewFilename(file));
+            String relativePath = UploadUtil.getRelativePath(file.getOriginalFilename());
             String absolutePath = UploadUtil.uploadImage(rootPath,relativePath, file.getInputStream());
             logger.info("Image Saved Path:"+absolutePath);
             response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\"" + relativePath + "\"}" );
@@ -44,9 +44,4 @@ public class UploadController {
             }
         }
     }
-
-    private String getNewFilename(MultipartFile file){
-        return RandomStringUtils.randomNumeric(16)+"."+FilenameUtils.getExtension(file.getOriginalFilename());
-    }
-
 }

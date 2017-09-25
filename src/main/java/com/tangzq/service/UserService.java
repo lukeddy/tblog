@@ -15,6 +15,13 @@ public interface UserService {
 
 
     /**
+     * 获取用户
+     * @param uid
+     * @return
+     */
+    User getUser(String uid);
+
+    /**
      * 根据用户名和密码查找用户
      * @param username
      * @param password
@@ -44,5 +51,20 @@ public interface UserService {
      * @return
      */
     User findUserByEmail(String email);
+
+    /**
+     * 修改用户密码
+     * @param userId
+     * @param newPwd
+     */
+    User updatePwd(String userId,String newPwd);
+
+    /**
+     * 更新头像
+     * @param userId
+     * @param avatarURL
+     * @return
+     */
+    User updateAvatar(String userId,String avatarURL);
 
 }

@@ -8,7 +8,6 @@
             <li><a href='/'><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
             <li><a href='${contextPath}/?tab=${article.topic.catDir}'>${article.topic.catName}</a><span class='divider'></span></li>
         </ul>
-        <br>
         <div class='panel'>
             <div class='header topic_header'>
                 <h1 class="topic_full_title">${article.topic.title}</h1>
