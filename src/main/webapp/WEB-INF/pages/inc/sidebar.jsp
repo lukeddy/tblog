@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div id='sidebar'>
+<div class='col-md-3'>
     <div class='panel'>
         <div class='header'>
             <span class='col_fade'>关于</span>

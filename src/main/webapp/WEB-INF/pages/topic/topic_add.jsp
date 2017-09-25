@@ -1,17 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inc/header.jsp"></jsp:include>
-<div id='main'>
+<div class='container main'>
     <jsp:include page="../inc/sidebar.jsp"></jsp:include>
-    <div id='content'>
+    <div class='col-md-9'>
+        <ul class='breadcrumb'>
+            <li><a href='/'>主页</a><span class='divider'></span></li>
+            <li><a href='${contextPath}/topic/list'>帖子管理</a><span class='divider'></span></li>
+            <li class='active'>新建帖子</li>
+        </ul>
         <div class='panel'>
-            <div class='header'>
-                <ul class='breadcrumb'>
-                    <li><a href='/'>主页</a><span class='divider'></span></li>
-                    <li><a href='${contextPath}/topic/list'>帖子管理</a><span class='divider'></span></li>
-                    <li class='active'>新建帖子</li>
-                </ul>
-            </div>
             <div class='inner'>
                 <div class="topic_content">
                     <div class="markdown-text">

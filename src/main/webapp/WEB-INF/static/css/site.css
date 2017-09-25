@@ -3,6 +3,14 @@ body {
   font-family: "Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB",STHeiti,sans-serif!important
 }
 
+.container{
+  margin:15px auto;
+}
+
+.main{
+  margin-top:80px;
+}
+
 #main {
   width: 90%;
   max-width: 1400px;
@@ -46,9 +54,6 @@ body {
   color: #838383
 }
 
-/*#content .changes span:before {*/
-  /*content: "•"*/
-/*}*/
 
 #content .changes a {
   color: inherit
@@ -716,52 +721,6 @@ textarea#title {
   vertical-align: baseline
 }
 
-.navbar {
-  margin-bottom: 0;
-  z-index: 9;
-  width: 100%;
-  position: relative;
-  background: #444;
-  font-size: 13px
-}
-
-.navbar-inner {
-  background: 0 0;
-  border-radius: 0;
-  border: none;
-  box-shadow: none;
-  width: 90%;
-  margin: auto;
-  padding: 5px
-}
-
-.navbar .container {
-  width: 100%;
-  min-width: 960px;
-  margin: 0 auto;
-  max-width: 1400px
-}
-
-.navbar .brand {
-  width: 120px;
-  padding: 3px 20px;
-  height: 28px
-}
-
-.navbar .navbar-search {
-  margin-top: 6px
-}
-
-.navbar .search-query {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  padding: 3px 5px 3px 22px;
-  color: #666;
-  border: 0;
-  margin-top: 2px;
-  transition: all .5s
-}
-
 .tblog-logo {
   display: block;
   width: 110px;
@@ -785,39 +744,11 @@ textarea#title {
   box-shadow: none
 }
 
-.navbar .search-query.focused,.navbar .search-query:focus,.navbar .search-query:hover {
-  background-color: #fff
-}
-
-.navbar .nav .divider-vertical {
-  background-color: #2b3741;
-  border-right: 1px solid #2f3b46
-}
-
-.navbar .nav>li>a {
-  text-shadow: none;
-  color: #ccc
-}
-
-.navbar .nav>li>a:hover {
-  color: #fff
-}
 
 .form-actions {
   border-top: none;
   background-color: #fff
 }
-
-/*.btn {*/
-  /*padding: 3px 14px*/
-/*}*/
-
-/*.breadcrumb {*/
-  /*padding: 0;*/
-  /*margin: 0;*/
-  /*border: none;*/
-  /*background: 0 0*/
-/*}*/
 
 .nav-pills {
   margin: 0 0 10px

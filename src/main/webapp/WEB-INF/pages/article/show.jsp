@@ -1,9 +1,8 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inc/header.jsp"></jsp:include>
-<div id='main'>
-    <jsp:include page="../inc/sidebar.jsp"></jsp:include>
-    <div id='content'>
+<div class='container main'>
+    <div class='col-md-9'>
         <ul class='breadcrumb'>
             <li><a href='/'><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
             <li><a href='${contextPath}/?tab=${article.topic.catDir}'>${article.topic.catName}</a><span class='divider'></span></li>
@@ -18,7 +17,7 @@
             <div class='inner topic'>
                 <div class="topic_content">
                     <div class="editormd-preview-container">
-                       ${article.topic.contentHTML}
+                        ${article.topic.contentHTML}
                     </div>
                 </div>
             </div>
@@ -44,13 +43,13 @@
                                 </i>
                                 <span class="up-count"></span>
                               </span>
-                              <span></span>
-                              <c:if test="${not empty loginUser}">
-                                  <c:if test="${loginUser.id==reply.authorId}">
-                                    <a href="javascript:;" class="edit-reply" reply-id="${reply.id}" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <a href="${contextPath}/article/${article.topic.id}/reply/${reply.id}/del/" title="删除"><i class="glyphicon glyphicon-remove-circle"></i></a>
-                                  </c:if>
-                             </c:if>
+                                <span></span>
+                                <c:if test="${not empty loginUser}">
+                                    <c:if test="${loginUser.id==reply.authorId}">
+                                        <a href="javascript:;" class="edit-reply" reply-id="${reply.id}" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>
+                                        <a href="${contextPath}/article/${article.topic.id}/reply/${reply.id}/del/" title="删除"><i class="glyphicon glyphicon-remove-circle"></i></a>
+                                    </c:if>
+                                </c:if>
                             </div>
                         </div>
                         <div class="reply_content from-${reply.authorId}">
@@ -112,6 +111,7 @@
 
 
     </div>
+    <jsp:include page="../inc/sidebar.jsp"></jsp:include>
 </div>
 <jsp:include page="../inc/footer.jsp"></jsp:include>
 <script>

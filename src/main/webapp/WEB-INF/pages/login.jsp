@@ -2,16 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <jsp:include page="inc/header.jsp"></jsp:include>
-<div id='main'>
-    <jsp:include page="inc/sidebar.jsp"></jsp:include>
-    <div id='content'>
+<div class='container main'>
+    <div class='col-md-9'>
+        <ul class='breadcrumb'>
+            <li><a href='/'>主页</a><span class='divider'></span></li>
+            <li class='active'>登录</li>
+        </ul>
         <div class='panel'>
-            <div class='header'>
-                <ul class='breadcrumb'>
-                    <li><a href='/'>主页</a><span class='divider'></span></li>
-                    <li class='active'>登录</li>
-                </ul>
-            </div>
             <div class='inner'>
                 <div class="row"  id="login-box" style="width:480px; margin:0 auto;">
                     <jsp:include page="inc/msgbox.jsp"></jsp:include>
@@ -54,6 +51,7 @@
             </div>
         </div>
     </div>
+    <jsp:include page="inc/sidebar.jsp"></jsp:include>
 </div>
 <jsp:include page="inc/footer.jsp"></jsp:include>
 <script>
