@@ -15,14 +15,6 @@ body {
   margin-top:80px;
 }
 
-#main {
-  width: 90%;
-  max-width: 1400px;
-  min-width: 960px;
-  margin: 15px auto;
-  min-height: 400px
-}
-
 #topic_list {
   margin: 0
 }
@@ -31,17 +23,14 @@ body {
   background: #f5f5f5
 }
 
-#content {
-  padding: 0;
-  margin-right: 305px
+#topic_list a.topic_title {
+  color: #333
 }
 
-#sidebar {
-  width: 290px;
-  font-size: 14px;
-  float: right;
-  margin-bottom: 20px
+#topic_list a.topic_title:visited {
+  color: #888
 }
+
 
 #content .topic_full_title {
   font-size: 22px;
@@ -70,25 +59,6 @@ body {
 
 #content .share {
   text-align: right
-}
-
-#manage_topic a {
-  text-decoration: none;
-  margin-right: .5em
-}
-
-#sidebar .panel {
-  font-size: 13px
-}
-
-#sidebar .header {
-  color: #51585c;
-  border-radius: 3px 3px 0 0
-}
-
-#sidebar .topic_title {
-  max-width: 270px;
-  font-size: 14px
 }
 
 #footer {
@@ -124,14 +94,6 @@ body {
 
 .panel .inner,.panel .inner li {
   line-height: 2em
-}
-
-#mark_all_messages_btn {
-  margin: 5px 0
-}
-
-#forgot_password {
-  margin-left: 1em
 }
 
 .col_fade {
@@ -551,35 +513,8 @@ a.user_avatar:hover {
   color: #333
 }
 
-.reply_editor {
-  height: 200px
-}
-
-.cell.reply_highlight {
-  background-color: #f4fcf0
-}
-
-.reply2_at_btn,.reply2_btn {
-  opacity: .4;
-  cursor: pointer
-}
-
-.reply2_at_btn:hover,.reply2_btn:hover {
-  opacity: .6
-}
-
 .reply2_area {
   margin-left: 42px
-}
-
-.reply2_form {
-  display: none;
-  margin-top: 2px
-}
-
-.submit_control {
-  height: 48px;
-  line-height: 48px
 }
 
 a.topic_title {
@@ -590,14 +525,6 @@ a.topic_title {
   vertical-align: middle;
   font-size: 16px;
   line-height: 30px
-}
-
-#topic_list a.topic_title {
-  color: #333
-}
-
-#topic_list a.topic_title:visited {
-  color: #888
 }
 
 .topic_title_wrapper {

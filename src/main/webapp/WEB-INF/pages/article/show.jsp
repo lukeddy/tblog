@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inc/header.jsp"></jsp:include>
 <div class='container main'>
-    <div class='col-md-9'>
+    <div class='col-md-9' id="content">
         <ul class='breadcrumb'>
             <li><a href='/'><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
             <li><a href='${contextPath}/?tab=${article.topic.catDir}'>${article.topic.catName}</a><span class='divider'></span></li>
