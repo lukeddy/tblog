@@ -7,6 +7,10 @@ body {
   margin:15px auto;
 }
 
+.row{
+  margin:15px 0;
+}
+
 .navbar{
   z-index:9;
 }
@@ -127,14 +131,6 @@ a.light:hover {
   margin-bottom: 13px
 }
 
-.breadcrumb>li {
-  text-shadow: none
-}
-
-.breadcrumb a {
-  color: #80bd01
-}
-
 .panel .header {
   padding: 10px;
   background-color: #f6f6f6;
@@ -179,11 +175,6 @@ a.light:hover {
   box-shadow: none
 }
 
-.cell {
-  position: relative;
-  padding: 10px 0 10px 10px;
-  font-size: 14px
-}
 
 .panel .cell {
   padding-right: 10px;
@@ -195,10 +186,24 @@ a.light:hover {
   border-top: none
 }
 
+.breadcrumb>li {
+  text-shadow: none
+}
+
+.breadcrumb a {
+  color: #80bd01
+}
+
 .cell .reply_count {
   width: 70px;
   display: inline-block;
   text-align: center
+}
+
+.cell {
+  position: relative;
+  padding: 10px 0 10px 10px;
+  font-size: 14px
 }
 
 .cell .count_of_replies {
@@ -273,26 +278,6 @@ a.last_time {
   font-size: 14px
 }
 
-.messages_count {
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -o-border-radius: 8px;
-  border-radius: 8px;
-  padding: 1px 5px;
-  background-color: #80bd01;
-  color: #fff;
-  margin-right: .5em
-}
-
-.tag_selectable,a.tag_big {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px
-}
-
-.edit_tag {
-  margin-left: 8px
-}
-
 .tag a {
   color: #fff;
   text-decoration: none
@@ -300,88 +285,6 @@ a.last_time {
 
 .tag a:hover {
   color: #ccc
-}
-
-a.tag_big {
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  padding: 2px 5px;
-  margin: 0 8px 5px 0;
-  display: inline-block;
-  text-decoration: none
-}
-
-.tag_in_topic,.tag_selectable {
-  -o-border-radius: 3px;
-  margin: 0 10px 10px 0;
-  display: inline-block;
-  cursor: pointer
-}
-
-.tag_selectable {
-  border-radius: 3px;
-  padding: 3px 5px;
-  border: 1px solid #ccc
-}
-
-.tag_in_abstract,.tag_in_topic {
-  font-size: 14px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px
-}
-
-.tag_select {
-  color: #09f
-}
-
-.tag_in_topic {
-  border-radius: 3px;
-  padding: 1px 3px;
-  background: #bfbfbf
-}
-
-.tag_in_topic a {
-  color: #fff;
-  text-decoration: none
-}
-
-.tag_in_topic a:hover {
-  color: #09f
-}
-
-.tag_highlight,.tag_in_abstract {
-  color: #fff;
-  padding: 1px 2px;
-  font-weight: 700
-}
-
-.tag_in_abstract {
-  background: #c8cfe0;
-  text-decoration: none;
-  margin: 0 2px;
-  -o-border-radius: 3px;
-  border-radius: 3px
-}
-
-.tag_in_abstract:hover {
-  background: #a7b3cd
-}
-
-.tag_with_num {
-  margin-right: 10px;
-  display: inline-block
-}
-
-.tag_num {
-  font-size: 11px;
-  margin-left: -10px
-}
-
-.tag_highlight {
-  font-size: 14px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px
 }
 
 .user_avatar img,.user_big_avatar img {
