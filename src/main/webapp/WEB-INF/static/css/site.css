@@ -1299,4 +1299,5 @@ textarea.editor {
   color: #c00;
   font-style: normal;
   font-weight: normal;
+  text-decoration: underline;
 }
