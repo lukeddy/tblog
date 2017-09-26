@@ -40,8 +40,7 @@ public class TopicServiceImpl implements TopicService {
 
     public Page<Topic> findByPage(IndexVo vo) {
         if("all".equals(vo.getTab())){
-            Sort sort = new Sort(Sort.Direction.DESC, "top");
-            sort.and(new Sort(Sort.Direction.DESC,"create_at"));
+            Sort sort = new Sort(Sort.Direction.DESC, "top","create_at");
             Pageable pageable = new PageRequest(vo.getPageNO()-1, vo.getPageSize(), sort);
             return topicRepository.findAll(pageable);
         }else{
