@@ -37,10 +37,14 @@
                         padding:0;
                     }
 
-                    .post-list .post-item{
+                    .post-list li{
                         list-style: none;
+                    }
+
+                    .post-list .post-item{
                         border-bottom: 1px solid rgba(178,186,194,.15);
                     }
+
 
                     .post-item .entry:hover{
                         background-color: #f9fafd;
@@ -104,18 +108,15 @@
                         white-space: nowrap;
                     }
 
-                    .meta-list .item{
-                        margin:0 .4em;
-                    }
-
                     .meta-list .item:not(:last-child):after {
                         content: "\B7";
-                        /*margin: 0 .1em;*/
+                        margin: 0 .4em;
                         color: #8a9aa9;
                     }
 
                     .meta-list .item.recommended {
                         color: #f70;
+                        margin: 0 .4em;
                     }
 
                     .meta-list .item.tag, .meta-list .item.username {
@@ -247,140 +248,71 @@
                     }
 
                 </style>
-                <ul class="post-list">
-                    <li class="post-item">
-                        <div class="entry">
-                            <a class="entry-link" href="http://www.baidu.com">
-                                <div class="content-box">
-                                    <div class="info-box">
-                                        <div class="meta-row">
-                                            <ul class="meta-list">
-                                                <li class="item recommended">荐</li>
-                                                <li class="item username">
-                                                    <a href="javascript:;">由于自己平时涉猎还算广泛,由于自己平时涉猎还算广泛,大家的欢迎</a>
-                                                </li>
-                                                <li class="item tag">
-                                                    <a class="tag" href="javascript:;">Android</a>
-                                                    <a class="tag" href="javascript:;">CSS</a>
-                                                    <a class="tag" href="javascript:;">前端技术</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="title-row">
-                                            <a class="title" href="javascript:;" target="_blank">CSS 黑魔法小技巧，让你少写不必要的JS，代码更优雅</a>
-                                        </div>
-                                        <div class="abstract-row">之前不久，由于自己平时涉猎还算广泛，总结了一篇博客</div>
-                                        <div class="action-row">
-                                            <div class="action-list">
-                                                <a class="action like" href="javascript:;" >
-                                                    <span class="icon"></span>
-                                                    <span class="title">199</span>
-                                                </a>
-                                                <a class="action comment" href="javascript:;" >
-                                                    <span class="icon"></span>
-                                                    <span class="title">29</span>
-                                                </a>
-                                                <a  class="action collect hover" href="javascript:;">
-                                                    <span class="icon"></span>
-                                                    <span class="title">收藏</span>
-                                                </a>
-                                                <a class="action share hover" href="javascript:;">
-                                                    <span class="icon"></span>
-                                                    <span class="title">分享</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="thumb-box" style='background-image: url("http://localhost:8080/upload/20170924/1734579642540944.jpg"); background-size: cover;'></div>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="post-item">
-                        <div class="entry">
-                            <a class="entry-link" href="http://www.baidu.com">
-                                <div class="content-box">
-                                    <div class="info-box">
-                                        <div class="meta-row">
-                                            <ul class="meta-list">
-                                                <li class="item recommended">荐</li>
-                                                <li class="item username">
-                                                    <a href="javascript:;">由于自己平时涉猎还算广泛,大家的欢迎</a>
-                                                </li>
-                                                <li class="item tag">
-                                                    <a class="tag" href="javascript:;">Android</a>
-                                                    <a class="tag" href="javascript:;">CSS</a>
-                                                    <a class="tag" href="javascript:;">前端技术</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="title-row">
-                                            <a class="title" href="javascript:;" target="_blank">CSS 黑魔法小技巧，让你少写不必要的JS，代码更优雅</a>
-                                        </div>
-                                        <div class="abstract-row">之前不久，由于自己平时涉猎还算广泛，总结了一篇博客：，没想到受到了大家的欢迎，有人希望能博主还能整理个 的一些黑魔法小技巧，无奈我 一直很渣，没什么干货，最近写了一个 插件 ，算是把 的样式审查了个变，在写的过程中，也收获了很多关于 的小技巧，尤其是开始的第一个技巧，学习到了很多，于是再加上一波搜</div>
-                                        <div class="action-row">
-                                            <div class="action-list">
-                                                <a class="action like" href="javascript:;" >
-                                                    <span class="icon"></span>
-                                                    <span class="title">199</span>
-                                                </a>
-                                                <a class="action comment" href="javascript:;" >
-                                                    <span class="icon"></span>
-                                                    <span class="title">29</span>
-                                                </a>
-                                                <a  class="action collect hover" href="javascript:;">
-                                                    <span class="icon"></span>
-                                                    <span class="title">收藏</span>
-                                                </a>
-                                                <a class="action share hover" href="javascript:;">
-                                                    <span class="icon"></span>
-                                                    <span class="title">分享</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="thumb-box" style='background-image: url("https://user-gold-cdn.xitu.io/2017/9/25/f3abf1ed9ec6283d5e705987abaa1986?imageView2/1/w/150/h/150/q/85/interlace/1"); background-size: cover;'></div>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
+
                 <c:if test="${not empty pager.content}">
-                    <div id="topic_list">
+                    <ul class="post-list">
                         <c:forEach items="${pager.content}" var="topic">
-                            <div class="cell">
-                                <a class="user_avatar pull-left" href="${contextPath}/user/${topic.authorName}">
-                                    <img src="//gravatar.com/avatar/d00d8e3461257418a62b1cb7abeea85a?size=48" title="${topic.authorName}">
-                                </a>
-                                <span class="reply_count pull-left">
-                                <span class="count_of_replies" title="回复数">
-                                        ${topic.replyCount}
-                                </span>
-                                <span class="count_seperator">/</span>
-                                <span class="count_of_visits" title="点击数">
-                                        ${topic.visitCount}
-                                </span>
-                            </span>
-                                <a class="last_time pull-right" href="javascript:;">
-                                    <span class="count_of_visits">${topic.visitCount}</span>
-                                    <span class="last_active_time">${topic.friendlyTime}</span>
-                                </a>
-                                <div class="topic_title_wrapper">
-                                    <c:if test="${'all'==indexVo.tab and topic.top}">
-                                        <span class="put_top">置顶</span>
-                                    </c:if>
-                                    <c:if test="${!topic.top}">
-                                        <a href="${contextPath}/?tab=${topic.catDir}">
-                                            <span class="topiclist-tab">${topic.catName}</span>
-                                        </a>
-                                    </c:if>
-                                    <a class="topic_title" href="${contextPath}/article/${topic.id}" title="${topic.title}">
-                                            ${topic.title}
+                            <li class="post-item">
+                                <div class="entry">
+                                    <a class="entry-link" href="${contextPath}/article/${topic.id}">
+                                        <div class="content-box">
+                                            <div class="info-box">
+                                                <div class="meta-row">
+                                                    <ul class="meta-list">
+                                                        <c:if test="${'all'==indexVo.tab and topic.top}">
+                                                            <li class="item recommended">置顶</li>
+                                                        </c:if>
+                                                        <li class="item username">
+                                                            <a href="${contextPath}/user/${topic.authorName}">${topic.authorName}.${topic.friendlyTime}</a>
+                                                        </li>
+                                                        <li class="item category">
+                                                            <a href="${contextPath}/?tab=${topic.catDir}">
+                                                                <span class="topiclist-tab">${topic.catName}</span>
+                                                            </a>
+                                                        </li>
+                                                        <c:if test="${not empty topic.tags}">
+                                                            <li class="item tag">
+                                                                <c:forEach items="${topic.tags}" var="tag">
+                                                                    <a class="tag" href="javascript:;">${tag}</a>
+                                                                </c:forEach>
+                                                            </li>
+                                                        </c:if>
+                                                    </ul>
+                                                </div>
+                                                <div class="title-row">
+                                                    <a class="title" href="${contextPath}/article/${topic.id}" target="_blank">${topic.title}</a>
+                                                </div>
+                                                <div class="abstract-row">${topic.desc}</div>
+                                                <div class="action-row">
+                                                    <div class="action-list">
+                                                        <a class="action like" href="javascript:;" >
+                                                            <span class="icon"></span>
+                                                            <span class="title">${topic.visitCount}</span>
+                                                        </a>
+                                                        <a class="action comment" href="javascript:;" >
+                                                            <span class="icon"></span>
+                                                            <span class="title">${topic.replyCount}</span>
+                                                        </a>
+                                                        <a  class="action collect hover" href="javascript:;">
+                                                            <span class="icon"></span>
+                                                            <span class="title">收藏</span>
+                                                        </a>
+                                                        <a class="action share hover" href="javascript:;">
+                                                            <span class="icon"></span>
+                                                            <span class="title">分享</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <c:if test="${not empty topic.thumbURL}">
+                                                <div class="thumb-box" style='background-image: url("${topic.thumbURL}"); background-size: cover;'></div>
+                                            </c:if>
+                                        </div>
                                     </a>
                                 </div>
-                            </div>
+                            </li>
                         </c:forEach>
-                    </div>
+                    </ul>
                     <!--分页开始-->
                     <jsp:include page="inc/pagination.jsp">
                         <jsp:param name="pager" value="${pager}"/>
