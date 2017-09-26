@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "topics")
 @Getter
 @Setter
@@ -13,6 +15,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Topic extends BaseModel<String>{
 
     private String title;
+    private String desc; //摘要
+    private String thumbURL; //缩略图
+    private List<String> tags; //标签
     private String contentMD;
     private String contentHTML;
     private String authorId;

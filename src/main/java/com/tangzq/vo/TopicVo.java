@@ -13,6 +13,9 @@ public class TopicVo{
     private String topicId;
     private String catId; //栏目ID
     private String title;
+    private String desc;
+    private String thumbURL;
+    private String tags;//标签，英文逗号分隔
     private String contentMD; //Markdown格式内容
     private String contentHTML; //HTML格式内容
     private String authorId;

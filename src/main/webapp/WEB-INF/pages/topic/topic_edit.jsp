@@ -28,12 +28,29 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon">标题:</div>
-                                        <textarea name="title" class="form-control" rows="3" placeholder="请输入帖子标题">${topicVo.title}</textarea>
+                                        <input type="text" name="title" class="form-control" placeholder="输入帖子标题" value="${topicVo.title}">
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">摘要:</div>
+                                        <textarea name="desc" class="form-control" rows="3" placeholder="输入摘要">${topicVo.desc}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">标签:</div>
+                                        <input type="text" name="tags" class="form-control" placeholder="输入标签" value="${topicVo.tags}">
+                                    </div>
+                                    <span class="label-info">注意：标签使用英文逗号分隔</span>
+                                </div>
+
                                 <div class="form-group">
                                     <%--<div class="input-group">--%>
                                         <%--<div class="input-group-addon">内容:</div>--%>

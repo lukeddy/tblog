@@ -20,7 +20,9 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.repository.query.parser.Part;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class TopicServiceImpl implements TopicService {
@@ -80,6 +82,11 @@ public class TopicServiceImpl implements TopicService {
             topic.setCatDir(cat.getCatDir());
         }
         topic.setTitle(vo.getTitle());
+        topic.setDesc(vo.getDesc());
+        topic.setThumbURL(vo.getThumbURL());
+        if(null!=vo.getTags()){
+            topic.setTags(Arrays.asList(vo.getTags().split(",")));
+        }
         topic.setContentMD(vo.getContentMD());
         topic.setContentHTML(vo.getContentHTML());
         topic.setContentIsHTML(vo.isContentIsHTML());
@@ -108,6 +115,11 @@ public class TopicServiceImpl implements TopicService {
         vo.setAuthorId(topic.getAuthorId());
         vo.setCatId(topic.getCatId());
         vo.setTitle(topic.getTitle());
+        vo.setDesc(topic.getDesc());
+        vo.setThumbURL(topic.getThumbURL());
+        if(!topic.getTags().isEmpty()){
+            vo.setTags(StringUtils.join(topic.getTags(),","));
+        }
         vo.setContentMD(topic.getContentMD());
         vo.setContentHTML(topic.getContentHTML());
         vo.setContentIsHTML(topic.isContentIsHTML());
@@ -124,6 +136,11 @@ public class TopicServiceImpl implements TopicService {
         }
         topicInDB.setCatId(vo.getCatId());
         topicInDB.setTitle(vo.getTitle());
+        topicInDB.setDesc(vo.getDesc());
+        topicInDB.setThumbURL(vo.getThumbURL());
+        if(null!=vo.getTags()){
+            topicInDB.setTags(Arrays.asList(vo.getTags().split(",")));
+        }
         topicInDB.setAuthorId(vo.getAuthorId());
         topicInDB.setAuthorName(vo.getAuthorName());
         topicInDB.setContentMD(vo.getContentMD());

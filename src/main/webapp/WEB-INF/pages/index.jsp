@@ -36,13 +36,16 @@
                         margin:0;
                         padding:0;
                     }
+
                     .post-list .post-item{
                         list-style: none;
                         border-bottom: 1px solid rgba(178,186,194,.15);
                     }
+
                     .post-item .entry:hover{
                         background-color: #f9fafd;
                     }
+
                     .post-item .entry-link{
                         display: block;
                         height: 100%;
@@ -50,6 +53,7 @@
                         cursor: pointer;
                         color: #909090;
                     }
+
                     .post-item .content-box{
                         -webkit-box-align: center;
                         -ms-flex-align: center;
@@ -251,7 +255,7 @@
                                     <div class="info-box">
                                         <div class="meta-row">
                                             <ul class="meta-list">
-                                                <%--<li class="item recommended">荐</li>--%>
+                                                <li class="item recommended">荐</li>
                                                 <li class="item username">
                                                     <a href="javascript:;">由于自己平时涉猎还算广泛,由于自己平时涉猎还算广泛,大家的欢迎</a>
                                                 </li>
@@ -287,152 +291,60 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="thumb-box" style='background-image: url("https://user-gold-cdn.xitu.io/2017/9/25/f3abf1ed9ec6283d5e705987abaa1986?imageView2/1/w/150/h/150/q/85/interlace/1"); background-size: cover;'></div>
+                                    <div class="thumb-box" style='background-image: url("http://localhost:8080/upload/20170924/1734579642540944.jpg"); background-size: cover;'></div>
                                 </div>
                             </a>
                         </div>
                     </li>
                     <li class="post-item">
-                        <a class="post-link" href="http://www.baidu.com">
-                            <div class="content-box">
-                                <div class="info-box">
-                                    <div class="meta-row">
-                                        <ul class="meta-list">
-                                            <li class="item recommended">荐</li>
-                                            <li class="item username">
-                                                <a href="javascript:;">由于自己平时涉猎还算广泛,大家的欢迎</a>
-                                            </li>
-                                            <li class="item tag">
-                                                <a class="tag" href="javascript:;">Android</a>
-                                                <a class="tag" href="javascript:;">CSS</a>
-                                                <a class="tag" href="javascript:;">前端技术</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="title-row">
-                                        <a class="title" href="javascript:;" target="_blank">CSS 黑魔法小技巧，让你少写不必要的JS，代码更优雅</a>
-                                    </div>
-                                    <div class="abstract-row">之前不久，由于自己平时涉猎还算广泛，总结了一篇博客：，没想到受到了大家的欢迎，有人希望能博主还能整理个 的一些黑魔法小技巧，无奈我 一直很渣，没什么干货，最近写了一个 插件 ，算是把 的样式审查了个变，在写的过程中，也收获了很多关于 的小技巧，尤其是开始的第一个技巧，学习到了很多，于是再加上一波搜</div>
-                                    <div class="action-row">
-                                        <div class="action-list">
-                                            <a class="action like" href="javascript:;" >
-                                                <span class="icon"></span>
-                                                <span class="title">199</span>
-                                            </a>
-                                            <a class="action comment" href="javascript:;" >
-                                                <span class="icon"></span>
-                                                <span class="title">29</span>
-                                            </a>
-                                            <a  class="action collect hover" href="javascript:;">
-                                                <span class="icon"></span>
-                                                <span class="title">收藏</span>
-                                            </a>
-                                            <a class="action share hover" href="javascript:;">
-                                                <span class="icon"></span>
-                                                <span class="title">分享</span>
-                                            </a>
+                        <div class="entry">
+                            <a class="entry-link" href="http://www.baidu.com">
+                                <div class="content-box">
+                                    <div class="info-box">
+                                        <div class="meta-row">
+                                            <ul class="meta-list">
+                                                <li class="item recommended">荐</li>
+                                                <li class="item username">
+                                                    <a href="javascript:;">由于自己平时涉猎还算广泛,大家的欢迎</a>
+                                                </li>
+                                                <li class="item tag">
+                                                    <a class="tag" href="javascript:;">Android</a>
+                                                    <a class="tag" href="javascript:;">CSS</a>
+                                                    <a class="tag" href="javascript:;">前端技术</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="title-row">
+                                            <a class="title" href="javascript:;" target="_blank">CSS 黑魔法小技巧，让你少写不必要的JS，代码更优雅</a>
+                                        </div>
+                                        <div class="abstract-row">之前不久，由于自己平时涉猎还算广泛，总结了一篇博客：，没想到受到了大家的欢迎，有人希望能博主还能整理个 的一些黑魔法小技巧，无奈我 一直很渣，没什么干货，最近写了一个 插件 ，算是把 的样式审查了个变，在写的过程中，也收获了很多关于 的小技巧，尤其是开始的第一个技巧，学习到了很多，于是再加上一波搜</div>
+                                        <div class="action-row">
+                                            <div class="action-list">
+                                                <a class="action like" href="javascript:;" >
+                                                    <span class="icon"></span>
+                                                    <span class="title">199</span>
+                                                </a>
+                                                <a class="action comment" href="javascript:;" >
+                                                    <span class="icon"></span>
+                                                    <span class="title">29</span>
+                                                </a>
+                                                <a  class="action collect hover" href="javascript:;">
+                                                    <span class="icon"></span>
+                                                    <span class="title">收藏</span>
+                                                </a>
+                                                <a class="action share hover" href="javascript:;">
+                                                    <span class="icon"></span>
+                                                    <span class="title">分享</span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="thumb-box" style='background-image: url("https://user-gold-cdn.xitu.io/2017/9/25/f3abf1ed9ec6283d5e705987abaa1986?imageView2/1/w/150/h/150/q/85/interlace/1"); background-size: cover;'></div>
                                 </div>
-                                <div class="thumb-box" style='background-image: url("https://user-gold-cdn.xitu.io/2017/9/25/f3abf1ed9ec6283d5e705987abaa1986?imageView2/1/w/150/h/150/q/85/interlace/1"); background-size: cover;'></div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </li>
                 </ul>
-                <div class="post-list">
-                    <div class="post-item">
-                        <a class="post-link" href="http://www.baidu.com">
-                            <div class="content-box">
-                                <div class="info-box">
-                                    <div class="meta-row">
-                                        <ul class="meta-list">
-                                            <li class="item recommended">荐</li>
-                                            <li class="item username">
-                                                <a href="javascript:;">由于自己平时涉猎还算广泛,大家的欢迎</a>
-                                            </li>
-                                            <li class="item tag">
-                                                <a class="tag" href="javascript:;">Android</a>
-                                                <a class="tag" href="javascript:;">CSS</a>
-                                                <a class="tag" href="javascript:;">前端技术</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="title-row">
-                                        <a class="title" href="javascript:;" target="_blank">CSS 黑魔法小技巧，让你少写不必要的JS，代码更优雅</a>
-                                    </div>
-                                    <div class="abstract-row">之前不久，由于自己平时涉猎还算广泛，总结了一篇博客：，没想到受到了大家的欢迎，有人希望能博主还能整理个 的一些黑魔法小技巧，无奈我 一直很渣，没什么干货，最近写了一个 插件 ，算是把 的样式审查了个变，在写的过程中，也收获了很多关于 的小技巧，尤其是开始的第一个技巧，学习到了很多，于是再加上一波搜</div>
-                                    <div class="action-row">
-                                        <div class="action-list">
-                                            <a class="action like" href="javascript:;" >
-                                                <span class="icon"></span>
-                                                <span class="title">199</span>
-                                            </a>
-                                            <a class="action comment" href="javascript:;" >
-                                                <span class="icon"></span>
-                                                <span class="title">29</span>
-                                            </a>
-                                            <a  class="action collect hover" href="javascript:;">
-                                                <span class="icon"></span>
-                                                <span class="title">收藏</span>
-                                            </a>
-                                            <a class="action share hover" href="javascript:;">
-                                                <span class="icon"></span>
-                                                <span class="title">分享</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="thumb-box" style='background-image: url("https://user-gold-cdn.xitu.io/2017/9/25/f3abf1ed9ec6283d5e705987abaa1986?imageView2/1/w/150/h/150/q/85/interlace/1"); background-size: cover;'></div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="post-item">
-                        <a class="post-link" href="http://www.baidu.com">
-                            <div class="content-box">
-                                <div class="info-box">
-                                    <div class="meta-row">
-                                        <ul class="meta-list">
-                                            <li class="item recommended">荐</li>
-                                            <li class="item username clickable">
-                                                <a href="javascript:;">username</a>
-                                            </li>
-                                            <li class="item tag">
-                                                <a class="tag" href="javascript:;">Android</a>
-                                                <a class="tag" href="javascript:;">CSS</a>
-                                                <a class="tag" href="javascript:;">前端技术</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="title-row">
-                                        <a class="title" href="javascript:;" target="_blank">CSS 黑魔法小技巧，让你少写不必要的JS，代码更优雅</a>
-                                    </div>
-                                    <div class="abstract-row">之前不久，由于自己平时涉猎还算广泛，总结了一篇博客：，没想到受到了大家的欢迎，有人希望能博主还能整理个 的一些黑魔法小技巧，无奈我 一直很渣，没什么干货，最近写了一个 插件 ，算是把 的样式审查了个变，在写的过程中，也收获了很多关于 的小技巧，尤其是开始的第一个技巧，学习到了很多，于是再加上一波搜</div>
-                                    <div class="action-row">
-                                        <div class="action-list">
-                                            <a class="action like" href="javascript:;" >
-                                                <span class="icon"></span>
-                                                <span class="title">199</span>
-                                            </a>
-                                            <a class="action comment" href="javascript:;" >
-                                                <span class="icon"></span>
-                                                <span class="title">29</span>
-                                            </a>
-                                            <a  class="action collect hover" href="javascript:;">
-                                                <span class="icon"></span>
-                                                <span class="title">收藏</span>
-                                            </a>
-                                            <a class="action share hover" href="javascript:;">
-                                                <span class="icon"></span>
-                                                <span class="title">分享</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <%--<div class="thumb-box" style='background-image: url("https://user-gold-cdn.xitu.io/2017/9/25/f3abf1ed9ec6283d5e705987abaa1986?imageView2/1/w/150/h/150/q/85/interlace/1"); background-size: cover;'></div>--%>
-                            </div>
-                        </a>
-                    </div>
-                </div>
                 <c:if test="${not empty pager.content}">
                     <div id="topic_list">
                         <c:forEach items="${pager.content}" var="topic">
