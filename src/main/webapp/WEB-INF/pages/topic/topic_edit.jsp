@@ -1,8 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../inc/header.jsp"></jsp:include>
+<link href="${contextPath}/js/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+<script src="${contextPath}/js/dropzone/dist/min/dropzone.min.js"></script>
 <div class='container main'>
-    <jsp:include page="../inc/sidebar.jsp"></jsp:include>
     <div class='col-md-9'>
         <ul class='breadcrumb'>
             <li><a href='/'>主页</a><span class='divider'></span></li>
@@ -17,6 +18,7 @@
                         <div class="row">
                             <jsp:include page="../inc/msgbox.jsp"></jsp:include>
                             <form method="post" action="${contextPath}/topic/edit/${topicVo.topicId}">
+                                <input type="hidden" name="thumbURL" id="thumbURL" value="${topicVo.thumbURL}">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon">栏目:</div>
@@ -89,13 +91,81 @@
             </div>
         </div>
     </div>
+    <div class='col-md-3'>
+        <div class='panel'>
+            <div class='header'>
+                <span class='col_fade'>帖子缩略图</span>
+            </div>
+            <div class='inner'>
+                <style>
+                    .dropzone {
+                        border: 2px dashed #0087F7;
+                        border-radius: 5px;
+                        background: white;
+                    }
+                </style>
+                <div class="row" id="dropzoneWrapper">
+                    <form id="uploadForm" action="" class="dropzone needsclick dz-clickable" id="demo-upload">
+                        <div class="dz-message needsclick">
+                            点击或者拖拽上传<br>
+                            <span class="note needsclick">(<strong>文章缩略图</strong>)</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class='panel'>
+            <div class='header'>
+                <span class='col_fade'>关于</span>
+            </div>
+            <div class='inner'>
+                <p>TBlog：tblog开源博客</p>
+
+                <p>在这里你可以：</p>
+                <ul>
+                    <li>提出由建设性的建议</li>
+                    <li>随意修改代码，修改成您需要的风格</li>
+                    <li>分享给您的朋友</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 <jsp:include page="../inc/footer.jsp"></jsp:include>
 <script>
-    var editor;
+
+    Dropzone.autoDiscover = false;//这个一定要放在最前面，否则
+
     $(function() {
-        editor = createEditorMd("editormd", "#submit");
+
+        <c:if test="${not empty topicVo.thumbURL}">
+          changeThumbImg("${topicVo.thumbURL}");
+        </c:if>
+
+        var myDropzone = new Dropzone("#uploadForm",{
+            url:"${contextPath}/upload/image",
+            paramName:"editormd-image-file",
+            maxFilesize:2,//2M
+            acceptedFiles:"image/png,image/jpg,image/jpeg",
+            maxFiles:1,
+            complete:function(file){
+            },
+            success:function(file,resp){
+                var jsonData=$.parseJSON(resp);
+                if(jsonData.success===1){
+                    $('#thumbURL').val(jsonData.url);
+                    changeThumbImg(jsonData.url);
+                    myDropzone.removeFile(file);
+                }
+            }
+        });
+
+        createEditorMd("editormd", "#submit");
     });
+
+    function changeThumbImg(thumbURL){
+        $('#uploadForm').attr("style",'background-image: url("'+thumbURL+'"); background-size: cover;');
+    }
 
     /**
      * 创建Markdown编辑器封装方法
