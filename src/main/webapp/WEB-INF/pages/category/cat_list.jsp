@@ -39,6 +39,7 @@
                             <jsp:include page="../inc/pagination.jsp">
                                 <jsp:param name="pager" value="${pager}"/>
                                 <jsp:param name="baseURL" value="${contextPath}/cat/list"/>
+                                <jsp:param name="otherParams" value=""/>
                             </jsp:include>
                             <!--分页结束-->
                         </c:if>

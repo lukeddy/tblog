@@ -87,7 +87,8 @@
                     <!--分页开始-->
                     <jsp:include page="inc/pagination.jsp">
                         <jsp:param name="pager" value="${pager}"/>
-                        <jsp:param name="baseURL" value="${contextPath}/search?keywords=${searchVo.keywords}"/>
+                        <jsp:param name="baseURL" value="${contextPath}/search"/>
+                        <jsp:param name="otherParams" value="&keywords=${searchVo.keywords}"/>
                     </jsp:include>
                     <!--分页结束-->
                 </c:if>

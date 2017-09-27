@@ -97,7 +97,8 @@
                     <!--分页开始-->
                     <jsp:include page="inc/pagination.jsp">
                         <jsp:param name="pager" value="${pager}"/>
-                        <jsp:param name="baseURL" value="${contextPath}/?tab=${indexVo.tab}"/>
+                        <jsp:param name="baseURL" value="${contextPath}/"/>
+                        <jsp:param name="otherParams" value="tab=${indexVo.tab}"/>
                     </jsp:include>
                     <!--分页结束-->
                 </c:if>

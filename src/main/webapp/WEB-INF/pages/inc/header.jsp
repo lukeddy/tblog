@@ -1,6 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%
+    request.setCharacterEncoding("UTF-8");
+%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" scope="session"/>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">

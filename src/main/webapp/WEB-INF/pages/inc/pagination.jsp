@@ -8,13 +8,15 @@
         <c:set var="pageStart" value="${currentPage - 2 > 0 ? currentPage - 2 : 1}"/>
         <c:set var="pageEnd" value="${pageStart + 4 >= totalPages ? totalPages : pageStart + 4}"/>
         <c:set var="pageSize" value="${pager.size}"/>
+        <c:set var="baseURL" value="${param.baseURL}"/>
+        <c:set var="otherParams" value="${param.otherParams}"/>
 
         <c:if test="${currentPage==1}">
             <li class="disabled"><span aria-hidden="true">&laquo;</span></li>
         </c:if>
         <c:if test="${currentPage>1}">
             <li>
-                <a href="${baseURL}?pageSize=${pageSize}&pageNO=1" aria-label="Previous">
+                <a href="${baseURL}?pageSize=${pageSize}&pageNO=1&${otherParams}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -25,10 +27,10 @@
         </c:if>
         <c:forEach begin="${pageStart}" end="${pageEnd}" varStatus="status">
             <c:if test="${currentPage==status.index}">
-                <li class="active"><a href="${baseURL}?pageSize=${pageSize}&pageNO=${status.index}">${status.index}</a></li>
+                <li class="active"><a href="${baseURL}?pageSize=${pageSize}&pageNO=${status.index}&${otherParams}">${status.index}</a></li>
             </c:if>
             <c:if test="${currentPage!=status.index}">
-                <li><a href="${baseURL}?pageSize=${pageSize}&pageNO=${status.index}">${status.index}</a></li>
+                <li><a href="${baseURL}?pageSize=${pageSize}&pageNO=${status.index}&${otherParams}">${status.index}</a></li>
             </c:if>
         </c:forEach>
         <c:if test="${pageEnd<totalPages}">
@@ -40,7 +42,7 @@
         </c:if>
         <c:if test="${currentPage<totalPages}">
             <li>
-                <a href="${baseURL}?pageSize=${pageSize}&pageNO=${totalPages}" aria-label="Next">
+                <a href="${baseURL}?pageSize=${pageSize}&pageNO=${totalPages}&${otherParams}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
