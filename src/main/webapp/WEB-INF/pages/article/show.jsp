@@ -20,6 +20,12 @@
                         ${article.topic.contentHTML}
                     </div>
                 </div>
+                <div class="topic_tags">
+                    <span>标签：</span>
+                    <c:forEach items="${article.topic.tags}" var="tag">
+                        <a href="javascript:;" class="tag">${tag}</a>
+                    </c:forEach>
+                </div>
             </div>
         </div>
         <c:if test="${not empty article.replyList}">
@@ -108,8 +114,6 @@
                 需要 <a href="${contextPath}/login" class="btn btn-primary">登录</a> 后方可回复, 如果你还没有账号你可以 <a href="${contextPath}/register" class="btn btn-danger">注册</a> 一个帐号。
             </div>
         </c:if>
-
-
     </div>
     <jsp:include page="../inc/sidebar.jsp"></jsp:include>
 </div>

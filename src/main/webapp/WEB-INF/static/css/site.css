@@ -1307,3 +1307,26 @@ textarea.editor {
   color: #9faebd;
 }
 /*首页帖子样式结束*/
+
+
+.topic_tags{
+  margin: 1.2rem 0;
+  padding-left: 24px;
+  padding-right: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.topic_tags .tag{
+  display: inline-block;
+  background-color: #f1f1f1;
+  border: none;
+  color: #666;
+  padding: .7rem 1rem;
+  border-radius: 2px;
+  margin-right: .6rem;
+  margin-bottom: .6rem;
+  line-height: 1.5;
+}
