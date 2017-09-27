@@ -59,7 +59,7 @@ public class TopicServiceImpl implements TopicService {
         if(StringUtils.isEmpty(searchVo.getKeywords())){
             return topicRepository.findAll(pageable);
         }else{
-            return topicRepository.findByTitleLike(searchVo.getKeywords(),pageable);
+            return topicRepository.findByTitleLikeOrDescLike(searchVo.getKeywords(),searchVo.getKeywords(),pageable);
         }
     }
 

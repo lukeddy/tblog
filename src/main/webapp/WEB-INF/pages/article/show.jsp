@@ -22,9 +22,11 @@
                 </div>
                 <div class="topic-tags">
                     <span>标签：</span>
-                    <c:forEach items="${article.topic.tags}" var="tag">
-                        <a href="javascript:;" class="tag">${tag}</a>
-                    </c:forEach>
+                    <c:if test="${not empty article.topic.tags}">
+                        <c:forEach items="${article.topic.tags}" var="tag">
+                            <a href="javascript:;" class="tag">${tag}</a>
+                        </c:forEach>
+                    </c:if>
                 </div>
                 <div class="topic-action-wrapper">
                     <div class="topic-actions">
