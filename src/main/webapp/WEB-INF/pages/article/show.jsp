@@ -91,6 +91,7 @@
 
         <c:if test="${not empty loginUser}">
             <jsp:include page="../inc/msgbox.jsp"></jsp:include>
+
             <div id="reply">
                 <form action="${contextPath}/reply/add/${article.topic.id}" method="post" class="form-vertical" id="reply-form" role="form">
                     <fieldset>
@@ -138,8 +139,12 @@
     <jsp:include page="../inc/sidebar.jsp"></jsp:include>
 </div>
 <jsp:include page="../inc/footer.jsp"></jsp:include>
+<c:if test="${empty loginUser}">
+    <script src="${contextPath}/js/editormd/lib/prettify.min.js"></script>
+</c:if>
 <script>
     var editor, editor_edit;
+
     $(document).ready(function(){
 
         $('.edit-reply').click(function(){
