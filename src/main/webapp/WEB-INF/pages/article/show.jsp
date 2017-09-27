@@ -8,8 +8,8 @@
             <li><a href='${contextPath}/?tab=${article.topic.catDir}'>${article.topic.catName}</a><span class='divider'></span></li>
         </ul>
         <div class='panel'>
-            <div class='header topic_header'>
-                <h1 class="topic_full_title">${article.topic.title}</h1>
+            <div class='header topic-header'>
+                <h1 class="topic-full-title">${article.topic.title}</h1>
                 <div class="changes">
                     <span>${article.topic.friendlyTime}</span><span>&nbsp;&nbsp;作者：<a href="/user/abc1231hahaha">${article.topic.authorName}</a></span><span>&nbsp;&nbsp; ${article.topic.visitCount}次浏览</span>
                 </div>
@@ -20,11 +20,33 @@
                         ${article.topic.contentHTML}
                     </div>
                 </div>
-                <div class="topic_tags">
+                <div class="topic-tags">
                     <span>标签：</span>
                     <c:forEach items="${article.topic.tags}" var="tag">
                         <a href="javascript:;" class="tag">${tag}</a>
                     </c:forEach>
+                </div>
+                <div class="topic-action-wrapper">
+                    <div class="topic-action">&nbsp;</div>
+                    <div class="topic-action">&nbsp;</div>
+                    <div class="topic-action">
+                        <a href="javascript:;" class="action-link">
+                            <img src="${contextPath}/images/ico/collection-lg-press.svg" alt="">
+                            <span>喜欢</span>
+                        </a>
+                        <a href="#reply" class="action-link">
+                            <img src="${contextPath}/images/ico/comment-lg.svg" alt="">
+                            <span>评论</span>
+                        </a>
+                        <a href="javascript:;" class="action-link">
+                            <img src="${contextPath}/images/ico/collect-lg.svg" alt="">
+                            <span>收藏</span>
+                        </a>
+                        <a href="javascript:;" class="action-link">
+                            <img src="${contextPath}/images/ico/share-lg.svg" alt="">
+                            <span>分享</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

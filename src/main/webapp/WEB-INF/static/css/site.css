@@ -36,7 +36,7 @@ body {
 }
 
 
-#content .topic_full_title {
+#content .topic-full-title {
   font-size: 22px;
   font-weight: 700;
   margin: 8px 0;
@@ -137,7 +137,7 @@ a.light:hover {
   border-radius: 3px 3px 0 0
 }
 
-.panel .header.topic_header,.panel .inner {
+.panel .header.topic-header,.panel .inner {
   background-color: #fff
 }
 
@@ -1309,7 +1309,7 @@ textarea.editor {
 /*首页帖子样式结束*/
 
 
-.topic_tags{
+.topic-tags{
   margin: 1.2rem 0;
   padding-left: 24px;
   padding-right: 24px;
@@ -1319,7 +1319,7 @@ textarea.editor {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.topic_tags .tag{
+.topic-tags .tag{
   display: inline-block;
   background-color: #f1f1f1;
   border: none;
@@ -1329,4 +1329,44 @@ textarea.editor {
   margin-right: .6rem;
   margin-bottom: .6rem;
   line-height: 1.5;
+}
+
+.topic-action-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topic-action-wrapper .topic-action{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width:33%;
+  display: flex;
+  align-items: center;
+}
+
+.topic-action-wrapper .topic-action:nth-child(1){
+  flex:1;
+}
+
+.topic-action-wrapper .topic-action:nth-child(2){
+  flex:1;
+}
+
+.topic-action-wrapper .topic-action:nth-child(3){
+  flex:2;
+}
+
+.topic-action-wrapper .topic-action .action-link{
+  flex:1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topic-action-wrapper .topic-action .action-link:hover,
+.topic-action-wrapper .topic-action .action-link:focus
+{
+  text-decoration: none;
 }
