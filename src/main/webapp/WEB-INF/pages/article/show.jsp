@@ -27,9 +27,7 @@
                     </c:forEach>
                 </div>
                 <div class="topic-action-wrapper">
-                    <div class="topic-action">&nbsp;</div>
-                    <div class="topic-action">&nbsp;</div>
-                    <div class="topic-action">
+                    <div class="topic-actions">
                         <a href="javascript:;" class="action-link">
                             <img src="${contextPath}/images/ico/collection-lg-press.svg" alt="">
                             <span>喜欢</span>
