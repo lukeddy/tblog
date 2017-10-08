@@ -62,7 +62,8 @@ body {
 }
 
 #content .share {
-  text-align: right
+  text-align: right;
+  margin-top:-5px;
 }
 
 #footer {
