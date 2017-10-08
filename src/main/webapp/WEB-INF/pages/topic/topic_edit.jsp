@@ -164,7 +164,7 @@
     });
 
     function changeThumbImg(thumbURL){
-        $('#uploadForm').attr("style",'background-image: url("'+thumbURL+'"); background-size: cover;');
+        $('#uploadForm').attr("style",'background-image: url(${contextPath}/"'+thumbURL+'"); background-size: cover;');
     }
 
     /**
