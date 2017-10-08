@@ -21,7 +21,7 @@
     </div>
     <div class="navbar-collapse collapse pull-right">
         <ul class="nav navbar-nav">
-            <li><a href="/">首页</a></li>
+            <li><a href="${contextPath}/">首页</a></li>
             <li><a href="${contextPath}/about">关于</a></li>
             <c:if test="${empty loginUser}">
                 <li><a href="${contextPath}/register">注册</a></li>

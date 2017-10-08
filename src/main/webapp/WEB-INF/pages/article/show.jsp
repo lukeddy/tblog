@@ -6,7 +6,7 @@
 <div class='container main'>
     <div class='col-md-9' id="content">
         <ul class='breadcrumb'>
-            <li><a href='/'><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
+            <li><a href='${contextPath}/'><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
             <li><a href='${contextPath}/?tab=${article.topic.catDir}'>${article.topic.catName}</a><span class='divider'></span></li>
         </ul>
         <div class='panel'>

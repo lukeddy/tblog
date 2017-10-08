@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-9">
             <ul class="breadcrumb">
-                <li><a href="/"><i class="glyphicon glyphicon-home"></i> 首页</a></li>
+                <li><a href="${contextPath}/"><i class="glyphicon glyphicon-home"></i> 首页</a></li>
                 <li class="active">修改密码</li>
             </ul>
             <div class="wrapper">

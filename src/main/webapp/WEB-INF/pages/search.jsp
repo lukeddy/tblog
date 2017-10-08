@@ -4,7 +4,7 @@
 <div class='container main'>
     <div class='col-md-9'>
         <ul class='breadcrumb'>
-            <li><a href='/'><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
+            <li><a href='${contextPath}/'><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
             <li><a href='javascript:;'>搜索结果</a><span class='divider'></span></li>
         </ul>
 

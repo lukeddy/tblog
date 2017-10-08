@@ -5,7 +5,7 @@
     <jsp:include page="../inc/sidebar.jsp"></jsp:include>
     <div class='col-md-9'>
         <ul class='breadcrumb'>
-            <li><a href='/'>主页</a><span class='divider'></span></li>
+            <li><a href='${contextPath}/'>主页</a><span class='divider'></span></li>
             <li><a href='${contextPath}/cat/list'>管理栏目</a><span class='divider'></span></li>
             <li class='active'>新建栏目</li>
         </ul>
