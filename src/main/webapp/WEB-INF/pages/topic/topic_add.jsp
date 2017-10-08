@@ -149,7 +149,7 @@
                 var jsonData=$.parseJSON(resp);
                 if(jsonData.success===1){
                     $('#thumbURL').val(jsonData.url);
-                    $('#uploadForm').attr("style",'background-image: url("'+jsonData.url+'"); background-size: cover;');
+                    $('#uploadForm').attr("style",'background-image: url("${contextPath}'+jsonData.url+'"); background-size: cover;');
                     myDropzone.removeFile(file);
                 }
             }
