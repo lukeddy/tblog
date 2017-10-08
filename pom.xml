@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.mkyong.common</groupId>
-  <artifactId>springmvc_helloworld</artifactId>
+  <groupId>com.tangzq</groupId>
+  <artifactId>tblog</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>tblog</name>
@@ -13,6 +13,7 @@
        <slf4j.version>1.7.9</slf4j.version>
        <logback.version>1.0.13</logback.version>
        <jackson.version>2.6.6</jackson.version>
+       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
    </properties>
 
 
@@ -83,7 +84,6 @@
           <groupId>org.projectlombok</groupId>
           <artifactId>lombok</artifactId>
           <version>1.16.10</version>
-          <!-- 编译时依赖 -->
           <scope>provided</scope>
       </dependency>
 
@@ -144,7 +144,7 @@
 
 
   <build>
-    <finalName>springmvc_mongodb</finalName>
+    <finalName>tblog</finalName>
     <plugins>
         <plugin>
             <groupId>org.mortbay.jetty</groupId>
