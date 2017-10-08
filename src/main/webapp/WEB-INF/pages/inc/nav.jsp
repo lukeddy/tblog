@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand hidden-sm" href="/">
+        <a class="navbar-brand hidden-sm" href="${contextPath}/">
             <span class="tblog-leaf-logo">&nbsp;</span>
         </a>
         <form class="navbar-form pull-right" action="${contextPath}/search">
