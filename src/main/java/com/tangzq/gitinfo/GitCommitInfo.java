@@ -3,9 +3,7 @@ package com.tangzq.gitinfo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.codehaus.jackson.annotate.JsonWriteNullProperties;
 
-@JsonWriteNullProperties(true)
 @Getter
 @Setter
 @ToString
