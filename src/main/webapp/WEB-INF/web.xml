@@ -9,7 +9,8 @@
     <!-- The definition of profile -->
     <context-param>
         <param-name>spring.profiles.active</param-name>
-        <param-value>prod</param-value>
+        <!--使用占位符，mvn构建时加上-P命令自动切换，如：mvn clean package -Ptest-->
+        <param-value>${deploy.env}</param-value>
     </context-param>
 
     <filter>
