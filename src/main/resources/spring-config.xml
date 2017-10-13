@@ -30,14 +30,17 @@
     <!-- Define multiple environment -->
     <beans profile="dev">
         <context:property-placeholder location="classpath:props/application-dev.properties" />
+        <context:property-placeholder location="classpath:git.properties" />
     </beans>
 
     <beans profile="prod">
         <context:property-placeholder location="classpath:props/application-prod.properties" />
+        <context:property-placeholder location="classpath:git.properties" />
     </beans>
 
     <beans profile="test">
         <context:property-placeholder location="classpath:props/application-test.properties" />
+        <context:property-placeholder location="classpath:git.properties" />
     </beans>
 
 </beans>
