@@ -6,6 +6,12 @@
 
     <display-name>TBlog</display-name>
 
+    <!-- The definition of profile -->
+    <context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>prod</param-value>
+    </context-param>
+
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
