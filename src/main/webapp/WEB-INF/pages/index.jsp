@@ -108,7 +108,7 @@
             </div>
         </div>
         <div class="row">
-            <a href="${gitInfo.remoteOriginUrl}" target="_blank">${gitInfo.closestTagName}-${gitInfo.buildVersion}-${gitInfo.buildTime}-${gitInfo.commitMessageFull}</a>
+            <a href="https://github.com/${gitInfo.commitUserName}/tblog/commit/${gitInfo.commitId}" target="_blank">${gitInfo.closestTagName}-${gitInfo.commitIdAbbrev}-${gitInfo.buildTime}-${gitInfo.commitMessageFull}</a>
         </div>
     </div>
     <jsp:include page="inc/sidebar.jsp"></jsp:include>
