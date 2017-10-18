@@ -16,6 +16,9 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author tangzhiqiang
+ */
 @Getter
 @Setter
 @ToString

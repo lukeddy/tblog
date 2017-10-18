@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 帖子控制器
+ * @author tangzhiqiang
  */
 @Controller
 @RequestMapping("/topic")

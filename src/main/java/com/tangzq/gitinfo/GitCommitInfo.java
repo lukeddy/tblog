@@ -4,32 +4,113 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @author tangzhiqiang
+ */
 @Getter
 @Setter
 @ToString
 public class GitCommitInfo {
-    String tags;                    // =${git.tags} // comma separated tag names
-    String branch;                  // =${git.branch}
-    String dirty;                   // =${git.dirty}
-    String remoteOriginUrl;         // =${git.remote.origin.url}
 
-    String commitId;                // =${git.commit.id.full} OR ${git.commit.id}
-    String commitIdAbbrev;          // =${git.commit.id.abbrev}
-    String describe;                // =${git.commit.id.describe}
-    String describeShort;           // =${git.commit.id.describe-short}
-    String commitUserName;          // =${git.commit.user.name}
-    String commitUserEmail;         // =${git.commit.user.email}
-    String commitMessageFull;       // =${git.commit.message.full}
-    String commitMessageShort;      // =${git.commit.message.short}
-    String commitTime;              // =${git.commit.time}
-    String closestTagName;          // =${git.closest.tag.name}
-    String closestTagCommitCount;   // =${git.closest.tag.commit.count}
+    /**
+     * ${git.tags} // comma separated tag names
+     */
+    String tags;
 
-    String buildUserName;           // =${git.build.user.name}
-    String buildUserEmail;          // =${git.build.user.email}
-    String buildTime;               // =${git.build.time}
-    String buildHost;               // =${git.build.host}
-    String buildVersion;             // =${git.build.version}
+    /**
+     * ${git.branch}
+     */
+    String branch;
+
+    /**
+     * ${git.dirty}
+     */
+    String dirty;
+
+    /**
+     * ${git.remote.origin.url}
+     */
+    String remoteOriginUrl;
+
+    /**
+     * ${git.commit.id.full} OR ${git.commit.id}
+     */
+    String commitId;
+
+    /**
+     * ${git.commit.id.abbrev}
+     */
+    String commitIdAbbrev;
+
+    /**
+     * ${git.commit.id.describe}
+     */
+    String describe;
+
+    /**
+     * ${git.commit.id.describe-short}
+     */
+    String describeShort;
+
+    /**
+     * ${git.commit.user.name}
+     */
+    String commitUserName;
+
+    /**
+     * ${git.commit.user.email}
+     */
+    String commitUserEmail;
+
+    /**
+     * ${git.commit.message.full}
+     */
+    String commitMessageFull;
+
+    /**
+     * ${git.commit.message.short}
+     */
+    String commitMessageShort;
+
+    /**
+     * ${git.commit.time}
+     */
+    String commitTime;
+
+    /**
+     * ${git.closest.tag.name}
+     */
+    String closestTagName;
+
+    /**
+     * ${git.closest.tag.commit.count}
+     */
+    String closestTagCommitCount;
+
+    /**
+     * ${git.build.user.name}
+     */
+    String buildUserName;
+
+    /**
+     * ${git.build.user.email}
+     */
+    String buildUserEmail;
+
+    /**
+     * ${git.build.time}
+     */
+    String buildTime;
+
+    /**
+     * ${git.build.host}
+     */
+    String buildHost;
+
+    /**
+     * ${git.build.version}
+     */
+    String buildVersion;
 
     public GitCommitInfo() {}
 }

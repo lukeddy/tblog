@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
+/**
+ * @author tangzhiqiang
+ */
 public class MyApplicationListener implements ApplicationListener<ContextRefreshedEvent> {
 
     @Value("${spring.profiles.active}")

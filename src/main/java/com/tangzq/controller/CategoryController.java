@@ -16,6 +16,7 @@ import java.util.Date;
 
 /**
  * 栏目控制器
+ * @author tangzhiqiang
  */
 @Controller
 @RequestMapping("/cat")

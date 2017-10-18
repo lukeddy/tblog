@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * User文档操作类
+ * @author tangzhiqiang
  */
 @Repository
 public interface UserRepository extends CrudRepository<User, String> {

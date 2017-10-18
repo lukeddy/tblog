@@ -6,6 +6,9 @@ import com.tangzq.vo.SearchVo;
 import com.tangzq.vo.TopicVo;
 import org.springframework.data.domain.Page;
 
+/**
+ * @author tangzhiqiang
+ */
 public interface TopicService {
 
     /**
@@ -35,6 +38,7 @@ public interface TopicService {
     /**
      * 新增帖子
      * @param vo
+     * @return
      */
     Topic addTopic(TopicVo vo);
 
@@ -72,6 +76,7 @@ public interface TopicService {
 
     /**
      * 更新访问次数
+     * @param topicId
      */
     void increaseVisitCount(String topicId);
 

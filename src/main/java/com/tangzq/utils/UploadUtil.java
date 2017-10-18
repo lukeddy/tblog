@@ -12,9 +12,12 @@ import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author tangzhiqiang
+ */
 public class UploadUtil {
 
-	private final static SimpleDateFormat sdfDays = new SimpleDateFormat("yyyyMMdd");
+	public static final String DATE_FORMAT_YYYYMMDD="yyyyMMdd";
 
 	public static final String UPLOAD_FOLDER="upload";
 
@@ -28,17 +31,21 @@ public class UploadUtil {
 	 */
 	public static File createFile(String destFileName) {
 		File file = new File(destFileName);
-		if (file.exists())
+		if (file.exists()) {
 			return null;
-		if (destFileName.endsWith(File.separator))
+		}
+		if (destFileName.endsWith(File.separator)) {
 			return null;
+		}
 		if (!file.getParentFile().exists()) {
-			if (!file.getParentFile().mkdirs())
+			if (!file.getParentFile().mkdirs()) {
 				return null;
+			}
 		}
 		try {
-			if (file.createNewFile())
+			if (file.createNewFile()) {
 				return file;
+			}
 			return null;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -56,7 +63,7 @@ public class UploadUtil {
 	}
 
 	public static String getDays() {
-		return sdfDays.format(new Date());
+		return new SimpleDateFormat(DATE_FORMAT_YYYYMMDD).format(new Date());
 	}
 
 	/**

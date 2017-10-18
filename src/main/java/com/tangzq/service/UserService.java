@@ -3,6 +3,9 @@ package com.tangzq.service;
 import com.tangzq.model.User;
 import com.tangzq.vo.RegisterUserVo;
 
+/**
+ * @author tangzhiqiang
+ */
 public interface UserService {
 
 
@@ -64,6 +67,7 @@ public interface UserService {
      * 修改用户密码
      * @param userId
      * @param newPwd
+     * @return
      */
     User updatePwd(String userId,String newPwd);
 

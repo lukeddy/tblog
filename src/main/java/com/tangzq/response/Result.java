@@ -3,6 +3,9 @@ package com.tangzq.response;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author tangzhiqiang
+ */
 @Getter
 @Setter
 public class Result<T> {

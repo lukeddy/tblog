@@ -2,6 +2,9 @@ package com.tangzq.service;
 
 import com.tangzq.vo.ArticleVo;
 
+/**
+ * @author tangzhiqiang
+ */
 public interface ArticleService {
 
 

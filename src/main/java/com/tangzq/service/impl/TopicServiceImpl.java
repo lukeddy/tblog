@@ -24,6 +24,10 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+
+/**
+ * @author tangzhiqiang
+ */
 @Service
 public class TopicServiceImpl implements TopicService {
 
@@ -33,6 +37,8 @@ public class TopicServiceImpl implements TopicService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    private static final String TAB_ALL="all";
+
 
     public Page<Topic> findByPage(int pageNo, int pageSize) {
         Sort sort = new Sort(Sort.Direction.DESC, "create_at");
@@ -41,7 +47,7 @@ public class TopicServiceImpl implements TopicService {
     }
 
     public Page<Topic> findByPage(IndexVo vo) {
-        if("all".equals(vo.getTab())){
+        if(TAB_ALL.equals(vo.getTab())){
             Sort sort = new Sort(Sort.Direction.DESC, "top","create_at");
             Pageable pageable = new PageRequest(vo.getPageNO()-1, vo.getPageSize(), sort);
             return topicRepository.findAll(pageable);

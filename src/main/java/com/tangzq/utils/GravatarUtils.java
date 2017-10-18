@@ -4,6 +4,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author tangzhiqiang
+ */
 public class GravatarUtils {
     private static String hex(byte[] array) {
         StringBuffer sb = new StringBuffer();

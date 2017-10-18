@@ -7,6 +7,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
 
+/**
+ * @author tangzhiqiang
+ */
 @Getter
 @Setter
 @ToString

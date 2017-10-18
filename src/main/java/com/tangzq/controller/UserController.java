@@ -23,6 +23,7 @@ import java.io.IOException;
 
 /**
  * 用户控制器
+ * @author tangzhiqiang
  */
 @Controller
 @RequestMapping("/user")

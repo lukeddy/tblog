@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author tangzhiqiang
+ */
 @RestController
 @RequestMapping("/api")
-public class APIController {
+public class ApiController {
 
     @Autowired
     private CategoryService categoryService;

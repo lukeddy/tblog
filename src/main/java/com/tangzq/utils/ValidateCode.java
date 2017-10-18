@@ -10,6 +10,7 @@ import java.awt.Color;
 /**
  * 验证码生成器类，可生成数字、大写、小写字母及三者混合类型的验证码。 支持自定义验证码字符数量； 支持自定义验证码图片的大小； 支持自定义需排除的特殊字符；
  * 支持自定义干扰线的数量； 支持自定义验证码图文颜色
+ * @author tangzhiqiang
  */
 public class ValidateCode {
 
@@ -62,8 +63,9 @@ public class ValidateCode {
      */
     public static String generateTextCode(int type, int length, String exChars) {
 
-        if (length <= 0)
+        if (length <= 0) {
             return "";
+        }
 
         StringBuffer code = new StringBuffer();
         int i = 0;
@@ -71,11 +73,11 @@ public class ValidateCode {
 
         switch (type) {
 
-            // 仅数字
+            // 仅数字,排除特殊字符
             case TYPE_NUM_ONLY:
                 while (i < length) {
                     int t = r.nextInt(10);
-                    if (exChars == null || exChars.indexOf(t + "") < 0) {// 排除特殊字符
+                    if (exChars == null || exChars.indexOf(t + "") < 0) {
                         code.append(t);
                         i++;
                     }
@@ -86,7 +88,8 @@ public class ValidateCode {
             case TYPE_LETTER_ONLY:
                 while (i < length) {
                     int t = r.nextInt(123);
-                    if ((t >= 97 || (t >= 65 && t <= 90)) && (exChars == null || exChars.indexOf((char) t) < 0)) {
+                    boolean onlyLetters=(t >= 97 || (t >= 65 && t <= 90)) && (exChars == null || exChars.indexOf((char) t) < 0);
+                    if (onlyLetters) {
                         code.append((char) t);
                         i++;
                     }
@@ -97,8 +100,9 @@ public class ValidateCode {
             case TYPE_ALL_MIXED:
                 while (i < length) {
                     int t = r.nextInt(123);
-                    if ((t >= 97 || (t >= 65 && t <= 90) || (t >= 48 && t <= 57))
-                            && (exChars == null || exChars.indexOf((char) t) < 0)) {
+                    boolean withNumbersAndUpperLettersAndLowerLetters=(t >= 97 || (t >= 65 && t <= 90) || (t >= 48 && t <= 57))
+                            && (exChars == null || exChars.indexOf((char) t) < 0);
+                    if (withNumbersAndUpperLettersAndLowerLetters) {
                         code.append((char) t);
                         i++;
                     }
@@ -109,7 +113,8 @@ public class ValidateCode {
             case TYPE_NUM_UPPER:
                 while (i < length) {
                     int t = r.nextInt(91);
-                    if ((t >= 65 || (t >= 48 && t <= 57)) && (exChars == null || exChars.indexOf((char) t) < 0)) {
+                    boolean withNumbersAndUpperLetters=(t >= 65 || (t >= 48 && t <= 57)) && (exChars == null || exChars.indexOf((char) t) < 0);
+                    if (withNumbersAndUpperLetters) {
                         code.append((char) t);
                         i++;
                     }
@@ -120,7 +125,8 @@ public class ValidateCode {
             case TYPE_NUM_LOWER:
                 while (i < length) {
                     int t = r.nextInt(123);
-                    if ((t >= 97 || (t >= 48 && t <= 57)) && (exChars == null || exChars.indexOf((char) t) < 0)) {
+                    boolean withNumbersAndLowerLetters=(t >= 97 || (t >= 48 && t <= 57)) && (exChars == null || exChars.indexOf((char) t) < 0);
+                    if (withNumbersAndLowerLetters) {
                         code.append((char) t);
                         i++;
                     }
@@ -131,7 +137,8 @@ public class ValidateCode {
             case TYPE_UPPER_ONLY:
                 while (i < length) {
                     int t = r.nextInt(91);
-                    if ((t >= 65) && (exChars == null || exChars.indexOf((char) t) < 0)) {
+                    boolean onlyUpplerLetters=(t >= 65) && (exChars == null || exChars.indexOf((char) t) < 0);
+                    if (onlyUpplerLetters) {
                         code.append((char) t);
                         i++;
                     }
@@ -142,12 +149,16 @@ public class ValidateCode {
             case TYPE_LOWER_ONLY:
                 while (i < length) {
                     int t = r.nextInt(123);
-                    if ((t >= 97) && (exChars == null || exChars.indexOf((char) t) < 0)) {
+                    boolean onlyLowerLetters=(t >= 97) && (exChars == null || exChars.indexOf((char) t) < 0);
+                    if (onlyLowerLetters) {
                         code.append((char) t);
                         i++;
                     }
                 }
                 break;
+
+            default:
+                return "";
 
         }
 
@@ -191,11 +202,6 @@ public class ValidateCode {
             }
         }
 
-        // 写验证码
-
-        // g.setColor(getRandomColor());
-        // g.setColor(isSimpleColor?Color.BLACK:Color.WHITE);
-
         // 字体大小为图片高度的80%
         int fsize = (int) (height * 0.8);
         int fx = height - fsize;
@@ -203,9 +209,9 @@ public class ValidateCode {
 
         g.setFont(new Font("Default", Font.PLAIN, fsize));
 
-        // 写验证码字符
+        // 写验证码字符.每个字符高低是否随机
         for (int i = 0; i < textCode.length(); i++) {
-            fy = randomLocation ? (int) ((Math.random() * 0.3 + 0.6) * height) : fy;// 每个字符高低是否随机
+            fy = randomLocation ? (int) ((Math.random() * 0.3 + 0.6) * height) : fy;
             g.setColor(foreColor == null ? getRandomColor() : foreColor);
             g.drawString(textCode.charAt(i) + "", fx, fy);
             fx += fsize * 0.9;

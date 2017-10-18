@@ -10,6 +10,9 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author tangzhiqiang
+ */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     private final Logger log = LoggerFactory.getLogger(LoginInterceptor.class);
 

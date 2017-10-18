@@ -13,6 +13,9 @@ import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
+/**
+ * @author tangzhiqiang
+ */
 @Service
 public class UserServiceImpl implements UserService {
 

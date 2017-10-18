@@ -7,6 +7,9 @@ import com.tangzq.vo.TopicVo;
 
 import java.util.List;
 
+/**
+ * @author tangzhiqiang
+ */
 public interface ReplyService {
 
 
@@ -21,6 +24,7 @@ public interface ReplyService {
     /**
      * 新增评论
      * @param vo
+     * @return
      */
     Reply addReply(ReplyVo vo);
 

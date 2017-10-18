@@ -3,3 +3,4 @@ tblog.iml
 target
 .DS_Store
 src/main/webapp/upload
+git.properties

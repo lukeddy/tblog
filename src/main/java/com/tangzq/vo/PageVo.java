@@ -3,6 +3,9 @@ package com.tangzq.vo;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author tangzhiqiang
+ */
 @Getter
 @Setter
 public class PageVo {

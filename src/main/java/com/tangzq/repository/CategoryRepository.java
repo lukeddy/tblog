@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * 栏目文档操作类
+ * @author tangzhiqiang
  */
 @Repository
 public interface CategoryRepository extends PagingAndSortingRepository<Category,String> {

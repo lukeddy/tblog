@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * @author tangzhiqiang
+ */
 @Getter
 @Setter
 public class LoginUserVo {

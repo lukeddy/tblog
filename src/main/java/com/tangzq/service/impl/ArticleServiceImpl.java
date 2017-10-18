@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author tangzhiqiang
+ */
 @Service
 public class ArticleServiceImpl implements ArticleService{
 

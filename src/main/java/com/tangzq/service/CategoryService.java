@@ -5,11 +5,15 @@ import org.springframework.data.domain.Page;
 
 import java.util.List;
 
+/**
+ * @author tangzhiqiang
+ */
 public interface CategoryService {
 
     /**
      * 新增栏目
      * @param cat
+     * @return
      */
     Category addCategory(Category cat);
 

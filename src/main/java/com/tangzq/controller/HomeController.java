@@ -31,6 +31,7 @@ import java.io.IOException;
 
 /**
  * 首页控制器
+ * @author tangzhiqiang
  */
 @Controller
 public class HomeController {

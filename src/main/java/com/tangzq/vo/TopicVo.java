@@ -5,23 +5,26 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @author tangzhiqiang
+ */
 @Getter
 @Setter
 @ToString
 public class TopicVo{
 
     private String topicId;
-    private String catId; //栏目ID
+    private String catId;
     private String title;
     private String desc;
     private String thumbURL;
-    private String tags;//标签，英文逗号分隔
-    private String contentMD; //Markdown格式内容
-    private String contentHTML; //HTML格式内容
+    private String tags;
+    private String contentMD;
+    private String contentHTML;
     private String authorId;
     private String authorName;
-    private boolean top;// 置顶帖
-    private boolean good;// 精华帖
+    private boolean top;
+    private boolean good;
     private boolean contentIsHTML;
 
 
