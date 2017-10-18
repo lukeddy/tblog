@@ -107,6 +107,9 @@
                 </c:if>
             </div>
         </div>
+        <div class="row">
+            <a href="${gitInfo.remoteOriginUrl}" target="_blank">${gitInfo.closestTagName}-${gitInfo.buildVersion}-${gitInfo.buildTime}-${gitInfo.commitMessageFull}</a>
+        </div>
     </div>
     <jsp:include page="inc/sidebar.jsp"></jsp:include>
 </div>
