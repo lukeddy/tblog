@@ -52,9 +52,6 @@ public class HomeController {
     @Autowired
     private CategoryService categoryService;
 
-    @Autowired
-    private GitCommitInfo gitCommitInfo;
-
 
     /**
      * 跳转到首页
@@ -67,7 +64,6 @@ public class HomeController {
         modelMap.addAttribute("pager",topicService.findByPage(vo));
         modelMap.addAttribute("catList",categoryService.findAll());
         modelMap.addAttribute("indexVo",vo);
-        modelMap.addAttribute("gitInfo",gitCommitInfo);
         return "index";
     }
 
