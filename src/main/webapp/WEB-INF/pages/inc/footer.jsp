@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fns" uri="/WEB-INF/tlds/fns.tld" %>
 <div id='footer'>
     <div id='footer_main'>
         <div class="links">
@@ -22,6 +23,9 @@
                 </a>提供应用性能服务。
             </p>
             <p>如果感觉系统比错，请不要吝啬您的星星，只需要轻轻的戳一下，谢谢！ <a href="">个人博客(https://www.xxoo.com/)</a></p>
+            <p>
+                <a href="https://github.com/${fns:getConfig("git.build.user.name")}/tblog/commit/${fns:getConfig("git.commit.id")}" target="_blank">${fns:getConfig("git.closest.tag.name")}-${fns:getConfig("git.commit.id.abbrev")}-${fns:getConfig("git.build.time")}</a>
+            </p>
         </div>
     </div>
 </div>
