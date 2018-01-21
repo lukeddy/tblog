@@ -13,6 +13,9 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
+    <context:property-placeholder
+            location="classpath:git.properties,classpath:props/application-${spring.profiles.active}.properties"/>
+
     <!-- 注解支持 -->
     <context:annotation-config/>
 
@@ -28,19 +31,21 @@
     <bean id="applicationListener" class="com.tangzq.application.MyApplicationListener"></bean>
 
     <!-- Define multiple environment -->
-    <beans profile="dev">
-        <context:property-placeholder location="classpath:props/application-dev.properties" />
-        <context:property-placeholder location="classpath:git.properties" />
-    </beans>
+    <!--<beans profile="dev">-->
+        <!--<context:property-placeholder location="classpath:props/application-dev.properties" />-->
+        <!--<context:property-placeholder location="classpath:git.properties" />-->
+    <!--</beans>-->
 
-    <beans profile="prod">
-        <context:property-placeholder location="classpath:props/application-prod.properties" />
-        <context:property-placeholder location="classpath:git.properties" />
-    </beans>
+    <!--<beans profile="prod">-->
+        <!--<context:property-placeholder location="classpath:props/application-prod.properties" />-->
+        <!--<context:property-placeholder location="classpath:git.properties" />-->
+    <!--</beans>-->
 
-    <beans profile="test">
-        <context:property-placeholder location="classpath:props/application-test.properties" />
-        <context:property-placeholder location="classpath:git.properties" />
-    </beans>
+    <!--<beans profile="test">-->
+        <!--<context:property-placeholder location="classpath:props/application-test.properties" />-->
+        <!--<context:property-placeholder location="classpath:git.properties" />-->
+    <!--</beans>-->
+
+
 
 </beans>
