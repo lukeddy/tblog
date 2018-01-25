@@ -4,7 +4,6 @@ import com.tangzq.model.Category;
 import com.tangzq.model.Topic;
 import com.tangzq.repository.CategoryRepository;
 import com.tangzq.repository.TopicRepository;
-import com.tangzq.service.CategoryService;
 import com.tangzq.service.TopicService;
 import com.tangzq.vo.IndexVo;
 import com.tangzq.vo.SearchVo;
@@ -15,14 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.repository.query.parser.Part;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -44,6 +39,12 @@ public class TopicServiceImpl implements TopicService {
         Sort sort = new Sort(Sort.Direction.DESC, "create_at");
         Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);
         return topicRepository.findAll(pageable);
+    }
+
+    public Page<Topic> findByUsernameAndPage(String username, int pageNo, int pageSize) {
+        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);
+        return topicRepository.findByAuthorName(username,pageable);
     }
 
     public Page<Topic> findByPage(IndexVo vo) {

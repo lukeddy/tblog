@@ -1,8 +1,10 @@
 package com.tangzq.controller;
 
 import com.tangzq.model.Topic;
+import com.tangzq.model.User;
 import com.tangzq.service.CategoryService;
 import com.tangzq.service.TopicService;
+import com.tangzq.utils.CommonProps;
 import com.tangzq.vo.PageVo;
 import com.tangzq.vo.TopicVo;
 import org.apache.commons.lang.StringUtils;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.WebUtils;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 帖子控制器
@@ -36,8 +41,11 @@ public class TopicController {
      * @return
      */
     @RequestMapping(value="/list",method = RequestMethod.GET)
-    public String listTopics(PageVo pageVo, ModelMap model){
-        model.addAttribute("pager", topicService.findByPage(pageVo.getPageNO(),pageVo.getPageSize()));
+    public String listTopics(PageVo pageVo, ModelMap model, HttpServletRequest request){
+        model.addAttribute("pager", topicService.findByUsernameAndPage(
+                ((User)(WebUtils.getSessionAttribute(request,CommonProps.LOGIN_USER_SESSION_KEY))).getUsername(),
+                 pageVo.getPageNO(),
+                 pageVo.getPageSize()));
         return "topic/topic_list";
     }
 

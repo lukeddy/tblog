@@ -28,7 +28,9 @@
                 <li><a href="${contextPath}/login">登陆</a></li>
             </c:if>
             <c:if test="${not empty loginUser}">
-                <li><a href="${contextPath}/cat/list">栏目管理</a></li>
+                <c:if test="${loginUser.username=='admin'}">
+                 <li><a href="${contextPath}/cat/list">栏目管理</a></li>
+                </c:if>
                 <li><a href="${contextPath}/topic/list">帖子管理</a></li>
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">${loginUser.username}<b class="caret"></b></a>
