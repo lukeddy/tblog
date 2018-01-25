@@ -23,6 +23,14 @@ public interface TopicRepository extends PagingAndSortingRepository<Topic,String
     Page<Topic> findByAuthorName(String authorName,Pageable pageable);
 
     /**
+     * 查找含有指定标签的帖子
+     * @param tagName
+     * @param pageable
+     * @return
+     */
+    Page<Topic> findByTagsContains(String tagName,Pageable pageable);
+
+    /**
      * 按栏目分类查找
      * @param catDir
      * @param pageable

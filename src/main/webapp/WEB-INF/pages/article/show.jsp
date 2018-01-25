@@ -30,7 +30,7 @@
                     <span>标签：</span>
                     <c:if test="${not empty article.topic.tags}">
                         <c:forEach items="${article.topic.tags}" var="tag">
-                            <a href="javascript:;" class="tag">${tag}</a>
+                            <a href="${contextPath}/tag/${tag}" class="tag">${tag}</a>
                         </c:forEach>
                     </c:if>
                 </div>

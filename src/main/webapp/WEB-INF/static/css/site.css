@@ -1064,7 +1064,7 @@ textarea.editor {
 }
 
 .highlight{
-  color: #c00;
+  color: #c00 !important;
   font-style: normal;
   font-weight: normal;
   text-decoration: underline;

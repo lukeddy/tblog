@@ -43,7 +43,7 @@
                                                         <c:if test="${not empty topic.tags}">
                                                             <li class="item tag">
                                                                 <c:forEach items="${topic.tags}" var="tag">
-                                                                    <a class="tag" href="javascript:;">${tag}</a>
+                                                                    <a class="tag" href="${contextPath}/tag/${tag};">${tag}</a>
                                                                 </c:forEach>
                                                             </li>
                                                         </c:if>

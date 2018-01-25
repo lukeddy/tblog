@@ -29,6 +29,15 @@ public interface TopicService {
     Page<Topic> findByUsernameAndPage(String username,int pageNo,int pageSize);
 
     /**
+     * 含有指定标签的帖子
+     * @param tagName
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    Page<Topic> findByTagAndPage(String tagName,int pageNo,int pageSize);
+
+    /**
      * 首页分页查找
      * @param vo
      * @return

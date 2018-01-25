@@ -1,37 +1,17 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="inc/header.jsp"></jsp:include>
+<jsp:include page="../inc/header.jsp"></jsp:include>
 <div class='container main'>
     <div class='col-md-9'>
+        <ul class='breadcrumb'>
+            <li><a href='${contextPath}/'><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
+            <li><a href='javascript:;'>标签:${tagName}(${pager.totalElements}篇文章)</a><span class='divider'></span></li>
+        </ul>
         <div class="panel">
-            <div class="header">
-                <a href="${contextPath}/?tab=all" class='topic-tab <c:if test="${indexVo.tab=='all'}">current-tab</c:if>'>全部</a>
-                <c:choose>
-                    <c:when test="${catList.size()<=8}">
-                        <c:forEach items="${catList}" var="cat">
-                            <a href="${contextPath}/?tab=${cat.catDir}" class='topic-tab <c:if test="${indexVo.tab==cat.catDir}">current-tab</c:if>'>${cat.catName}</a>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <c:forEach items="${catList}" var="cat" begin="0" end="7">
-                            <a href="${contextPath}/?tab=${cat.catDir}" class='topic-tab <c:if test="${indexVo.tab==cat.catDir}">current-tab</c:if>'>${cat.catName}</a>
-                        </c:forEach>
-                        <span class="dropdown">
-                                <a href="#" class="dropdown-toggle topic-tab" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <c:forEach items="${catList}" var="cat" begin="8" end="${catList.size()-1}">
-                                        <li class="topic-tab">
-                                            <a href="${contextPath}/?tab=${cat.catDir}" class='topic-tab <c:if test="${indexVo.tab==cat.catDir}">current-tab</c:if>'>${cat.catName}</a>
-                                        </li>
-                                    </c:forEach>
-                                </ul>
-                           </span>
-                    </c:otherwise>
-                </c:choose>
-            </div>
             <div class="inner no-padding">
                 <c:if test="${not empty pager.content}">
-                    <ul class="post-list">
+                    <div class="search-result">
+                        <ul class="post-list">
                         <c:forEach items="${pager.content}" var="topic">
                             <li class="post-item">
                                 <div class="entry">
@@ -52,9 +32,9 @@
                                                             </a>
                                                         </li>
                                                         <c:if test="${not empty topic.tags}">
-                                                            <li class="item tag">
+                                                            <li class="item tag tag-box">
                                                                 <c:forEach items="${topic.tags}" var="tag">
-                                                                    <a class="tag" href="${contextPath}/tag/${tag}">${tag}</a>
+                                                                    <a class='tag <c:if test="${tag==tagName}">highlight</c:if>' href="${contextPath}/tag/${tag}">${tag}</a>
                                                                 </c:forEach>
                                                             </li>
                                                         </c:if>
@@ -86,28 +66,39 @@
                                                 </div>
                                             </div>
                                             <c:if test="${not empty topic.thumbURL}">
-                                                <div class="thumb-box" style='background-image: url("${contextPath}${topic.thumbURL}"); background-size: cover;'></div>
+                                                <div class="thumb-box" style='background-image: url("${topic.thumbURL}"); background-size: cover;'></div>
                                             </c:if>
                                         </div>
                                     </a>
                                 </div>
                             </li>
                         </c:forEach>
-                    </ul>
+                        </ul>
+                    </div>
                     <!--分页开始-->
-                    <jsp:include page="inc/pagination.jsp">
+                    <jsp:include page="../inc/pagination.jsp">
                         <jsp:param name="pager" value="${pager}"/>
-                        <jsp:param name="baseURL" value="${contextPath}/"/>
-                        <jsp:param name="otherParams" value="tab=${indexVo.tab}"/>
+                        <jsp:param name="baseURL" value="${contextPath}/tag/${tagName}"/>
+                        <jsp:param name="otherParams" value="&keywords=${tagName}"/>
                     </jsp:include>
                     <!--分页结束-->
                 </c:if>
                 <c:if test="${empty pager.content}">
-                    <p class="text-center">还没有帖子</p>
+                    <p class="text-center">没有搜索结果</p>
                 </c:if>
             </div>
         </div>
     </div>
-    <jsp:include page="inc/sidebar.jsp"></jsp:include>
+    <jsp:include page="../inc/sidebar.jsp"></jsp:include>
 </div>
-<jsp:include page="inc/footer.jsp"></jsp:include>
+<jsp:include page="../inc/footer.jsp"></jsp:include>
+<script src="${contextPath}/js/mark/mark.js"></script>
+<%--<script>--%>
+    <%--$(document).ready(function(){--%>
+        <%--var instance = new Mark(document.querySelector("div.search-result"));--%>
+        <%--instance.mark("${tagName}", {--%>
+            <%--"element": "span",--%>
+            <%--"className": "highlight"--%>
+        <%--});--%>
+    <%--});--%>
+<%--</script>--%>
