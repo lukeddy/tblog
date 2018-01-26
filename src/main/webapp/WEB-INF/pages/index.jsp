@@ -44,7 +44,7 @@
                                                             <li class="item recommended">置顶</li>
                                                         </c:if>
                                                         <li class="item username">
-                                                            <a href="${contextPath}/user/${topic.authorName}">${topic.authorName}.${topic.friendlyTime}</a>
+                                                            <a href="${contextPath}/pub/user/${topic.authorId}">${topic.authorName}.${topic.friendlyTime}</a>
                                                         </li>
                                                         <li class="item category">
                                                             <a href="${contextPath}/?tab=${topic.catDir}">

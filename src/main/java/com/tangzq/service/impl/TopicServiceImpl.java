@@ -41,6 +41,12 @@ public class TopicServiceImpl implements TopicService {
         return topicRepository.findAll(pageable);
     }
 
+    public Page<Topic> findByUserIdAndPage(String userId, int pageNo, int pageSize) {
+        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);
+        return topicRepository.findByAuthorId(userId,pageable);
+    }
+
     public Page<Topic> findByUsernameAndPage(String username, int pageNo, int pageSize) {
         Sort sort = new Sort(Sort.Direction.DESC, "create_at");
         Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);

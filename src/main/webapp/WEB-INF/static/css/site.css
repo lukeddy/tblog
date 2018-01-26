@@ -1341,3 +1341,114 @@ textarea.editor {
   width:66px;
   margin:0 10px;
 }
+
+/*user detail page*/
+.user-info-block{
+  background-color: #fff;
+  border-radius: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2.5rem;
+}
+.user-info-block .avatar{
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  margin-right: 2.4rem;
+  width: 7.5rem;
+  height: 7.5rem;
+  background-color: #f9f9f9;
+  border-radius: 50%;
+}
+.user-info-block .info-box{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  margin-right: 2rem;
+}
+.user-info-block .info-box .username{
+  margin: 0;
+  padding: 0;
+  font-size: 2.167rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+}
+.user-info-block .info-box .position, .user-info-block .info-box .intro{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: #72777b;
+}
+.user-info-block .info-box .position{
+  margin-top: 1rem;
+}
+.user-info-block .info-box .intro{
+  margin-top: .4rem;
+}
+.info-box .position .content,.info-box .intro .content{
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+.user-info-block .position .icon, .user-info-block .intro .icon{
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  margin-right: .6rem;
+}
+.user-info-block .action-box{
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+.user-info-block .action-box .link-box{
+  margin-bottom: auto;
+}
+.user-info-block .action-box .btn{
+  margin: 1rem 0 0;
+  padding: 0;
+  height: 2.834rem;
+  font-size: 1.333rem;
+  font-weight: 500;
+  line-height: 1.2;
+  border: 1px solid currentColor;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.user-info-block .action-box .follow-btn{
+  width: 9rem;
+  color: #92c452;
+}
+.user-info-block .action-box .follow-btn:hover{
+  opacity: .8;
+}
+.user-info-block .action-box .follow-btn.active{
+  color: #fff;
+  background-color: #92c452;
+  border-color: #92c452;
+}

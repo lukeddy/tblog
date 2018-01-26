@@ -20,6 +20,15 @@ public interface TopicService {
     Page<Topic> findByPage(int pageNo, int pageSize);
 
     /**
+     * 指定用户帖子
+     * @param userId
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    Page<Topic> findByUserIdAndPage(String userId,int pageNo,int pageSize);
+
+    /**
      * 指定用户创建的帖子
      * @param username
      * @param pageNo
