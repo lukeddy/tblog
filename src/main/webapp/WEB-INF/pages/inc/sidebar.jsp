@@ -20,16 +20,8 @@
             <span class='col_fade'>广告</span>
         </div>
         <div class="inner ads">
-            <a href="javascript:;" target="_blank" class="banner sponsor_outlink" data-label="alinode">
-                <img src="//dn-cnode.qbox.me/Fn4D6BhOTz1IswvmzeZ1q7QW1ls_">
-            </a>
-            <div class="sep10"></div>
-            <a href="javascript:;" target="_blank" class="banner sponsor_outlink" data-label="ucloud-banner">
-                <img src="//dn-cnode.qbox.me/FgQS-GQDfqwAD_v0NuhyYUOUk5MG">
-            </a>
-            <div class="sep10"></div>
-            <a href="javascript:;" target="_blank" class="banner sponsor_outlink" data-label="tingyun">
-                <img src="//dn-cnode.qbox.me/FvGk14CRylsdmV2OhA2J63mqdB6-">
+            <a href="javascript:;" target="_blank" class="banner">
+                <img src="${contextPath}/images/ads/panda-sichuan.jpeg">
             </a>
         </div>
     </div>
