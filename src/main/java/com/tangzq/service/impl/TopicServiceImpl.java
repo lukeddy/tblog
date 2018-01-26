@@ -103,7 +103,7 @@ public class TopicServiceImpl implements TopicService {
         topic.setTitle(vo.getTitle());
         topic.setDesc(vo.getDesc());
         topic.setThumbURL(vo.getThumbURL());
-        if(null!=vo.getTags()){
+        if(StringUtils.isNotEmpty(vo.getTags())){
             topic.setTags(Arrays.asList(vo.getTags().split(",")));
         }
         topic.setContentMD(vo.getContentMD());

@@ -48,7 +48,7 @@
                                             <div class="content-box">
                                                 <div class="info-box">
                                                     <div class="title-row">
-                                                        <a class="title" href="${contextPath}/article/${topic.id}" target="_blank">${topic.title}</a>
+                                                        <a class="title" href="${contextPath}/article/${topic.id}" target="_self">${topic.title}</a>
                                                     </div>
                                                     <div class="desc-row">${topic.desc}</div>
                                                 </div>
