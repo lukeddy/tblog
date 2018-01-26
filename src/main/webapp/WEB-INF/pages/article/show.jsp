@@ -57,7 +57,7 @@
             </div>
         </div>
         <c:if test="${not empty article.replyList}">
-            <div class="panel">
+            <div class="panel" id="comment">
                 <div class="header">
                     <span class="col_fade">${article.topic.replyCount} 回复</span>
                 </div>

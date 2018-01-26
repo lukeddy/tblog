@@ -70,7 +70,7 @@
                                                             <span class="icon"></span>
                                                             <span class="title">${topic.visitCount}</span>
                                                         </a>
-                                                        <a class="action comment" href="javascript:;" >
+                                                        <a class="action comment" href="${contextPath}/article/${topic.id}#comment" >
                                                             <span class="icon"></span>
                                                             <span class="title">${topic.replyCount}</span>
                                                         </a>
