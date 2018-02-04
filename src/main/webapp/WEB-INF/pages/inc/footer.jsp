@@ -7,7 +7,7 @@
             |
             <a class='dark' href='https://github.com/tzq668766/tblog/tree/tblog-spirngmvc-mongo/'>源码地址</a>
             | 本次构建于：
-            <a href="https://github.com/${fns:getConfig("git.build.user.name")}/tblog/commit/${fns:getConfig("git.commit.id")}" target="_blank">${fns:getConfig("git.closest.tag.name")}-${fns:getConfig("git.commit.id.abbrev")}-${fns:getConfig("git.build.time")}</a>
+            <a href="https://github.com/tzq668766/tblog/commit/${fns:getConfig("git.commit.id")}" target="_blank">${fns:getConfig("git.closest.tag.name")}-${fns:getConfig("git.commit.id.abbrev")}-${fns:getConfig("git.build.time")}</a>
         </div>
 
         <div class='col_fade'>
