@@ -143,8 +143,8 @@
         </c:if>
 
         var myDropzone = new Dropzone("#uploadForm",{
-            url:"${contextPath}/upload/image",
-            paramName:"editormd-image-file",
+            url:"${contextPath}/upload/thumbnail",
+            paramName:"thumbImage",
             maxFilesize:2,//2M
             acceptedFiles:"image/png,image/jpg,image/jpeg",
             maxFiles:1,
