@@ -117,7 +117,7 @@ public class HomeController {
         User savedUser=userService.createUser(registerUser);
         if(null!=savedUser&&savedUser.getId()!=null){
             redirectAttributes.addFlashAttribute("messageSuc","注册成功！");
-            return "redirect:/register";
+            return "redirect:/login";
         }else{
             model.addAttribute("messageErr","注册失败");
             model.addAttribute("vo",registerUser);
