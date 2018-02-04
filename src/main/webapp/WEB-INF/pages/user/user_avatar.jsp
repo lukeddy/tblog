@@ -40,7 +40,7 @@
                     </div>
                     <div class="tab-pane fade" id="get_avatar">
                         <br>
-                        <a href="/user/${loginUser.username}/getAvatar/${loginUser.email}" class="btn btn-success">获取</a>
+                        <a href="${contextPath}/user/${loginUser.username}/getAvatar/${loginUser.email}" class="btn btn-success">获取</a>
                     </div>
                 </div>
             </div>

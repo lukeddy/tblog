@@ -247,35 +247,26 @@
             </configuration>
         </plugin>
         <plugin>
-            <groupId>org.mortbay.jetty</groupId>
+            <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-maven-plugin</artifactId>
-            <version>8.1.4.v20120524</version>
+            <version>9.3.14.v20161028</version>
             <configuration>
-                <scanIntervalSeconds>10</scanIntervalSeconds>
-                <stopKey>foo</stopKey>
-                <stopPort>8080</stopPort>
-                <contextXml>${project.basedir}/src/main/resources/jetty-context.xml</contextXml>
+                <webAppConfig>
+                    <maxFormContentSize>600000</maxFormContentSize>
+                    <contextPath>/tblog</contextPath>
+                </webAppConfig>
+                <scanIntervalSeconds>3</scanIntervalSeconds>
+                <webAppSourceDirectory>${basedir}/webapp/</webAppSourceDirectory>
+                <stopPort>9998</stopPort>
+                <stopKey>stop</stopKey>
+                <jettyConfig/>
+                <systemProperties>
+                    <systemProperty>
+                        <name>UrlEncoded</name>
+                        <value>UTF-8</value>
+                    </systemProperty>
+                </systemProperties>
             </configuration>
-            <executions>
-                <execution>
-                    <id>start-jetty</id>
-                    <phase>pre-integration-test</phase>
-                    <goals>
-                        <goal>run</goal>
-                    </goals>
-                    <configuration>
-                        <scanIntervalSeconds>0</scanIntervalSeconds>
-                        <daemon>true</daemon>
-                    </configuration>
-                </execution>
-                <execution>
-                    <id>stop-jetty</id>
-                    <phase>post-integration-test</phase>
-                    <goals>
-                        <goal>stop</goal>
-                    </goals>
-                </execution>
-            </executions>
         </plugin>
     </plugins>
   </build>

@@ -75,8 +75,9 @@ public interface UserService {
      * 更新头像
      * @param userId
      * @param avatarURL
+     * @param isUploaded 是否通过上传更新的头像图片
      * @return
      */
-    User updateAvatar(String userId,String avatarURL);
+    User updateAvatar(String userId,String avatarURL,boolean isUploaded);
 
 }

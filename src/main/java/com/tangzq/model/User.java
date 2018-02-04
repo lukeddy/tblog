@@ -19,6 +19,7 @@ public class User extends BaseModel<String>{
     private String password;
     private String email;
     private String avatarURL;
+    private boolean avatarURLByUploaded;
 
     private String website;
     private String location;

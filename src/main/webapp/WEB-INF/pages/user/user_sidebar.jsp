@@ -4,7 +4,12 @@
 <div class="list-group">
     <div class="list-group-item">
         <div class="pull-left avatar">
+        <c:if test="${loginUser.avatarURLByUploaded}">
+            <img class="img-circle" src="${contextPath}${loginUser.avatarURL}">
+        </c:if>
+        <c:if test="${!loginUser.avatarURLByUploaded}">
             <img class="img-circle" src="${loginUser.avatarURL}">
+        </c:if>
         </div>
         <div class="pull-left info">
             <h4 style="margin-bottom: 0px;">${loginUser.username}</h4>

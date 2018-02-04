@@ -134,7 +134,7 @@ public class UserController {
             String relativePath = UploadUtil.getRelativeAvatarPath(file.getOriginalFilename());
             String absolutePath = UploadUtil.uploadImage(rootPath,relativePath, file.getInputStream());
             logger.info("头像保存成功，全路径为："+absolutePath);
-            User user=userService.updateAvatar(uid,relativePath);
+            User user=userService.updateAvatar(uid,relativePath,Boolean.TRUE);
             if(null!=user&&user.getId()!=null){
                 session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,user);
                 redirectAttributes.addFlashAttribute("messageSuc","头像修改成功");
@@ -170,7 +170,7 @@ public class UserController {
             model.addAttribute("messageErr","无法获取用户信息");
             return "user/user_avatar";
         }
-        User updatedUser= userService.updateAvatar(user.getId(), GravatarUtils.makeGravatar(email));
+        User updatedUser= userService.updateAvatar(user.getId(), GravatarUtils.makeGravatar(email),Boolean.FALSE);
         if(null!=updatedUser&&updatedUser.getId()!=null){
             session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,updatedUser);
             redirectAttributes.addFlashAttribute("messageSuc","获取Avatar头像成功");

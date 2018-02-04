@@ -94,12 +94,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(userInDb);
     }
 
-    public User updateAvatar(String userId, String avatarURL) {
+    public User updateAvatar(String userId, String avatarURL,boolean isUploaded) {
         User userInDb=getUser(userId);
         if(null==userInDb){
             return null;
         }
         userInDb.setAvatarURL(avatarURL);
+        userInDb.setAvatarURLByUploaded(isUploaded);
         return userRepository.save(userInDb);
     }
 }
