@@ -9,7 +9,13 @@
         </ul>
         <div class="panel">
             <div class="inner user-info-block">
-                <div class="avatar" style='background-image: url("${user.avatarURL}");background-size:cover;'></div>
+                <c:if test="${user.avatarURLByUploaded}">
+                    <div class="avatar" style='background-image: url("${contextPath}${user.avatarURL}");background-size:cover;'></div>
+                </c:if>
+                <c:if test="${!user.avatarURLByUploaded}">
+                    <div class="avatar" style='background-image: url("${user.avatarURL}");background-size:cover;'></div>
+                </c:if>
+
                 <div class="info-box">
                     <h1 class="username">${user.username}</h1>
                     <div class="position">
