@@ -50,10 +50,6 @@
                                 </a>
                             </c:otherwise>
                         </c:choose>
-                        <%--<a href="javascript:;" class="action-link">--%>
-                            <%--<img src="${contextPath}/images/ico/liked-lg.svg" alt="">--%>
-                            <%--<span>喜欢</span>--%>
-                        <%--</a>--%>
                         <a href="#reply" class="action-link">
                             <img src="${contextPath}/images/ico/comment-lg.svg" alt="">
                             <span>评论</span>
