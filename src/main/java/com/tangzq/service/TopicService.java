@@ -136,6 +136,23 @@ public interface TopicService {
      */
     Topic removeCollection(String topicId,String userId);
 
+    /**
+     * 喜欢文章
+     * @param topicId
+     * @param userId
+     * @return
+     */
+    Topic like(String topicId, String userId);
+
+
+    /**
+     * 不喜欢收藏
+     * @param topicId
+     * @param userId
+     * @return
+     */
+    Topic unLike(String topicId,String userId);
+
 
     /**
      * 用户收藏的所有文章

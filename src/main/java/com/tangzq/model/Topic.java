@@ -52,6 +52,7 @@ public class Topic extends BaseModel<String>{
     private String catName;
     private String catDir;
     private Set<String> collectedUsers;
+    private Set<String> likedUsers;
 
 
     public boolean isNew() {

@@ -234,6 +234,33 @@ public class TopicServiceImpl implements TopicService {
         return topicRepository.save(topicInDb);
     }
 
+    public Topic like(String topicId, String userId) {
+        Topic topicInDb=topicRepository.findOne(topicId);
+        if(null==topicInDb){
+            return null;
+        }
+        Set<String> likedUsers=topicInDb.getCollectedUsers();
+        if(null==likedUsers){
+            likedUsers=new HashSet<String>();
+        }
+        likedUsers.add(userId);
+        topicInDb.setLikedUsers(likedUsers);
+        return topicRepository.save(topicInDb);
+    }
+
+    public Topic unLike(String topicId, String userId) {
+        Topic topicInDb=topicRepository.findOne(topicId);
+        if(null==topicInDb){
+            return null;
+        }
+        Set<String> likedUsers=topicInDb.getCollectedUsers();
+        if(null!=likedUsers&&likedUsers.contains(userId)){
+            likedUsers.remove(userId);
+            topicInDb.setLikedUsers(likedUsers);
+        }
+        return topicRepository.save(topicInDb);
+    }
+
     public Page<Topic> findCollectedTopicsByUidAndPage(String userId, int pageNo, int pageSize) {
         Sort sort = new Sort(Sort.Direction.DESC, "create_at");
         Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);

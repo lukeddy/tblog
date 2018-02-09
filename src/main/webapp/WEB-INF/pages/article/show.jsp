@@ -36,10 +36,24 @@
                 </div>
                 <div class="topic-action-wrapper">
                     <div class="topic-actions">
-                        <a href="javascript:;" class="action-link">
-                            <img src="${contextPath}/images/ico/collection-lg-press.svg" alt="">
-                            <span>喜欢</span>
-                        </a>
+                        <c:choose>
+                            <c:when test="${article.topic.likedUsers.contains(loginUser.id)}">
+                                <a href="${contextPath}/like/remove/${article.topic.id}" class="action-link">
+                                    <img src="${contextPath}/images/ico/liked-lg.svg" alt="">
+                                    <span>取消喜欢</span>
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="${contextPath}/like/add/${article.topic.id}" class="action-link">
+                                    <img src="${contextPath}/images/ico/like-lg.svg" alt="">
+                                    <span>喜欢</span>
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
+                        <%--<a href="javascript:;" class="action-link">--%>
+                            <%--<img src="${contextPath}/images/ico/liked-lg.svg" alt="">--%>
+                            <%--<span>喜欢</span>--%>
+                        <%--</a>--%>
                         <a href="#reply" class="action-link">
                             <img src="${contextPath}/images/ico/comment-lg.svg" alt="">
                             <span>评论</span>
@@ -140,8 +154,8 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-info" id="edit-submit">提交</button>
+                            </form>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>

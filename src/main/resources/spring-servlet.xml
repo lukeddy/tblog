@@ -42,6 +42,7 @@
             <mvc:mapping path="/topic/del/**"/>
             <mvc:mapping path="/user/**"/>
             <mvc:mapping path="/collect/**"/>
+            <mvc:mapping path="/like/**"/>
             <bean class="com.tangzq.interceptor.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

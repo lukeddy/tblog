@@ -58,6 +58,7 @@
                                                                 </c:forEach>
                                                             </li>
                                                         </c:if>
+                                                        <li class="item">${topic.visitCount}次阅读</li>
                                                     </ul>
                                                 </div>
                                                 <div class="title-row">
@@ -68,7 +69,7 @@
                                                     <div class="action-list">
                                                         <a class="action like" href="javascript:;" >
                                                             <span class="icon"></span>
-                                                            <span class="title">${topic.visitCount}</span>
+                                                            <span class="title">${empty topic.likedUsers?0:topic.likedUsers.size()}</span>
                                                         </a>
                                                         <a class="action comment" href="${contextPath}/article/${topic.id}#comment" >
                                                             <span class="icon"></span>
