@@ -233,4 +233,12 @@ public class TopicServiceImpl implements TopicService {
         }
         return topicRepository.save(topicInDb);
     }
+
+    public Page<Topic> findCollectedTopicsByUidAndPage(String userId, int pageNo, int pageSize) {
+        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);
+        return topicRepository.findByCollectedUsersContains(userId,pageable);
+    }
+
+
 }

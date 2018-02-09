@@ -65,6 +65,12 @@ public interface TopicRepository extends PagingAndSortingRepository<Topic,String
     Page<Topic> findByTitleLikeOrDescLike(String title,String desc,Pageable pageable);
 
 
+    /**
+     * 指定用户收藏的所有文章
+     * @param userId
+     * @return
+     */
+    Page<Topic> findByCollectedUsersContains(String userId,Pageable pageable);
 
     /**
      * 在标题标题或者摘要模糊查询

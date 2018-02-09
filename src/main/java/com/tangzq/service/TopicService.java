@@ -135,4 +135,14 @@ public interface TopicService {
      * @return
      */
     Topic removeCollection(String topicId,String userId);
+
+
+    /**
+     * 用户收藏的所有文章
+     * @param userId
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    Page<Topic> findCollectedTopicsByUidAndPage(String userId,int pageNo,int pageSize);
 }

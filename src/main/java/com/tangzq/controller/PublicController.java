@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 用户控制器
@@ -35,16 +36,22 @@ public class PublicController {
      * @return
      */
     @RequestMapping(value="/user/{userId}")
-    public String userDetail(@PathVariable("userId")String userId, PageVo pageVo, ModelMap model){
+    public String userDetail(@PathVariable("userId")String userId,
+                             @RequestParam(value = "tab",required = false)String tab,
+                             PageVo pageVo, ModelMap model){
         if(StringUtils.isEmpty(userId)||userService.getUser(userId)==null){
             return "error/404";
         }
         model.addAttribute("user",userService.getUser(userId));
-        model.addAttribute("pager",
-                topicService.findByUserIdAndPage(userId,pageVo.getPageNO(),pageVo.getPageSize()));
-
+        model.addAttribute("tab",tab);
+        if("collect".equals(tab)){
+            model.addAttribute("pager",
+                    topicService.findCollectedTopicsByUidAndPage(userId,pageVo.getPageNO(),pageVo.getPageSize()));
+        }else{
+            model.addAttribute("pager",
+                    topicService.findByUserIdAndPage(userId,pageVo.getPageNO(),pageVo.getPageSize()));
+        }
         return "user/user_detail";
     }
-
 
 }
