@@ -118,4 +118,21 @@ public interface TopicService {
      * @param topicId
      */
     void decreaseReplyCount(String topicId);
+
+    /**
+     * 收藏文章
+     * @param topicId
+     * @param userId
+     * @return
+     */
+    Topic addCollection(String topicId, String userId);
+
+
+    /**
+     * 取消收藏
+     * @param topicId
+     * @param userId
+     * @return
+     */
+    Topic removeCollection(String topicId,String userId);
 }

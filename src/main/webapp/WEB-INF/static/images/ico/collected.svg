@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="29px" viewBox="0 0 29 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 41.1 (35376) - http://www.bohemiancoding.com/sketch -->
+    <title>7C765AC5-B2D6-4A5C-915D-7594D60CEEB7</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="4" width="23.7272727" height="1.33333333"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="23.7272727" height="1.33333333" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <rect id="path-3" x="0" y="12.6666667" width="23.7272727" height="1.33333333"></rect>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="23.7272727" height="1.33333333" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+        <rect id="path-5" x="8.8817842e-16" y="21.3333333" width="15.8181818" height="1.33333333"></rect>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="15.8181818" height="1.33333333" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="原创文章_增加收藏集入口" transform="translate(-913.000000, -941.000000)">
+            <g id="Group-4-Copy" transform="translate(913.000000, 941.000000)">
+                <rect id="Rectangle-3" x="0" y="0" width="29" height="29"></rect>
+                <use id="Rectangle" stroke="#83C73A" mask="url(#mask-2)" stroke-width="3" xlink:href="#path-1"></use>
+                <use id="Rectangle-Copy" stroke="#83C73A" mask="url(#mask-4)" stroke-width="3" xlink:href="#path-3"></use>
+                <use id="Rectangle-Copy-2" stroke="#83C73A" mask="url(#mask-6)" stroke-width="3" xlink:href="#path-5"></use>
+                <polyline id="Line" stroke="#83C73A" stroke-width="1.5" stroke-linecap="square" points="19 21.5714286 22.2142857 24.7857143 28 19"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

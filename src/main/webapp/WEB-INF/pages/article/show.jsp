@@ -44,10 +44,38 @@
                             <img src="${contextPath}/images/ico/comment-lg.svg" alt="">
                             <span>评论</span>
                         </a>
-                        <a href="javascript:;" class="action-link">
-                            <img src="${contextPath}/images/ico/collect-lg.svg" alt="">
-                            <span>收藏</span>
-                        </a>
+                        <%--<c:set var="isCollected" value="false"/>--%>
+                        <%--<c:forEach items="${article.topic.collectedUsers}" var="colUID">--%>
+                            <%--<c:if test="${colUID==loginUser.id}">--%>
+                                <%--<c:set var="isCollected" value="true"/>--%>
+                            <%--</c:if>--%>
+                        <%--</c:forEach>--%>
+                        <%--<c:if test="${!isCollected}">--%>
+                            <%--<a id="collectLink" href="${contextPath}/collect/add/${article.topic.id}" class="action-link">--%>
+                                <%--<img src="${contextPath}/images/ico/collect-lg.svg" alt="">--%>
+                                <%--<span>收藏</span>--%>
+                            <%--</a>--%>
+                        <%--</c:if>--%>
+                        <%--<c:if test="${isCollected}">--%>
+                            <%--<a id="collectLink" href="${contextPath}/collect/remove/${article.topic.id}" class="action-link">--%>
+                                <%--<img src="${contextPath}/images/ico/collected.svg" alt="">--%>
+                                <%--<span>取消收藏</span>--%>
+                            <%--</a>--%>
+                        <%--</c:if>--%>
+                        <c:choose>
+                            <c:when test="${article.topic.collectedUsers.contains(loginUser.id)}">
+                                <a id="collectLink" href="${contextPath}/collect/remove/${article.topic.id}" class="action-link">
+                                    <img src="${contextPath}/images/ico/collected.svg" alt="">
+                                    <span>取消收藏</span>
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <a id="collectLink" href="${contextPath}/collect/add/${article.topic.id}" class="action-link">
+                                    <img src="${contextPath}/images/ico/collect-lg.svg" alt="">
+                                    <span>收藏</span>
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
                         <a href="javascript:;" class="action-link">
                             <img src="${contextPath}/images/ico/share-lg.svg" alt="">
                             <span>分享</span>

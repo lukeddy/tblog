@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -203,5 +205,32 @@ public class TopicServiceImpl implements TopicService {
         topicRepository.save(topicInDB);
     }
 
+    public Topic addCollection(String topicId, String userId) {
+        Topic topicInDb=topicRepository.findOne(topicId);
+        if(null==topicInDb){
+            return null;
+        }
+        Set<String> collectedUsers=topicInDb.getCollectedUsers();
+        if(null==collectedUsers){
+            collectedUsers=new HashSet<String>();
+        }
+        collectedUsers.add(userId);
+        topicInDb.setCollectedUsers(collectedUsers);
+        topicInDb.setCollectCount(collectedUsers.size());
+        return topicRepository.save(topicInDb);
+    }
 
+    public Topic removeCollection(String topicId, String userId) {
+        Topic topicInDb=topicRepository.findOne(topicId);
+        if(null==topicInDb){
+            return null;
+        }
+        Set<String> collectedUsers=topicInDb.getCollectedUsers();
+        if(null!=collectedUsers&&collectedUsers.contains(userId)){
+            collectedUsers.remove(userId);
+            topicInDb.setCollectedUsers(collectedUsers);
+            topicInDb.setCollectCount(collectedUsers.size());
+        }
+        return topicRepository.save(topicInDb);
+    }
 }

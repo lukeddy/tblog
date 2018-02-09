@@ -7,6 +7,7 @@ import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author tangzhiqiang
@@ -50,6 +51,7 @@ public class Topic extends BaseModel<String>{
     private String catId;
     private String catName;
     private String catDir;
+    private Set<String> collectedUsers;
 
 
     public boolean isNew() {

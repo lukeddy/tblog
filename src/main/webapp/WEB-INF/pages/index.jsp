@@ -72,11 +72,11 @@
                                                         </a>
                                                         <a class="action comment" href="${contextPath}/article/${topic.id}#comment" >
                                                             <span class="icon"></span>
-                                                            <span class="title">${topic.replyCount}</span>
+                                                            <span class="title">${topic.replyCount}评论</span>
                                                         </a>
                                                         <a  class="action collect hover" href="javascript:;">
                                                             <span class="icon"></span>
-                                                            <span class="title">收藏</span>
+                                                            <span class="title">${topic.collectCount}收藏</span>
                                                         </a>
                                                         <a class="action share hover" href="javascript:;">
                                                             <span class="icon"></span>
