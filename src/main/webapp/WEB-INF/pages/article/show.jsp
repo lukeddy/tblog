@@ -82,10 +82,10 @@
                 <c:forEach items="${article.replyList}" var="reply" varStatus="status">
                     <div class="cell reply_area reply_item editormd-preview-container" reply_id="${reply.id}" reply_to_id="" id="${reply.id}">
                         <div class="author_content">
-                            <a href="/user/captainblue2013" class="user_avatar">
-                                <img src="https://avatars1.githubusercontent.com/u/3942299?v=4&amp;s=120" title="captainblue2013"></a>
+                            <a href="${contextPath}/pub/user/${reply.authorInfo.authorId}" class="user_avatar">
+                                <img src="${contextPath}${reply.authorInfo.authorAvatar}" title="${reply.authorInfo.authorName}"></a>
                             <div class="user_info">
-                                <a class="dark reply_author" href="/user/captainblue2013">captainblue2013</a>
+                                <a class="dark reply_author" href="${contextPath}/pub/user/${reply.authorInfo.authorId}">${reply.authorInfo.authorName}</a>
                                 <a class="reply_time" href="#${reply.id}">${status.index+1}楼•${reply.friendlyTime}</a>
                             </div>
                             <div class="user_action">
@@ -97,14 +97,14 @@
                               </span>
                                 <span></span>
                                 <c:if test="${not empty loginUser}">
-                                    <c:if test="${loginUser.id==reply.authorId}">
+                                    <c:if test="${loginUser.id==reply.authorInfo.authorId}">
                                         <a href="javascript:;" class="edit-reply" reply-id="${reply.id}" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>
                                         <a href="${contextPath}/article/${article.topic.id}/reply/${reply.id}/del/" title="删除"><i class="glyphicon glyphicon-remove-circle"></i></a>
                                     </c:if>
                                 </c:if>
                             </div>
                         </div>
-                        <div class="reply_content from-${reply.authorId}">
+                        <div class="reply_content from-${reply.authorInfo.authorId}">
                             <div class="markdown-text"><p>${reply.contentHTML}</p></div>
                         </div>
                         <div class="clearfix">
@@ -130,6 +130,8 @@
                         </div>
                         <input type="hidden" name="topicId" value="${article.topic.id}">
                         <input type="hidden" name="authorId" value="${loginUser.id}">
+                        <input type="hidden" name="authorName" value="${loginUser.username}">
+                        <input type="hidden" name="authorAvatar" value="${loginUser.avatarURL}">
                         <input type="submit" class="btn btn-primary" value="回复" id="submit">
                     </fieldset>
                 </form>

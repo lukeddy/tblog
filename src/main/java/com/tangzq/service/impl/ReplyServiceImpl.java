@@ -1,6 +1,7 @@
 package com.tangzq.service.impl;
 
 import com.tangzq.model.Reply;
+import com.tangzq.model.embed.ReplyAuthorInfo;
 import com.tangzq.repository.ReplyRepository;
 import com.tangzq.service.ReplyService;
 import com.tangzq.service.TopicService;
@@ -57,7 +58,11 @@ public class ReplyServiceImpl implements ReplyService {
         reply.setContentMD(vo.getContentMD());
         reply.setContentHTML(vo.getContentHTML());
         reply.setTopicId(vo.getTopicId());
-        reply.setAuthorId(vo.getAuthorId());
+        ReplyAuthorInfo authorInfo=new ReplyAuthorInfo();
+        authorInfo.setAuthorId(vo.getAuthorId());
+        authorInfo.setAuthorName(vo.getAuthorName());
+        authorInfo.setAuthorAvatar(vo.getAuthorAvatar());
+        reply.setAuthorInfo(authorInfo);
         reply.setReplyId(null);
         reply.setContentIsHTML(Boolean.TRUE);
         reply.setThumbsUPCount(0);

@@ -1,5 +1,4 @@
-package com.tangzq.vo;
-
+package com.tangzq.model.embed;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,13 +10,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ReplyVo {
-
-    private String contentMD;
-    private String contentHTML;
-    private String topicId;
+public class ReplyAuthorInfo {
     private String authorId;
     private String authorName;
     private String authorAvatar;
-
 }
