@@ -1,4 +1,4 @@
-package com.yocool.model;
+package com.tangzq.model;
 
 
 import org.springframework.data.annotation.Id;

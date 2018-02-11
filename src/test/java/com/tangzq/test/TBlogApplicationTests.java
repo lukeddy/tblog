@@ -1,19 +1,22 @@
-package com.yocool;
+package com.tangzq.test;
 
 import com.tangzq.TBlogApplication;
 import com.tangzq.model.User;
 import com.tangzq.repo.UserRepository;
 import com.tangzq.utils.CommonProps;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.Assert;
 import org.springframework.util.DigestUtils;
 
 import java.util.List;
 
-@SpringBootTest(classes = TBlogApplication.class)
+@SpringBootTest
+@RunWith(SpringRunner.class)
 @WebAppConfiguration
 public class TBlogApplicationTests {
 

@@ -1,8 +1,8 @@
-package com.yocool;
+package com.tangzq;
 
-import com.yocool.model.User;
-import com.yocool.repo.UserRepository;
-import com.yocool.utils.CommonProps;
+import com.tangzq.model.User;
+import com.tangzq.repo.UserRepository;
+import com.tangzq.utils.CommonProps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,12 +13,12 @@ import org.springframework.util.DigestUtils;
 /**
  * 应用启动入口类
  */
-@SpringBootApplication(scanBasePackages = "com.yocool")
+@SpringBootApplication(scanBasePackages = "com.tangzq")
 @EnableAutoConfiguration
 public class TBlogApplication implements CommandLineRunner {
 
 	@Autowired
-	private UserRepository  userRepository;
+	private UserRepository userRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TBlogApplication.class, args);
@@ -31,7 +31,9 @@ public class TBlogApplication implements CommandLineRunner {
      */
 	@Override
 	public void run(String... strings) throws Exception {
+		System.out.println("开始初始化数据....");
 		initUser();
+		System.out.println("初始化数据完成....");
 	}
 
 	/**

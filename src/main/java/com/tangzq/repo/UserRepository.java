@@ -1,6 +1,6 @@
-package com.yocool.repo;
+package com.tangzq.repo;
 
-import com.yocool.model.User;
+import com.tangzq.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

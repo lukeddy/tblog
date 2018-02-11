@@ -1,7 +1,7 @@
-package com.yocool.controller;
+package com.tangzq.controller;
 
-import com.yocool.model.User;
-import com.yocool.repo.UserRepository;
+import com.tangzq.model.User;
+import com.tangzq.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

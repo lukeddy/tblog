@@ -1,4 +1,4 @@
-package com.yocool.model;
+package com.tangzq.model;
 
 import lombok.Getter;
 import lombok.Setter;
