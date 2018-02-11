@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 错误处理控制器
- * Author tangzq.
+ * @author tangzhiqiang
  */
 @Controller
 public class AppErrorController implements ErrorController {

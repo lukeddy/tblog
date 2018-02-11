@@ -68,6 +68,7 @@ public interface TopicRepository extends PagingAndSortingRepository<Topic,String
     /**
      * 指定用户收藏的所有文章
      * @param userId
+     * @param pageable
      * @return
      */
     Page<Topic> findByCollectedUsersContains(String userId, Pageable pageable);

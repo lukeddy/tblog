@@ -21,8 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/pub")
 public class PublicController {
 
-
     private final Logger logger = LoggerFactory.getLogger(PublicController.class);
+
+    static final String TAB_COLLECT="collect";
 
     @Autowired
     private UserService userService;
@@ -44,7 +45,7 @@ public class PublicController {
         }
         model.addAttribute("user",userService.getUser(userId));
         model.addAttribute("tab",tab);
-        if("collect".equals(tab)){
+        if(TAB_COLLECT.equals(tab)){
             model.addAttribute("pager",
                     topicService.findCollectedTopicsByUidAndPage(userId,pageVo.getPageNO(),pageVo.getPageSize()));
         }else{

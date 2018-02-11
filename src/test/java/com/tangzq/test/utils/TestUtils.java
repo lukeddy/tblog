@@ -1,4 +1,4 @@
-package com.tangzq.test;
+package com.tangzq.test.utils;
 
 import com.tangzq.utils.DateUtils;
 import com.tangzq.utils.GravatarUtils;

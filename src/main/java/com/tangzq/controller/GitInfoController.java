@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 提供git信息控制器
+ * @author tangzhiqiang
+ */
 @RestController
 public class GitInfoController {
     @Value("${git.commit.message.short}")

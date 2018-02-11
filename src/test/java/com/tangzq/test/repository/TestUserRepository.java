@@ -1,7 +1,8 @@
-package com.tangzq.test;
+package com.tangzq.test.repository;
 
 import com.tangzq.model.User;
 import com.tangzq.repository.UserRepository;
+import com.tangzq.test.TestBase;
 import com.tangzq.utils.CommonProps;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.util.DigestUtils;
 import java.util.List;
 
 
-public class TestUserRepository extends TestBase{
+public class TestUserRepository extends TestBase {
 
 	@Autowired
 	private UserRepository userRepository;

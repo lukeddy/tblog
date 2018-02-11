@@ -12,22 +12,13 @@ import java.io.IOException;
 
 /**
  * 异常处理控制器
- * Author tangzq.
+ * @author tangzhiqiang
  */
 @ControllerAdvice
 public class ExceptionController {
 
     private static final Logger logger = org.slf4j.LoggerFactory.getLogger(ExceptionController.class);
 
-    /**
-     * 自定义异常处理
-     * @return
-     */
-//    @ExceptionHandler({ProductNotFoundException.class})
-//    public String prodNotExist(Exception exception) {
-//        logger.error("出错了",exception);
-//        return "error/prod_not_exist";
-//    }
 
     @ExceptionHandler({IllegalArgumentException.class, NullPointerException.class})
     void handleBadRequests(HttpServletResponse response) throws IOException {

@@ -15,16 +15,17 @@ import org.springframework.util.DigestUtils;
 
 /**
  * 应用启动入口类
+ * @author tangzhiqiang
  */
 @SpringBootApplication(scanBasePackages = "com.tangzq")
 @EnableAutoConfiguration
-public class TBlogApplication implements CommandLineRunner {
+public class Application implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository userRepository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(TBlogApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 	/**
