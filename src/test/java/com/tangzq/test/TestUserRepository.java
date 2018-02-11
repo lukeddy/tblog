@@ -1,31 +1,24 @@
 package com.tangzq.test;
 
-import com.tangzq.TBlogApplication;
 import com.tangzq.model.User;
-import com.tangzq.repo.UserRepository;
+import com.tangzq.repository.UserRepository;
 import com.tangzq.utils.CommonProps;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.Assert;
 import org.springframework.util.DigestUtils;
 
 import java.util.List;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@WebAppConfiguration
-public class TBlogApplicationTests {
+
+public class TestUserRepository extends TestBase{
 
 	@Autowired
 	private UserRepository userRepository;
 
 	@Test
 	public void testFindAll(){
-		List<User> users=userRepository.findAll();
+		List<User> users=(List<User>)userRepository.findAll();
 		Assert.isTrue(!users.isEmpty(),"没用用户数据");
 		users.forEach(u->{
 			System.out.println(u);

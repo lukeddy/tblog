@@ -1,13 +1,16 @@
 package com.tangzq;
 
 import com.tangzq.model.User;
-import com.tangzq.repo.UserRepository;
+import com.tangzq.repository.UserRepository;
 import com.tangzq.utils.CommonProps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.DigestUtils;
 
 /**
@@ -54,4 +57,13 @@ public class TBlogApplication implements CommandLineRunner {
 	}
 
 
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+		PropertySourcesPlaceholderConfigurer propsConfig
+				= new PropertySourcesPlaceholderConfigurer();
+		propsConfig.setLocation(new ClassPathResource("git.properties"));
+		propsConfig.setIgnoreResourceNotFound(true);
+		propsConfig.setIgnoreUnresolvablePlaceholders(true);
+		return propsConfig;
+	}
 }

@@ -1,62 +1,63 @@
 package com.tangzq.model;
 
-/**
- * Author tangzq.
- */
 
+import com.tangzq.utils.DateUtils;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.annotation.Version;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author tangzhiqiang
+ */
+@Getter
+@Setter
+@ToString
 public abstract class BaseModel<ID extends Serializable> implements Persistable<ID> {
     private static final long serialVersionUID = 1L;
+
     @Id
     private ID id;
-    @Version
-    private Long version;
+
     @Field("create_at")
     @CreatedDate
     private Date createAt;
+
+
     @Field("update_at")
     @LastModifiedDate
     private Date updateAt;
 
-    public Date getCreateAt() {
-        return createAt;
+
+    @Transient
+    private String createAtFormatted;
+
+    @Transient
+    private String updateAtFormatted;
+
+    @Transient
+    private String friendlyTime;
+
+
+    public String getCreateAtFormatted() {
+        return null==getCreateAt()?null: DateFormatUtils.format(getCreateAt(),"yyyy-MM-dd HH:mm:ss");
     }
 
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
+    public String getUpdateAtFormatted() {
+        return null==getUpdateAt()?null:DateFormatUtils.format(getUpdateAt(),"yyyy-MM-dd HH:mm:ss");
     }
 
-    public Date getUpdateAt() {
-        return updateAt;
+    public String getFriendlyTime() {
+        return DateUtils.getFriendlyTime(getCreateAt());
     }
 
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
-    @Override
-    public ID getId() {
-        return id;
-    }
-
-    public void setId(ID id) {
-        this.id = id;
-    }
 }
