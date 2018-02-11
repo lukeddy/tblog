@@ -4,18 +4,15 @@ import com.yocool.model.User;
 import com.yocool.repo.UserRepository;
 import com.yocool.utils.CommonProps;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.Assert;
 import org.springframework.util.DigestUtils;
 
 import java.util.List;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = TBlogApplication.class)
+@SpringBootTest(classes = TBlogApplication.class)
 @WebAppConfiguration
 public class TBlogApplicationTests {
 
@@ -25,7 +22,7 @@ public class TBlogApplicationTests {
 	@Test
 	public void testFindAll(){
 		List<User> users=userRepository.findAll();
-		Assert.isTrue(!users.isEmpty());
+		Assert.isTrue(!users.isEmpty(),"没用用户数据");
 		users.forEach(u->{
 			System.out.println(u);
 		});
@@ -34,14 +31,14 @@ public class TBlogApplicationTests {
 	@Test
 	public void testFindByUsername(){
 		User user=userRepository.findByUsername(CommonProps.ADMIN_NAME);
-		Assert.notNull(user);
+		Assert.notNull(user,"用户不存在");
 		System.out.println(user);
 	}
 
 	@Test
 	public void testFindById(){
 		User user=userRepository.findOne("599c1f9077c8cf04cd6b859e");
-		Assert.notNull(user);
+		Assert.notNull(user,"用户不存在");
 		System.out.println(user);
 	}
 
@@ -49,19 +46,19 @@ public class TBlogApplicationTests {
 	public void testFindByUsernameAndPwd(){
 		User u=userRepository.findByUsernameAndPassword(CommonProps.ADMIN_NAME,
 				DigestUtils.md5DigestAsHex(CommonProps.ADMIN_PWD.getBytes()));
-		Assert.notNull(u);
+		Assert.notNull(u,"用户不存在");
 		System.out.println(u);
 
 		u=userRepository.findByUsernameAndPassword("test",
 				DigestUtils.md5DigestAsHex("test".getBytes()));
-		Assert.isNull(u);
+		Assert.isNull(u,"用户已经存在");
 	}
 
 
 	@Test
 	public void testLogin(){
-       Assert.isTrue(!isLogin("test","test"));
-       Assert.isTrue(isLogin(CommonProps.ADMIN_NAME,CommonProps.ADMIN_PWD));
+       Assert.isTrue(!isLogin("test","test"),"该用户已经登录");
+       Assert.isTrue(isLogin(CommonProps.ADMIN_NAME,CommonProps.ADMIN_PWD),"登陆失败");
 
 	}
 
