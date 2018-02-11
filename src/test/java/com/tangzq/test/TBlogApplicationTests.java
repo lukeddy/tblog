@@ -1,8 +1,9 @@
 package com.yocool;
 
-import com.yocool.model.User;
-import com.yocool.repo.UserRepository;
-import com.yocool.utils.CommonProps;
+import com.tangzq.TBlogApplication;
+import com.tangzq.model.User;
+import com.tangzq.repo.UserRepository;
+import com.tangzq.utils.CommonProps;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
