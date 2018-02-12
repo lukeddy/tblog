@@ -14,6 +14,7 @@ import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
@@ -38,14 +39,12 @@ public class UploadController {
      * @param file
      */
     @RequestMapping(value="/image",method= RequestMethod.POST)
-    public void uploadImg(HttpServletResponse response, @RequestParam(value = "editormd-image-file", required = false) MultipartFile file){
+    public void uploadImg(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "editormd-image-file", required = false) MultipartFile file){
         try {
-            ServletContext servletContext= ContextLoader.getCurrentWebApplicationContext().getServletContext();
-            String rootPath= servletContext.getRealPath(".");
-            String relativePath = UploadUtil.getRelativePath(file.getOriginalFilename());
-            String absolutePath = UploadUtil.uploadImage(rootPath,relativePath, file.getInputStream());
+            String newFilename = UploadUtil.getNewFilename(file.getOriginalFilename());
+            String absolutePath = UploadUtil.uploadImage(uploadFilesFolder,newFilename, file.getInputStream());
             logger.info("Image Saved Path:"+absolutePath);
-            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\"" +servletContext.getContextPath()+relativePath + "\"}" );
+            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\""+request.getContextPath()+"/upload/getImage/" +newFilename + "\"}" );
         } catch (Exception e) {
             logger.error("upload image error",e);
             try {
@@ -64,11 +63,10 @@ public class UploadController {
     @RequestMapping(value="/thumbnail",method= RequestMethod.POST)
     public void uploadThumbImg(HttpServletResponse response, @RequestParam(value = "thumbImage", required = false) MultipartFile file){
         try {
-            String rootPath= ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(".");
-            String relativePath = UploadUtil.getRelativePath(file.getOriginalFilename());
-            String absolutePath = UploadUtil.uploadImage(rootPath,relativePath, file.getInputStream());
+            String newFilename = UploadUtil.getNewFilename(file.getOriginalFilename());
+            String absolutePath = UploadUtil.uploadImage(uploadFilesFolder,newFilename, file.getInputStream());
             logger.info("Image Saved Path:"+absolutePath);
-            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\"" +relativePath + "\"}" );
+            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\"" +newFilename + "\"}" );
         } catch (Exception e) {
             logger.error("upload image error",e);
             try {

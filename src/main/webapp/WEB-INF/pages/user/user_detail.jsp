@@ -10,7 +10,7 @@
         <div class="panel">
             <div class="inner user-info-block">
                 <c:if test="${user.avatarURLByUploaded}">
-                    <div class="avatar" style='background-image: url("${contextPath}${user.avatarURL}");background-size:cover;'></div>
+                    <div class="avatar" style='background-image: url("${contextPath}/upload/getImage/${user.avatarURL}");background-size:cover;'></div>
                 </c:if>
                 <c:if test="${!user.avatarURLByUploaded}">
                     <div class="avatar" style='background-image: url("${user.avatarURL}");background-size:cover;'></div>

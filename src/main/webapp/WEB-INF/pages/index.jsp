@@ -87,7 +87,7 @@
                                                 </div>
                                             </div>
                                             <c:if test="${not empty topic.thumbURL}">
-                                                <div class="thumb-box" style='background-image: url("${contextPath}${topic.thumbURL}"); background-size: cover;'></div>
+                                                <div class="thumb-box" style='background-image: url("${contextPath}/upload/getImage/${topic.thumbURL}"); background-size: cover;'></div>
                                             </c:if>
                                         </div>
                                     </a>
