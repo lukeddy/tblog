@@ -5,7 +5,7 @@
     <div class="list-group-item">
         <div class="pull-left avatar">
         <c:if test="${loginUser.avatarURLByUploaded}">
-            <img class="img-circle" src="${contextPath}${loginUser.avatarURL}">
+            <img class="img-circle" src="${contextPath}/upload/getImage/${loginUser.avatarURL}">
         </c:if>
         <c:if test="${!loginUser.avatarURLByUploaded}">
             <img class="img-circle" src="${loginUser.avatarURL}">

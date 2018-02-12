@@ -9,6 +9,7 @@ import com.tangzq.vo.UserPwdVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -31,6 +32,9 @@ public class UserController {
 
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    @Value("${upload.files.folder}")
+    private String uploadFilesFolder;
 
     @Autowired
     private UserService userService;
@@ -130,11 +134,10 @@ public class UserController {
         }
 
         try {
-            String rootPath= ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(".");
-            String relativePath = UploadUtil.getRelativeAvatarPath(file.getOriginalFilename());
-            String absolutePath = UploadUtil.uploadImage(rootPath,relativePath, file.getInputStream());
+            String newFilename = UploadUtil.getNewFilename(file.getOriginalFilename());
+            String absolutePath = UploadUtil.uploadImage(uploadFilesFolder,newFilename, file.getInputStream());
             logger.info("头像保存成功，全路径为："+absolutePath);
-            User user=userService.updateAvatar(uid,relativePath,Boolean.TRUE);
+            User user=userService.updateAvatar(uid,newFilename,Boolean.TRUE);
             if(null!=user&&user.getId()!=null){
                 session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,user);
                 redirectAttributes.addFlashAttribute("messageSuc","头像修改成功");

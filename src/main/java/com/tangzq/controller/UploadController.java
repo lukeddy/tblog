@@ -4,15 +4,18 @@ import com.tangzq.interceptor.LoginInterceptor;
 import com.tangzq.utils.UploadUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 
 
@@ -25,6 +28,9 @@ import java.io.IOException;
 public class UploadController {
 
     private final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
+
+    @Value("${upload.files.folder}")
+    private String uploadFilesFolder;
 
     /**
      * 文章图片需要加上上下文路径，所以单独使用上传方法
@@ -71,5 +77,12 @@ public class UploadController {
                 logger.error("response error",e);
             }
         }
+    }
+
+    @GetMapping(value = "/getImage/{filename:.+}")
+    public ResponseEntity<byte[]> getImage(@PathVariable("filename")String filename) throws IOException {
+        String absolutePath=uploadFilesFolder+ File.separator+filename;
+        byte[] image = FileCopyUtils.copyToByteArray(new File(absolutePath));
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 }

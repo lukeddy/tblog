@@ -154,7 +154,7 @@ public class UploadUtil {
 	 * @param originalFilename
 	 * @return
 	 */
-	private static String getNewFilename(String originalFilename){
+	public static String getNewFilename(String originalFilename){
 		return RandomStringUtils.randomNumeric(16)+"."+ FilenameUtils.getExtension(originalFilename);
 	}
 
@@ -167,7 +167,7 @@ public class UploadUtil {
 	 * @throws IOException
 	 */
 	public static String uploadImage(String rootPath, String relativePath,InputStream in) throws IOException{
-		String resultPath = rootPath + relativePath;
+		String resultPath = rootPath +File.separator+ relativePath;
 		createFile(resultPath);
 		File realFile =new File(resultPath);
 		FileUtils.copyInputStreamToFile(in, realFile);
