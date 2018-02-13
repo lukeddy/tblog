@@ -9,7 +9,7 @@ public class ConfigTools {
 
     private static PropertiesLoader gitConfigLoader = new PropertiesLoader("git.properties");
 
-    private static Map<String, String> gitConfigMap =new HashMap();
+    private static Map<String, String> gitConfigMap =new HashMap<String,String>();
 
     public static String getConfig(String key) {
         String value = gitConfigMap.get(key);
