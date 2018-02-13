@@ -157,6 +157,13 @@
           <artifactId>jackson-core-asl</artifactId>
           <version>1.9.13</version>
       </dependency>
+
+      <!--RSS-->
+      <dependency>
+          <groupId>com.rometools</groupId>
+          <artifactId>rome</artifactId>
+          <version>1.9.0</version>
+      </dependency>
   </dependencies>
 
     <profiles>

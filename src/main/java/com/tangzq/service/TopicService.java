@@ -6,10 +6,18 @@ import com.tangzq.vo.SearchVo;
 import com.tangzq.vo.TopicVo;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 /**
  * @author tangzhiqiang
  */
 public interface TopicService {
+
+    /**
+     * 找到所有帖子
+     * @return
+     */
+    List<Topic> findAll();
 
     /**
      * 分页查找
