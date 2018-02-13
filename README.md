@@ -5,7 +5,7 @@
 tBlog 是使用 ***Java框架*** 和 ***MongoDB*** 开发的个人博客系统，界面优雅，功能简单、小巧，您可以使用它搭建自己的博客。
 
 
-## 技术选型(后续会有更多版本)
+## 技术选型(后续会有更多版本:[springmvc版本](https://github.com/tzq668766/tblog/tree/tblog-spirngmvc-mongo))
 
 1、后端
 
