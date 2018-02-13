@@ -6,7 +6,7 @@
 <div class='container main'>
     <div class='col-md-9' id="content">
         <ul class='breadcrumb'>
-            <li><a href='${contextPath}/'><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
+            <li><a href='${contextPath}/home'><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
             <li><a href='${contextPath}/?tab=${article.topic.catDir}'>${article.topic.catName}</a><span class='divider'></span></li>
         </ul>
         <div class='panel'>
@@ -39,35 +39,35 @@
                         <c:choose>
                             <c:when test="${article.topic.likedUsers.contains(loginUser.id)}">
                                 <a href="${contextPath}/like/remove/${article.topic.id}" class="action-link">
-                                    <img src="${contextPath}/images/ico/liked-lg.svg" alt="">
+                                    <img src="${contextPath}/static/images/ico/liked-lg.svg" alt="">
                                     <span>取消喜欢</span>
                                 </a>
                             </c:when>
                             <c:otherwise>
                                 <a href="${contextPath}/like/add/${article.topic.id}" class="action-link">
-                                    <img src="${contextPath}/images/ico/like-lg.svg" alt="">
+                                    <img src="${contextPath}/static/images/ico/like-lg.svg" alt="">
                                     <span>喜欢</span>
                                 </a>
                             </c:otherwise>
                         </c:choose>
                         <a href="#reply" class="action-link">
-                            <img src="${contextPath}/images/ico/comment-lg.svg" alt="">
+                            <img src="${contextPath}/static/images/ico/comment-lg.svg" alt="">
                             <span>评论</span>
                         </a>
                         <c:choose>
                             <c:when test="${article.topic.collectedUsers.contains(loginUser.id)}">
                                 <a id="collectLink" href="${contextPath}/collect/remove/${article.topic.id}" class="action-link" title="取消收藏">
-                                    <img src="${contextPath}/images/ico/collected.svg" alt="">
+                                    <img src="${contextPath}/static/images/ico/collected.svg" alt="">
                                 </a>
                             </c:when>
                             <c:otherwise>
                                 <a id="collectLink" href="${contextPath}/collect/add/${article.topic.id}" class="action-link" title="收藏">
-                                    <img src="${contextPath}/images/ico/collect-lg.svg" alt="">
+                                    <img src="${contextPath}/static/images/ico/collect-lg.svg" alt="">
                                 </a>
                             </c:otherwise>
                         </c:choose>
                         <a href="javascript:;" class="action-link">
-                            <img src="${contextPath}/images/ico/share-lg.svg" alt="">
+                            <img src="${contextPath}/static/images/ico/share-lg.svg" alt="">
                             <span>分享</span>
                         </a>
                     </div>

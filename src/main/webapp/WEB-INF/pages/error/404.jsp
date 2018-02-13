@@ -6,8 +6,8 @@
             <div class='inner'>
                 <div class="topic_content text-center">
                     <h2>404 Not Found!</h2>
-                    <img class="img-404" src="${contextPath}/images/404.gif" title="404" alt="404 Not Found!"/>
-                    <p>返回<a href="${contextPath}/">首页</a></p>
+                    <img class="img-404" src="${contextPath}/static/images/404.gif" title="404" alt="404 Not Found!"/>
+                    <p>返回<a href="${contextPath}/home">首页</a></p>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand hidden-sm" href="${contextPath}/">
+        <a class="navbar-brand hidden-sm" href="${contextPath}/home">
             <span class="tblog-leaf-logo">&nbsp;</span>
         </a>
         <form class="navbar-form pull-right" action="${contextPath}/search">
@@ -21,7 +21,7 @@
     </div>
     <div class="navbar-collapse collapse pull-right">
         <ul class="nav navbar-nav">
-            <li><a href="${contextPath}/">首页</a></li>
+            <li><a href="${contextPath}/home">首页</a></li>
             <li><a href="${contextPath}/about">关于</a></li>
             <c:if test="${empty loginUser}">
                 <li><a href="${contextPath}/register">注册</a></li>
