@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
     <context:property-placeholder
-            location="classpath:git.properties,classpath:props/application-${spring.profiles.active}.properties"/>
+            location="classpath:props/application-${spring.profiles.active}.properties"/>
 
     <!-- 注解支持 -->
     <context:annotation-config/>
