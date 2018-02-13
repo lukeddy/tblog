@@ -6,6 +6,8 @@ import com.tangzq.vo.SearchVo;
 import com.tangzq.vo.TopicVo;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 /**
  * @author tangzhiqiang
  */
@@ -162,4 +164,10 @@ public interface TopicService {
      * @return
      */
     Page<Topic> findCollectedTopicsByUidAndPage(String userId, int pageNo, int pageSize);
+
+    /**
+     * 查找所有帖子
+     * @return
+     */
+    List<Topic> findAll();
 }

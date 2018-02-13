@@ -3,7 +3,7 @@
 <div id='footer'>
     <div id='footer_main'>
         <div class="links">
-            <a class='dark' href='/rss'>RSS</a>
+            <a class='dark' href='${contextPath}/rss'>RSS</a>
             |
             <a class='dark' href='https://github.com/tzq668766/tblog/tree/tblog-spirngmvc-mongo/'>源码地址</a>
             | 本次构建于：

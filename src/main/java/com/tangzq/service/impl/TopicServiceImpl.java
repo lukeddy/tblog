@@ -16,10 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -283,6 +280,12 @@ public class TopicServiceImpl implements TopicService {
         Sort sort = new Sort(Sort.Direction.DESC, "create_at");
         Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);
         return topicRepository.findByCollectedUsersContains(userId,pageable);
+    }
+
+    @Override
+    public List<Topic> findAll() {
+        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        return (List<Topic>)topicRepository.findAll(sort);
     }
 
 
