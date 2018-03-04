@@ -10,6 +10,7 @@ import com.tangzq.vo.IndexVo;
 import com.tangzq.vo.LoginUserVo;
 import com.tangzq.vo.RegisterUserVo;
 import com.tangzq.vo.SearchVo;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +36,7 @@ import java.io.IOException;
  * @author tangzhiqiang
  */
 @Controller
+@Slf4j
 public class HomeController {
 
     public static final String VCODE_SESSION_KEY="validateCode";
@@ -64,6 +66,7 @@ public class HomeController {
         modelMap.addAttribute("pager",topicService.findByPage(vo));
         modelMap.addAttribute("catList",categoryService.findAll());
         modelMap.addAttribute("indexVo",vo);
+        log.info(vo.toString());
         return "index";
     }
 
