@@ -29,7 +29,7 @@ tBlog 是使用 ***Java框架*** 和 ***MongoDB*** 开发的个人博客系统�
 2. 启动 MongoDB
 3. 在项目的application-xxx.properties文件中修改MongoDB数据库连接地址
 4. 到项目根目录执行命令`mvn package && java -jar target/tblog-0.0.1-SNAPSHOT.jar` 
-5. 访问 `http://localhost:8080/tblog/home` 管理员默认账号：admin/123456
+5. 访问 `http://localhost:8080/tblog/` 管理员默认账号：admin/123456
 6. 完成!
 ```
 
