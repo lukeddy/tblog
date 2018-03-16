@@ -54,6 +54,11 @@ public class HomeController {
     @Autowired
     private CategoryService categoryService;
 
+    @RequestMapping("/")
+    public String index(){
+        return "redirect:/home";
+    }
+
 
     /**
      * 跳转到首页
@@ -62,7 +67,7 @@ public class HomeController {
      * @return
      */
     @RequestMapping(value = "/home")
-    public String index(IndexVo vo, ModelMap modelMap) {
+    public String home(IndexVo vo, ModelMap modelMap) {
         modelMap.addAttribute("pager",topicService.findByPage(vo));
         modelMap.addAttribute("catList",categoryService.findAll());
         modelMap.addAttribute("indexVo",vo);
