@@ -61,7 +61,7 @@ public class HomeController {
      * @param modelMap
      * @return
      */
-    @RequestMapping(value = "/home")
+    @RequestMapping(value = "/")
     public String index(IndexVo vo, ModelMap modelMap) {
         modelMap.addAttribute("pager",topicService.findByPage(vo));
         modelMap.addAttribute("catList",categoryService.findAll());
@@ -166,7 +166,7 @@ public class HomeController {
         }
 
         session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,userService.findUser(user.getUsername(),user.getPassword()));
-        return "redirect:/home";
+        return "redirect:/";
     }
 
 

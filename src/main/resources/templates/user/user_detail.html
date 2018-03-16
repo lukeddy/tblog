@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="inc/header::header('用户详情-'+${user.username},null)"></div>
+<body>
+<div class='container main'>
+    <div class='col-md-9'>
+        <ul class='breadcrumb'>
+            <li><a th:href="@{'/'}">主页</a><span class='divider'></span></li>
+            <li class='active' th:text="${user.username}+'主页'"></li>
+        </ul>
+        <div class="panel">
+            <div class="inner user-info-block">
+                <div th:if="${user.avatarURLByUploaded}" class="avatar"
+                     th:styleappend="'background-image:url(' + @{'/upload/getImage/'+${user.avatarURL}}+ ');'"
+                     style='background-size:cover;'></div>
+                <div th:if="${!user.avatarURLByUploaded}" class="avatar"
+                     th:styleappend="'background-image:url(' + @{${user.avatarURL}}+ ');'"
+                     style='background-size:cover;'></div>
+
+                <div class="info-box">
+                    <h1 class="username" th:text="${user.username}">用户名</h1>
+                    <div class="position">
+                        <svg width="21" height="18" viewBox="0 0 21 18" class="icon position-icon">
+                            <g fill="none" fill-rule="evenodd">
+                                <path fill="#72777B" d="M3 8.909V6.947a1 1 0 0 1 1-1h13a1 1 0 0 1 1 1V8.92l-6 2.184v-.42c0-.436-.336-.79-.75-.79h-1.5c-.414 0-.75.354-.75.79v.409L3 8.909zm0 .7l6 2.184v.47c0 .436.336.79.75.79h1.5c.414 0 .75-.354.75-.79v-.46l6-2.183V16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.609zm6.75 1.075h1.5v1.58h-1.5v-1.58z"></path>
+                                <path stroke="#72777B" d="M7.5 5.213V4A1.5 1.5 0 0 1 9 2.5h3A1.5 1.5 0 0 1 13.5 4v1.213"></path>
+                            </g>
+                        </svg>
+                        <span class="content">
+                            <a href="javascript:;" target="_blank" th:text="${user.website}">个人网站</a>
+                        </span>
+                    </div>
+                    <div class="intro">
+                        <svg width="21" height="18" viewBox="0 0 21 18" class="icon intro-icon">
+                            <path fill="#72777B" fill-rule="evenodd" d="M4 4h13a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm9 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3 3a3 3 0 0 0-6 0h6zM5 7v1h4V7H5zm0 2.5v1h4v-1H5zM5 12v1h4v-1H5z"></path>
+                        </svg>
+                        <span class="content" th:text="${user.selfDesc}">自我介绍</span>
+                    </div>
+                </div>
+                <div class="action-box">
+                    <div class="link-box link-box"></div>
+                    <button class="follow-btn btn">关注</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="inner no-padding">
+                <div class="header">
+                    <a th:href="@{'/pub/user/'+${user.id}+'/?tab=new'}" th:classappend="${tab==null} or ${tab=='new'}?'current-tab':''" class='topic-tab'>新建帖子</a>
+                    <a th:href="@{'/pub/user/'+${user.id}+'/?tab=collect'}" th:classappend="${tab=='collect'}?'current-tab':''" class='topic-tab'>收藏帖子</a>
+                </div>
+                <th:block th:if="${!#lists.isEmpty(pager.content)}">
+                    <div class="search-result">
+                        <ul class="post-list">
+                            <th:block th:each="topic:${pager.content}">
+                                <li class="post-item">
+                                    <div class="entry">
+                                        <a class="entry-link" th:href="@{'/article/'+${topic.id}}">
+                                            <div class="content-box">
+                                                <div class="info-box">
+                                                    <div class="title-row">
+                                                        <a class="title" th:href="@{'/article/'+${topic.id}}" th:text="${topic.title}" target="_self">帖子标题</a>
+                                                    </div>
+                                                    <div class="desc-row" th:text="${topic.desc}">帖子摘要</div>
+                                                </div>
+                                                <div th:if="${topic.thumbURL!=null}" class="thumb-box"
+                                                     th:styleappend="'background-image:url(' + @{${topic.thumbURL}} + ');'"
+                                                     style='background-size: cover;'></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                            </th:block>
+                        </ul>
+                    </div>
+                    <!--分页开始-->
+                    <div th:replace="inc/pagination::pageInfo(${pager},'/pub/user/'+${user.id},'&amp;tab='+${tab})"></div>
+                    <!--分页结束-->
+                </th:block>
+                <th:block th:if="${#lists.isEmpty(pager.content)}">
+                    <p class="text-center">没有搜索结果</p>
+                </th:block>
+            </div>
+        </div>
+    </div>
+    <div th:replace="inc/sidebar::sidebar"></div>
+</div>
+<div th:replace="inc/footer::footer"></div>
+</body>
+</html>

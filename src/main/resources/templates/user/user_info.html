@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="inc/header::header('用户详情-'+${session.loginUser.username},null)"></div>
+<body>
+<div class="container main">
+    <div class="row">
+        <div class="col-md-3 left sidebar">
+            <div th:replace="user/user_sidebar::userSideBar('userinfo')"></div>
+        </div>
+        <div class="col-md-9">
+            <ul class='breadcrumb'>
+                <li><a th:href="@{'/'}">主页</a><span class='divider'></span></li>
+                <li class='active'>个人资料</li>
+            </ul>
+            <div class="wrapper">
+                <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                <form th:action="@{'/user/info/'+${session.loginUser.username}}" th:object="${userInfoForm}" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">用户名</label>
+                        <div class="col-lg-6">
+                            <p class="form-control-static" th:text="${session.loginUser.username}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="col-lg-2 control-label">电子邮件</label>
+                        <div class="col-lg-10">
+                            <input type="email" name="email" th:field="*{email}" class="form-control" id="email"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website" class="col-lg-2 control-label">个人网站</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="website" th:field="*{website}" class="form-control" id="website"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location" class="col-lg-2 control-label">所在地</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="location" th:field="*{location}" class="form-control" id="location" placeholder="城市名即可，如苏州"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="slogan" class="col-lg-2 control-label">签名</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="slogan" th:field="*{slogan}" class="form-control" id="slogan"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selfDesc" class="col-lg-2 control-label">个人简介</label>
+                        <div class="col-lg-10">
+                            <textarea name="selfDesc" class="form-control" th:field="*{selfDesc}" id="selfDesc"></textarea>
+                        </div>
+                    </div>
+                    <hr/>
+
+                    <div class="form-group">
+                        <label for="githubUsername" class="col-lg-2 control-label">GitHub用户名</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="socialInfo.githubUsername" th:field="*{socialInfo.githubUsername}" class="form-control" id="githubUsername"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weiboUsername" class="col-lg-2 control-label">新浪微博</label>
+                        <div class="col-lg-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">http://weibo.com/</span>
+                                <input type="text" name="socialInfo.weiboUsername" th:field="*{socialInfo.weiboUsername}" class="form-control" id="weiboUsername"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input type="hidden" name="id" th:field="*{id}"/>
+                            <button type="submit" class="btn btn-primary">保存设置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="inc/footer::footer"></div>
+</body>
+</html>

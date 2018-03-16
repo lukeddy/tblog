@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>404（找不到页面）- tBlog</title>
+    <title>500（服务器出差错了）- My Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <link rel="shortcut icon" th:href="@{/assets/images/favico.png}"/>
@@ -19,9 +19,8 @@
 
 <div class="container">
     <div class="row text-center">
-        <h1>404!</h1>
-        <h2>很抱歉，没有找到这个页面！</h2>
-         <br></br>
+        <h1>500</h1>
+        <h2 class="font-light">服务器出了点差错.</h2><br></br>
         <a class="btn btn-link" th:href="@{'/'}"><i class="fa fa-angle-left"></i> 返回首页</a>
     </div>
 </div>

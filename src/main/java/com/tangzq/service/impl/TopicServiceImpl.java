@@ -162,6 +162,11 @@ public class TopicServiceImpl implements TopicService {
             return null;
         }
         topicInDB.setCatId(vo.getCatId());
+        Category cat=categoryRepository.findOne(vo.getCatId());
+        if(null!=cat){
+            topicInDB.setCatName(cat.getCatName());
+            topicInDB.setCatDir(cat.getCatDir());
+        }
         topicInDB.setTitle(vo.getTitle());
         topicInDB.setDesc(vo.getDesc());
         topicInDB.setThumbURL(vo.getThumbURL());

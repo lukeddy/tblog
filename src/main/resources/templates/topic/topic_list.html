@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="inc/header::header('帖子管理列表',null)"></div>
+<body>
+<div class='container main'>
+    <div th:replace="inc/sidebar::sidebar"></div>
+    <div class='col-md-9'>
+        <ul class='breadcrumb'>
+            <li><a th:href="@{'/'}">主页</a><span class='divider'></span></li>
+            <li class='active'>帖子管理</li>
+        </ul>
+        <div class='panel'>
+            <div class='inner'>
+                <div class="topic_content">
+                    <div class="markdown-text">
+                        <h3>帖子列表 <a th:href="@{'/topic/create'}">【新增】</a> </h3>
+                        <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                        <th:block th:if="${!#lists.isEmpty(pager.content)}">
+                            <table class="table">
+                                <tr>
+                                    <th>帖子标题</th>
+                                    <th>栏目</th>
+                                    <th>创建日期</th>
+                                    <th>更新日期</th>
+                                    <th>操作</th>
+                                </tr>
+                                <th:block th:each="topic:${pager.content}">
+                                    <tr>
+                                        <td th:text="${topic.title}"></td>
+                                        <td th:text="${topic.catName}+','+${topic.catDir}"></td>
+                                        <td th:text="${topic.createAtFormatted}"></td>
+                                        <td th:text="${topic.updateAtFormatted}"></td>
+                                        <td>
+                                            <a th:href="@{'/article/'+${topic.id}}" target="_blank">查看</a>
+                                            <a th:href="@{'/topic/edit/'+${topic.id}}">修改</a>
+                                            <a th:href="@{'/topic/del/'+${topic.id}}">删除</a>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                            </table>
+                            <!--分页开始-->
+                            <div th:replace="inc/pagination::pageInfo(${pager},'/topic/list',null)"></div>
+                            <!--分页结束-->
+                        </th:block>
+                        <p th:if="${#lists.isEmpty(pager.content)}" class="text-center">还没有创建帖子</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="inc/footer::footer"></div>
+</body>
+</html>

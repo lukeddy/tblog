@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="inc/header::header('标签列表',null)"></div>
+<body>
+<div class='container main'>
+    <div class='col-md-9'>
+        <ul class='breadcrumb'>
+            <li><a th:href="@{'/'}"><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
+            <li><a href='javascript:;' th:text="'标签:'+${tagName}+'('+${pager.totalElements}+'篇文章)'"></a><span class='divider'></span></li>
+        </ul>
+        <div class="panel">
+            <div class="inner no-padding">
+                <th:block th:if="${!#lists.isEmpty(pager.content)}">
+                    <div class="search-result">
+                        <ul class="post-list">
+                            <th:block th:each="topic:${pager.content}">
+                                <li class="post-item">
+                                    <div class="entry">
+                                        <a class="entry-link" th:href="@{'/article/'+${topic.id}}">
+                                            <div class="content-box">
+                                                <div class="info-box">
+                                                    <div class="meta-row">
+                                                        <ul class="meta-list">
+                                                            <li class="item username">
+                                                                <a th:href="@{'/pub/user/'+${topic.authorId}}" th:text="${topic.authorName}+'.'+${topic.friendlyTime}"></a>
+                                                            </li>
+                                                            <li class="item category">
+                                                                <a th:href="@{'/?tab='+${topic.catDir}}">
+                                                                    <span class="topiclist-tab" th:text="${topic.catName}"></span>
+                                                                </a>
+                                                            </li>
+                                                            <th:block th:if="${!#lists.isEmpty(topic.tags)}">
+                                                                <li class="item tag tag-box">
+                                                                    <th:block th:each="tag:${topic.tags}">
+                                                                        <a th:classappend="${tag==tagName}?'highlight':''" class='tag' th:href="@{'/tag/'+${tag}}" th:text="${tag}"></a>
+                                                                    </th:block>
+                                                                </li>
+                                                            </th:block>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="title-row">
+                                                        <a class="title" th:href="@{'/article/'+${topic.id}}" target="_blank" th:text="${topic.title}"></a>
+                                                    </div>
+                                                    <div class="desc-row" th:text="${topic.desc}"></div>
+                                                    <div class="action-row">
+                                                        <div class="action-list">
+                                                            <a class="action like" href="javascript:;" >
+                                                                <span class="icon"></span>
+                                                                <span class="title" th:text="${topic.visitCount}"></span>
+                                                            </a>
+                                                            <a class="action comment" href="javascript:;" >
+                                                                <span class="icon"></span>
+                                                                <span class="title" th:text="${topic.replyCount}"></span>
+                                                            </a>
+                                                            <a  class="action collect hover" href="javascript:;">
+                                                                <span class="icon"></span>
+                                                                <span class="title">收藏</span>
+                                                            </a>
+                                                            <a class="action share hover" href="javascript:;">
+                                                                <span class="icon"></span>
+                                                                <span class="title">分享</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <th:block th:if="${topic.thumbURL!=null}">
+                                                    <div class="thumb-box"
+                                                         th:styleappend="'background-image:url(' + @{'/upload/getImage/'+${topic.thumbURL}} + ');'"
+                                                         style='background-size: cover;'></div>
+                                                </th:block>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                            </th:block>
+                        </ul>
+                    </div>
+                    <!--分页开始-->
+                    <div th:replace="inc/pagination::pageInfo(${pager},'/tag/'+${tagName},'&amp;keywords='+${tagName})"></div>
+                    <!--分页结束-->
+                </th:block>
+                <th:block th:if="${#lists.isEmpty(pager.content)}">
+                    <p class="text-center">没有搜索结果</p>
+                </th:block>
+            </div>
+        </div>
+    </div>
+    <div th:replace="inc/sidebar::sidebar"></div>
+</div>
+<div th:replace="inc/footer::footer"></div>
+<script src="${contextPath}/js/mark/mark.js"></script>
+<script>
+    $(document).ready(function(){
+        var instance = new Mark(document.querySelector("div.search-result"));
+        instance.mark("${tagName}", {
+            "element": "span",
+            "className": "highlight"
+        });
+    });
+</script>
+</body>
+</html>

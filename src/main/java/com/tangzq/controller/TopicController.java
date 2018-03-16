@@ -56,6 +56,7 @@ public class TopicController {
     @RequestMapping(value="/create",method = RequestMethod.GET)
     public String createTopic(ModelMap model){
         model.addAttribute("catList",categoryService.findAll());
+        model.addAttribute("topicVo",new TopicVo());
         return "topic/topic_add";
     }
 

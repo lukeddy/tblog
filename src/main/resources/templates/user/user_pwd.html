@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="inc/header::header('修改密码',null)"></div>
+<body>
+<div class="container main">
+    <div class="row">
+        <div class="col-md-3 left sidebar">
+            <div th:replace="user/user_sidebar::userSideBar('changepwd')"></div>
+        </div>
+        <div class="col-md-9">
+            <ul class='breadcrumb'>
+                <li><a th:href="@{'/'}">主页</a><span class='divider'></span></li>
+                <li class='active'>修改密码</li>
+            </ul>
+            <div class="wrapper">
+                <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                <form th:action="@{'/user/changePwd'}"  class="form-horizontal" th:object="${changePwdForm}" method="post">
+                    <div class="form-group">
+                        <label for="oldPwd" class="col-md-2 control-label">当前密码</label>
+                        <div class="col-lg-6">
+                            <input type="password" name="oldPwd" th:value="${changePwdForm.oldPwd}" class="form-control" id="oldPwd"/>
+                            <span th:errors="${changePwdForm.oldPwd}" class="error"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newPwd" class="col-md-2 control-label">新密码</label>
+                        <div class="col-lg-6">
+                            <input type="password" name="newPwd" th:value="${changePwdForm.newPwd}" class="form-control" id="newPwd"/>
+                            <span th:errors="${changePwdForm.newPwd}" class="error"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="repeatNewPwd" class="col-md-2 control-label">新密码确认</label>
+                        <div class="col-lg-6">
+                            <input type="password" name="repeatNewPwd" th:value="${changePwdForm.repeatNewPwd}" class="form-control" id="repeatNewPwd"/>
+                            <span th:errors="${changePwdForm.repeatNewPwd}" class="error"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input type="hidden" name="uid" th:value="${session.loginUser.id}"/>
+                            <input type="hidden" name="username" th:value="${session.loginUser.username}"/>
+                            <button type="submit" class="btn btn-primary">修改密码</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div th:replace="inc/footer::footer"></div>
+</body>
+</html>

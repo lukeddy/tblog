@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="inc/header::header('栏目列表页',null)"></div>
+<body>
+<div class='container main'>
+    <div th:replace="inc/sidebar::sidebar"></div>
+    <div class='col-md-9'>
+        <ul class='breadcrumb'>
+            <li><a th:href="@{'/'}">主页</a><span class='divider'></span></li>
+            <li class='active'>新建栏目</li>
+        </ul>
+        <div class='panel'>
+            <div class='inner'>
+                <div class="topic_content">
+                    <div class="markdown-text">
+                        <h3>已有栏目 <a th:href="@{'/cat/create'}">新增</a> </h3>
+                        <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                        <th:block th:if="${!#lists.isEmpty(pager.content)}">
+                            <table class="table">
+                                <tr>
+                                    <th>栏目名称</th>
+                                    <th>目录</th>
+                                    <th>创建日期</th>
+                                    <th>更新日期</th>
+                                    <th>操作</th>
+                                </tr>
+                                <th:block th:each="cat:${pager.content}">
+                                    <tr>
+                                        <td th:text="${cat.catName}"></td>
+                                        <td th:text="${cat.catDir}"></td>
+                                        <td th:text="${cat.createAtFormatted}"></td>
+                                        <td th:text="${cat.updateAtFormatted}"></td>
+                                        <td>
+                                            <a th:href="@{'/cat/edit/'+${cat.id}}">修改</a>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                            </table>
+                            <!--分页开始-->
+                            <div th:replace="inc/pagination::pageInfo(${pager},'/cat/list',null)"></div>
+                            <!--分页结束-->
+                        </th:block>
+                        <p th:if="${#lists.isEmpty(pager.content)}" class="text-center">还没有创建栏目</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="inc/footer::footer"></div>
+</body>
+</html>

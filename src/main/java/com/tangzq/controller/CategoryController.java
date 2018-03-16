@@ -43,7 +43,8 @@ public class CategoryController {
      * @return
      */
     @RequestMapping(value="/create",method = RequestMethod.GET)
-    public String createCategory(){
+    public String createCategory(ModelMap model){
+        model.addAttribute("cat",new Category());
         return "category/cat_add";
     }
 

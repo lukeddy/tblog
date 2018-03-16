@@ -1,10 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="inc/header::header(null,null)"></div>
 <body>
- <h1>你好</h1>
+<div class='container main'>
+    <div class='col-md-9'>
+        <div class="panel">
+            <div class="header">
+                <a th:href="@{'/?tab=all'}" th:classappend="${indexVo.tab}=='all'?'current-tab':''"
+                   class='topic-tab'>全部</a>
+                <th:block th:if="${catList.size()} &lt; 8">
+                    <th:block th:each="cat : ${catList}">
+                        <a th:href="@{'/?tab='+${cat.catDir}}"
+                           th:classappend="${indexVo.tab}==${cat.catDir}?'current-tab':''"
+                           class='topic-tab' th:text="${cat.catName}"></a>
+                    </th:block>
+                </th:block>
+                <th:block th:if="${catList.size()} &gt; 8">
+                    <th:block th:each="i:${#numbers.sequence(0,6)}">
+                        <a th:href="@{'/?tab='+${catList[i].catDir}}"
+                           th:classappend="${indexVo.tab}==${catList[i].catDir}?'current-tab':''"
+                           class='topic-tab' th:text="${catList[i].catName}"></a>
+                    </th:block>
+                    <span class="dropdown">
+                            <a href="#" class="dropdown-toggle topic-tab" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <th:block th:each="i:${#numbers.sequence(8,${catList.size()}-1)}">
+                                     <li class="topic-tab">
+                                        <a th:href="@{'/?tab='+${catList[i].catDir}}"
+                                           th:classappend="${indexVo.tab}==${catList[i].catDir}?'current-tab':''"
+                                           class='topic-tab' th:text="${catList[i].catName}"></a>
+                                    </li>
+                                </th:block>
+                            </ul>
+                    </span>
+                </th:block>
+            </div>
+            <div class="inner no-padding">
+                <th:block th:if="${pager.content.size() &gt; 0}">
+                    <ul class="post-list">
+                        <th:block th:each="topic : ${pager.content}">
+                            <li class="post-item">
+                                <div class="entry">
+                                    <a class="entry-link" th:href="@{'/article/'+${topic.id}}">
+                                        <div class="content-box">
+                                            <div class="info-box">
+                                                <div class="meta-row">
+                                                    <ul class="meta-list">
+                                                        <th:block th:if="${indexVo.tab}=='all' and ${topic.top!=null}">
+                                                            <li class="item recommended">置顶</li>
+                                                        </th:block>
+                                                        <!--<c:if test="${'all'==indexVo.tab and topic.top}">-->
+                                                        <!--<li class="item recommended">置顶</li>-->
+                                                        <!--</c:if>-->
+                                                        <li class="item username">
+                                                            <a th:href="@{'/pub/user/'+${topic.authorId}}"
+                                                               th:text="${topic.authorName}"></a>.
+                                                            <th:block th:text="${topic.friendlyTime}"></th:block>
+                                                        </li>
+                                                        <li class="item category">
+                                                            <a th:href="@{'/?tab='+${topic.catDir}}">
+                                                                <span class="topiclist-tab"
+                                                                      th:text="${topic.catName}"></span>
+                                                            </a>
+                                                        </li>
+                                                        <th:block th:if="${topic.tags!=null}">
+                                                            <li class="item tag">
+                                                                <th:block th:each="tag:${topic.tags}">
+                                                                    <a class="tag" th:href="@{'/tag/'+${tag}}"
+                                                                       th:text="${tag}"></a>
+                                                                </th:block>
+                                                            </li>
+                                                        </th:block>
+                                                        <li class="item" th:text="${topic.visitCount}+'次阅读'"></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="title-row">
+                                                    <a class="title" th:href="@{'/article/'+${topic.id}}"
+                                                       target="_blank" th:text="${topic.title}"></a>
+                                                </div>
+                                                <div class="desc-row" th:text="${topic.desc}"></div>
+                                                <div class="action-row">
+                                                    <div class="action-list">
+                                                        <a class="action like" href="javascript:;">
+                                                            <span class="icon"></span>
+                                                            <span class="title"
+                                                                  th:text="${topic.likedUsers==null}?0:${topic.likedUsers.size()}"></span>
+                                                        </a>
+                                                        <a class="action comment"
+                                                           th:href="@{'/article/'+${topic.id}+'#comment'}">
+                                                            <span class="icon"></span>
+                                                            <span class="title"
+                                                                  th:text="${topic.replyCount}+'评论'"></span>
+                                                        </a>
+                                                        <a class="action collect hover" href="javascript:;">
+                                                            <span class="icon"></span>
+                                                            <span class="title"
+                                                                  th:text="${topic.collectCount}+'收藏'"></span>
+                                                        </a>
+                                                        <a class="action share hover" href="javascript:;">
+                                                            <span class="icon"></span>
+                                                            <span class="title">分享</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <th:block th:if="${topic.thumbURL!=null}">
+                                                <div class="thumb-box"
+                                                     th:styleappend="'background-image:url(' + @{'/upload/getImage/'+${topic.thumbURL}} + ');'"
+                                                     style='background-size: cover;'></div>
+                                            </th:block>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                        </th:block>
+                    </ul>
+                    <!--分页开始-->
+                    <div th:replace="inc/pagination::pageInfo(${pager},'/','tab='+${indexVo.tab})"></div>
+                    <!--分页结束-->
+                </th:block>
+                <th:block th:if="${pager.content==null} or ${pager.content.size()==0}">
+                    <p class="text-center">还没有帖子</p>
+                </th:block>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="inc/sidebar::sidebar"></div>
+</div>
+
+<div th:replace="inc/footer::footer"></div>
 </body>
 </html>
