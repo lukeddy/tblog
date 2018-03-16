@@ -3,6 +3,7 @@ package com.tangzq;
 import com.tangzq.model.User;
 import com.tangzq.repository.UserRepository;
 import com.tangzq.utils.CommonProps;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +22,7 @@ import org.springframework.util.DigestUtils;
  */
 @SpringBootApplication(scanBasePackages = "com.tangzq")
 @EnableAutoConfiguration
+@Slf4j
 public class Application extends SpringBootServletInitializer implements CommandLineRunner {
 
 
@@ -43,9 +45,9 @@ public class Application extends SpringBootServletInitializer implements Command
      */
 	@Override
 	public void run(String... strings) throws Exception {
-		System.out.println("开始初始化数据....");
+		log.info("开始初始化数据....");
 		initUser();
-		System.out.println("初始化数据完成....");
+		log.info("初始化数据完成....");
 	}
 
 	/**
@@ -59,9 +61,9 @@ public class Application extends SpringBootServletInitializer implements Command
 			u.setPassword(DigestUtils.md5DigestAsHex(CommonProps.ADMIN_PWD.getBytes()));
 			u.setEmail(CommonProps.ADMIN_EMAIL);
 			userRepository.save(u);
-			System.out.println("初始化管理员账号成功！");
+			log.info("初始化管理员账号成功！");
 		}else{
-			System.out.println("管理员账号已经存在");
+			log.warn("管理员账号已经存在");
 		}
 	}
 
