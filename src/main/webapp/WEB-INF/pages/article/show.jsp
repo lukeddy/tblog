@@ -168,7 +168,7 @@
 </div>
 <jsp:include page="../inc/footer.jsp"></jsp:include>
 <c:if test="${empty loginUser}">
-    <script src="${contextPath}/js/editormd/lib/prettify.min.js"></script>
+    <script src="${contextPath}/static/js/editormd/lib/prettify.min.js"></script>
 </c:if>
 <script>
     var editor, editor_edit;
@@ -221,7 +221,7 @@
             flowChart        : true,
             sequenceDiagram  : true,
             autoFocus: false,
-            path: "${contextPath}/js/editormd/lib/",
+            path: "${contextPath}/static/js/editormd/lib/",
             placeholder: "Markdown，提交前请查看预览格式是否正确",
             saveHTMLToTextarea: true,
             imageUpload: true,
