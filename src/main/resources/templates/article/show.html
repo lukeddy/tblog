@@ -157,9 +157,7 @@
     <div th:replace="inc/sidebar::sidebar"></div>
 </div>
 <div th:replace="inc/footer::footer"></div>
-<th:block th:if="${session.loginUser!=null}">
-    <script th:src="@{'/assets/js/editormd/lib/prettify.min.js'}"></script>
-</th:block>
+<script th:src="@{'/assets/js/editormd/lib/prettify.min.js'}"></script>
 <script th:inline="javascript">
     /*<![CDATA[*/
     var editor, editor_edit;
