@@ -116,6 +116,75 @@
 					</excludeProperties>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.10</version>
+				<configuration>
+					<repositoryLayout>flat</repositoryLayout>
+					<configurationDirectory>etc</configurationDirectory>
+					<copyConfigurationDirectory>true</copyConfigurationDirectory>
+					<configurationSourceDirectory>src/main/resources</configurationSourceDirectory>
+					<includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
+					<repositoryName>lib</repositoryName>
+					<useWildcardClassPath>true</useWildcardClassPath>
+					<daemons>
+						<daemon>
+							<id>tblog</id>
+							<mainClass>com.tangzq.Application</mainClass>
+							<platforms>
+								<platform>jsw</platform>
+							</platforms>
+							<jvmSettings>
+								<initialMemorySize>256M</initialMemorySize>
+								<maxMemorySize>256M</maxMemorySize>
+							</jvmSettings>
+							<generatorConfigurations>
+								<generatorConfiguration>
+									<generator>jsw</generator>
+									<includes>
+										<include>windows-x86-64</include>
+										<include>linux-x86-64</include>
+										<include>macosx-universal-64</include>
+									</includes>
+									<configuration>
+										<property>
+											<name>configuration.directory.in.classpath.first</name>
+											<value>%APP_BASE%/etc</value>
+										</property>
+										<property>
+											<name>run.as.user.envvar</name>
+											<value>deploy</value>
+										</property>
+										<property>
+											<name>wrapper.pidfile</name>
+											<value>$BASEDIR/bin</value>
+										</property>
+										<property>
+											<name>wrapper.logfile.maxsize</name>
+											<value>10m</value>
+										</property>
+										<property>
+											<name>wrapper.logfile.maxfiles</name>
+											<value>1</value>
+										</property>
+									</configuration>
+								</generatorConfiguration>
+							</generatorConfigurations>
+						</daemon>
+					</daemons>
+				</configuration>
+				<executions>
+					<execution>
+						<id>generate-jsw-scripts</id>
+						<phase>package</phase>
+						<goals>
+							<goal>generate-daemons</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	
