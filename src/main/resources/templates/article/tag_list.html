@@ -65,7 +65,7 @@
                                                 </div>
                                                 <th:block th:if="${topic.thumbURL!=null}">
                                                     <div class="thumb-box"
-                                                         th:styleappend="'background-image:url(' + @{'/upload/getImage/'+${topic.thumbURL}} + ');'"
+                                                         th:styleappend="'background-image:url(' + @{'/'+${topic.thumbURL}} + ');'"
                                                          style='background-size: cover;'></div>
                                                 </th:block>
                                             </div>

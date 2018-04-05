@@ -4,8 +4,7 @@
 <div class="list-group">
     <div class="list-group-item">
         <div class="pull-left avatar">
-            <img th:if="${session.loginUser.avatarURLByUploaded}" class="img-circle" th:src="@{'/upload/getImage/'+${session.loginUser.avatarURL}}"/>
-            <img th:if="${!session.loginUser.avatarURLByUploaded}" class="img-circle" th:src="@{${session.loginUser.avatarURL}}"/>
+            <img class="img-circle" th:src="@{${session.loginUser.avatarURL}}"/>
         </div>
         <div class="pull-left info">
             <h4 style="margin-bottom: 0px;" th:text="${session.loginUser.username}"></h4>

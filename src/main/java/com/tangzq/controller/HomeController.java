@@ -4,7 +4,7 @@ import com.tangzq.model.User;
 import com.tangzq.service.CategoryService;
 import com.tangzq.service.TopicService;
 import com.tangzq.service.UserService;
-import com.tangzq.utils.CommonProps;
+import com.tangzq.utils.Constants;
 import com.tangzq.utils.ValidateCode;
 import com.tangzq.vo.IndexVo;
 import com.tangzq.vo.LoginUserVo;
@@ -165,7 +165,7 @@ public class HomeController {
             return "login";
         }
 
-        session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,userService.findUser(user.getUsername(),user.getPassword()));
+        session.setAttribute(Constants.LOGIN_USER_SESSION_KEY,userService.findUser(user.getUsername(),user.getPassword()));
         return "redirect:/";
     }
 

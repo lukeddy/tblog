@@ -2,7 +2,7 @@ package com.tangzq.controller;
 
 import com.tangzq.model.User;
 import com.tangzq.service.UserService;
-import com.tangzq.utils.CommonProps;
+import com.tangzq.utils.Constants;
 import com.tangzq.utils.GravatarUtils;
 import com.tangzq.utils.UploadUtil;
 import com.tangzq.vo.UserPwdVo;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -134,12 +133,11 @@ public class UserController {
         }
 
         try {
-            String newFilename = UploadUtil.getNewFilename(file.getOriginalFilename());
-            String absolutePath = UploadUtil.uploadImage(uploadFilesFolder,newFilename, file.getInputStream());
-            logger.info("头像保存成功，全路径为："+absolutePath);
-            User user=userService.updateAvatar(uid,newFilename,Boolean.TRUE);
+            String relativeSavePath = UploadUtil.upload(file, Constants.UPLOAD_AVATAR_FOLDER);
+            logger.info("头像保存成功，全路径为："+relativeSavePath);
+            User user=userService.updateAvatar(uid,relativeSavePath,Boolean.TRUE);
             if(null!=user&&user.getId()!=null){
-                session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,user);
+                session.setAttribute(Constants.LOGIN_USER_SESSION_KEY,user);
                 redirectAttributes.addFlashAttribute("messageSuc","头像修改成功");
                 return "redirect:/user/changeAvatar";
             }else{
@@ -175,7 +173,7 @@ public class UserController {
         }
         User updatedUser= userService.updateAvatar(user.getId(), GravatarUtils.makeGravatar(email),Boolean.FALSE);
         if(null!=updatedUser&&updatedUser.getId()!=null){
-            session.setAttribute(CommonProps.LOGIN_USER_SESSION_KEY,updatedUser);
+            session.setAttribute(Constants.LOGIN_USER_SESSION_KEY,updatedUser);
             redirectAttributes.addFlashAttribute("messageSuc","获取Avatar头像成功");
             return "redirect:/user/changeAvatar";
         }else{

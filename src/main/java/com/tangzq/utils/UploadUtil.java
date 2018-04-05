@@ -3,6 +3,8 @@ package com.tangzq.utils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.RandomStringUtils;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -172,6 +174,21 @@ public class UploadUtil {
 		File realFile =new File(resultPath);
 		FileUtils.copyInputStreamToFile(in, realFile);
 		return resultPath;
+	}
+
+	/**
+	 * 上传文件并返回保存相对路径
+	 * @param multipartFile
+	 * @param saveFolder
+	 * @return
+	 * @throws IOException
+	 */
+	public static String upload(MultipartFile multipartFile, String saveFolder) throws IOException {
+		String fname = multipartFile.getOriginalFilename();
+		String relativeSavePath = SysUtils.getRelativeSavePath(fname,saveFolder);
+		File file = new File(SysUtils.getApplicationDeployPath() + relativeSavePath);
+		FileCopyUtils.copy(multipartFile.getInputStream(), new FileOutputStream(file));
+		return relativeSavePath;
 	}
 
 }

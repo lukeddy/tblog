@@ -2,7 +2,7 @@ package com.tangzq.controller;
 
 import com.tangzq.model.User;
 import com.tangzq.service.TopicService;
-import com.tangzq.utils.CommonProps;
+import com.tangzq.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class CollectionController {
     public String collect(@PathVariable("topicId") String topicId,
                             RedirectAttributes redirectAttributes,
                             HttpServletRequest request) {
-        User user =  (User) request.getSession().getAttribute(CommonProps.LOGIN_USER_SESSION_KEY);
+        User user =  (User) request.getSession().getAttribute(Constants.LOGIN_USER_SESSION_KEY);
         if(user == null){
             logger.info("用户没登陆：将跳转到login页面！");
             return "redirect:/article/"+topicId;
@@ -60,7 +60,7 @@ public class CollectionController {
     public String removeCollect(@PathVariable("topicId") String topicId,
                             RedirectAttributes redirectAttributes,
                             HttpServletRequest request) {
-        User user =  (User) request.getSession().getAttribute(CommonProps.LOGIN_USER_SESSION_KEY);
+        User user =  (User) request.getSession().getAttribute(Constants.LOGIN_USER_SESSION_KEY);
         if(user == null){
             logger.info("用户没有登陆：将跳转到login页面！");
             return "redirect:/article/"+topicId;

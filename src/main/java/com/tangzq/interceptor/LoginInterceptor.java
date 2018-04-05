@@ -1,7 +1,7 @@
 package com.tangzq.interceptor;
 
 import com.tangzq.model.User;
-import com.tangzq.utils.CommonProps;
+import com.tangzq.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +29,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
 
-        User user =  (User) request.getSession().getAttribute(CommonProps.LOGIN_USER_SESSION_KEY);
+        User user =  (User) request.getSession().getAttribute(Constants.LOGIN_USER_SESSION_KEY);
         if(user == null){
             log.info("用户没有登陆：将跳转到login页面！");
             response.sendRedirect(request.getContextPath()+"/login");

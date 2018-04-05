@@ -1,6 +1,7 @@
 package com.tangzq.controller;
 
 import com.tangzq.interceptor.LoginInterceptor;
+import com.tangzq.utils.Constants;
 import com.tangzq.utils.UploadUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,10 +42,9 @@ public class UploadController {
     @RequestMapping(value="/image",method= RequestMethod.POST)
     public void uploadImg(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "editormd-image-file", required = false) MultipartFile file){
         try {
-            String newFilename = UploadUtil.getNewFilename(file.getOriginalFilename());
-            String absolutePath = UploadUtil.uploadImage(uploadFilesFolder,newFilename, file.getInputStream());
-            logger.info("Image Saved Path:"+absolutePath);
-            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\""+request.getContextPath()+"/upload/getImage/" +newFilename + "\"}" );
+            String relativeSavePath = UploadUtil.upload(file, Constants.UPLOAD_FOLDER);
+            logger.info("Image Saved Path:"+relativeSavePath);
+            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\""+relativeSavePath + "\"}" );
         } catch (Exception e) {
             logger.error("upload image error",e);
             try {
@@ -63,10 +63,9 @@ public class UploadController {
     @RequestMapping(value="/thumbnail",method= RequestMethod.POST)
     public void uploadThumbImg(HttpServletResponse response, @RequestParam(value = "thumbImage", required = false) MultipartFile file){
         try {
-            String newFilename = UploadUtil.getNewFilename(file.getOriginalFilename());
-            String absolutePath = UploadUtil.uploadImage(uploadFilesFolder,newFilename, file.getInputStream());
-            logger.info("Image Saved Path:"+absolutePath);
-            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\"" +newFilename + "\"}" );
+            String relativePath = UploadUtil.upload(file, Constants.UPLOAD_FOLDER);
+            logger.info("Saved Path:"+relativePath);
+            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\"" +relativePath + "\"}" );
         } catch (Exception e) {
             logger.error("upload image error",e);
             try {
@@ -77,10 +76,4 @@ public class UploadController {
         }
     }
 
-    @GetMapping(value = "/getImage/{filename:.+}")
-    public ResponseEntity<byte[]> getImage(@PathVariable("filename")String filename) throws IOException {
-        String absolutePath=uploadFilesFolder+ File.separator+filename;
-        byte[] image = FileCopyUtils.copyToByteArray(new File(absolutePath));
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
-    }
 }

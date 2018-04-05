@@ -3,7 +3,7 @@ package com.tangzq.test.repository;
 import com.tangzq.model.User;
 import com.tangzq.repository.UserRepository;
 import com.tangzq.test.TestBase;
-import com.tangzq.utils.CommonProps;
+import com.tangzq.utils.Constants;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -28,7 +28,7 @@ public class TestUserRepository extends TestBase {
 
 	@Test
 	public void testFindByUsername(){
-		User user=userRepository.findByUsername(CommonProps.ADMIN_NAME);
+		User user=userRepository.findByUsername(Constants.ADMIN_NAME);
 		Assert.notNull(user,"用户不存在");
 		System.out.println(user);
 	}
@@ -42,8 +42,8 @@ public class TestUserRepository extends TestBase {
 
 	@Test
 	public void testFindByUsernameAndPwd(){
-		User u=userRepository.findByUsernameAndPassword(CommonProps.ADMIN_NAME,
-				DigestUtils.md5DigestAsHex(CommonProps.ADMIN_PWD.getBytes()));
+		User u=userRepository.findByUsernameAndPassword(Constants.ADMIN_NAME,
+				DigestUtils.md5DigestAsHex(Constants.ADMIN_PWD.getBytes()));
 		Assert.notNull(u,"用户不存在");
 		System.out.println(u);
 
@@ -56,7 +56,7 @@ public class TestUserRepository extends TestBase {
 	@Test
 	public void testLogin(){
        Assert.isTrue(!isLogin("test","test"),"该用户已经登录");
-       Assert.isTrue(isLogin(CommonProps.ADMIN_NAME,CommonProps.ADMIN_PWD),"登陆失败");
+       Assert.isTrue(isLogin(Constants.ADMIN_NAME, Constants.ADMIN_PWD),"登陆失败");
 
 	}
 

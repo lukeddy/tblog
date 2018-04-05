@@ -10,6 +10,7 @@ import com.talanlabs.avatargenerator.layers.others.ShadowLayer;
 import com.talanlabs.avatargenerator.smiley.SmileyAvatar;
 import com.tangzq.utils.DateUtils;
 import com.tangzq.utils.GravatarUtils;
+import com.tangzq.utils.SysUtils;
 import com.tangzq.utils.UploadUtil;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
@@ -64,6 +65,12 @@ public class TestUtils {
                 .layers(new ShadowLayer(), new RandomColorPaintBackgroundLayer(), new RoundRectMaskLayer())
                 .padding(8).margin(8).build();
         avatar4.createAsPngToFile(123456L,file4);
+    }
+
+    @Test
+    public void testSysUtils(){
+        String deployPath= SysUtils.getApplicationDeployPath();
+        System.out.println(deployPath);
     }
 
 }

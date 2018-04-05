@@ -4,7 +4,7 @@ import com.tangzq.model.Topic;
 import com.tangzq.model.User;
 import com.tangzq.service.CategoryService;
 import com.tangzq.service.TopicService;
-import com.tangzq.utils.CommonProps;
+import com.tangzq.utils.Constants;
 import com.tangzq.vo.PageVo;
 import com.tangzq.vo.TopicVo;
 import org.apache.commons.lang.StringUtils;
@@ -43,7 +43,7 @@ public class TopicController {
     @RequestMapping(value="/list",method = RequestMethod.GET)
     public String listTopics(PageVo pageVo, ModelMap model, HttpServletRequest request){
         model.addAttribute("pager", topicService.findByUsernameAndPage(
-                ((User)(WebUtils.getSessionAttribute(request, CommonProps.LOGIN_USER_SESSION_KEY))).getUsername(),
+                ((User)(WebUtils.getSessionAttribute(request, Constants.LOGIN_USER_SESSION_KEY))).getUsername(),
                  pageVo.getPageNO(),
                  pageVo.getPageSize()));
         return "topic/topic_list";

@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         user.setUsername(vo.getUsername());
         user.setPassword(DigestUtils.md5DigestAsHex(vo.getPassword().getBytes()));
         user.setEmail(vo.getEmail());
-        user.setAvatarURL(GravatarUtils.makeGravatar(vo.getEmail()));
+        user.setAvatarURL(GravatarUtils.makeLocalAvatar(vo.getEmail(),60));
         user.setCreateAt(new Date());
         user.setUpdateAt(new Date());
         return userRepository.save(user);

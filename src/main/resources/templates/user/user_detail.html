@@ -10,10 +10,7 @@
         </ul>
         <div class="panel">
             <div class="inner user-info-block">
-                <div th:if="${user.avatarURLByUploaded}" class="avatar"
-                     th:styleappend="'background-image:url(' + @{'/upload/getImage/'+${user.avatarURL}}+ ');'"
-                     style='background-size:cover;'></div>
-                <div th:if="${!user.avatarURLByUploaded}" class="avatar"
+                <div class="avatar"
                      th:styleappend="'background-image:url(' + @{${user.avatarURL}}+ ');'"
                      style='background-size:cover;'></div>
 

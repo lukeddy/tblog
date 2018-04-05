@@ -2,7 +2,7 @@ package com.tangzq;
 
 import com.tangzq.model.User;
 import com.tangzq.repository.UserRepository;
-import com.tangzq.utils.CommonProps;
+import com.tangzq.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -54,12 +54,12 @@ public class Application extends SpringBootServletInitializer implements Command
 	 * 初始化系统管理员
 	 */
 	private void initUser(){
-		User u=userRepository.findByUsername(CommonProps.ADMIN_NAME);
+		User u=userRepository.findByUsername(Constants.ADMIN_NAME);
 		if(null==u){
 			u=new User();
-			u.setUsername(CommonProps.ADMIN_NAME);
-			u.setPassword(DigestUtils.md5DigestAsHex(CommonProps.ADMIN_PWD.getBytes()));
-			u.setEmail(CommonProps.ADMIN_EMAIL);
+			u.setUsername(Constants.ADMIN_NAME);
+			u.setPassword(DigestUtils.md5DigestAsHex(Constants.ADMIN_PWD.getBytes()));
+			u.setEmail(Constants.ADMIN_EMAIL);
 			userRepository.save(u);
 			log.info("初始化管理员账号成功！");
 		}else{
@@ -68,13 +68,5 @@ public class Application extends SpringBootServletInitializer implements Command
 	}
 
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
-		PropertySourcesPlaceholderConfigurer propsConfig
-				= new PropertySourcesPlaceholderConfigurer();
-		propsConfig.setLocation(new ClassPathResource("git.properties"));
-		propsConfig.setIgnoreResourceNotFound(true);
-		propsConfig.setIgnoreUnresolvablePlaceholders(true);
-		return propsConfig;
-	}
+
 }
