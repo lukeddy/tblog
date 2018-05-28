@@ -99,6 +99,11 @@
 			<artifactId>avatar-generator-smiley</artifactId>
 			<version>1.1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.github.dfabulich</groupId>
+			<artifactId>sitemapgen4j</artifactId>
+			<version>1.0.6</version>
+		</dependency>
 	</dependencies>
 	
 	<build>
