@@ -35,7 +35,7 @@ public class TestUserRepository extends TestBase {
 
 	@Test
 	public void testFindById(){
-		User user=userRepository.findOne("599c1f9077c8cf04cd6b859e");
+		User user=userRepository.findById("599c1f9077c8cf04cd6b859e").get();
 		Assert.notNull(user,"用户不存在");
 		System.out.println(user);
 	}

@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public Category findById(String id) {
-        return categoryRepository.findOne(id);
+        return categoryRepository.findById(id).get();
     }
 
     /**
@@ -74,6 +74,6 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public void deleteCategory(String id) {
-        categoryRepository.delete(id);
+        categoryRepository.deleteById(id);
     }
 }

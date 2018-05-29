@@ -27,7 +27,7 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public Reply getReply(String replyID) {
-        return replyRepository.findOne(replyID);
+        return replyRepository.findById(replyID).get();
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public void deleteReply(String replyId,String topicId) {
-        replyRepository.delete(replyId);
+        replyRepository.deleteById(replyId);
         topicService.decreaseReplyCount(topicId);
     }
 }

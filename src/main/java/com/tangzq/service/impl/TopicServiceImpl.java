@@ -100,7 +100,7 @@ public class TopicServiceImpl implements TopicService {
         topic.setAuthorId(vo.getAuthorId());
         topic.setAuthorName(vo.getAuthorName());
         topic.setCatId(vo.getCatId());
-        Category cat=categoryRepository.findOne(vo.getCatId());
+        Category cat=categoryRepository.findById(vo.getCatId()).get();
         if(null!=cat){
             topic.setCatName(cat.getCatName());
             topic.setCatDir(cat.getCatDir());
@@ -123,7 +123,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public Topic findTopicById(String topicId) {
-        return topicRepository.findOne(topicId);
+        return topicRepository.findById(topicId).get();
     }
 
     @Override
@@ -162,7 +162,7 @@ public class TopicServiceImpl implements TopicService {
             return null;
         }
         topicInDB.setCatId(vo.getCatId());
-        Category cat=categoryRepository.findOne(vo.getCatId());
+        Category cat=categoryRepository.findById(vo.getCatId()).get();
         if(null!=cat){
             topicInDB.setCatName(cat.getCatName());
             topicInDB.setCatDir(cat.getCatDir());
@@ -186,7 +186,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public void deleteById(String topicId) {
-        topicRepository.delete(topicId);
+        topicRepository.deleteById(topicId);
     }
 
     @Override
@@ -222,7 +222,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public Topic addCollection(String topicId, String userId) {
-        Topic topicInDb=topicRepository.findOne(topicId);
+        Topic topicInDb=topicRepository.findById(topicId).get();
         if(null==topicInDb){
             return null;
         }
@@ -238,7 +238,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public Topic removeCollection(String topicId, String userId) {
-        Topic topicInDb=topicRepository.findOne(topicId);
+        Topic topicInDb=topicRepository.findById(topicId).get();
         if(null==topicInDb){
             return null;
         }
@@ -253,7 +253,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public Topic like(String topicId, String userId) {
-        Topic topicInDb=topicRepository.findOne(topicId);
+        Topic topicInDb=topicRepository.findById(topicId).get();
         if(null==topicInDb){
             return null;
         }
@@ -268,7 +268,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public Topic unLike(String topicId, String userId) {
-        Topic topicInDb=topicRepository.findOne(topicId);
+        Topic topicInDb=topicRepository.findById(topicId).get();
         if(null==topicInDb){
             return null;
         }

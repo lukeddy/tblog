@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String uid) {
-        return userRepository.findOne(uid);
+        return userRepository.findById(uid).get();
     }
 
     @Override
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
         if(null==user||user.getId()==null){
             return null;
         }
-        User userInDB=userRepository.findOne(user.getId());
+        User userInDB=userRepository.findById(user.getId()).get();
         if(null==userInDB){
             return null;
         }
