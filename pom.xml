@@ -104,6 +104,13 @@
 			<artifactId>sitemapgen4j</artifactId>
 			<version>1.0.6</version>
 		</dependency>
+
+		<!--monitoring-->
+		<dependency>
+			<groupId>net.bull.javamelody</groupId>
+			<artifactId>javamelody-spring-boot-starter</artifactId>
+			<version>1.73.0</version>
+		</dependency>
 	</dependencies>
 	
 	<build>
