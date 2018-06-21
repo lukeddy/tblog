@@ -1,11 +1,11 @@
 package com.tangzq.controller;
 
+import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.tangzq.model.User;
 import com.tangzq.service.CategoryService;
 import com.tangzq.service.TopicService;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.Constants;
-import com.tangzq.utils.ValidateCode;
 import com.tangzq.vo.IndexVo;
 import com.tangzq.vo.LoginUserVo;
 import com.tangzq.vo.RegisterUserVo;
@@ -23,12 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
@@ -43,6 +40,9 @@ public class HomeController {
 
     @Value("${appname}")
     private String configAppName;
+
+    @Autowired
+    private DefaultKaptcha defaultKaptcha;
 
     @Autowired
     private UserService userService;
@@ -178,13 +178,14 @@ public class HomeController {
      * @throws IOException
      */
     @RequestMapping(value = "/validateCode")
-    public void validateCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setHeader("Cache-Control", "no-cache");
-        String verifyCode = ValidateCode.generateTextCode(ValidateCode.TYPE_ALL_MIXED, 4, null);
-        request.getSession().setAttribute(VCODE_SESSION_KEY, verifyCode);
+    public void validateCode(HttpServletResponse response,HttpSession session) throws IOException {
+        String createText = defaultKaptcha.createText();
+        session.setAttribute(VCODE_SESSION_KEY, createText);
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-store");
+        response.setDateHeader("Expires", 0);
         response.setContentType("image/jpeg");
-        BufferedImage bim = ValidateCode.generateImageCode(verifyCode, 90, 30, 3, true, Color.WHITE, Color.BLACK, null);
-        ImageIO.write(bim, "JPEG", response.getOutputStream());
+        ImageIO.write(defaultKaptcha.createImage(createText), "JPEG", response.getOutputStream());
     }
 
 
