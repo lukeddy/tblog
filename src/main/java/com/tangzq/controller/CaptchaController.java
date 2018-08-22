@@ -26,6 +26,8 @@ import java.io.IOException;
 @RequestMapping("/captcha")
 public class CaptchaController
 {
+    private static final String CAPTCHA_TYPE_MATH="math";
+    private static final String CAPTCHA_TYPE_CHAR="char";
 
     @Resource(name = "captchaProducer")
     private Producer captchaProducer;
@@ -53,14 +55,14 @@ public class CaptchaController
             String capStr = null;
             String code = null;
             BufferedImage bi = null;
-            if ("math".equals(type))
+            if (CAPTCHA_TYPE_MATH.equals(type))
             {
                 String capText = captchaProducerMath.createText();
                 capStr = capText.substring(0, capText.lastIndexOf("@"));
                 code = capText.substring(capText.lastIndexOf("@") + 1);
                 bi = captchaProducerMath.createImage(capStr);
             }
-            else if ("char".equals(type))
+            else if (CAPTCHA_TYPE_CHAR.equals(type))
             {
                 capStr = code = captchaProducer.createText();
                 bi = captchaProducer.createImage(capStr);

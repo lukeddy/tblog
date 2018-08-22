@@ -22,9 +22,9 @@ public class CaptchaConfig
         properties.setProperty("kaptcha.border", "yes");
         properties.setProperty("kaptcha.border.color", "105,179,90");
         properties.setProperty("kaptcha.textproducer.font.color", "blue");
-        properties.setProperty("kaptcha.image.width", "160");
-        properties.setProperty("kaptcha.image.height", "60");
-        properties.setProperty("kaptcha.textproducer.font.size", "28");
+        properties.setProperty("kaptcha.image.width", "90");
+        properties.setProperty("kaptcha.image.height", "33");
+        properties.setProperty("kaptcha.textproducer.font.size", "25");
         properties.setProperty("kaptcha.session.key", "kaptchaCode");
         properties.setProperty("kaptcha.textproducer.char.spac", "35");
         properties.setProperty("kaptcha.textproducer.char.length", "5");
@@ -44,9 +44,9 @@ public class CaptchaConfig
         properties.setProperty("kaptcha.border", "yes");
         properties.setProperty("kaptcha.border.color", "105,179,90");
         properties.setProperty("kaptcha.textproducer.font.color", "blue");
-        properties.setProperty("kaptcha.image.width", "160");
-        properties.setProperty("kaptcha.image.height", "60");
-        properties.setProperty("kaptcha.textproducer.font.size", "38");
+        properties.setProperty("kaptcha.image.width", "90");
+        properties.setProperty("kaptcha.image.height", "33");
+        properties.setProperty("kaptcha.textproducer.font.size", "25");
         properties.setProperty("kaptcha.session.key", "kaptchaCodeMath");
         properties.setProperty("kaptcha.textproducer.impl", "com.tangzq.common.KaptchaTextCreator");
         properties.setProperty("kaptcha.textproducer.char.spac", "5");
