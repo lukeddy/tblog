@@ -132,16 +132,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<dependencies>
-					<!--该插件要求启动时使用mvn命令行启动，示例：mvn spring-boot:run -->
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>springloaded</artifactId>
-						<version>1.2.8.RELEASE</version>
-					</dependency>
-				</dependencies>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
 			</plugin>
-
 			<!--获取Git信息插件，该插件会自动生成一个存放git信息的properties文件-->
 			<plugin>
 				<groupId>pl.project13.maven</groupId>
