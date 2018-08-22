@@ -1,8 +1,10 @@
 package com.tangzq.controller;
 
+import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,8 +23,9 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 @Controller
 public class KaptchaTest {
-    @Autowired
-    private DefaultKaptcha defaultKaptcha;
+
+    @Resource(name = "captchaProducer")
+    private Producer captchaProducer;
 
     private static final String SESSION_KEY_VCODE="verifyCode";
 
@@ -33,13 +37,13 @@ public class KaptchaTest {
      */
     @RequestMapping("/vcode")
     public void vcode(HttpSession session, HttpServletResponse response) throws Exception{
-            String createText = defaultKaptcha.createText();
+            String createText = captchaProducer.createText();
             session.setAttribute(SESSION_KEY_VCODE, createText);
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
             response.setContentType("image/jpeg");
-            ImageIO.write(defaultKaptcha.createImage(createText), "JPEG", response.getOutputStream());
+            ImageIO.write(captchaProducer.createImage(createText), "JPEG", response.getOutputStream());
     }
 
     /**

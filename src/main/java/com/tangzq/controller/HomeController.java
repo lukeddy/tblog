@@ -1,5 +1,6 @@
 package com.tangzq.controller;
 
+import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.tangzq.model.User;
 import com.tangzq.service.CategoryService;
@@ -13,6 +14,7 @@ import com.tangzq.vo.SearchVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -41,8 +44,9 @@ public class HomeController {
     @Value("${appname}")
     private String configAppName;
 
-    @Autowired
-    private DefaultKaptcha defaultKaptcha;
+
+    @Resource(name = "captchaProducer")
+    private Producer captchaProducer;
 
     @Autowired
     private UserService userService;
@@ -173,19 +177,18 @@ public class HomeController {
 
     /**
      * 生成验证码
-     * @param request
      * @param response
      * @throws IOException
      */
     @RequestMapping(value = "/validateCode")
     public void validateCode(HttpServletResponse response,HttpSession session) throws IOException {
-        String createText = defaultKaptcha.createText();
+        String createText = captchaProducer.createText();
         session.setAttribute(VCODE_SESSION_KEY, createText);
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Cache-Control", "no-store");
         response.setDateHeader("Expires", 0);
         response.setContentType("image/jpeg");
-        ImageIO.write(defaultKaptcha.createImage(createText), "JPEG", response.getOutputStream());
+        ImageIO.write(captchaProducer.createImage(createText), "JPEG", response.getOutputStream());
     }
 
 
