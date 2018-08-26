@@ -25,7 +25,7 @@
                             <a href="#" class="dropdown-toggle topic-tab" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <th:block th:each="i:${#numbers.sequence(8,${catList.size()}-1)}">
+                                <th:block th:each="i:${#numbers.sequence(8,catList.size()-1)}">
                                      <li class="topic-tab">
                                         <a th:href="@{'/?tab='+${catList[i].catDir}}"
                                            th:classappend="${indexVo.tab}==${catList[i].catDir}?'current-tab':''"
