@@ -75,10 +75,10 @@
                 <th:block th:each="reply,status:${article.replyList}">
                     <div class="cell reply_area reply_item editormd-preview-container" reply_to_id="" th:id="${reply.id}">
                         <div class="author_content">
-                            <a th:href="@{'/pub/user/'+${reply.authorInfo.authorId}}" class="user_avatar">
-                                <img th:src="@{${reply.authorInfo.authorAvatar}}" th:title="${reply.authorInfo.authorName}"/></a>
+                            <a th:href="@{'/pub/user/'+${reply.replyUser.id}}" class="user_avatar">
+                                <img th:src="@{${reply.replyUser.avatarURL}}" th:title="${reply.replyUser.username}"/></a>
                             <div class="user_info">
-                                <a class="dark reply_author" th:href="@{'/pub/user/'+${reply.authorInfo.authorId}}" th:text="${reply.authorInfo.authorName}"></a>
+                                <a class="dark reply_author" th:href="@{'/pub/user/'+${reply.replyUser.id}}" th:text="${reply.replyUser.username}"></a>
                                 <a class="reply_time" th:href="@{'#'+${reply.id}}" th:text="${status.index+1}+'楼•'+${reply.friendlyTime}"></a>
                             </div>
                             <div class="user_action">
@@ -88,13 +88,13 @@
                                 <span class="up-count"></span>
                               </span>
                                 <span></span>
-                                <th:block th:if="${session.loginUser!=null} and ${session.loginUser.id==reply.authorInfo.authorId}">
+                                <th:block th:if="${session.loginUser!=null} and ${session.loginUser.id==reply.replyUser.id}">
                                     <a href="javascript:;" class="edit-reply" th:attr="reply-id=${reply.id}"  title="编辑"><i class="glyphicon glyphicon-edit"></i></a>
                                     <a th:href="@{'/article/'+${article.topic.id}+'/reply/'+${reply.id}+'/del/'}" title="删除"><i class="glyphicon glyphicon-remove-circle"></i></a>
                                 </th:block>
                             </div>
                         </div>
-                        <div th:classappend="'from-'+${reply.authorInfo.authorId}" class="reply_content">
+                        <div th:classappend="'from-'+${reply.replyUser.id}" class="reply_content">
                             <div class="markdown-text"><p th:utext="${reply.contentHTML}">回复内容</p></div>
                         </div>
                         <div class="clearfix">

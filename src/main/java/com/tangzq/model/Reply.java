@@ -4,6 +4,7 @@ import com.tangzq.model.embed.ReplyAuthorInfo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -18,7 +19,8 @@ public class Reply extends BaseModel<String> {
     private String contentMD;
     private String contentHTML;
     private String topicId;
-    private ReplyAuthorInfo authorInfo;
+    @DBRef
+    private User replyUser;
     private String replyId;
     private boolean contentIsHTML;
     private int thumbsUPCount;
