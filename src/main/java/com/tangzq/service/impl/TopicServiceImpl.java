@@ -2,9 +2,11 @@ package com.tangzq.service.impl;
 
 import com.tangzq.model.Category;
 import com.tangzq.model.Topic;
+import com.tangzq.model.User;
 import com.tangzq.repository.CategoryRepository;
 import com.tangzq.repository.TopicRepository;
 import com.tangzq.service.TopicService;
+import com.tangzq.service.UserService;
 import com.tangzq.vo.IndexVo;
 import com.tangzq.vo.SearchVo;
 import com.tangzq.vo.TopicVo;
@@ -31,6 +33,9 @@ public class TopicServiceImpl implements TopicService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private UserService userService;
+
     private static final String TAB_ALL="all";
 
     @Override
@@ -43,21 +48,21 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public Page<Topic> findByUserIdAndPage(String userId, int pageNo, int pageSize) {
         Sort sort = new Sort(Sort.Direction.DESC, "create_at");
-        Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);
+        Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
         return topicRepository.findByAuthorId(userId,pageable);
     }
 
     @Override
     public Page<Topic> findByUsernameAndPage(String username, int pageNo, int pageSize) {
         Sort sort = new Sort(Sort.Direction.DESC, "create_at");
-        Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);
-        return topicRepository.findByAuthorName(username,pageable);
+        Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
+        return topicRepository.findByAuthor(userService.findByUsername(username),pageable);
     }
 
     @Override
     public Page<Topic> findByTagAndPage(String tagName, int pageNo, int pageSize) {
         Sort sort = new Sort(Sort.Direction.DESC, "create_at");
-        Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);
+        Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
         return topicRepository.findByTagsContains(tagName,pageable);
     }
 
@@ -65,19 +70,19 @@ public class TopicServiceImpl implements TopicService {
     public Page<Topic> findByPage(IndexVo vo) {
         if(TAB_ALL.equals(vo.getTab())){
             Sort sort = new Sort(Sort.Direction.DESC, "top","create_at");
-            Pageable pageable = new PageRequest(vo.getPageNO()-1, vo.getPageSize(), sort);
+            Pageable pageable = PageRequest.of(vo.getPageNO()-1, vo.getPageSize(), sort);
             return topicRepository.findAll(pageable);
         }else{
             Sort sort = new Sort(Sort.Direction.DESC, "create_at");
             Pageable pageable = new PageRequest(vo.getPageNO()-1, vo.getPageSize(), sort);
-            return topicRepository.findByCatDir(vo.getTab(),pageable);
+            return topicRepository.findByCategoryCatDir(vo.getTab(),pageable);
         }
     }
 
     @Override
     public Page<Topic> search(SearchVo searchVo) {
         Sort sort = new Sort(Sort.Direction.DESC, "create_at");
-        Pageable pageable = new PageRequest(searchVo.getPageNO()-1, searchVo.getPageSize(), sort);
+        Pageable pageable =  PageRequest.of(searchVo.getPageNO()-1, searchVo.getPageSize(), sort);
 
         if(StringUtils.isEmpty(searchVo.getKeywords())){
             return topicRepository.findAll(pageable);
@@ -97,13 +102,10 @@ public class TopicServiceImpl implements TopicService {
             return null;
         }
         Topic topic=new Topic();
-        topic.setAuthorId(vo.getAuthorId());
-        topic.setAuthorName(vo.getAuthorName());
-        topic.setCatId(vo.getCatId());
+        topic.setAuthor(userService.getUser(vo.getAuthorId()));
         Category cat=categoryRepository.findById(vo.getCatId()).get();
         if(null!=cat){
-            topic.setCatName(cat.getCatName());
-            topic.setCatDir(cat.getCatDir());
+            topic.setCategory(cat);
         }
         topic.setTitle(vo.getTitle());
         topic.setDesc(vo.getDesc());
@@ -137,9 +139,9 @@ public class TopicServiceImpl implements TopicService {
         }
         TopicVo vo=new TopicVo();
         vo.setTopicId(topic.getId());
-        vo.setAuthorName(topic.getAuthorName());
-        vo.setAuthorId(topic.getAuthorId());
-        vo.setCatId(topic.getCatId());
+        vo.setAuthorName(topic.getAuthor().getUsername());
+        vo.setAuthorId(topic.getAuthor().getId());
+        vo.setCatId(topic.getCategory().getId());
         vo.setTitle(topic.getTitle());
         vo.setDesc(topic.getDesc());
         vo.setThumbURL(topic.getThumbURL());
@@ -161,11 +163,9 @@ public class TopicServiceImpl implements TopicService {
         if(null==topicInDB){
             return null;
         }
-        topicInDB.setCatId(vo.getCatId());
         Category cat=categoryRepository.findById(vo.getCatId()).get();
         if(null!=cat){
-            topicInDB.setCatName(cat.getCatName());
-            topicInDB.setCatDir(cat.getCatDir());
+            topicInDB.setCategory(cat);
         }
         topicInDB.setTitle(vo.getTitle());
         topicInDB.setDesc(vo.getDesc());
@@ -173,8 +173,7 @@ public class TopicServiceImpl implements TopicService {
         if(null!=vo.getTags()){
             topicInDB.setTags(Arrays.asList(vo.getTags().split(",")));
         }
-        topicInDB.setAuthorId(vo.getAuthorId());
-        topicInDB.setAuthorName(vo.getAuthorName());
+        topicInDB.setAuthor(userService.getUser(vo.getAuthorId()));
         topicInDB.setContentMD(vo.getContentMD());
         topicInDB.setContentHTML(vo.getContentHTML());
         topicInDB.setContentIsHTML(vo.isContentIsHTML());
@@ -226,11 +225,11 @@ public class TopicServiceImpl implements TopicService {
         if(null==topicInDb){
             return null;
         }
-        Set<String> collectedUsers=topicInDb.getCollectedUsers();
+        Set<User> collectedUsers=topicInDb.getCollectedUsers();
         if(null==collectedUsers){
-            collectedUsers=new HashSet<String>();
+            collectedUsers=new HashSet<User>();
         }
-        collectedUsers.add(userId);
+        collectedUsers.add(userService.getUser(userId));
         topicInDb.setCollectedUsers(collectedUsers);
         topicInDb.setCollectCount(collectedUsers.size());
         return topicRepository.save(topicInDb);
@@ -242,9 +241,10 @@ public class TopicServiceImpl implements TopicService {
         if(null==topicInDb){
             return null;
         }
-        Set<String> collectedUsers=topicInDb.getCollectedUsers();
-        if(null!=collectedUsers&&collectedUsers.contains(userId)){
-            collectedUsers.remove(userId);
+        Set<User> collectedUsers=topicInDb.getCollectedUsers();
+        User user=userService.getUser(userId);
+        if(null!=collectedUsers&&collectedUsers.contains(user)){
+            collectedUsers.remove(user);
             topicInDb.setCollectedUsers(collectedUsers);
             topicInDb.setCollectCount(collectedUsers.size());
         }
@@ -257,11 +257,11 @@ public class TopicServiceImpl implements TopicService {
         if(null==topicInDb){
             return null;
         }
-        Set<String> likedUsers=topicInDb.getCollectedUsers();
+        Set<User> likedUsers=topicInDb.getCollectedUsers();
         if(null==likedUsers){
-            likedUsers=new HashSet<String>();
+            likedUsers=new HashSet<User>();
         }
-        likedUsers.add(userId);
+        likedUsers.add(userService.getUser(userId));
         topicInDb.setLikedUsers(likedUsers);
         return topicRepository.save(topicInDb);
     }
@@ -272,9 +272,10 @@ public class TopicServiceImpl implements TopicService {
         if(null==topicInDb){
             return null;
         }
-        Set<String> likedUsers=topicInDb.getCollectedUsers();
-        if(null!=likedUsers&&likedUsers.contains(userId)){
-            likedUsers.remove(userId);
+        Set<User> likedUsers=topicInDb.getCollectedUsers();
+        User user=userService.getUser(userId);
+        if(null!=likedUsers&&likedUsers.contains(user)){
+            likedUsers.remove(user);
             topicInDb.setLikedUsers(likedUsers);
         }
         return topicRepository.save(topicInDb);
@@ -283,7 +284,7 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public Page<Topic> findCollectedTopicsByUidAndPage(String userId, int pageNo, int pageSize) {
         Sort sort = new Sort(Sort.Direction.DESC, "create_at");
-        Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);
+        Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
         return topicRepository.findByCollectedUsersContains(userId,pageable);
     }
 

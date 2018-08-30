@@ -4,6 +4,7 @@ package com.tangzq.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -24,9 +25,9 @@ public class Topic extends BaseModel<String> {
     private List<String> tags;
     private String contentMD;
     private String contentHTML;
-    private String authorId;
 
-    private String authorName;
+    @DBRef
+    private User author;
     /**
      * 置顶帖
      */
@@ -48,11 +49,14 @@ public class Topic extends BaseModel<String> {
     private String lastReplyAt;
     private boolean contentIsHTML;
     private boolean deleted=false;
-    private String catId;
-    private String catName;
-    private String catDir;
-    private Set<String> collectedUsers;
-    private Set<String> likedUsers;
+    @DBRef
+    private Category category;
+
+    @DBRef
+    private Set<User> collectedUsers;
+
+    @DBRef
+    private Set<User> likedUsers;
 
     @Override
     public boolean isNew() {

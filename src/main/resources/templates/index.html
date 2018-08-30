@@ -54,14 +54,14 @@
                                                         <!--<li class="item recommended">置顶</li>-->
                                                         <!--</c:if>-->
                                                         <li class="item username">
-                                                            <a th:href="@{'/pub/user/'+${topic.authorId}}"
-                                                               th:text="${topic.authorName}"></a>.
+                                                            <a th:href="@{'/pub/user/'+${topic.author.id}}"
+                                                               th:text="${topic.author.username}"></a>.
                                                             <th:block th:text="${topic.friendlyTime}"></th:block>
                                                         </li>
                                                         <li class="item category">
-                                                            <a th:href="@{'/?tab='+${topic.catDir}}">
+                                                            <a th:href="@{'/?tab='+${topic.category.catDir}}">
                                                                 <span class="topiclist-tab"
-                                                                      th:text="${topic.catName}"></span>
+                                                                      th:text="${topic.category.catName}"></span>
                                                             </a>
                                                         </li>
                                                         <th:block th:if="${topic.tags!=null}">

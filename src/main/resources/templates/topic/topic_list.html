@@ -27,7 +27,7 @@
                                 <th:block th:each="topic:${pager.content}">
                                     <tr>
                                         <td th:text="${topic.title}"></td>
-                                        <td th:text="${topic.catName}+','+${topic.catDir}"></td>
+                                        <td th:text="${topic.category.catName}+','+${topic.category.catDir}"></td>
                                         <td th:text="${topic.createAtFormatted}"></td>
                                         <td th:text="${topic.updateAtFormatted}"></td>
                                         <td>

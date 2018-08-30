@@ -1,6 +1,7 @@
 package com.tangzq.repository;
 
 import com.tangzq.model.Topic;
+import com.tangzq.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.Query;
@@ -24,11 +25,13 @@ public interface TopicRepository extends PagingAndSortingRepository<Topic,String
 
     /**
      * 查找指定用户的帖子
-     * @param authorName
+     * @param author
      * @param pageable
      * @return
      */
-    Page<Topic> findByAuthorName(String authorName, Pageable pageable);
+    //Page<Topic> findByAuthorName(String authorName, Pageable pageable);
+
+    Page<Topic> findByAuthor(User author, Pageable pageable);
 
     /**
      * 查找含有指定标签的帖子
@@ -44,7 +47,7 @@ public interface TopicRepository extends PagingAndSortingRepository<Topic,String
      * @param pageable
      * @return
      */
-    Page<Topic> findByCatDir(String catDir, Pageable pageable);
+    Page<Topic> findByCategoryCatDir(String catDir, Pageable pageable);
 
     /**
      * 标题模糊查询

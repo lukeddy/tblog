@@ -32,11 +32,11 @@
                                                     <div class="meta-row">
                                                         <ul class="meta-list">
                                                             <li class="item username">
-                                                                <a th:href="@{'/pub/user/'+${topic.authorId}}" th:text="${topic.authorName}+'.'+${topic.friendlyTime}"></a>
+                                                                <a th:href="@{'/pub/user/'+${topic.author.id}}" th:text="${topic.author.username}+'.'+${topic.friendlyTime}"></a>
                                                             </li>
                                                             <li class="item category">
-                                                                <a th:href="@{'/?tab='+${topic.catDir}}">
-                                                                    <span class="topiclist-tab" th:text="${topic.catName}"></span>
+                                                                <a th:href="@{'/?tab='+${topic.category.catDir}}">
+                                                                    <span class="topiclist-tab" th:text="${topic.category.catName}"></span>
                                                                 </a>
                                                             </li>
                                                             <th:block th:if="${!#lists.isEmpty(topic.tags)}">
@@ -56,7 +56,7 @@
                                                         <div class="action-list">
                                                             <a class="action like" href="javascript:;" >
                                                                 <span class="icon"></span>
-                                                                <span class="title" th:text="${topic.visitCount}"></span>
+                                                                <span class="title" th:text="${topic.likedUsers==null}?0:${topic.likedUsers.size()}"></span>
                                                             </a>
                                                             <a class="action comment" href="javascript:;" >
                                                                 <span class="icon"></span>

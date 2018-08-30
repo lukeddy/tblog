@@ -51,7 +51,7 @@ public class RssController {
                 description.setValue(t.getDesc());
                 item.setDescription(description);
 
-                item.setAuthor(t.getAuthorName());
+                item.setAuthor(t.getAuthor().getUsername());
                 item.setPubDate(t.getCreateAt());
 
                 items.add(item);

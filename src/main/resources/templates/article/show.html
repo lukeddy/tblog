@@ -6,13 +6,13 @@
     <div class='col-md-9' id="content">
         <ul class='breadcrumb'>
             <li><a th:href="@{'/'}"><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
-            <li><a th:href="@{'/?tab='+${article.topic.catDir}}" th:text="${article.topic.catName}"></a><span class='divider'></span></li>
+            <li><a th:href="@{'/?tab='+${article.topic.category.catDir}}" th:text="${article.topic.category.catName}"></a><span class='divider'></span></li>
         </ul>
         <div class='panel'>
             <div class='header topic-header'>
                 <h1 class="topic-full-title" th:text="${article.topic.title}"></h1>
                 <div class="changes">
-                    <span th:text="${article.topic.friendlyTime}"></span><span>&nbsp;&nbsp;作者：<a th:href="@{'/pub/user/'+${article.topic.authorId}}" th:text="${article.topic.authorName}"></a></span><span th:text="'&nbsp;&nbsp;'+${article.topic.visitCount}+'次浏览'"></span>
+                    <span th:text="${article.topic.friendlyTime}"></span><span>&nbsp;&nbsp;作者：<a th:href="@{'/pub/user/'+${article.topic.author.id}}" th:text="${article.topic.author.username}"></a></span><span th:text="'&nbsp;&nbsp;'+${article.topic.visitCount}+'次浏览'"></span>
                     <span class="share pull-right">
                         <div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1522069935713"><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a><a href="#" class="bds_print" data-cmd="print" title="分享到打印"></a><a href="#" class="bds_more" data-cmd="more"></a></div>
                         <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};(document.getElementsByTagName('head')[0]||body).appendChild(document.createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5);</script>
@@ -215,7 +215,7 @@
             saveHTMLToTextarea: true,
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
-            imageUploadURL: "[[@{/}]]/upload/image",
+            imageUploadURL: [[@{/upload/image}]],
             toolbarIcons: function() {
                 return ["undo", "redo", "|", "bold", "italic", "quote", "|",
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
