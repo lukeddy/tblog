@@ -39,7 +39,6 @@ import java.io.IOException;
 @Slf4j
 public class HomeController {
 
-    public static final String VCODE_SESSION_KEY="validateCode";
 
     @Value("${appname}")
     private String configAppName;
@@ -106,7 +105,7 @@ public class HomeController {
             return "register";
         }
 
-        String vcodeInSession = (String) session.getAttribute(VCODE_SESSION_KEY);
+        String vcodeInSession = (String) session.getAttribute(Constants.VCODE_SESSION_KEY);
         String submitCode = registerUser.getValidateCode();
         if (!StringUtils.equals(vcodeInSession,submitCode)) {
             result.rejectValue("validateCode",null,"验证码错误!");
@@ -157,7 +156,7 @@ public class HomeController {
             return "login";
         }
 
-        String vcodeInSession = (String) session.getAttribute(VCODE_SESSION_KEY);
+        String vcodeInSession = (String) session.getAttribute(Constants.VCODE_SESSION_KEY);
         String submitCode = user.getValidateCode();
 
         if (!StringUtils.equals(vcodeInSession,submitCode)) {
@@ -183,7 +182,7 @@ public class HomeController {
     @RequestMapping(value = "/validateCode")
     public void validateCode(HttpServletResponse response,HttpSession session) throws IOException {
         String createText = captchaProducer.createText();
-        session.setAttribute(VCODE_SESSION_KEY, createText);
+        session.setAttribute(Constants.VCODE_SESSION_KEY, createText);
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Cache-Control", "no-store");
         response.setDateHeader("Expires", 0);

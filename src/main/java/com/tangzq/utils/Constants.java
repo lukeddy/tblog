@@ -9,6 +9,8 @@ public class Constants {
     public static final String ADMIN_PWD="123456";
     public static final String ADMIN_EMAIL="admin@test.com";
 
+    public static final String VCODE_SESSION_KEY="validateCode";
+
     /**
      * 已登录用户保存保存到session中的使用的key名称
      */

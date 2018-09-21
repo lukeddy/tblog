@@ -6,18 +6,19 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
+ * Comment VO类
  * @author tangzhiqiang
  */
 @Getter
 @Setter
 @ToString
-public class ReplyVo {
+public class CommentVo {
 
-    private String contentMD;
-    private String contentHTML;
-    private String topicId;
+    private String itemId;
+    private String commentMD;
+    private String commentHTML;
     private String authorId;
-    private String authorName;
-    private String authorAvatar;
+
+    private String vcode;
 
 }

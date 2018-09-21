@@ -67,124 +67,129 @@
                 </div>
             </div>
         </div>
-        <th:block th:if="${!#lists.isEmpty(article.replyList)}">
-            <div class="panel" id="comment">
-                <div class="header">
-                    <span class="col_fade" th:text="${article.topic.replyCount}+' 回复'"></span>
-                </div>
-                <th:block th:each="reply,status:${article.replyList}">
-                    <div class="cell reply_area reply_item editormd-preview-container" reply_to_id="" th:id="${reply.id}">
-                        <div class="author_content">
-                            <a th:href="@{'/pub/user/'+${reply.replyUser.id}}" class="user_avatar">
-                                <img th:src="@{${reply.replyUser.avatarURL}}" th:title="${reply.replyUser.username}"/></a>
-                            <div class="user_info">
-                                <a class="dark reply_author" th:href="@{'/pub/user/'+${reply.replyUser.id}}" th:text="${reply.replyUser.username}"></a>
-                                <a class="reply_time" th:href="@{'#'+${reply.id}}" th:text="${status.index+1}+'楼•'+${reply.friendlyTime}"></a>
-                            </div>
-                            <div class="user_action">
-                              <span>
-                                <i class="fa up_btn fa-thumbs-o-up invisible" title="喜欢" th:text="${reply.thumbsUPCount &gt; 0}?${reply.thumbsUPCount}:''">
-                                </i>
-                                <span class="up-count"></span>
-                              </span>
-                                <span></span>
-                                <th:block th:if="${session.loginUser!=null} and ${session.loginUser.id==reply.replyUser.id}">
-                                    <a href="javascript:;" class="edit-reply" th:attr="reply-id=${reply.id}"  title="编辑"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <a th:href="@{'/article/'+${article.topic.id}+'/reply/'+${reply.id}+'/del/'}" title="删除"><i class="glyphicon glyphicon-remove-circle"></i></a>
-                                </th:block>
-                            </div>
-                        </div>
-                        <div th:classappend="'from-'+${reply.replyUser.id}" class="reply_content">
-                            <div class="markdown-text"><p th:utext="${reply.contentHTML}">回复内容</p></div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="reply2_area"></div>
-                        </div>
+        <!--comment start-->
+        <div class="row comment-wrapper">
+            <h3 class="header" th:text="${#lists.size(commentList)}+' 条评论'"></h3>
+            <div th:if="${!#lists.isEmpty(commentList)}" th:each="comment,status:${commentList}" class="comment" th:id="${comment.id}">
+                <a class="avatar" href="#" target="_blank">
+                    <img th:src="@{${comment.author.avatarURL}}" th:title="${comment.author.username}" th:alt="${comment.author.username}">
+                </a>
+                <div class="content">
+                    <a class="author" href="#" target="_blank" th:text="${comment.author.username}">评论用户名</a>
+                    <div class="metadata">
+                        <span class="date" th:text="${comment.friendlyTime}">评论时间</span>
                     </div>
-                </th:block>
+                    <div class="text">
+                        <th:block th:if="${comment.parentComment!=null}">
+                            <div th:include="inc/comment-parent::parent" th:with="parentComment=${comment.parentComment}"></div>
+                        </th:block>
+                        <th:block th:utext="${comment.commentHTML}">评论内容</th:block>
+                    </div>
+                    <div class="operations">
+                        <a class="like" th:href="@{'/article/'+${article.topic.id}+'/comment/thumbsup/'+${comment.id}}">
+                            <i class="fa fa-thumbs-up"></i> <span th:text="${comment.thumbsUPCount}">0</span> 赞
+                        </a>
+                        <a class="reply btn-reply-to" th:if="${session.loginUser!=null}" th:attr="reply-to-id=${comment.id},reply-to-username=${comment.author.username}">
+                            <i class="fa fa-comments"></i> 回复
+                        </a>
+                        <a class="remove" th:if="${session.loginUser!=null and session.loginUser.id==comment.author.id}" th:href="@{'/article/'+${article.topic.id}+'/comment/del/'+${comment.id}}">
+                            <i class="fa fa-trash"></i> 删除
+                        </a>
+                        <a class="ban" th:href="@{'/article/'+${article.topic.id}+'/comment/ban/'+${comment.id}}">
+                            <i class="fa fa-ban"></i> 举报
+                        </a>
+                    </div>
+                    <div class="reply-box" th:id="${'replyBox'+comment.id}"></div>
+                </div>
             </div>
-        </th:block>
-
-        <th:block th:if="${session.loginUser!=null}">
-            <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
-            <div id="reply">
-                <form th:action="@{'/reply/add/'+${article.topic.id}}" method="post" class="form-vertical" id="reply-form" role="form">
+        </div>
+        <div id="comment-form" class="row comment-form">
+            <div th:if="${session.loginUser==null}" class="alert alert-danger alert-dismissible text-center" role="alert">
+                <strong>登录了才能评论，请先 <a th:href="@{/login?forward=true}">登录</a></strong>
+            </div>
+            <th:block th:if="${session.loginUser!=null}">
+                <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                <form th:action="@{/article/comment/add/}" method="post" class="form-vertical" id="reply-form" role="form">
                     <fieldset>
                         <div class="form-group">
-                            <label>新回复</label>
-                            <div id="editormd">
-                                <textarea class="editormd-markdown-textarea" name="contentMD" id="contentMD"></textarea>
-                                <textarea class="editormd-html-textarea" name="contentHTML" id="contentHTML"></textarea>
+                            <label>评论</label>
+                            <div id="add-comment">
+                                <textarea style="display: none;" id="add-comment-markdown"></textarea>
                             </div>
                         </div>
-                        <input type="hidden" name="topicId" th:value="${article.topic.id}"/>
-                        <input type="hidden" name="authorId" th:value="${session.loginUser.id}"/>
-                        <input type="hidden" name="authorName" th:value="${session.loginUser.username}"/>
-                        <input type="hidden" name="authorAvatar" th:value="${session.loginUser.avatarURL}"/>
-                        <input type="submit" class="btn btn-primary" value="回复" id="submit"/>
+                        <div class="form-group text-right">
+                            <input type="hidden" name="itemId" th:value="${article.topic.id}"/>
+                            <input type="hidden" name="authorId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.id}"/>
+                            <img id="vCodeImage" th:src="@{'/validateCode'}" onclick="javascript:reloadCommentVCode();" autocomplete="off"/>
+                            <input type="text" name="vcode" id="vCodeInput" readonly="true" class="form-control" style="display:inline-block;width:120px;margin-right:6px;"/>
+                            <input type="submit" class="btn btn-success pull-right" value="发表评论" id="commentSubmit"/>
+                        </div>
                     </fieldset>
                 </form>
-            </div>
-
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="myModalLabel">编辑评论</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form action="" method="post" class="form-vertical" id="edit-comment-form" role="form">
-                                <div class="form-group">
-                                    <div id="editormd-edit">
-                                        <textarea style="display: none;" id="comment-markdown"></textarea>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-info" id="edit-submit">提交</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </th:block>
-        <th:block th:if="${session.loginUser==null}">
-            <div class="content" style="padding: 2em;">
-                需要 <a th:href="@{'/login'}" class="btn btn-primary">登录</a> 后方可回复, 如果你还没有账号你可以 <a th:href="@{'/register'}" class="btn btn-danger">注册</a> 一个帐号。
-            </div>
-        </th:block>
+            </th:block>
+        </div>
+        <!--comment end-->
     </div>
 
     <div th:replace="inc/sidebar::sidebar"></div>
 </div>
 <div th:replace="inc/footer::footer"></div>
 <script th:src="@{'/assets/js/editormd/lib/prettify.min.js'}"></script>
+<script src="https://cdn.bootcss.com/handlebars.js/4.0.11/handlebars.min.js"></script>
+<script id="reply-tpl" type="text/x-handlebars-template">
+    <form action="{{replyAction}}" method="post" class="form-vertical" id="reply-to-form" role="form">
+        <div class="form-group">
+            <div id="reply-content">
+                <textarea style="display: none;" id="reply-to-markdown"></textarea>
+            </div>
+        </div>
+        <div class="row text-right">
+            <input type="hidden" name="commentId" id="commentId" value="{{commentId}}"/>
+            <input type="hidden" name="topicID" value="{{topicID}}"/>
+            <button type="button" class="btn btn-link pull-left" id="btnCancelReply">取消回复</button>
+            <button type="submit" class="btn btn-success" id="btnReplyTo">回复</button>
+        </div>
+    </form>
+</script>
 <script th:inline="javascript">
     /*<![CDATA[*/
     var editor, editor_edit;
 
     $(document).ready(function(){
 
-        $('.edit-reply').click(function(){
-            var replyId = $(this).attr('reply-id');
-            $.getJSON([[@{'/article/reply/'}]] + replyId + ".json", function (data) {
-                $('#edit-comment-form').attr('action',[[@{'/'}]]+ '/article/'+[[${article.topic.id}]]+'/reply/' + replyId + '/edit');
-                $('#myModal').on('shown.bs.modal', function (e) {
-                    if (editor_edit) {
-                        editor_edit.setMarkdown(data.contentMD);
-                    } else {
-                        editor_edit = createEditorMd("editormd-edit", "#edit-submit", data.contentMD);
-                    }
+        if([[${session.loginUser!=null}]]){
+            $('.btn-reply-to').bind("click",function(){
+                //清空所有回复表单
+                $('.reply-box').html("");
+                var replyToID=$(this).attr('reply-to-id');
+                var replyToUsername=$(this).attr('reply-to-username');
+                var data={
+                    replyAction:[[@{/article/comment/replyTo}]],
+                    commentId:replyToID,
+                    topicID:[[${article.topic.id}]]
+            }
+
+                var template = Handlebars.compile($('#reply-tpl').html());
+                var replyFormHtml=template(data);
+                $('#replyBox'+replyToID).html(replyFormHtml);
+                createEditorMd("reply-content",null, "#btnReplyTo",null,"回复@"+replyToUsername);
+
+                $('#btnCancelReply').bind("click",function(){
+                    $('.reply-box').html("");
                 });
-                $('#myModal').modal({});
             });
-        });
+        }
 
-        $('#submit').attr('disabled', true);
 
-        editor = createEditorMd("editormd", "#submit");
+        $('#commentSubmit').attr('disabled', true);
+
+        editor = createEditorMd("add-comment","#vCodeInput", "#commentSubmit",[[${commentMD}]],null);
 
         $('.editormd-preview-container pre').addClass("prettyprint linenums");
         prettyPrint();
+
+
+        $('#actionBox').stickUp({topMargin:'60px'});
 
 
     });
@@ -196,7 +201,7 @@
      * @param markdown
      * @returns {*}
      */
-    function createEditorMd(divId, submitId, markdown) {
+    function createEditorMd(divId,vCodeInputId, submitId, markdown,placeholder) {
         var editor = editormd(divId, {
             height           : 300,
             markdown         : markdown,
@@ -210,38 +215,45 @@
             flowChart        : true,
             sequenceDiagram  : true,
             autoFocus: false,
-            path: [[@{'/'}]]+"/assets/js/editormd/lib/",
-            placeholder: "Markdown，提交前请查看预览格式是否正确",
+            path: [[@{/assets/js/editormd/lib/}]],
+        placeholder:placeholder==null?"不要吝啬您的评论，您的一言将帮助千万网友":placeholder,
             saveHTMLToTextarea: true,
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
-            imageUploadURL: [[@{/upload/image}]],
-            toolbarIcons: function() {
-                return ["undo", "redo", "|", "bold", "italic", "quote", "|",
-                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
-                    "list-ul", "list-ol", "hr", "|",
-                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "|",
-                    "goto-line", "watch", "preview", "fullscreen", "|",
-                    "help", "info"]
-            },
-            onfullscreen : function() {
-                this.editor.css("border-radius", 0).css("z-index", 120);
-            },
-            onfullscreenExit : function() {
-                this.editor.css({
-                    zIndex : 10,
-                    border : "none",
-                    "border-radius" : "5px"
-                });
+            imageUploadURL:[[@{/upload/image}]],
+        toolbarIcons: function() {
+            return ["undo", "redo", "|", "bold", "italic", "quote", "|",
+                "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                "list-ul", "list-ol", "hr", "|",
+                "link", "reference-link", "code-block", "|",
+                "goto-line", "watch", "preview", "fullscreen"]
+        },
+        onfullscreen : function() {
+            this.editor.css("border-radius", 0).css("z-index", 120);
+        },
+        onfullscreenExit : function() {
+            this.editor.css({
+                zIndex : 10,
+                border : "none",
+                "border-radius" : "5px"
+            });
 
-                this.resize();
-            },
-            onchange: function() {
-                $(submitId).attr('disabled', this.getMarkdown().trim() == "");
+            this.resize();
+        },
+        onchange: function() {
+            $(submitId).attr('disabled', this.getMarkdown().trim() == "");
+            if(null!=vCodeInputId){
+                $(vCodeInputId).attr('readonly', this.getMarkdown().trim() == "");
             }
-        });
+        }
+    });
 
         return editor;
+    }
+
+
+    function reloadCommentVCode() {
+        $("#vCodeImage").attr("src", [[@{'/validateCode'}]]+"?d=" + new Date().getMilliseconds());
     }
 
     /*]]>*/
