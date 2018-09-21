@@ -16,7 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@Document(collection = "global-comments")
+@Document(collection = "comments")
 public class Comment extends BaseModel<String> {
 
     /**
