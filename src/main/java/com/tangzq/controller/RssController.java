@@ -44,7 +44,7 @@ public class RssController {
             for (Topic t : allTopics) {
                 Item item = new Item();
                 item.setTitle(t.getTitle());
-                item.setLink(serverURL+"/article/"+t.getId());
+                item.setLink(serverURL+"/topic/"+t.getId());
 
                 Description description = new Description();
                 description.setType("text/plain");

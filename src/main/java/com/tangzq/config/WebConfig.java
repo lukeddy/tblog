@@ -15,7 +15,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new BaseInterceptor()).addPathPatterns("/**");
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/cat/**","/topic/**","/user/**","/like/**","/collect/**");
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/cat/**","/user/**","/like/**","/collect/**");
         super.addInterceptors(registry);
         log.info("拦截器注册完毕");
     }

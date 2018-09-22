@@ -42,7 +42,7 @@
                         <th:block th:each="topic : ${pager.content}">
                             <li class="post-item">
                                 <div class="entry">
-                                    <a class="entry-link" th:href="@{'/article/'+${topic.id}}">
+                                    <a class="entry-link" th:href="@{'/topic/'+${topic.id}}">
                                         <div class="content-box">
                                             <div class="info-box">
                                                 <div class="meta-row">
@@ -76,7 +76,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="title-row">
-                                                    <a class="title" th:href="@{'/article/'+${topic.id}}"
+                                                    <a class="title" th:href="@{'/topic/'+${topic.id}}"
                                                        target="_blank" th:text="${topic.title}"></a>
                                                 </div>
                                                 <div class="desc-row" th:text="${topic.desc}"></div>
@@ -88,7 +88,7 @@
                                                                   th:text="${topic.likedUsers==null}?0:${topic.likedUsers.size()}"></span>
                                                         </a>
                                                         <a class="action comment"
-                                                           th:href="@{'/article/'+${topic.id}+'#comment'}">
+                                                           th:href="@{'/topic/'+${topic.id}+'#comment'}">
                                                             <span class="icon"></span>
                                                             <span class="title"
                                                                   th:text="${topic.replyCount}+'评论'"></span>

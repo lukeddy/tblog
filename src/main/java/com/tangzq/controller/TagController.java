@@ -22,7 +22,7 @@ public class TagController {
         model.addAttribute("pager",
                 topicService.findByTagAndPage(tagName,pageVo.getPageNO(),pageVo.getPageSize()));
         model.addAttribute("tagName",tagName);
-        return "article/tag_list";
+        return "topic/tag_list";
 
     }
 

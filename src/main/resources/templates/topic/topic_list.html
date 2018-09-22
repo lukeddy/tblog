@@ -31,7 +31,7 @@
                                         <td th:text="${topic.createAtFormatted}"></td>
                                         <td th:text="${topic.updateAtFormatted}"></td>
                                         <td>
-                                            <a th:href="@{'/article/'+${topic.id}}" target="_blank">查看</a>
+                                            <a th:href="@{'/topic/'+${topic.id}}" target="_blank">查看</a>
                                             <a th:href="@{'/topic/edit/'+${topic.id}}">修改</a>
                                             <a th:href="@{'/topic/del/'+${topic.id}}">删除</a>
                                         </td>

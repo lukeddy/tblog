@@ -52,11 +52,11 @@
                             <th:block th:each="topic:${pager.content}">
                                 <li class="post-item">
                                     <div class="entry">
-                                        <a class="entry-link" th:href="@{'/article/'+${topic.id}}">
+                                        <a class="entry-link" th:href="@{'/topic/'+${topic.id}}">
                                             <div class="content-box">
                                                 <div class="info-box">
                                                     <div class="title-row">
-                                                        <a class="title" th:href="@{'/article/'+${topic.id}}" th:text="${topic.title}" target="_self">帖子标题</a>
+                                                        <a class="title" th:href="@{'/topic/'+${topic.id}}" th:text="${topic.title}" target="_self">帖子标题</a>
                                                     </div>
                                                     <div class="desc-row" th:text="${topic.desc}">帖子摘要</div>
                                                 </div>

@@ -42,11 +42,11 @@ public class LikeController {
         User user =  (User) request.getSession().getAttribute(Constants.LOGIN_USER_SESSION_KEY);
         if(user == null){
             logger.info("用户没登陆：将跳转到login页面！");
-            return "redirect:/article/"+topicId;
+            return "redirect:/login";
         }
         topicService.like(topicId,user.getId());
         redirectAttributes.addFlashAttribute("messageSuc","Like成功！");
-        return "redirect:/article/"+topicId+"#collectLink";
+        return "redirect:/topic/"+topicId+"#collectLink";
     }
 
     /**
@@ -63,11 +63,11 @@ public class LikeController {
         User user =  (User) request.getSession().getAttribute(Constants.LOGIN_USER_SESSION_KEY);
         if(user == null){
             logger.info("用户没有登陆：将跳转到login页面！");
-            return "redirect:/article/"+topicId;
+            return "redirect:/login";
         }
         topicService.unLike(topicId,user.getId());
         redirectAttributes.addFlashAttribute("messageSuc","UNLIKE成功！");
-        return "redirect:/article/"+topicId+"#collectLink";
+        return "redirect:/topic/"+topicId+"#collectLink";
     }
 
 }

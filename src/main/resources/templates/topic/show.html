@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header(${article.topic.title},null)"></div>
+<div th:replace="inc/header::header(${topic.title},null)"></div>
 <body>
 <div class='container main'>
     <div class='col-md-9' id="content">
         <ul class='breadcrumb'>
             <li><a th:href="@{'/'}"><i class="glyphicon glyphicon-home"></i>主页</a><span class='divider'></span></li>
-            <li><a th:href="@{'/?tab='+${article.topic.category.catDir}}" th:text="${article.topic.category.catName}"></a><span class='divider'></span></li>
+            <li><a th:href="@{'/?tab='+${topic.category.catDir}}" th:text="${topic.category.catName}"></a><span class='divider'></span></li>
         </ul>
         <div class='panel'>
             <div class='header topic-header'>
-                <h1 class="topic-full-title" th:text="${article.topic.title}"></h1>
+                <h1 class="topic-full-title" th:text="${topic.title}"></h1>
                 <div class="changes">
-                    <span th:text="${article.topic.friendlyTime}"></span><span>&nbsp;&nbsp;作者：<a th:href="@{'/pub/user/'+${article.topic.author.id}}" th:text="${article.topic.author.username}"></a></span><span th:text="'&nbsp;&nbsp;'+${article.topic.visitCount}+'次浏览'"></span>
+                    <span th:text="${topic.friendlyTime}"></span><span>&nbsp;&nbsp;作者：<a th:href="@{'/pub/user/'+${topic.author.id}}" th:text="${topic.author.username}"></a></span><span th:text="'&nbsp;&nbsp;'+${topic.visitCount}+'次浏览'"></span>
                     <span class="share pull-right">
                         <div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1522069935713"><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a><a href="#" class="bds_print" data-cmd="print" title="分享到打印"></a><a href="#" class="bds_more" data-cmd="more"></a></div>
                         <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};(document.getElementsByTagName('head')[0]||body).appendChild(document.createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5);</script>
@@ -21,26 +21,26 @@
             </div>
             <div class='inner topic'>
                 <div class="topic_content">
-                    <div class="editormd-preview-container" th:utext="${article.topic.contentHTML}">内容区域</div>
+                    <div class="editormd-preview-container" th:utext="${topic.contentHTML}">内容区域</div>
                 </div>
                 <div class="topic-tags">
                     <span>标签：</span>
-                    <th:block th:if="${article.topic.tags!=null}">
-                        <th:block th:each="tag:${article.topic.tags}">
+                    <th:block th:if="${topic.tags!=null}">
+                        <th:block th:each="tag:${topic.tags}">
                             <a th:href="@{'/tag/'+${tag}}" th:text="${tag}" class="tag"></a>
                         </th:block>
                     </th:block>
                 </div>
                 <div class="topic-action-wrapper">
                     <div class="topic-actions">
-                        <th:block th:if="${article.topic.likedUsers!=null} and ${session.loginUser!=null} and ${#lists.contains(article.topic.likedUsers,session.loginUser.id)}">
-                            <a th:href="@{'/like/remove/'+${article.topic.id}}" class="action-link">
+                        <th:block th:if="${topic.likedUsers!=null} and ${session.loginUser!=null} and ${#lists.contains(topic.likedUsers,session.loginUser.id)}">
+                            <a th:href="@{'/like/remove/'+${topic.id}}" class="action-link">
                                 <img th:src="@{'/assets/images/ico/liked-lg.svg'}" alt=""/>
                                 <span>取消喜欢</span>
                             </a>
                         </th:block>
-                        <th:block th:if="${article.topic.likedUsers==null} or ${session.loginUser==null} or ${!#lists.contains(article.topic.likedUsers,session.loginUser.id)}">
-                            <a th:href="@{'/like/add/'+${article.topic.id}}" class="action-link">
+                        <th:block th:if="${topic.likedUsers==null} or ${session.loginUser==null} or ${!#lists.contains(topic.likedUsers,session.loginUser.id)}">
+                            <a th:href="@{'/like/add/'+${topic.id}}" class="action-link">
                                 <img th:src="@{'/assets/images/ico/like-lg.svg'}" alt=""/>
                                 <span>喜欢</span>
                             </a>
@@ -49,13 +49,13 @@
                             <img th:src="@{'/assets/images/ico/comment-lg.svg'}" alt=""/>
                             <span>评论</span>
                         </a>
-                        <th:block th:if="${article.topic.collectedUsers!=null} and ${session.loginUser!=null} and ${#lists.contains(article.topic.collectedUsers,session.loginUser.id)}">
-                            <a id="collectLink" th:href="@{'/collect/remove/'+${article.topic.id}}" class="action-link" title="取消收藏">
+                        <th:block th:if="${topic.collectedUsers!=null} and ${session.loginUser!=null} and ${#lists.contains(topic.collectedUsers,session.loginUser.id)}">
+                            <a id="collectLink" th:href="@{'/collect/remove/'+${topic.id}}" class="action-link" title="取消收藏">
                                 <img th:src="@{'/assets/images/ico/collected.svg'}" alt=""/>
                             </a>
                         </th:block>
-                        <th:block th:if="${article.topic.collectedUsers==null} or ${session.loginUser==null} or ${!#lists.contains(article.topic.collectedUsers,session.loginUser.id)}">
-                            <a id="collectLink" th:href="@{'/collect/add/'+${article.topic.id}}" class="action-link" title="收藏">
+                        <th:block th:if="${topic.collectedUsers==null} or ${session.loginUser==null} or ${!#lists.contains(topic.collectedUsers,session.loginUser.id)}">
+                            <a id="collectLink" th:href="@{'/collect/add/'+${topic.id}}" class="action-link" title="收藏">
                                 <img th:src="@{'/assets/images/ico/collect-lg.svg'}" alt=""/>
                             </a>
                         </th:block>
@@ -86,16 +86,16 @@
                         <th:block th:utext="${comment.commentHTML}">评论内容</th:block>
                     </div>
                     <div class="operations">
-                        <a class="like" th:href="@{'/article/'+${article.topic.id}+'/comment/thumbsup/'+${comment.id}}">
+                        <a class="like" th:href="@{'/topic/'+${topic.id}+'/comment/thumbsup/'+${comment.id}}">
                             <i class="fa fa-thumbs-up"></i> <span th:text="${comment.thumbsUPCount}">0</span> 赞
                         </a>
                         <a class="reply btn-reply-to" th:if="${session.loginUser!=null}" th:attr="reply-to-id=${comment.id},reply-to-username=${comment.author.username}">
                             <i class="fa fa-comments"></i> 回复
                         </a>
-                        <a class="remove" th:if="${session.loginUser!=null and session.loginUser.id==comment.author.id}" th:href="@{'/article/'+${article.topic.id}+'/comment/del/'+${comment.id}}">
+                        <a class="remove" th:if="${session.loginUser!=null and session.loginUser.id==comment.author.id}" th:href="@{'/topic/'+${topic.id}+'/comment/del/'+${comment.id}}">
                             <i class="fa fa-trash"></i> 删除
                         </a>
-                        <a class="ban" th:href="@{'/article/'+${article.topic.id}+'/comment/ban/'+${comment.id}}">
+                        <a class="ban" th:href="@{'/topic/'+${topic.id}+'/comment/ban/'+${comment.id}}">
                             <i class="fa fa-ban"></i> 举报
                         </a>
                     </div>
@@ -109,7 +109,7 @@
             </div>
             <th:block th:if="${session.loginUser!=null}">
                 <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
-                <form th:action="@{/article/comment/add/}" method="post" class="form-vertical" id="reply-form" role="form">
+                <form th:action="@{/topic/comment/add/}" method="post" class="form-vertical" id="reply-form" role="form">
                     <fieldset>
                         <div class="form-group">
                             <label>评论</label>
@@ -118,11 +118,11 @@
                             </div>
                         </div>
                         <div class="form-group text-right">
-                            <input type="hidden" name="itemId" th:value="${article.topic.id}"/>
+                            <input type="hidden" name="itemId" th:value="${topic.id}"/>
                             <input type="hidden" name="authorId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.id}"/>
                             <img id="vCodeImage" th:src="@{'/validateCode'}" onclick="javascript:reloadCommentVCode();" autocomplete="off"/>
-                            <input type="text" name="vcode" id="vCodeInput" readonly="true" class="form-control" style="display:inline-block;width:120px;margin-right:6px;"/>
-                            <input type="submit" class="btn btn-success pull-right" value="发表评论" id="commentSubmit"/>
+                            <input type="text" name="vcode" id="vCodeInput" th:readonly="${#strings.isEmpty(commentMD)}" class="form-control" style="display:inline-block;width:120px;margin-right:6px;"/>
+                            <input type="submit" class="btn btn-success pull-right" th:disabled="${#strings.isEmpty(commentMD)}" value="发表评论" id="commentSubmit"/>
                         </div>
                     </fieldset>
                 </form>
@@ -164,9 +164,9 @@
                 var replyToID=$(this).attr('reply-to-id');
                 var replyToUsername=$(this).attr('reply-to-username');
                 var data={
-                    replyAction:[[@{/article/comment/replyTo}]],
+                    replyAction:[[@{/topic/comment/replyTo}]],
                     commentId:replyToID,
-                    topicID:[[${article.topic.id}]]
+                    topicID:[[${topic.id}]]
             }
 
                 var template = Handlebars.compile($('#reply-tpl').html());

@@ -19,7 +19,7 @@ public class SitemapServiceImpl implements SitemapService {
     @Value("${site.base.url}")
     private String baseURL;
 
-    private static final String TOPIC_VISIT_ACTION="/article/";
+    private static final String TOPIC_VISIT_ACTION="/topic/";
 
     @Autowired
     private CategoryService categoryService;
