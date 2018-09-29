@@ -93,7 +93,7 @@ public class CategoryController {
      */
     @RequestMapping(value="/edit/{catID}",method = RequestMethod.GET)
     public String editCategory(@PathVariable("catID") String catID, ModelMap model){
-        model.addAttribute("cat",categoryService.findById(catID));
+        model.addAttribute("cat",categoryService.getCategory(catID));
         return "category/cat_edit";
     }
 

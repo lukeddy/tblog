@@ -23,7 +23,14 @@ public interface CategoryService {
      * @param id
      * @return
      */
-    Category findById(String id);
+    Category getCategory(String id);
+
+    /**
+     * 目录名查找目录
+     * @param catDir
+     * @return
+     */
+    Category getCategoryByCatDir(String catDir);
 
     /**
      * 分页查找

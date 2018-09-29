@@ -5,6 +5,7 @@ import com.tangzq.model.Topic;
 import com.tangzq.model.User;
 import com.tangzq.repository.CategoryRepository;
 import com.tangzq.repository.TopicRepository;
+import com.tangzq.service.CategoryService;
 import com.tangzq.service.TopicService;
 import com.tangzq.service.UserService;
 import com.tangzq.vo.IndexVo;
@@ -31,7 +32,7 @@ public class TopicServiceImpl implements TopicService {
     private TopicRepository topicRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
 
     @Autowired
     private UserService userService;
@@ -75,7 +76,9 @@ public class TopicServiceImpl implements TopicService {
         }else{
             Sort sort = new Sort(Sort.Direction.DESC, "create_at");
             Pageable pageable = PageRequest.of(vo.getPageNO()-1, vo.getPageSize(), sort);
-            return topicRepository.findByCategoryCatDir(vo.getTab(),pageable);
+
+            Category category=categoryService.getCategoryByCatDir(vo.getTab());
+            return topicRepository.findByCategory(category,pageable);
         }
     }
 
@@ -103,7 +106,7 @@ public class TopicServiceImpl implements TopicService {
         }
         Topic topic=new Topic();
         topic.setAuthor(userService.getUser(vo.getAuthorId()));
-        Category cat=categoryRepository.findById(vo.getCatId()).get();
+        Category cat=categoryService.getCategory(vo.getCatId());
         if(null!=cat){
             topic.setCategory(cat);
         }
@@ -163,7 +166,7 @@ public class TopicServiceImpl implements TopicService {
         if(null==topicInDB){
             return null;
         }
-        Category cat=categoryRepository.findById(vo.getCatId()).get();
+        Category cat=categoryService.getCategory(vo.getCatId());
         if(null!=cat){
             topicInDB.setCategory(cat);
         }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -39,8 +40,18 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public Category findById(String id) {
-        return categoryRepository.findById(id).get();
+    public Category getCategory(String id) {
+        Optional<Category> optional=categoryRepository.findById(id);
+        return optional.isPresent()? optional.get():null;
+    }
+
+    @Override
+    public Category getCategoryByCatDir(String catDir) {
+        List<Category> categoryList=categoryRepository.findByCatDir(catDir);
+        if(categoryList!=null&&categoryList.size()>0){
+            return categoryList.get(0);
+        }
+        return null;
     }
 
     /**
@@ -63,7 +74,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public Category updateById(Category cat, String id) {
-        Category catInDB=findById(id);
+        Category catInDB=getCategory(id);
         if(null==catInDB){
             return null;
         }

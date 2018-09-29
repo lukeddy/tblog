@@ -1,5 +1,6 @@
 package com.tangzq.repository;
 
+import com.tangzq.model.Category;
 import com.tangzq.model.Topic;
 import com.tangzq.model.User;
 import org.springframework.data.domain.Page;
@@ -43,11 +44,11 @@ public interface TopicRepository extends PagingAndSortingRepository<Topic,String
 
     /**
      * 按栏目分类查找
-     * @param catDir
+     * @param category
      * @param pageable
      * @return
      */
-    Page<Topic> findByCategoryCatDir(String catDir, Pageable pageable);
+    Page<Topic> findByCategory(Category category, Pageable pageable);
 
     /**
      * 标题模糊查询
