@@ -32,7 +32,7 @@
                             <div class="input-group">
                                 <div class="input-group-addon">验证码:</div>
                                 <input type="text" name="validateCode" th:value="${loginForm.validateCode}" class="form-control" style="display:inline-block;width:120px;margin-right:13px;" id="validateCode" />
-                                <img id="validateCodeImg" th:src="@{'/validateCode'}"/>&nbsp;&nbsp;<a href="#" onclick="javascript:reloadValidateCode();">看不清？</a>
+                                <img id="validateCodeImg" th:src="@{'/captcha/validateCode'}"/>&nbsp;&nbsp;<a href="#" onclick="javascript:reloadValidateCode();">看不清？</a>
                             </div>
                             <span th:errors="${loginForm.validateCode}" th:class="error"></span>
                         </div>
@@ -58,7 +58,7 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
         function reloadValidateCode() {
-            $("#validateCodeImg").attr("src", "validateCode?data=" + new Date() + Math.floor(Math.random() * 24));
+            $("#validateCodeImg").attr("src",[[@{'/captcha/validateCode'}]]+ "?data=" + new Date() + Math.floor(Math.random() * 24));
         }
     /*]]>*/
 </script>

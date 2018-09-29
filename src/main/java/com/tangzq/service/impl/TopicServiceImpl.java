@@ -74,7 +74,7 @@ public class TopicServiceImpl implements TopicService {
             return topicRepository.findAll(pageable);
         }else{
             Sort sort = new Sort(Sort.Direction.DESC, "create_at");
-            Pageable pageable = new PageRequest(vo.getPageNO()-1, vo.getPageSize(), sort);
+            Pageable pageable = PageRequest.of(vo.getPageNO()-1, vo.getPageSize(), sort);
             return topicRepository.findByCategoryCatDir(vo.getTab(),pageable);
         }
     }

@@ -120,7 +120,7 @@
                         <div class="form-group text-right">
                             <input type="hidden" name="itemId" th:value="${topic.id}"/>
                             <input type="hidden" name="authorId" th:if="${session.loginUser!=null}" th:value="${session.loginUser.id}"/>
-                            <img id="vCodeImage" th:src="@{'/validateCode'}" onclick="javascript:reloadCommentVCode();" autocomplete="off"/>
+                            <img id="vCodeImage" th:src="@{'/captcha/validateCode'}" onclick="javascript:reloadCommentVCode();" autocomplete="off"/>
                             <input type="text" name="vcode" id="vCodeInput" th:readonly="${#strings.isEmpty(commentMD)}" class="form-control" style="display:inline-block;width:120px;margin-right:6px;"/>
                             <input type="submit" class="btn btn-success pull-right" th:disabled="${#strings.isEmpty(commentMD)}" value="发表评论" id="commentSubmit"/>
                         </div>
@@ -253,7 +253,7 @@
 
 
     function reloadCommentVCode() {
-        $("#vCodeImage").attr("src", [[@{'/validateCode'}]]+"?d=" + new Date().getMilliseconds());
+        $("#vCodeImage").attr("src", [[@{'/captcha/validateCode'}]]+"?d=" + new Date().getMilliseconds());
     }
 
     /*]]>*/
