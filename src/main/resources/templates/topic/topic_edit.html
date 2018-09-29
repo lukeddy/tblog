@@ -139,9 +139,9 @@
 
     $(function() {
 
-        <th:block th:if="${topicVo.thumbURL!=null}">
+        if([[${topicVo.thumbURL!=null}]]){
             changeThumbImg([[${topicVo.thumbURL}]]);
-        </th:block>
+        }
 
         var myDropzone = new Dropzone("#uploadForm",{
             url:[[@{'/upload/thumbnail'}]],
