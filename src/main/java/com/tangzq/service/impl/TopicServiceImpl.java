@@ -297,5 +297,12 @@ public class TopicServiceImpl implements TopicService {
         return (List<Topic>)topicRepository.findAll(sort);
     }
 
+    @Override
+    public Page<Topic> getTopVisitedTopics(int pageNo, int pageSize) {
+        Sort sort = new Sort(Sort.Direction.DESC, "visitCount");
+        Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
+        return topicRepository.findAll(pageable);
+    }
+
 
 }

@@ -131,7 +131,8 @@
         <!--comment end-->
     </div>
 
-    <div th:replace="inc/sidebar::sidebar"></div>
+    <!--<div th:replace="inc/sidebar::sidebar"></div>-->
+    <div th:include="inc/sidebar::sidebar" th:with="topPager=${topPager}"></div>
 </div>
 <div th:replace="inc/footer::footer"></div>
 <script th:src="@{'/assets/js/editormd/lib/prettify.min.js'}"></script>

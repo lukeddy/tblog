@@ -170,4 +170,12 @@ public interface TopicService {
      * @return
      */
     List<Topic> findAll();
+
+    /**
+     * 取得查看次数最多文章
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    Page<Topic> getTopVisitedTopics(int pageNo, int pageSize);
 }

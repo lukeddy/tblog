@@ -168,6 +168,7 @@ public class TopicController {
     public String showTopic(@PathVariable("topicID")String topicID, ModelMap model){
         topicService.increaseVisitCount(topicID);
         model.addAttribute("topic",topicService.findTopicById(topicID));
+        model.addAttribute("topPager",topicService.getTopVisitedTopics(1,10));
         model.addAttribute("commentList", commentService.getAllItemComments(topicID));
         return "topic/show";
     }
