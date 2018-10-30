@@ -142,7 +142,6 @@ public class TopicServiceImpl implements TopicService {
         }
         TopicVo vo=new TopicVo();
         vo.setTopicId(topic.getId());
-        vo.setAuthorName(topic.getAuthor().getUsername());
         vo.setAuthorId(topic.getAuthor().getId());
         vo.setCatId(topic.getCategory().getId());
         vo.setTitle(topic.getTitle());

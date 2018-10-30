@@ -22,7 +22,6 @@ public class TopicVo{
     private String contentMD;
     private String contentHTML;
     private String authorId;
-    private String authorName;
     private boolean top;
     private boolean good;
     private boolean contentIsHTML;

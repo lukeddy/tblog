@@ -57,7 +57,7 @@ public abstract class BaseModel<ID extends Serializable> implements Persistable<
     }
 
     public String getFriendlyTime() {
-        return DateUtils.getFriendlyTime(getCreateAt());
+        return getCreateAt()==null?null:DateUtils.getFriendlyTime(getCreateAt());
     }
 
 }
