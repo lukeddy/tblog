@@ -25,7 +25,8 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.tangzq.controller.api"))
-                .paths(PathSelectors.any())
+                .paths(PathSelectors.ant("/api/**"))
+                //.paths(PathSelectors.any())
                 .build();
     }
 
@@ -33,10 +34,10 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("TBlog API文档")
                 .description("TBlog，一款开源的个人博客，基于SpringBoot,MongoDB")
-//                .termsOfServiceUrl("http://www.example.com")
-//                .contact(new Contact("tblog","http://www.example.com","example@gmail.com"))
-//                .license("Apache2.0 开源协议")
-//                .licenseUrl("http://www.github.com/tzq668766")
+                //.termsOfServiceUrl("http://www.example.com")
+                //.contact(new Contact("tblog","http://www.example.com","example@gmail.com"))
+                //.license("Apache2.0 开源协议")
+                //.licenseUrl("http://www.github.com/tzq668766")
                 .version("1.0")
                 .build();
     }
