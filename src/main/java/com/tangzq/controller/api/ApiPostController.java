@@ -32,7 +32,7 @@ public class ApiPostController {
     @RequestMapping(value="", method=RequestMethod.POST)
     public Result addTopic(@RequestBody TopicVo topicVo) {
         //TODO vo验证
-        topicService.addTopic(vo);
+        topicService.addTopic(topicVo);
         return Result.ok("添加成功");
     }
 
@@ -50,7 +50,7 @@ public class ApiPostController {
     })
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     public Result updateTopic(@PathVariable String id, @RequestBody TopicVo topicVo) {
-        topicService.updateById(vo,id);
+        topicService.updateById(topicVo,id);
         return Result.ok("更新帖子成功");
     }
 
