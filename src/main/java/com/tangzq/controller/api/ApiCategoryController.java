@@ -15,14 +15,14 @@ import java.util.List;
  * @author tangzhiqiang
  */
 @RestController
-@RequestMapping("/api")
-public class ApiController {
+@RequestMapping("/api/category")
+public class ApiCategoryController {
 
     @Autowired
     private CategoryService categoryService;
 
     @ApiOperation(value="获取分类列表", notes="将取得所有的博客分类数据")
-    @RequestMapping("/catlist")
+    @RequestMapping("/list")
     public Result catList(){
         List<Category> catList=categoryService.findAll();
         if(null!=catList){

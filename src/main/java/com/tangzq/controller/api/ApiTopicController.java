@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="/api/post")
-public class ApiPostController {
+public class ApiTopicController {
 
     @Autowired
     private TopicService topicService;
