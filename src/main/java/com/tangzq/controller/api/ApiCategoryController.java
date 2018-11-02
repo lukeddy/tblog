@@ -6,6 +6,7 @@ import com.tangzq.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/category")
-@Api(value = "分类API", description = "博客分类接口",tags = "Category")
+@Api(value = "分类API", description = "博客分类接口",tags = "Category",
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
 public class ApiCategoryController {
 
     @Autowired

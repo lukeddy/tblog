@@ -7,16 +7,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @Slf4j
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig implements WebMvcConfigurer {
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new BaseInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/cat/**","/user/**","/like/**","/collect/**");
-        super.addInterceptors(registry);
         log.info("拦截器注册完毕");
     }
 
@@ -27,6 +27,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/upload/**").addResourceLocations("file:"+ SysUtils.getAbsolutePathOfUploadFolder());
-        super.addResourceHandlers(registry);
     }
 }
