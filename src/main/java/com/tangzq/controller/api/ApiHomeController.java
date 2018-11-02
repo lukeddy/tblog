@@ -4,6 +4,7 @@ import com.tangzq.response.Result;
 import com.tangzq.service.CategoryService;
 import com.tangzq.service.TopicService;
 import com.tangzq.vo.IndexVo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 首页API
@@ -20,6 +20,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/home")
+@Api(value = "网站首页API", description = "博客首页接口",tags = "Home")
 public class ApiHomeController {
 
     @Autowired

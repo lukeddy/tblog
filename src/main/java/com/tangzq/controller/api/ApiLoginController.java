@@ -7,6 +7,7 @@ import com.tangzq.utils.Constants;
 import com.tangzq.utils.ValidateCode;
 import com.tangzq.vo.LoginUserVo;
 import com.tangzq.vo.RegisterUserVo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -37,6 +38,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api")
+@Api(value = "注册登录API", description = "博客登录、注册接口",tags = "Home")
 public class ApiLoginController {
 
     @Autowired

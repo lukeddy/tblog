@@ -5,6 +5,7 @@ import com.tangzq.model.Topic;
 import com.tangzq.response.Result;
 import com.tangzq.service.TopicService;
 import com.tangzq.vo.TopicVo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="/api/post")
+@Api(value = "帖子API", description = "博客帖子接口",tags = "Topic")
 public class ApiTopicController {
 
     @Autowired
