@@ -6,6 +6,8 @@
         <div class="links">
             <a class='dark' th:href="@{/rss}">RSS</a>
             |
+            <a th:href="@{'/swagger-ui.html'}" target="_blank">API</a>
+            |
             <a class='dark' th:href="@{'https://github.com/tzq668766/tblog/tree/'+${gitBranch}+'/'}">源码地址</a>
             | 本次构建于：
             <a th:href="@{'https://github.com/tzq668766/tblog/commit/'+${gitCommitId}}" target="_blank" th:text="${gitTagName}+'-'+${gitBuildTime}" th:title="${gitCommitMessage}">Git版本-构建时间</a>
