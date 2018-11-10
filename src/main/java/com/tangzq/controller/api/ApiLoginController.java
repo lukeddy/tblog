@@ -38,7 +38,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api")
-@Api(value = "注册登录API", description = "博客登录、注册接口",tags = "Home")
+@Api(value = "注册登录API", description = "博客登录、注册接口",tags = "Login")
 public class ApiLoginController {
 
     @Autowired
