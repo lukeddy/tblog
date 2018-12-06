@@ -66,4 +66,11 @@ public class ApiLoginController {
         }
     }
 
+    @ApiOperation(value="退出", notes="登出系统")
+    @RequestMapping(value="/logout",method = RequestMethod.POST)
+    public ResponseEntity<String> logout(){
+        //TODO 使得Token失效
+        return new ResponseEntity<>("退出成功", HttpStatus.OK);
+    }
+
 }
