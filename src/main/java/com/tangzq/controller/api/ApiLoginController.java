@@ -4,8 +4,6 @@ import com.tangzq.model.User;
 import com.tangzq.response.Result;
 import com.tangzq.service.TokenService;
 import com.tangzq.service.UserService;
-import com.tangzq.utils.Constants;
-import com.tangzq.utils.ValidateCode;
 import com.tangzq.vo.LoginUserVo;
 import com.tangzq.vo.RegisterUserVo;
 import io.swagger.annotations.Api;
@@ -19,19 +17,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.annotations.ApiIgnore;
 
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -50,39 +40,18 @@ public class ApiLoginController {
     @Autowired
     private TokenService tokenService;
 
-    @ApiOperation(value="验证码", notes="生成验证码")
-    @RequestMapping(value = "/validateCode",method = RequestMethod.GET)
-    public void validateCode(@ApiIgnore HttpServletResponse response, @ApiIgnore HttpSession session) throws IOException {
-        response.setHeader("Cache-Control", "no-cache");
-        String verifyCode = ValidateCode.generateTextCode(ValidateCode.TYPE_ALL_MIXED, 4, null);
-        log.info(verifyCode);
-        session.setAttribute(Constants.VCODE_SESSION_KEY, verifyCode);
-        response.setContentType("image/jpeg");
-        BufferedImage bim = ValidateCode.generateImageCode(verifyCode, 90, 30, 3, true, Color.WHITE, Color.BLACK, null);
-        ImageIO.write(bim, "JPEG", response.getOutputStream());
-    }
 
     @ApiOperation(value="登录", notes="账号登陆")
     @RequestMapping(value="/login",method = RequestMethod.POST)
-    public Result login(@Valid @ModelAttribute("loginForm")LoginUserVo user, BindingResult result,
-                        @ApiIgnore HttpSession session){
+    public Result login(@Valid @ModelAttribute("loginForm")LoginUserVo user, BindingResult result){
 
         if(result.hasErrors()){
             Result.fail(getErrorMessages(result));
         }
 
-        String vcodeInSession = (String) session.getAttribute(Constants.VCODE_SESSION_KEY);
-        String submitCode = user.getValidateCode();
-
-        if (!StringUtils.equals(vcodeInSession,submitCode)) {
-            return Result.fail("验证码错误");
-        }
-
         if(!userService.isUserValid(user.getUsername(),user.getPassword())){
             return Result.fail("用户名或者密码错误");
         }
-
-        //session.setAttribute(Constants.LOGIN_USER_SESSION_KEY,userService.findUser(user.getUsername(),user.getPassword()));
 
         HashMap data=new HashMap(1);
         data.put("token",tokenService.createToken(userService.findUser(user.getUsername(),user.getPassword()).getId()));
@@ -95,18 +64,12 @@ public class ApiLoginController {
     @ApiOperation(value="注册", notes="用户注册")
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public Result doRegister(@Valid @ModelAttribute("registerForm") RegisterUserVo registerUser,
-                             BindingResult result,
-                             @ApiIgnore HttpSession session){
+                             BindingResult result){
 
         if(result.hasErrors()){
             return Result.fail(getErrorMessages(result));
         }
 
-        String vcodeInSession = (String) session.getAttribute(Constants.VCODE_SESSION_KEY);
-        String submitCode = registerUser.getValidateCode();
-        if (!StringUtils.equals(vcodeInSession,submitCode)) {
-            return Result.fail("验证码错误！");
-        }
         if(null!=userService.findByUsername(registerUser.getUsername())){
             return Result.fail("该用户名已经存在！");
         }
@@ -131,12 +94,5 @@ public class ApiLoginController {
             }
         }
         return errorStrs;
-    }
-
-    @ApiOperation(value="退出", notes="登出系统")
-    @RequestMapping(value="/logout",method = RequestMethod.GET)
-    public Result logout(@ApiIgnore HttpSession session){
-        session.invalidate();
-        return Result.ok("退出成功！");
     }
 }
