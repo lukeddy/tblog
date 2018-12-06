@@ -4,6 +4,7 @@ import com.tangzq.model.User;
 import com.tangzq.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * 登陆拦截器
  * @author tangzhiqiang
  */
+@Component
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     private final Logger log = LoggerFactory.getLogger(LoginInterceptor.class);
 

@@ -2,6 +2,7 @@ package com.tangzq.controller.api;
 
 import com.tangzq.model.User;
 import com.tangzq.response.Result;
+import com.tangzq.service.TokenService;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.Constants;
 import com.tangzq.utils.ValidateCode;
@@ -28,7 +29,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -43,6 +46,9 @@ public class ApiLoginController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private TokenService tokenService;
 
     @ApiOperation(value="验证码", notes="生成验证码")
     @RequestMapping(value = "/validateCode",method = RequestMethod.GET)
@@ -76,8 +82,11 @@ public class ApiLoginController {
             return Result.fail("用户名或者密码错误");
         }
 
-        session.setAttribute(Constants.LOGIN_USER_SESSION_KEY,userService.findUser(user.getUsername(),user.getPassword()));
-        return Result.ok("登录成功！");
+        //session.setAttribute(Constants.LOGIN_USER_SESSION_KEY,userService.findUser(user.getUsername(),user.getPassword()));
+
+        HashMap data=new HashMap(1);
+        data.put("token",tokenService.createToken(userService.findUser(user.getUsername(),user.getPassword()).getId()));
+        return Result.ok(data);
     }
 
 

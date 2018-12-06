@@ -1,6 +1,7 @@
 package com.tangzq.interceptor;
 
 import com.tangzq.common.ConfigTools;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 获取Git构建信息拦截器，方便跟踪
  */
+@Component
 public class BaseInterceptor extends HandlerInterceptorAdapter {
 
     @Override

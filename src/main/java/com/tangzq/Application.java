@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -17,9 +16,8 @@ import org.springframework.util.DigestUtils;
  * 应用启动入口类
  * @author tangzhiqiang
  */
-@SpringBootApplication(scanBasePackages = "com.tangzq")
-@EnableAutoConfiguration
 @Slf4j
+@SpringBootApplication
 public class Application extends SpringBootServletInitializer implements CommandLineRunner {
 
 
