@@ -1,7 +1,6 @@
 package com.tangzq.controller.api;
 
 import com.tangzq.model.User;
-import com.tangzq.response.Result;
 import com.tangzq.service.TokenService;
 import com.tangzq.service.UserService;
 import com.tangzq.vo.LoginUserVo;
@@ -9,19 +8,13 @@ import com.tangzq.vo.RegisterUserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 /**
@@ -43,56 +36,34 @@ public class ApiLoginController {
 
     @ApiOperation(value="登录", notes="账号登陆")
     @RequestMapping(value="/login",method = RequestMethod.POST)
-    public Result login(@Valid @ModelAttribute("loginForm")LoginUserVo user, BindingResult result){
-
-        if(result.hasErrors()){
-            Result.fail(getErrorMessages(result));
-        }
+    public ResponseEntity<String> login(@RequestBody LoginUserVo user){
 
         if(!userService.isUserValid(user.getUsername(),user.getPassword())){
-            return Result.fail("用户名或者密码错误");
+            return new ResponseEntity<>("用户名或者密码错误", HttpStatus.BAD_REQUEST);
         }
 
-        HashMap data=new HashMap(1);
-        data.put("token",tokenService.createToken(userService.findUser(user.getUsername(),user.getPassword()).getId()));
-        return Result.ok(data);
+        String token=tokenService.createToken(userService.findUser(user.getUsername(),user.getPassword()).getId());
+        return new ResponseEntity<>(token,HttpStatus.OK);
     }
-
-
 
 
     @ApiOperation(value="注册", notes="用户注册")
     @RequestMapping(value="/register",method = RequestMethod.POST)
-    public Result doRegister(@Valid @ModelAttribute("registerForm") RegisterUserVo registerUser,
-                             BindingResult result){
-
-        if(result.hasErrors()){
-            return Result.fail(getErrorMessages(result));
-        }
+    public ResponseEntity<String> doRegister(@RequestBody RegisterUserVo registerUser){
 
         if(null!=userService.findByUsername(registerUser.getUsername())){
-            return Result.fail("该用户名已经存在！");
+            return new ResponseEntity<>("该用户名已经存在", HttpStatus.BAD_REQUEST);
         }
         if(null!=userService.findUserByEmail(registerUser.getEmail())){
-            return Result.fail("该邮箱已经被注册！");
+            return new ResponseEntity<>("该邮箱已经被注册", HttpStatus.BAD_REQUEST);
         }
 
         User savedUser=userService.createUser(registerUser);
         if(null!=savedUser&&savedUser.getId()!=null){
-            return Result.ok("注册成功！");
+            return new ResponseEntity<>("注册成功", HttpStatus.OK);
         }else{
-            return Result.ok("注册失败！");
+            return new ResponseEntity<>("注册失败", HttpStatus.BAD_REQUEST);
         }
     }
 
-    private List<String> getErrorMessages(BindingResult result){
-        List<FieldError> errors = result.getFieldErrors();
-        List<String> errorStrs=new ArrayList<>();
-        for (FieldError error : errors ) {
-            if(StringUtils.isNotEmpty(error.getDefaultMessage())){
-                errorStrs.add(error.getDefaultMessage());
-            }
-        }
-        return errorStrs;
-    }
 }
