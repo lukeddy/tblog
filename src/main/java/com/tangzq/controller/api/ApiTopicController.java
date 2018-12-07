@@ -26,7 +26,7 @@ public class ApiTopicController {
     @RequestMapping(value={"/list"}, method= RequestMethod.GET)
     public Result getTopics() {
         List<Topic> topicList=topicService.findAll();
-        return Result.ok(topicList);
+        return Result.ok("成功",topicList);
     }
 
     @ApiOperation(value="创建帖子", notes="使用API创建帖子")
@@ -42,7 +42,7 @@ public class ApiTopicController {
     @ApiImplicitParam(name = "id", value = "帖子ID", required = true, dataType = "String")
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public Result getTopic(@PathVariable String id) {
-        return Result.ok(topicService.findTopicById(id));
+        return Result.ok("成功",topicService.findTopicById(id));
     }
 
     @ApiOperation(value="更新帖子详细信息", notes="根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")

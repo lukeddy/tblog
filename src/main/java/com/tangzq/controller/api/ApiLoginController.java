@@ -1,6 +1,7 @@
 package com.tangzq.controller.api;
 
 import com.tangzq.model.User;
+import com.tangzq.response.Result;
 import com.tangzq.service.TokenService;
 import com.tangzq.service.UserService;
 import com.tangzq.vo.LoginUserVo;
@@ -9,8 +10,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,41 +35,41 @@ public class ApiLoginController {
 
     @ApiOperation(value="登录", notes="账号登陆")
     @RequestMapping(value="/login",method = RequestMethod.POST)
-    public ResponseEntity<String> login(@RequestBody LoginUserVo user){
+    public Result login(@RequestBody LoginUserVo user){
 
         if(!userService.isUserValid(user.getUsername(),user.getPassword())){
-            return new ResponseEntity<>("用户名或者密码错误", HttpStatus.BAD_REQUEST);
+            return Result.fail("用户名或者密码错误");
         }
 
         String token=tokenService.createToken(userService.findUser(user.getUsername(),user.getPassword()).getId());
-        return new ResponseEntity<>(token,HttpStatus.OK);
+        return Result.ok("成功", token);
     }
 
 
     @ApiOperation(value="注册", notes="用户注册")
     @RequestMapping(value="/register",method = RequestMethod.POST)
-    public ResponseEntity<String> doRegister(@RequestBody RegisterUserVo registerUser){
+    public Result doRegister(@RequestBody RegisterUserVo registerUser){
 
         if(null!=userService.findByUsername(registerUser.getUsername())){
-            return new ResponseEntity<>("该用户名已经存在", HttpStatus.BAD_REQUEST);
+            return Result.fail("该用户名已经存在");
         }
         if(null!=userService.findUserByEmail(registerUser.getEmail())){
-            return new ResponseEntity<>("该邮箱已经被注册", HttpStatus.BAD_REQUEST);
+            return Result.fail("该邮箱已经被注册");
         }
 
         User savedUser=userService.createUser(registerUser);
         if(null!=savedUser&&savedUser.getId()!=null){
-            return new ResponseEntity<>("注册成功", HttpStatus.OK);
+            return Result.ok("注册成功");
         }else{
-            return new ResponseEntity<>("注册失败", HttpStatus.BAD_REQUEST);
+            return Result.fail("注册失败");
         }
     }
 
     @ApiOperation(value="退出", notes="登出系统")
     @RequestMapping(value="/logout",method = RequestMethod.POST)
-    public ResponseEntity<String> logout(){
+    public Result logout(){
         //TODO 使得Token失效
-        return new ResponseEntity<>("退出成功", HttpStatus.OK);
+        return Result.ok("退出成功");
     }
 
 }

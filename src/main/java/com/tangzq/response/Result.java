@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Result<T> {
-	int status;
+	boolean status;
 	String msg;
 	T data;
 
@@ -19,24 +19,32 @@ public class Result<T> {
 
 	public Result(T data) {
 		super();
-		this.status = 0;
+		this.status = Boolean.TRUE;
 		this.msg = "success";
 		this.data = data;
 	}
 
-	public Result(int status, String msg, T data) {
+	public Result(boolean status, String msg, T data) {
 		super();
 		this.status = status;
 		this.msg = msg;
 		this.data = data;
 	}
 
-	public static <T> Result<T> ok(T data) {
-		return new Result<T>(data);
+	public static <T> Result<T> ok(String msg) {
+		return new Result<T>(Boolean.TRUE,msg,null);
 	}
 
-	public static <T> Result<T> fail(T data) {
-		return new Result<T>(-1, "fail", data);
+	public static <T> Result<T> ok(String msg, T data) {
+		return new Result<T>(Boolean.TRUE,msg,data);
+	}
+
+	public static <T> Result<T> fail(String msg) {
+		return new Result<T>(Boolean.FALSE, msg, null);
+	}
+
+	public static <T> Result<T> fail(String msg, T data) {
+		return new Result<T>(Boolean.FALSE, msg, data);
 	}
 
 	@Override

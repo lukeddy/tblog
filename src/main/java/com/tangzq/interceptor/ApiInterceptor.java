@@ -32,6 +32,12 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
                              HttpServletResponse response, Object handler) throws Exception {
 
         String token = request.getHeader("Authorization");
+        //允许这个OPTIONS请求通过,通过后就发现前端同一个请求发送了两次,
+        //在第二条请求里你可以发现你的Authorization已经显示你面前了
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            response.sendError(HttpServletResponse.SC_OK, "success");
+            return true;
+        }
 
         if (token == null || !tokenService.isTokenValid(token)) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);

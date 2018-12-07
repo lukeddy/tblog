@@ -36,6 +36,6 @@ public class ApiHomeController {
         map.put("pager",topicService.findByPage(vo));
         map.put("catList",categoryService.findAll());
         map.put("indexVo",vo);
-        return Result.ok(map);
+        return Result.ok("成功",map);
     }
 }
