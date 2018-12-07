@@ -1,5 +1,6 @@
 package com.tangzq.service.impl;
 
+import com.tangzq.dto.CategoryDto;
 import com.tangzq.model.Category;
 import com.tangzq.repository.CategoryRepository;
 import com.tangzq.service.CategoryService;
@@ -37,6 +38,20 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public Category addCategory(Category cat) {
       return  categoryRepository.save(cat);
+    }
+
+    @Override
+    public Category addCategory(CategoryDto dto) {
+        if(null==dto){
+            return null;
+        }
+        Category cat=new Category();
+        cat.setCatName(dto.getCatName());
+        cat.setCatDir(dto.getCatDir());
+        cat.setCatDesc(dto.getCatDesc());
+        cat.setCreateAt(new Date());
+        cat.setUpdateAt(new Date());
+        return categoryRepository.save(cat);
     }
 
     @Override
@@ -81,6 +96,19 @@ public class CategoryServiceImpl implements CategoryService{
         cat.setId(id);
         cat.setCreateAt(catInDB.getCreateAt()==null?new Date():catInDB.getCreateAt());
         return categoryRepository.save(cat);
+    }
+
+    @Override
+    public Category updateById(String id, CategoryDto dto) {
+        Category catInDB=this.getCategory(id);
+        if(null==dto||catInDB==null){
+            return null;
+        }
+        catInDB.setCatName(dto.getCatName());
+        catInDB.setCatDir(dto.getCatDir());
+        catInDB.setCatDesc(dto.getCatDesc());
+        catInDB.setUpdateAt(new Date());
+        return categoryRepository.save(catInDB);
     }
 
     @Override

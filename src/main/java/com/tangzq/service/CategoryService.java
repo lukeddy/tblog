@@ -1,5 +1,6 @@
 package com.tangzq.service;
 
+import com.tangzq.dto.CategoryDto;
 import com.tangzq.model.Category;
 import org.springframework.data.domain.Page;
 
@@ -17,6 +18,12 @@ public interface CategoryService {
      */
     Category addCategory(Category cat);
 
+    /**
+     * 增加栏目
+     * @param dto
+     * @return
+     */
+    Category addCategory(CategoryDto dto);
 
     /**
      * 使用栏目ID找到栏目信息
@@ -53,7 +60,6 @@ public interface CategoryService {
      */
     boolean isCategoryExisted(String catDir);
 
-
     /**
      * 更新栏目信息
      * @param cat
@@ -62,6 +68,13 @@ public interface CategoryService {
      */
     Category updateById(Category cat, String id);
 
+    /**
+     * 更新栏目信息
+     * @param id
+     * @param dto
+     * @return
+     */
+    Category updateById(String id,CategoryDto dto);
 
     /**
      * 删除指定栏目
