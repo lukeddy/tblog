@@ -2,6 +2,7 @@ package com.tangzq.service;
 
 import com.tangzq.model.User;
 import com.tangzq.vo.RegisterUserVo;
+import com.tangzq.vo.UserInfoVo;
 
 /**
  * @author tangzhiqiang
@@ -23,6 +24,13 @@ public interface UserService {
      * @return
      */
     User getUser(String uid);
+
+    /**
+     * 获取用户
+     * @param uid
+     * @return
+     */
+    UserInfoVo getUserInfo(String uid);
 
     /**
      * 根据用户名和密码查找用户

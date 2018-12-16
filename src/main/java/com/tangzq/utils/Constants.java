@@ -20,6 +20,11 @@ public class Constants {
     public static final String LOGIN_USER_SESSION_KEY="loginUser";
 
     /**
+     * API已登录用户ID
+     */
+    public static final String API_LOGIN_USER_ID_KEY="api_logined_uid";
+
+    /**
      * 上传文件保存目录
      */
     public static final String UPLOAD_FOLDER="upload";

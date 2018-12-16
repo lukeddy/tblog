@@ -5,12 +5,14 @@ import com.tangzq.repository.UserRepository;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.GravatarUtils;
 import com.tangzq.vo.RegisterUserVo;
+import com.tangzq.vo.UserInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * @author tangzhiqiang
@@ -38,7 +40,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String uid) {
-        return userRepository.findById(uid).get();
+        Optional<User> optional=userRepository.findById(uid);
+        return optional.isPresent()?optional.get():null;
+    }
+
+    @Override
+    public UserInfoVo getUserInfo(String uid) {
+        User user=getUser(uid);
+        if(null==user){
+            return null;
+        }
+        UserInfoVo userInfo=new UserInfoVo();
+        userInfo.setUid(user.getId());
+        userInfo.setUsername(user.getUsername());
+        return userInfo;
     }
 
     @Override

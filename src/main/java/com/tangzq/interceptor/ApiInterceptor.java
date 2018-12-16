@@ -1,6 +1,7 @@
 package com.tangzq.interceptor;
 
 import com.tangzq.service.TokenService;
+import com.tangzq.utils.Constants;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,8 +44,7 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
             return false;
         } else {
-            ObjectId userId = new ObjectId(tokenService.getUserIdFromToken(token));
-            request.setAttribute("userId", userId);
+            request.setAttribute(Constants.API_LOGIN_USER_ID_KEY, tokenService.getUserIdFromToken(token));
             return true;
         }
     }
