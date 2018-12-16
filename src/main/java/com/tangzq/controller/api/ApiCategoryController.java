@@ -46,7 +46,7 @@ public class ApiCategoryController {
      * @return
      */
     @ApiOperation(value="分页获取分类列表", notes="将取得所有的博客分类数据")
-    @RequestMapping(value="/list",method = RequestMethod.GET)
+    @RequestMapping(value="/list",method = RequestMethod.POST)
     public Result listCategory(@RequestBody PageVo pageVo){
         return Result.ok("分页获取栏目成功",categoryService.findByPage(pageVo.getPageNO(),pageVo.getPageSize()));
     }
@@ -89,7 +89,18 @@ public class ApiCategoryController {
     })
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     public Result updateCategory(@PathVariable String id, @RequestBody CategoryDto dto) {
-        categoryService.updateById(id,dto);
+        if(StringUtils.isEmpty(dto.getCatName())||StringUtils.isEmpty(dto.getCatDir())){
+            return Result.fail("栏目名称和目录名不能为空");
+        }
+        Category category=categoryService.getCategoryByCatDir(dto.getCatDir());
+        if(null!=category&&!StringUtils.equals(category.getId(),id)){
+            return Result.fail("栏目名称已经存在");
+        }
+
+        Category updatedCat=categoryService.updateById(id,dto);
+        if(null==updatedCat){
+            return Result.fail("更新失败");
+        }
         return Result.ok("更新分类成功");
     }
 
