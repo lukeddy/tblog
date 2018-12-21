@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value="/api/post")
 @Api(value = "帖子API", description = "博客帖子接口",tags = "Topic")
-public class ApiTopicController {
+public class ApiPostController {
 
     @Autowired
     private TopicService topicService;
@@ -50,9 +50,13 @@ public class ApiTopicController {
 
     @ApiOperation(value="获取帖子详细信息", notes="根据url的id来获取帖子详细信息")
     @ApiImplicitParam(name = "id", value = "帖子ID", required = true, dataType = "String")
-    @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public Result getTopic(@PathVariable String id) {
-        return Result.ok("成功",topicService.findTopicById(id));
+    @RequestMapping(value="/detail/{id}", method=RequestMethod.GET)
+    public Result detail(@PathVariable String id) {
+        Topic topic=topicService.findTopicById(id);
+        if(null==topic){
+            return Result.fail("帖子不存在");
+        }
+        return Result.ok("成功",topic);
     }
 
     @ApiOperation(value="更新帖子详细信息", notes="根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")

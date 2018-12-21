@@ -28,7 +28,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(baseInterceptor).addPathPatterns("/**");
         registry.addInterceptor(loginInterceptor).addPathPatterns("/cat/**","/user/**","/like/**","/collect/**");
-        registry.addInterceptor(apiInterceptor).addPathPatterns("/api/**").excludePathPatterns("/api/login","/api/register");
+        registry.addInterceptor(apiInterceptor).addPathPatterns("/api/**").excludePathPatterns("/api/home","/api/login","/api/register","/api/post/detail/*");
         log.info("拦截器注册完毕");
     }
 
