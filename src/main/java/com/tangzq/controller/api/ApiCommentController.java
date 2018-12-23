@@ -2,19 +2,20 @@ package com.tangzq.controller.api;
 
 import com.tangzq.model.Comment;
 import com.tangzq.model.User;
+import com.tangzq.model.type.CommentType;
 import com.tangzq.response.Result;
 import com.tangzq.service.CommentService;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.Constants;
+import com.tangzq.vo.CommentVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,6 +40,29 @@ public class ApiCommentController {
     @RequestMapping(value="/public/{topicId}", method=RequestMethod.GET)
     public Result detail(@PathVariable String topicId) {
         return Result.ok("成功",commentService.getAllItemComments(topicId));
+    }
+
+    @ApiOperation(value="添加评论内容", notes="增加评论信息")
+    @RequestMapping(value = "",method = RequestMethod.POST)
+    public Result addReply(@ApiParam(value = "评论内容", required = true) @RequestBody CommentVo vo, HttpServletRequest request){
+
+        User loginUser=userService.getUser((String)request.getAttribute(Constants.API_LOGIN_USER_ID_KEY));
+        if(null==loginUser){
+            return Result.fail("请先登录");
+        }
+
+        if(null==vo|| StringUtils.isEmpty(vo.getCommentMD())||StringUtils.isEmpty(vo.getCommentHTML())){
+            return Result.fail("评论内容不能为空");
+        }
+
+        vo.setAuthorId(loginUser.getId());
+        Comment comment= commentService.addComment(vo, CommentType.ARTICLE);
+
+        if(null!=comment&&comment.getId()!=null){
+           return Result.ok("评论成功");
+        }else{
+           return Result.fail("评论添加失败");
+        }
     }
 
     @ApiOperation(value="评论点赞", notes="评论点赞，每个用户只能点赞一次")

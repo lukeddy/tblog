@@ -1,5 +1,7 @@
 package com.tangzq.interceptor;
 
+import com.google.gson.Gson;
+import com.tangzq.response.Result;
 import com.tangzq.service.TokenService;
 import com.tangzq.utils.Constants;
 import org.bson.types.ObjectId;
@@ -41,7 +43,9 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
         }
 
         if (token == null || !tokenService.isTokenValid(token)) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+            Result result=Result.fail("没有权限");
+            String json = new Gson().toJson(result);
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED,json);
             return false;
         } else {
             request.setAttribute(Constants.API_LOGIN_USER_ID_KEY, tokenService.getUserIdFromToken(token));
