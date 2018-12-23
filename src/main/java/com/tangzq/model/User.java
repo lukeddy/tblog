@@ -36,4 +36,22 @@ public class User extends BaseModel<String> {
     public boolean isNew() {
         return getId()==null;
     }
+
+    /**
+     * 重写equals和hashcode方法，使得set中的对象引用可以自动去重
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        return this.getId().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof User) {
+            User user = (User) obj;
+            return this.getId().equals(user.getId());
+        }
+        return super.equals(obj);
+    }
 }

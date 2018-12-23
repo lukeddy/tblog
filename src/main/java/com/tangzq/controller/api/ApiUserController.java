@@ -30,7 +30,7 @@ public class ApiUserController {
     public Result getUserInfo(HttpServletRequest request) {
         UserInfoVo userInfo=userService.getUserInfo((String)request.getAttribute(Constants.API_LOGIN_USER_ID_KEY));
         if(null==userInfo){
-            return Result.ok("用户不存在");
+            return Result.fail("用户不存在");
         }
         return Result.ok("成功",userInfo);
     }
