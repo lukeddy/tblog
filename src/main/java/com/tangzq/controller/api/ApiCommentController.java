@@ -1,5 +1,6 @@
 package com.tangzq.controller.api;
 
+import com.tangzq.dto.ReplyDto;
 import com.tangzq.model.Comment;
 import com.tangzq.model.User;
 import com.tangzq.model.type.CommentType;
@@ -97,4 +98,37 @@ public class ApiCommentController {
         return Result.ok("删除评论成功");
     }
 
+
+    @ApiOperation(value="回复评论", notes="回复指定的评论")
+    @RequestMapping(value="/reply",method = RequestMethod.POST)
+    public Result reply(@ApiParam(value = "回复内容", required = true) @RequestBody ReplyDto dto,
+                          HttpServletRequest request){
+
+        Comment comment= commentService.getComment(dto.getCommentId());
+        if(null==comment){
+            return Result.fail("您要回复的评论内容已经不存在");
+        }
+
+        if(StringUtils.isEmpty(dto.getReplyMD()) && StringUtils.isEmpty(dto.getReplyHtml())){
+            return Result.fail("回复内容不能为空");
+        }
+
+        User loginUser=userService.getUser((String)request.getAttribute(Constants.API_LOGIN_USER_ID_KEY));
+        if(null==loginUser){
+            return Result.fail("请先登录");
+        }
+
+        CommentVo replyContent=new CommentVo();
+        replyContent.setItemId(comment.getItemId());
+        replyContent.setCommentMD(dto.getReplyMD());
+        replyContent.setCommentHTML(dto.getReplyHtml());
+        replyContent.setAuthorId(loginUser.getId());
+
+        Comment reply= commentService.replyComment(dto.getCommentId(),replyContent,CommentType.ARTICLE);
+        if(null==reply||reply.getId()==null){
+            return Result.fail("回复评论失败, 请稍后再试");
+        }else{
+            return Result.ok("回复成功");
+        }
+    }
 }
