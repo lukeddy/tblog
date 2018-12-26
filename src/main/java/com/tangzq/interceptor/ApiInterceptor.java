@@ -3,6 +3,7 @@ package com.tangzq.interceptor;
 import com.google.gson.Gson;
 import com.tangzq.response.Result;
 import com.tangzq.service.TokenService;
+import com.tangzq.service.UserService;
 import com.tangzq.utils.Constants;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     private TokenService tokenService;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 拦截所有API请求
@@ -48,7 +52,14 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED,json);
             return false;
         } else {
-            request.setAttribute(Constants.API_LOGIN_USER_ID_KEY, tokenService.getUserIdFromToken(token));
+            String uid=tokenService.getUserIdFromToken(token);
+            if(userService.getUser(uid)==null){
+                Result result=Result.fail("用户不存在");
+                String json = new Gson().toJson(result);
+                response.sendError(HttpServletResponse.SC_NOT_FOUND,json);
+                return false;
+            }
+            request.setAttribute(Constants.API_LOGIN_USER_ID_KEY,uid);
             return true;
         }
     }
