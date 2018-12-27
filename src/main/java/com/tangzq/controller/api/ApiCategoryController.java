@@ -101,7 +101,7 @@ public class ApiCategoryController {
         if(null==updatedCat){
             return Result.fail("更新失败");
         }
-        return Result.ok("更新分类成功");
+        return Result.ok("更新分类成功",updatedCat);
     }
 
     @ApiOperation(value="删除分类", notes="根据url的id来指定删除分类")

@@ -52,6 +52,7 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED,json);
             return false;
         } else {
+            //TODO 如果这里每次请求都进行查询的话会造成数据库压力，这种方式有待改善
             String uid=tokenService.getUserIdFromToken(token);
             if(userService.getUser(uid)==null){
                 Result result=Result.fail("用户不存在");
