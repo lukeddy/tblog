@@ -14,8 +14,6 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping(value="/api/post")
 @Api(value = "帖子API", description = "博客帖子接口",tags = "Topic")
@@ -34,7 +32,6 @@ public class ApiPostController {
     @ApiImplicitParam(name = "topicVo", value = "帖子详细VO实体对象", required = true, dataType = "TopicVo")
     @RequestMapping(value="", method=RequestMethod.POST)
     public Result addTopic(@RequestBody TopicVo topicVo) {
-        //TODO vo验证
         if(StringUtils.isEmpty(topicVo.getCatId())){
             return Result.fail("栏目不能为空");
         }
@@ -66,6 +63,15 @@ public class ApiPostController {
     })
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     public Result updateTopic(@PathVariable String id, @RequestBody TopicVo topicVo) {
+        if(StringUtils.isEmpty(topicVo.getCatId())){
+            return Result.fail("栏目不能为空");
+        }
+        if(StringUtils.isEmpty(topicVo.getTitle())){
+            return Result.fail("标题不能为空");
+        }
+        if(StringUtils.isEmpty(topicVo.getContentMD())){
+            return Result.fail("内容不能为空");
+        }
         topicService.updateById(topicVo,id);
         return Result.ok("更新帖子成功");
     }
