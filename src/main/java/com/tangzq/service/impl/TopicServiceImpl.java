@@ -128,7 +128,8 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public Topic findTopicById(String topicId) {
-        return topicRepository.findById(topicId).get();
+        Optional<Topic> optional=topicRepository.findById(topicId);
+        return optional.isPresent()?optional.get():null;
     }
 
     @Override
