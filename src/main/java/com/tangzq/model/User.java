@@ -1,5 +1,6 @@
 package com.tangzq.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tangzq.model.embed.SocialInfo;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,8 +17,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User extends BaseModel<String> {
 
     private String username;
+
+    @JsonIgnore
     private String password;
+
+    @JsonIgnore
     private String email;
+
     private String avatarURL;
     private boolean avatarURLByUploaded;
 

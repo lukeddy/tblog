@@ -1,5 +1,6 @@
 package com.tangzq.model;
 
+import com.tangzq.model.embed.ReportInfo;
 import com.tangzq.model.type.CommentType;
 import lombok.Getter;
 import lombok.Setter;
@@ -59,7 +60,10 @@ public class Comment extends BaseModel<String> {
      */
     private boolean reportStatus=false;
 
-
+    /**
+     * 举报理由
+     */
+    private Set<ReportInfo> reportInfo;
 
     @Override
     public boolean isNew() {

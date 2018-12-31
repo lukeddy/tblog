@@ -3,6 +3,7 @@ package com.tangzq.controller.api;
 import com.tangzq.dto.ReplyDto;
 import com.tangzq.model.Comment;
 import com.tangzq.model.User;
+import com.tangzq.model.embed.ReportInfo;
 import com.tangzq.model.type.CommentType;
 import com.tangzq.response.Result;
 import com.tangzq.service.CommentService;
@@ -72,14 +73,14 @@ public class ApiCommentController {
     public Result thumbsupComment(
             @PathVariable("commentId")String commentId, HttpServletRequest request){
 
-        Comment comment= commentService.getComment(commentId);
-        if(null==comment){
-            Result.fail("评论不存在");
-        }
-
         User loginUser=userService.getUser((String)request.getAttribute(Constants.API_LOGIN_USER_ID_KEY));
         if(null==loginUser){
             return Result.fail("用户还未登陆");
+        }
+
+        Comment comment= commentService.getComment(commentId);
+        if(null==comment){
+            Result.fail("评论不存在");
         }
 
         commentService.updateThumbsUpData(commentId, loginUser);
@@ -104,6 +105,11 @@ public class ApiCommentController {
     public Result reply(@ApiParam(value = "回复内容", required = true) @RequestBody ReplyDto dto,
                           HttpServletRequest request){
 
+        User loginUser=userService.getUser((String)request.getAttribute(Constants.API_LOGIN_USER_ID_KEY));
+        if(null==loginUser){
+            return Result.fail("请先登录");
+        }
+
         Comment comment= commentService.getComment(dto.getCommentId());
         if(null==comment){
             return Result.fail("您要回复的评论内容已经不存在");
@@ -111,11 +117,6 @@ public class ApiCommentController {
 
         if(StringUtils.isEmpty(dto.getReplyMD()) && StringUtils.isEmpty(dto.getReplyHtml())){
             return Result.fail("回复内容不能为空");
-        }
-
-        User loginUser=userService.getUser((String)request.getAttribute(Constants.API_LOGIN_USER_ID_KEY));
-        if(null==loginUser){
-            return Result.fail("请先登录");
         }
 
         CommentVo replyContent=new CommentVo();
@@ -130,5 +131,29 @@ public class ApiCommentController {
         }else{
             return Result.ok("回复成功");
         }
+    }
+
+
+    @ApiOperation(value="举报评论", notes="举报违规的评论")
+    @RequestMapping(value="/ban/{commentId}",method = RequestMethod.PUT)
+    public Result banComment(
+            @ApiParam(value = "评论ID", required = true) @PathVariable("commentId") String commentId,
+            @ApiParam(value = "举报原因", required = true) @RequestBody ReportInfo reportInfo,
+            HttpServletRequest request){
+
+        User loginUser=userService.getUser((String)request.getAttribute(Constants.API_LOGIN_USER_ID_KEY));
+        if(null==loginUser){
+            return Result.fail("您还未登陆");
+        }
+        Comment comment=commentService.getComment(commentId);
+        if(null==comment){
+            return Result.fail("评论已经不存在");
+        }
+
+        Comment banedComment= commentService.reportComment(commentId,loginUser,reportInfo);
+        if(null==banedComment){
+            return Result.fail("举报评论失败");
+        }
+        return Result.ok("举报成功！");
     }
 }

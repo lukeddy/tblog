@@ -2,6 +2,7 @@ package com.tangzq.service.impl;
 
 import com.tangzq.model.Comment;
 import com.tangzq.model.User;
+import com.tangzq.model.embed.ReportInfo;
 import com.tangzq.model.type.CommentType;
 import com.tangzq.repository.CommentRepository;
 import com.tangzq.service.CommentService;
@@ -99,6 +100,29 @@ public class CommentServiceImpl implements CommentService {
             return null;
         }
         commentInDB.setReportStatus(reportStatus);
+        return repository.save(commentInDB);
+    }
+
+    @Override
+    public Comment reportComment(String commentId, User reportUser, ReportInfo reportInfo) {
+        Comment commentInDB=this.getComment(commentId);
+        if(null==commentInDB){
+            return null;
+        }
+        reportInfo.setReportUser(reportUser);
+
+        Set<ReportInfo> reportSet=commentInDB.getReportInfo();
+        if(null==reportSet){
+            reportSet=new HashSet<>();
+        }
+        //去除旧的信息
+        if(reportSet.contains(reportInfo)){
+            reportSet.remove(reportInfo);
+        }
+        reportSet.add(reportInfo);
+
+        commentInDB.setReportInfo(reportSet);
+        commentInDB.setReportStatus(Boolean.TRUE);
         return repository.save(commentInDB);
     }
 
