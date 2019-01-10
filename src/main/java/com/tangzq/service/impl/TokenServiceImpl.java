@@ -21,7 +21,15 @@ import java.util.Date;
 @Service
 public class TokenServiceImpl implements TokenService {
 
+    /**
+     * token secret
+     */
     public static final String TOKEN_SECRET = "s4T2zO6Pma8UH1sxq";
+
+    /**
+     * token过期时间：10天
+     */
+    public static final long EXPIRATION_TIME = 1000 * 60 * 60 * 24 * 10;
 
     @Override
     public String createToken(String userId) {
@@ -30,6 +38,8 @@ public class TokenServiceImpl implements TokenService {
             String token = JWT.create()
                     .withClaim("userId", userId)
                     .withClaim("createdAt", new Date())
+                    //token 10天后过期
+                    .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                     .sign(algorithm);
             return token;
         } catch (UnsupportedEncodingException exception) {
