@@ -57,17 +57,7 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
 
         if (token == null || !tokenService.isTokenValid(token)) {
             Result result=Result.fail("没有权限");
-            //response.sendError(HttpServletResponse.SC_UNAUTHORIZED,json);
-
-            //TODO 查找为什么始终无法返回JSON数据
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            PrintWriter writer = response.getWriter();
-            writer.print(gson.toJson(result));
-            writer.close();
-            response.flushBuffer();
-
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED,gson.toJson(result));
             return false;
         } else {
             //TODO 如果这里每次请求都进行查询的话会造成数据库压力，这种方式有待改善
