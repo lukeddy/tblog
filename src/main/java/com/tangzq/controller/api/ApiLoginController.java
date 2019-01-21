@@ -4,8 +4,10 @@ import com.tangzq.model.User;
 import com.tangzq.response.Result;
 import com.tangzq.service.TokenService;
 import com.tangzq.service.UserService;
+import com.tangzq.utils.Constants;
 import com.tangzq.vo.LoginUserVo;
 import com.tangzq.vo.RegisterUserVo;
+import com.tangzq.vo.UserInfoVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -35,16 +40,19 @@ public class ApiLoginController {
 
     @ApiOperation(value="登录", notes="账号登陆")
     @RequestMapping(value="/login",method = RequestMethod.POST)
-    public Result login(@RequestBody LoginUserVo user){
+    public Result login(@RequestBody LoginUserVo userVo){
 
-        if(!userService.isUserValid(user.getUsername(),user.getPassword())){
+        if(!userService.isUserValid(userVo.getUsername(),userVo.getPassword())){
             return Result.fail("用户名或者密码错误");
         }
 
-        String token=tokenService.createToken(userService.findUser(user.getUsername(),user.getPassword()).getId());
-        return Result.ok("成功", token);
+        User user=userService.findUser(userVo.getUsername(),userVo.getPassword());
+        String token=tokenService.createToken(user.getId());
+        Map<String,Object> data=new HashMap<>(2);
+        data.put("token",token);
+        data.put("userInfo",userService.convert2UserInfo(user));
+        return Result.ok("成功", data);
     }
-
 
     @ApiOperation(value="注册", notes="用户注册")
     @RequestMapping(value="/register",method = RequestMethod.POST)

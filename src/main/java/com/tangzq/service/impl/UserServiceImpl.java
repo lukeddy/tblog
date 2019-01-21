@@ -47,6 +47,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfoVo getUserInfo(String uid) {
         User user=getUser(uid);
+        return convert2UserInfo(user);
+    }
+
+    @Override
+    public UserInfoVo convert2UserInfo(User user) {
         if(null==user){
             return null;
         }

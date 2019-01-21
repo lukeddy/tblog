@@ -33,6 +33,13 @@ public interface UserService {
     UserInfoVo getUserInfo(String uid);
 
     /**
+     * 将User转换为UserInfoVo
+     * @param user
+     * @return
+     */
+    UserInfoVo convert2UserInfo(User user);
+
+    /**
      * 根据用户名和密码查找用户
      * @param username
      * @param password

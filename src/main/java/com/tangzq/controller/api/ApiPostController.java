@@ -63,6 +63,10 @@ public class ApiPostController {
     })
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     public Result updateTopic(@PathVariable String id, @RequestBody TopicVo topicVo) {
+        Topic topic=topicService.findTopicById(id);
+        if(null==topic){
+            return Result.fail("帖子不存在");
+        }
         if(StringUtils.isEmpty(topicVo.getCatId())){
             return Result.fail("栏目不能为空");
         }
