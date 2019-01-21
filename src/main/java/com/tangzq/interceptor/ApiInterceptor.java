@@ -46,12 +46,18 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
 
-        //允许这个OPTIONS请求通过,通过后就发现前端同一个请求发送了两次,
-        //在第二条请求里你可以发现你的Authorization已经显示你面前了
+        //允许浏览器的第一次跨域OPTIONS请求
         if (OPTIONS_HEADER.equalsIgnoreCase(request.getMethod())) {
             response.sendError(HttpServletResponse.SC_OK, "success");
            return true;
          }
+
+        //拦截器也需要允许跨域的配置，不然跨域请求会拿不到响应结果
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods","POST, GET, PUT, OPTIONS, DELETE, PATCH");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers","*");
+        response.setHeader("Access-Control-Allow-Credentials","true");
 
         String token = request.getHeader("Authorization");
 
