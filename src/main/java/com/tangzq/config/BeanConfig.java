@@ -1,5 +1,6 @@
 package com.tangzq.config;
 
+import com.google.gson.Gson;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -23,6 +24,11 @@ public class BeanConfig {
         propsConfig.setIgnoreResourceNotFound(true);
         propsConfig.setIgnoreUnresolvablePlaceholders(true);
         return propsConfig;
+    }
+
+    @Bean
+    public Gson gson(){
+        return new Gson();
     }
 
 }

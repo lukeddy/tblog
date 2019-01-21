@@ -5,6 +5,8 @@ import com.tangzq.response.Result;
 import com.tangzq.service.TokenService;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.Constants;
+import org.apache.commons.io.IOUtils;
+import org.apache.tomcat.util.http.ResponseUtil;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 /**
  * API拦截器
@@ -26,6 +29,11 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private Gson gson;
+
+    private static final String OPTIONS_HEADER="OPTIONS";
+
     /**
      * 拦截所有API请求
      * @param request
@@ -38,18 +46,28 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
 
-        String token = request.getHeader("Authorization");
         //允许这个OPTIONS请求通过,通过后就发现前端同一个请求发送了两次,
         //在第二条请求里你可以发现你的Authorization已经显示你面前了
-        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+        if (OPTIONS_HEADER.equalsIgnoreCase(request.getMethod())) {
             response.sendError(HttpServletResponse.SC_OK, "success");
-            return true;
-        }
+           return true;
+         }
+
+        String token = request.getHeader("Authorization");
 
         if (token == null || !tokenService.isTokenValid(token)) {
             Result result=Result.fail("没有权限");
-            String json = new Gson().toJson(result);
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED,json);
+            //response.sendError(HttpServletResponse.SC_UNAUTHORIZED,json);
+
+            //TODO 查找为什么始终无法返回JSON数据
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            PrintWriter writer = response.getWriter();
+            writer.print(gson.toJson(result));
+            writer.close();
+            response.flushBuffer();
+
             return false;
         } else {
             //TODO 如果这里每次请求都进行查询的话会造成数据库压力，这种方式有待改善
