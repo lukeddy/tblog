@@ -3,7 +3,6 @@ package com.tangzq.service.impl;
 import com.tangzq.model.User;
 import com.tangzq.repository.UserRepository;
 import com.tangzq.service.UserService;
-import com.tangzq.utils.CommonProps;
 import com.tangzq.utils.GravatarUtils;
 import com.tangzq.vo.RegisterUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * @author tangzhiqiang
@@ -37,7 +37,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public User getUser(String uid) {
-        return userRepository.findOne(uid);
+        Optional<User> optional=userRepository.findById(uid);
+        return optional.isPresent()?optional.get():null;
     }
 
     public User findUser(String username, String password) {
@@ -69,7 +70,7 @@ public class UserServiceImpl implements UserService {
         if(null==user||user.getId()==null){
             return null;
         }
-        User userInDB=userRepository.findOne(user.getId());
+        User userInDB=this.getUser(user.getId());
         if(null==userInDB){
             return null;
         }

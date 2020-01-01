@@ -20,8 +20,8 @@ public class TestTopicRepository extends TestBase {
 
     @Test
     public void testLikeQuery(){
-        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
-        Pageable pageable = new PageRequest(1-1, 5, sort);
+        Sort sort = Sort.by(Sort.Direction.DESC, "create_at");
+        Pageable pageable = PageRequest.of(1-1, 5, sort);
 
         String keyword="这个行业";
         Page<Topic> page=topicRepository.findByTitleLikeOrDescLike(keyword,keyword,pageable);

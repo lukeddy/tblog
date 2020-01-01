@@ -1,5 +1,6 @@
 package com.tangzq.service.impl;
 
+import com.tangzq.model.Category;
 import com.tangzq.model.Reply;
 import com.tangzq.model.embed.ReplyAuthorInfo;
 import com.tangzq.repository.ReplyRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author tangzhiqiang
@@ -26,7 +28,8 @@ public class ReplyServiceImpl implements ReplyService {
     private TopicService topicService;
 
     public Reply getReply(String replyID) {
-        return replyRepository.findOne(replyID);
+        Optional<Reply> optional=replyRepository.findById(replyID);
+        return optional.isPresent()?optional.get():null;
     }
 
     public Reply addReply(ReplyVo vo) {
@@ -77,7 +80,7 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     public void deleteReply(String replyId,String topicId) {
-        replyRepository.delete(replyId);
+        replyRepository.deleteById(replyId);
         topicService.decreaseReplyCount(topicId);
     }
 }

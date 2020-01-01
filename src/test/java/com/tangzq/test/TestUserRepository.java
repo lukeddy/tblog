@@ -54,7 +54,7 @@ public class TestUserRepository extends TestBase {
 
     @Test
     public void testFindById(){
-        User user=userRepository.findOne("59b50c1777c8f880f5d5207d");
+        User user=userRepository.findById("59b50c1777c8f880f5d5207d").get();
         Assert.notNull(user,"");
         System.out.println(user);
     }
@@ -99,7 +99,7 @@ public class TestUserRepository extends TestBase {
 
     @Test
     public void testUpdate(){
-        User tmpUser=userRepository.findOne("59b5132777c8f22ff6b0da91");
+        User tmpUser=userRepository.findById("59b5132777c8f22ff6b0da91").get();
         Assert.notNull(tmpUser,"");
         tmpUser.setEmail("abcdef@gmail.com");
         userRepository.save(tmpUser);
@@ -108,6 +108,6 @@ public class TestUserRepository extends TestBase {
 
     @Test
     public void testDelete(){
-        userRepository.delete("59b5132777c8f22ff6b0da91");
+        userRepository.deleteById("59b5132777c8f22ff6b0da91");
     }
 }
