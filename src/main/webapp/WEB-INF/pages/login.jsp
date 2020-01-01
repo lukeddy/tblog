@@ -12,7 +12,7 @@
             <div class="col-sm-3">&nbsp;</div>
             <div class="col-sm-6">
                 <jsp:include page="inc/msgbox.jsp"></jsp:include>
-                <form:form action="${contextPath}/login" commandName="loginForm" method="post">
+                <form:form action="${contextPath}/login" modelAttribute="loginForm" method="post">
                         <h3 class="form-signin-header text-center">登录TBlog</h3>
                         <div class="form-group">
                             <div class="input-group">

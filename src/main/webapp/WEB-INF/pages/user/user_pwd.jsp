@@ -16,7 +16,7 @@
             </ul>
             <div class="wrapper">
                 <jsp:include page="../inc/msgbox.jsp"></jsp:include>
-                <form:form action="${contextPath}/user/changePwd" cssClass="form-horizontal" commandName="changePwdForm" method="post">
+                <form:form action="${contextPath}/user/changePwd" cssClass="form-horizontal" modelAttribute="changePwdForm" method="post">
                     <div class="form-group">
                         <label for="oldPwd" class="col-md-2 control-label">当前密码</label>
                         <div class="col-lg-6">

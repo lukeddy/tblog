@@ -11,6 +11,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * @author tangzhiqiang
@@ -38,7 +39,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String uid) {
-        return userRepository.findOne(uid);
+        Optional<User> optional=userRepository.findById(uid);
+        return optional.isPresent()?optional.get():null;
     }
 
     @Override
@@ -75,7 +77,7 @@ public class UserServiceImpl implements UserService {
         if(null==user||user.getId()==null){
             return null;
         }
-        User userInDB=userRepository.findOne(user.getId());
+        User userInDB=this.getUser(user.getId());
         if(null==userInDB){
             return null;
         }

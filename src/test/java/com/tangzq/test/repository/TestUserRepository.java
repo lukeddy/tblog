@@ -10,6 +10,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.DigestUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public class TestUserRepository extends TestBase {
@@ -35,7 +36,8 @@ public class TestUserRepository extends TestBase {
 
 	@Test
 	public void testFindById(){
-		User user=userRepository.findOne("599c1f9077c8cf04cd6b859e");
+		Optional<User> optional=userRepository.findById("");
+		User user=optional.get();
 		Assert.notNull(user,"用户不存在");
 		System.out.println(user);
 	}

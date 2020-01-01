@@ -6,10 +6,7 @@ import com.tangzq.utils.CommonProps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
@@ -20,17 +17,16 @@ import org.springframework.util.DigestUtils;
  * @author tangzhiqiang
  */
 @SpringBootApplication(scanBasePackages = "com.tangzq")
-@EnableAutoConfiguration
-public class Application extends SpringBootServletInitializer implements CommandLineRunner {
+public class Application implements CommandLineRunner {
 
 
 	@Autowired
 	private UserRepository userRepository;
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(Application.class);
-	}
+//	@Override
+//	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+//		return builder.sources(Application.class);
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
