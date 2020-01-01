@@ -3,7 +3,6 @@ package com.tangzq.service.impl;
 import com.tangzq.model.Category;
 import com.tangzq.model.Topic;
 import com.tangzq.model.User;
-import com.tangzq.repository.CategoryRepository;
 import com.tangzq.repository.TopicRepository;
 import com.tangzq.service.CategoryService;
 import com.tangzq.service.TopicService;
@@ -41,28 +40,28 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public Page<Topic> findByPage(int pageNo, int pageSize) {
-        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
-        Pageable pageable = new PageRequest(pageNo-1, pageSize, sort);
+        Sort sort = Sort.by(Sort.Direction.DESC, "create_at");
+        Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
         return topicRepository.findAll(pageable);
     }
 
     @Override
     public Page<Topic> findByUserIdAndPage(String userId, int pageNo, int pageSize) {
-        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        Sort sort = Sort.by(Sort.Direction.DESC, "create_at");
         Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
         return topicRepository.findByAuthorId(userId,pageable);
     }
 
     @Override
     public Page<Topic> findByUsernameAndPage(String username, int pageNo, int pageSize) {
-        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        Sort sort = Sort.by(Sort.Direction.DESC, "create_at");
         Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
         return topicRepository.findByAuthor(userService.findByUsername(username),pageable);
     }
 
     @Override
     public Page<Topic> findByTagAndPage(String tagName, int pageNo, int pageSize) {
-        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        Sort sort = Sort.by(Sort.Direction.DESC, "create_at");
         Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
         return topicRepository.findByTagsContains(tagName,pageable);
     }
@@ -70,11 +69,11 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public Page<Topic> findByPage(IndexVo vo) {
         if(TAB_ALL.equals(vo.getTab())){
-            Sort sort = new Sort(Sort.Direction.DESC, "top","create_at");
+            Sort sort = Sort.by(Sort.Direction.DESC, "top","create_at");
             Pageable pageable = PageRequest.of(vo.getPageNO()-1, vo.getPageSize(), sort);
             return topicRepository.findAll(pageable);
         }else{
-            Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+            Sort sort = Sort.by(Sort.Direction.DESC, "create_at");
             Pageable pageable = PageRequest.of(vo.getPageNO()-1, vo.getPageSize(), sort);
 
             Category category=categoryService.getCategoryByCatDir(vo.getTab());
@@ -84,7 +83,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public Page<Topic> search(SearchVo searchVo) {
-        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        Sort sort = Sort.by(Sort.Direction.DESC, "create_at");
         Pageable pageable =  PageRequest.of(searchVo.getPageNO()-1, searchVo.getPageSize(), sort);
 
         if(StringUtils.isEmpty(searchVo.getKeywords())){
@@ -286,20 +285,20 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public Page<Topic> findCollectedTopicsByUidAndPage(String userId, int pageNo, int pageSize) {
-        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        Sort sort = Sort.by(Sort.Direction.DESC, "create_at");
         Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
         return topicRepository.findByCollectedUsersContains(userId,pageable);
     }
 
     @Override
     public List<Topic> findAll() {
-        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        Sort sort = Sort.by(Sort.Direction.DESC, "create_at");
         return (List<Topic>)topicRepository.findAll(sort);
     }
 
     @Override
     public Page<Topic> getTopVisitedTopics(int pageNo, int pageSize) {
-        Sort sort = new Sort(Sort.Direction.DESC, "visitCount");
+        Sort sort = Sort.by(Sort.Direction.DESC, "visitCount");
         Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
         return topicRepository.findAll(pageable);
     }

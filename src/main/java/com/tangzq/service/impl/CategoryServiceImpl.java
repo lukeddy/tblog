@@ -77,7 +77,7 @@ public class CategoryServiceImpl implements CategoryService{
      */
     @Override
     public Page<Category> findByPage(int pageNo, int pageSize) {
-        Sort sort = new Sort(Sort.Direction.DESC, "create_at");
+        Sort sort =Sort.by(Sort.Direction.DESC, "create_at");
         Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
         return categoryRepository.findAll(pageable);
     }

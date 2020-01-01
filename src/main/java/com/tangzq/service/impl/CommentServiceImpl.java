@@ -34,13 +34,13 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> getAllItemComments(String itemId) {
-        Sort sort = new Sort(Sort.Direction.DESC,"thumbsUPCount","create_at");
+        Sort sort = Sort.by(Sort.Direction.DESC,"thumbsUPCount","create_at");
         return repository.findAllByItemId(itemId,sort);
     }
 
     @Override
     public Page<Comment> getItemCommentsByPage(String itemId, int pageNo, int pageSize) {
-        Sort sort = new Sort(Sort.Direction.DESC,"create_at");
+        Sort sort = Sort.by(Sort.Direction.DESC,"create_at");
         Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
         return repository.findByItemId(itemId,pageable);
     }
