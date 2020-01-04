@@ -38,4 +38,9 @@ public class ApiHomeController {
         map.put("indexVo",vo);
         return Result.ok("成功",map);
     }
+
+    @RequestMapping(value = "/testError")
+    public String about() {
+        throw new RuntimeException();
+    }
 }

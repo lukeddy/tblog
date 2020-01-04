@@ -2,31 +2,31 @@ package com.tangzq.controller.error;
 
 import com.tangzq.exception.NotFoundException;
 import com.tangzq.exception.SysException;
+import com.tangzq.response.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
- * 全局异常处理器
+ * API全局异常处理器
  * @author tangzhiqiang
  */
-@ControllerAdvice
+@RestControllerAdvice
 @Slf4j
-public class GlobalExceptionHandler {
+public class GlobalRestExceptionHandler {
 
     @ExceptionHandler(value = SysException.class)
-    public String sysException(Exception e) {
-        log.error("exception occur:e={}",e.getMessage());
-        e.printStackTrace();
-        return "error/500";
+    public Result sysException(Exception e) {
+        log.error("exception occur:e={}",e);
+        return Result.fail("服务端内部错误");
     }
 
 
     @ExceptionHandler(value = {NotFoundException.class, NoHandlerFoundException.class})
-    public String exception(NotFoundException e){
-        log.error("exception occur:e={}",e.getMessage());
-        e.printStackTrace();
-        return "error/404";
+    public Result exception(NotFoundException e){
+        log.error("exception occur:e={}",e);
+        return Result.fail("资源不存在");
     }
 }
