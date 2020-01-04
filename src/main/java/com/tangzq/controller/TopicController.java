@@ -1,5 +1,7 @@
 package com.tangzq.controller;
 
+import com.tangzq.exception.NotFoundException;
+import com.tangzq.exception.SysException;
 import com.tangzq.model.Comment;
 import com.tangzq.model.Topic;
 import com.tangzq.model.User;
@@ -167,7 +169,11 @@ public class TopicController {
     @RequestMapping(value="/{topicID}")
     public String showTopic(@PathVariable("topicID")String topicID, ModelMap model){
         topicService.increaseVisitCount(topicID);
-        model.addAttribute("topic",topicService.findTopicById(topicID));
+        Topic topic=topicService.findTopicById(topicID);
+        if(null==topic){
+            throw new NotFoundException("文章不存在");
+        }
+        model.addAttribute("topic",topic);
         model.addAttribute("topPager",topicService.getTopVisitedTopics(1,10));
         model.addAttribute("commentList", commentService.getAllItemComments(topicID));
         return "topic/show";
