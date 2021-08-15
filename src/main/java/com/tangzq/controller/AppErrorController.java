@@ -21,7 +21,7 @@ public class AppErrorController implements ErrorController {
         return "error/404";
     }
 
-    @Override
+    //@Override
     public String getErrorPath() {
         return ERROR_PATH;
     }
