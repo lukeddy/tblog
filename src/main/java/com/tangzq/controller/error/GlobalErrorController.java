@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GlobalErrorController implements ErrorController {
     private static final String ERROR_PATH = "/error";
 
-    @Override
+    //@Override
     public String getErrorPath() {
         return ERROR_PATH;
     }
