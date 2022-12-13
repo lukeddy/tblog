@@ -44,7 +44,7 @@ public class UploadController {
         try {
             String relativeSavePath = UploadUtil.upload(file, Constants.UPLOAD_FOLDER);
             logger.info("Image Saved Path:"+relativeSavePath);
-            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\""+relativeSavePath + "\"}" );
+            response.getWriter().write( "{\"success\": 1, \"message\":\"上传成功\",\"url\":\""+request.getContextPath()+ relativeSavePath + "\"}" );
         } catch (Exception e) {
             logger.error("upload image error",e);
             try {
