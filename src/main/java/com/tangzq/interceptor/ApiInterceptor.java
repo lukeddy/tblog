@@ -5,23 +5,24 @@ import com.tangzq.response.Result;
 import com.tangzq.service.TokenService;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.Constants;
-import org.apache.commons.io.IOUtils;
-import org.apache.tomcat.util.http.ResponseUtil;
-import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
+import java.io.IOException;
 
 /**
  * API拦截器
  * @author tangzhiqiang
  */
 @Component
-public class ApiInterceptor extends HandlerInterceptorAdapter {
+public class ApiInterceptor extends WebContentInterceptor {
+
+    private final Logger log = LoggerFactory.getLogger(ApiInterceptor.class);
 
     @Autowired
     private TokenService tokenService;
@@ -44,12 +45,16 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request,
-                             HttpServletResponse response, Object handler) throws Exception {
+                             HttpServletResponse response, Object handler)  {
 
         //允许浏览器的第一次跨域OPTIONS请求
         if (OPTIONS_HEADER.equalsIgnoreCase(request.getMethod())) {
-            response.sendError(HttpServletResponse.SC_OK, "success");
-           return true;
+            try {
+                response.sendError(HttpServletResponse.SC_OK, "success");
+            } catch (IOException e) {
+                log.error("跳转异常：",e);
+            }
+            return true;
          }
 
         //拦截器也需要允许跨域的配置，不然跨域请求会拿不到响应结果
@@ -63,7 +68,11 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
 
         if (token == null || !tokenService.isTokenValid(token)) {
             Result result=Result.fail("没有权限");
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED,gson.toJson(result));
+            try {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED,gson.toJson(result));
+            } catch (IOException e) {
+                log.error("跳转异常：",e);
+            }
             return false;
         } else {
             //TODO 如果这里每次请求都进行查询的话会造成数据库压力，这种方式有待改善
@@ -71,7 +80,11 @@ public class ApiInterceptor extends HandlerInterceptorAdapter {
             if(userService.getUser(uid)==null){
                 Result result=Result.fail("用户不存在");
                 String json = new Gson().toJson(result);
-                response.sendError(HttpServletResponse.SC_NOT_FOUND,json);
+                try {
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND,json);
+                } catch (IOException e) {
+                    log.error("跳转异常：",e);
+                }
                 return false;
             }
             request.setAttribute(Constants.API_LOGIN_USER_ID_KEY,uid);
