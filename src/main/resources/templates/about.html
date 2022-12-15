@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header('关于tBlog',null)"></div>
+<div th:replace="~{inc/header::header('关于tBlog',null)}"></div>
 <body>
 <div class='container main'>
     <div class="col-md-9">
@@ -26,8 +26,8 @@
             </div>
         </div>
     </div>
-    <div th:replace="inc/sidebar::sidebar"></div>
+    <div th:replace="~{inc/sidebar::sidebar}"></div>
 </div>
-<div th:replace="inc/footer::footer"></div>
+<div th:replace="~{inc/footer::footer}"></div>
 </body>
 </html>

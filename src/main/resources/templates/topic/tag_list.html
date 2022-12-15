@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header('标签列表',null)"></div>
+<div th:replace="~{inc/header::header('标签列表',null)}"></div>
 <body>
 <div class='container main'>
     <div class='col-md-9'>
@@ -76,7 +76,7 @@
                         </ul>
                     </div>
                     <!--分页开始-->
-                    <div th:replace="inc/pagination::pageInfo(${pager},'/tag/'+${tagName},'&amp;keywords='+${tagName})"></div>
+                    <div th:replace="~{inc/pagination::pageInfo(${pager},'/tag/'+${tagName},'&amp;keywords='+${tagName})}"></div>
                     <!--分页结束-->
                 </th:block>
                 <th:block th:if="${#lists.isEmpty(pager.content)}">
@@ -85,9 +85,9 @@
             </div>
         </div>
     </div>
-    <div th:replace="inc/sidebar::sidebar"></div>
+    <div th:replace="~{inc/sidebar::sidebar}"></div>
 </div>
-<div th:replace="inc/footer::footer"></div>
+<div th:replace="~{inc/footer::footer}"></div>
 <script src="${contextPath}/js/mark/mark.js"></script>
 <script>
     $(document).ready(function(){

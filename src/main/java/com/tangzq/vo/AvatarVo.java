@@ -1,11 +1,11 @@
 package com.tangzq.vo;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.NotEmpty;
 
 /**
  * @author tangzhiqiang

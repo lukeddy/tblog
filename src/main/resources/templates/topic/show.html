@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header(${topic.title},null)"></div>
+<div th:replace="~{inc/header::header(${topic.title},null)}"></div>
 <body>
 <div class='container main'>
     <div class='col-md-9' id="content">
@@ -81,7 +81,7 @@
                     </div>
                     <div class="text">
                         <th:block th:if="${comment.parentComment!=null}">
-                            <div th:include="inc/comment-parent::parent" th:with="parentComment=${comment.parentComment}"></div>
+                            <div th:insert="inc/comment-parent::parent" th:with="parentComment=${comment.parentComment}"></div>
                         </th:block>
                         <th:block th:utext="${comment.commentHTML}">评论内容</th:block>
                     </div>
@@ -108,7 +108,7 @@
                 <strong>登录了才能评论，请先 <a th:href="@{/login?forward=true}">登录</a></strong>
             </div>
             <th:block th:if="${session.loginUser!=null}">
-                <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                <div th:replace="~{inc/msgbox::msgBox(${messageErr},${messageSuc})}"></div>
                 <form th:action="@{/topic/comment/add/}" method="post" class="form-vertical" id="reply-form" role="form">
                     <fieldset>
                         <div class="form-group">
@@ -131,10 +131,10 @@
         <!--comment end-->
     </div>
 
-    <!--<div th:replace="inc/sidebar::sidebar"></div>-->
-    <div th:include="inc/sidebar::sidebar" th:with="topPager=${topPager}"></div>
+    <!--<div th:replace="~{inc/sidebar::sidebar}"></div>-->
+    <div th:insert="~{inc/sidebar::sidebar}" th:with="topPager=${topPager}"></div>
 </div>
-<div th:replace="inc/footer::footer"></div>
+<div th:replace="~{inc/footer::footer}"></div>
 <script th:src="@{'/assets/js/editormd/lib/prettify.min.js'}"></script>
 <script src="https://cdn.bootcss.com/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script id="reply-tpl" type="text/x-handlebars-template">

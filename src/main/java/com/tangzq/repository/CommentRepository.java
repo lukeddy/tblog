@@ -4,6 +4,7 @@ import com.tangzq.model.Comment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * @author tangzhiqiang
  */
 @Repository
-public interface CommentRepository extends PagingAndSortingRepository<Comment,String> {
+public interface CommentRepository extends PagingAndSortingRepository<Comment,String>, CrudRepository<Comment,String> {
 
     /**
      * 查找某个项目的相关评论

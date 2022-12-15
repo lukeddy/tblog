@@ -6,6 +6,7 @@ import com.tangzq.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Repository;
  * @author tangzhiqiang
  */
 @Repository
-public interface TopicRepository extends PagingAndSortingRepository<Topic,String> {
+public interface TopicRepository extends PagingAndSortingRepository<Topic,String>, CrudRepository<Topic,String> {
 
     /**
      * 查找指定用户的帖子

@@ -3,6 +3,7 @@ package com.tangzq.controller;
 import com.tangzq.model.User;
 import com.tangzq.service.TopicService;
 import com.tangzq.utils.Constants;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 收藏控制器

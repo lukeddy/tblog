@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header(null,null)"></div>
+<div th:replace="~{inc/header::header(null,null)}"></div>
 <body>
 <div class='container main'>
     <div class='col-md-9'>
@@ -117,7 +117,7 @@
                         </th:block>
                     </ul>
                     <!--分页开始-->
-                    <div th:replace="inc/pagination::pageInfo(${pager},'/','tab='+${indexVo.tab})"></div>
+                    <div th:replace="~{inc/pagination::pageInfo(${pager},'/','tab='+${indexVo.tab})}"></div>
                     <!--分页结束-->
                 </th:block>
                 <th:block th:if="${pager.content==null} or ${pager.content.size()==0}">
@@ -127,9 +127,9 @@
         </div>
     </div>
 
-    <div th:replace="inc/sidebar::sidebar"></div>
+    <div th:replace="~{inc/sidebar::sidebar}"></div>
 </div>
 
-<div th:replace="inc/footer::footer"></div>
+<div th:replace="~{inc/footer::footer}"></div>
 </body>
 </html>

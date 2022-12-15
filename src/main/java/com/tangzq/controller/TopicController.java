@@ -1,7 +1,6 @@
 package com.tangzq.controller;
 
 import com.tangzq.exception.NotFoundException;
-import com.tangzq.exception.SysException;
 import com.tangzq.model.Comment;
 import com.tangzq.model.Topic;
 import com.tangzq.model.User;
@@ -13,6 +12,8 @@ import com.tangzq.utils.Constants;
 import com.tangzq.vo.CommentVo;
 import com.tangzq.vo.PageVo;
 import com.tangzq.vo.TopicVo;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * 帖子控制器

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header('创建帖子',null)"></div>
+<div th:replace="~{inc/header::header('创建帖子',null)}"></div>
 <link th:href="@{'/assets/js/dropzone/dist/min/dropzone.min.css'}" rel="stylesheet"/>
 <script th:src="@{'/assets/js/dropzone/dist/min/dropzone.min.js'}"></script>
 <body>
@@ -17,7 +17,7 @@
                     <div class="markdown-text">
                         <h3>新建帖子</h3>
                         <div class="row">
-                            <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                            <div th:replace="~{inc/msgbox::msgBox(${messageErr},${messageSuc})}"></div>
                             <form method="post" th:action="@{'/topic/create'}">
                                 <input type="hidden" name="thumbURL" id="thumbURL" th:value="${topicVo.thumbURL}"/>
                                 <div class="form-group">
@@ -127,7 +127,7 @@
         </div>
     </div>
 </div>
-<div th:replace="inc/footer::footer"></div>
+<div th:replace="~{inc/footer::footer}"></div>
 <script th:inline="javascript">
 
     Dropzone.autoDiscover = false;//这个一定要放在最前面，否则

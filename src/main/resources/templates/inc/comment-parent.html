@@ -7,7 +7,7 @@
 <div th:fragment="parent">
     <div class="ref" th:if="${parentComment!=null}">
         <th:block if="${parentComment.parentComment!=null}">
-            <div th:include="this::parent" th:with="parentComment=${parentComment.parentComment}"></div>
+            <div th:insert="this::parent" th:with="parentComment=${parentComment.parentComment}"></div>
         </th:block>
         <h4>引用来自“<th:block th:text="${parentComment.author.username}"></th:block>”的评论</h4>
         <th th:utext="${parentComment.commentHTML}"></th>

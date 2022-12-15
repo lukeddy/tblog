@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header('用户详情-'+${session.loginUser.username},null)"></div>
+<div th:replace="~{inc/header::header('用户详情-'+${session.loginUser.username},null)}"></div>
 <body>
 <div class="container main">
     <div class="row">
         <div class="col-md-3 left sidebar">
-            <div th:replace="user/user_sidebar::userSideBar('userinfo')"></div>
+            <div th:replace="~{user/user_sidebar::userSideBar('userinfo')}"></div>
         </div>
         <div class="col-md-9">
             <ul class='breadcrumb'>
@@ -13,7 +13,7 @@
                 <li class='active'>个人资料</li>
             </ul>
             <div class="wrapper">
-                <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                <div th:replace="~{inc/msgbox::msgBox(${messageErr},${messageSuc})}"></div>
                 <form th:action="@{'/user/info/'+${session.loginUser.username}}" th:object="${userInfoForm}" method="post" class="form-horizontal">
                     <div class="form-group">
                         <label class="col-lg-2 control-label">用户名</label>
@@ -85,6 +85,6 @@
         </div>
     </div>
 </div>
-<div th:replace="inc/footer::footer"></div>
+<div th:replace="~{inc/footer::footer}"></div>
 </body>
 </html>

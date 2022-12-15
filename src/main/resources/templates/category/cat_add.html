@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header('新增栏目页',null)"></div>
+<div th:replace="~{inc/header::header('新增栏目页',null)}"></div>
 <body>
 <div class='container main'>
-    <div th:replace="inc/sidebar::sidebar"></div>
+    <div th:replace="~{inc/sidebar::sidebar}"></div>
     <div class='col-md-9'>
         <ul class='breadcrumb'>
             <li><a th:href="@{'/'}">主页</a><span class='divider'></span></li>
@@ -16,7 +16,7 @@
                     <div class="markdown-text">
                         <h3>新建栏目</h3>
                         <div class="row">
-                            <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                            <div th:replace="~{inc/msgbox::msgBox(${messageErr},${messageSuc})}"></div>
                             <form method="post" th:action="@{'/cat/create'}">
                                 <div class="form-group">
                                     <div class="input-group">
@@ -50,6 +50,6 @@
         </div>
     </div>
 </div>
-<div th:replace="inc/footer::footer"></div>
+<div th:replace="~{inc/footer::footer}"></div>
 </body>
 </html>

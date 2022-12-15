@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header('帖子管理列表',null)"></div>
+<div th:replace="~{inc/header::header('帖子管理列表',null)}"></div>
 <body>
 <div class='container main'>
-    <div th:replace="inc/sidebar::sidebar"></div>
+    <div th:replace="~{inc/sidebar::sidebar}"></div>
     <div class='col-md-9'>
         <ul class='breadcrumb'>
             <li><a th:href="@{'/'}">主页</a><span class='divider'></span></li>
@@ -14,7 +14,7 @@
                 <div class="topic_content">
                     <div class="markdown-text">
                         <h3>帖子列表 <a th:href="@{'/topic/create'}">【新增】</a> </h3>
-                        <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                        <div th:replace="~{inc/msgbox::msgBox(${messageErr},${messageSuc})}"></div>
                         <th:block th:if="${!#lists.isEmpty(pager.content)}">
                             <table class="table">
                                 <tr>
@@ -41,7 +41,7 @@
                                 </th:block>
                             </table>
                             <!--分页开始-->
-                            <div th:replace="inc/pagination::pageInfo(${pager},'/topic/list',null)"></div>
+                            <div th:replace="~{inc/pagination::pageInfo(${pager},'/topic/list',null)}"></div>
                             <!--分页结束-->
                         </th:block>
                         <p th:if="${#lists.isEmpty(pager.content)}" class="text-center">还没有创建帖子</p>
@@ -51,6 +51,6 @@
         </div>
     </div>
 </div>
-<div th:replace="inc/footer::footer"></div>
+<div th:replace="~{inc/footer::footer}"></div>
 </body>
 </html>

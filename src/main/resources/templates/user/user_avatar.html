@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header('修改头像',null)"></div>
+<div th:replace="~{inc/header::header('修改头像',null)}"></div>
 <body>
 <div class="container main">
     <div class="row">
         <div class="col-md-3 left sidebar">
-            <div th:replace="user/user_sidebar::userSideBar('changeavatar')"></div>
+            <div th:replace="~{user/user_sidebar::userSideBar('changeavatar')}"></div>
         </div>
         <div class="col-md-9">
             <ul class='breadcrumb'>
@@ -13,7 +13,7 @@
                 <li class='active'>修改头像</li>
             </ul>
             <div class="wrapper">
-                <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                <div th:replace="~{inc/msgbox::msgBox(${messageErr},${messageSuc})}"></div>
                 <ul id="myTab" class="nav nav-tabs">
                     <li class="active"><a href="#upload_vatar" data-toggle="tab">上传头像</a></li>
                     <li class=""><a href="#get_avatar" data-toggle="tab">从Avatar获取</a></li>
@@ -46,6 +46,6 @@
         </div>
     </div>
 </div>
-<div th:replace="inc/footer::footer"></div>
+<div th:replace="~{inc/footer::footer}"></div>
 </body>
 </html>

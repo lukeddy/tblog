@@ -6,6 +6,8 @@ import com.tangzq.utils.Constants;
 import com.tangzq.utils.GravatarUtils;
 import com.tangzq.utils.UploadUtil;
 import com.tangzq.vo.UserPwdVo;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.io.IOException;
 
 /**

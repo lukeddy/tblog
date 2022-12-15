@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header('登陆页面',null)"></div>
+<div th:replace="~{inc/header::header('登陆页面',null)}"></div>
 <body>
 <div class='container main'>
     <div class='col-md-9'>
@@ -11,7 +11,7 @@
         <div class="row wrapper">
             <div class="col-sm-3">&nbsp;</div>
             <div class="col-sm-6">
-                <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                <div th:replace="~{inc/msgbox::msgBox(${messageErr},${messageSuc})}"></div>
                 <form th:action="@{'/login'}" th:object="${loginForm}" method="post">
                         <h3 class="form-signin-header text-center">登录TBlog</h3>
                         <div class="form-group">
@@ -52,9 +52,9 @@
         </div>
 
     </div>
-    <div th:replace="inc/sidebar::sidebar"></div>
+    <div th:replace="~{inc/sidebar::sidebar}"></div>
 </div>
-<div th:replace="inc/footer::footer"></div>
+<div th:replace="~{inc/footer::footer}"></div>
 <script th:inline="javascript">
     /*<![CDATA[*/
         function reloadValidateCode() {

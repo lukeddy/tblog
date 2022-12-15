@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="inc/header::header('修改密码',null)"></div>
+<div th:replace="~{inc/header::header('修改密码',null)}"></div>
 <body>
 <div class="container main">
     <div class="row">
         <div class="col-md-3 left sidebar">
-            <div th:replace="user/user_sidebar::userSideBar('changepwd')"></div>
+            <div th:replace="~{user/user_sidebar::userSideBar('changepwd')}"></div>
         </div>
         <div class="col-md-9">
             <ul class='breadcrumb'>
@@ -13,7 +13,7 @@
                 <li class='active'>修改密码</li>
             </ul>
             <div class="wrapper">
-                <div th:replace="inc/msgbox::msgBox(${messageErr},${messageSuc})"></div>
+                <div th:replace="~{inc/msgbox::msgBox(${messageErr},${messageSuc})}"></div>
                 <form th:action="@{'/user/changePwd'}"  class="form-horizontal" th:object="${changePwdForm}" method="post">
                     <div class="form-group">
                         <label for="oldPwd" class="col-md-2 control-label">当前密码</label>
@@ -53,6 +53,6 @@
 
     </div>
 </div>
-<div th:replace="inc/footer::footer"></div>
+<div th:replace="~{inc/footer::footer}"></div>
 </body>
 </html>

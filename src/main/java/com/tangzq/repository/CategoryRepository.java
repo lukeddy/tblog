@@ -1,6 +1,7 @@
 package com.tangzq.repository;
 
 import com.tangzq.model.Category;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @author tangzhiqiang
  */
 @Repository
-public interface CategoryRepository extends PagingAndSortingRepository<Category,String> {
+public interface CategoryRepository extends PagingAndSortingRepository<Category,String>, CrudRepository<Category,String> {
 
     /**
      * 目录名字必须唯一
