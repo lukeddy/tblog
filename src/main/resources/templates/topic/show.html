@@ -81,7 +81,7 @@
                     </div>
                     <div class="text">
                         <th:block th:if="${comment.parentComment!=null}">
-                            <div th:insert="inc/comment-parent::parent" th:with="parentComment=${comment.parentComment}"></div>
+                            <div th:insert="~{inc/comment-parent::parent}" th:with="parentComment=${comment.parentComment}"></div>
                         </th:block>
                         <th:block th:utext="${comment.commentHTML}">评论内容</th:block>
                     </div>
@@ -109,7 +109,7 @@
             </div>
             <th:block th:if="${session.loginUser!=null}">
                 <div th:replace="~{inc/msgbox::msgBox(${messageErr},${messageSuc})}"></div>
-                <form th:action="@{/topic/comment/add/}" method="post" class="form-vertical" id="reply-form" role="form">
+                <form th:action="@{/topic/comment/add}" method="post" class="form-vertical" id="reply-form" role="form">
                     <fieldset>
                         <div class="form-group">
                             <label>评论</label>
