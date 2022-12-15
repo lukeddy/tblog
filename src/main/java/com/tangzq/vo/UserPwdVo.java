@@ -3,9 +3,10 @@ package com.tangzq.vo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
 
 /**
  * @author tangzhiqiang

@@ -3,8 +3,9 @@ package com.tangzq.vo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.validation.constraints.NotEmpty;
 
 /**
  * @author tangzhiqiang

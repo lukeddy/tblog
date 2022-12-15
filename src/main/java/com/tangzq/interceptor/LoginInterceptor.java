@@ -5,15 +5,16 @@ import com.tangzq.utils.CommonProps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @author tangzhiqiang
  */
-public class LoginInterceptor extends HandlerInterceptorAdapter {
+public class LoginInterceptor extends WebContentInterceptor {
     private final Logger log = LoggerFactory.getLogger(LoginInterceptor.class);
 
     /**
@@ -26,12 +27,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request,
-                             HttpServletResponse response, Object handler) throws Exception {
+                             HttpServletResponse response, Object handler){
 
         User user =  (User) request.getSession().getAttribute(CommonProps.LOGIN_USER_SESSION_KEY);
         if(user == null){
             log.info("用户没有登陆：将跳转到login页面！");
-            response.sendRedirect(request.getContextPath()+"/login");
+            try {
+                response.sendRedirect(request.getContextPath()+"/login");
+            } catch (IOException e) {
+                log.error("出错了：",e);
+            }
             return false;
         }
         return true;

@@ -8,6 +8,7 @@ import com.tangzq.vo.RegisterUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isUserValid(String username, String password) {
-        if(StringUtils.isEmpty(username)|| StringUtils.isEmpty(password)){
+        if(ObjectUtils.isEmpty(username)|| ObjectUtils.isEmpty(password)){
             return false;
         }
 
