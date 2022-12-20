@@ -1,12 +1,11 @@
 package com.tangzq.model.embed;
 
 import com.tangzq.model.User;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * 举报理由封装类
@@ -22,7 +21,7 @@ public class ReportInfo {
     private int reason;
     private String memo;
 
-    @ApiModelProperty(required = false, hidden = true)
+    @Schema(requiredMode = Schema.RequiredMode.NOT_REQUIRED, hidden = true)
     @DBRef(lazy = true)
     private User reportUser;
 

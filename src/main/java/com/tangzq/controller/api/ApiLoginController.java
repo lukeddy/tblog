@@ -4,12 +4,10 @@ import com.tangzq.model.User;
 import com.tangzq.response.Result;
 import com.tangzq.service.TokenService;
 import com.tangzq.service.UserService;
-import com.tangzq.utils.Constants;
 import com.tangzq.vo.LoginUserVo;
 import com.tangzq.vo.RegisterUserVo;
-import com.tangzq.vo.UserInfoVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +26,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/api")
-@Api(value = "注册登录API", description = "博客登录、注册接口",tags = "Login")
+@Tag(name = "注册登录API", description = "博客登录、注册接口")
 public class ApiLoginController {
 
     @Autowired
@@ -38,7 +36,7 @@ public class ApiLoginController {
     private TokenService tokenService;
 
 
-    @ApiOperation(value="登录", notes="账号登陆")
+    @Operation(summary="登录", description="账号登陆")
     @RequestMapping(value="/login",method = RequestMethod.POST)
     public Result login(@RequestBody LoginUserVo userVo){
 
@@ -54,7 +52,7 @@ public class ApiLoginController {
         return Result.ok("成功", data);
     }
 
-    @ApiOperation(value="注册", notes="用户注册")
+    @Operation(summary="注册", description="用户注册")
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public Result doRegister(@RequestBody RegisterUserVo registerUser){
 
@@ -73,7 +71,7 @@ public class ApiLoginController {
         }
     }
 
-    @ApiOperation(value="退出", notes="登出系统")
+    @Operation(summary="退出", description="登出系统")
     @RequestMapping(value="/logout",method = RequestMethod.POST)
     public Result logout(){
         //TODO 使得Token失效

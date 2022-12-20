@@ -10,14 +10,13 @@ import com.tangzq.service.CommentService;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.Constants;
 import com.tangzq.vo.CommentVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -26,9 +25,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/comment")
-@Api(value = "评论API", description = "博客评论接口",tags = "Comment",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "评论API", description = "博客评论接口" )
 public class ApiCommentController {
 
     @Autowired
@@ -37,16 +34,17 @@ public class ApiCommentController {
     @Autowired
     private UserService userService;
 
-    @ApiOperation(value="获取帖子相关的评论", notes="根据url的id来获取帖子的所有评论")
-    @ApiImplicitParam(name = "topicId", value = "帖子ID", required = true, dataType = "String")
+    @Operation(summary="获取帖子相关的评论", description="根据url的id来获取帖子的所有评论")
+    @Parameter(name = "topicId", description = "帖子ID", required = true, in = ParameterIn.PATH)
     @RequestMapping(value="/public/{topicId}", method=RequestMethod.GET)
     public Result detail(@PathVariable String topicId) {
         return Result.ok("成功",commentService.getAllItemComments(topicId));
     }
 
-    @ApiOperation(value="添加评论内容", notes="增加评论信息")
+    @Operation(summary="添加评论内容", description="增加评论信息")
+    @Parameter(name = "topicId", description = "评论内容", required = true, in = ParameterIn.PATH)
     @RequestMapping(value = "",method = RequestMethod.POST)
-    public Result addReply(@ApiParam(value = "评论内容", required = true) @RequestBody CommentVo vo, HttpServletRequest request){
+    public Result addReply(@RequestBody CommentVo vo, HttpServletRequest request){
 
         User loginUser=userService.getUser((String)request.getAttribute(Constants.API_LOGIN_USER_ID_KEY));
         if(null==loginUser){
@@ -67,8 +65,8 @@ public class ApiCommentController {
         }
     }
 
-    @ApiOperation(value="评论点赞", notes="评论点赞，每个用户只能点赞一次")
-    @ApiImplicitParam(name = "commentId", value = "评论ID", required = true, dataType = "String")
+    @Operation(summary="评论点赞", description="评论点赞，每个用户只能点赞一次")
+    @Parameter(name = "commentId", description = "评论ID", required = true)
     @RequestMapping(value="/thumbsup/{commentId}",method = RequestMethod.PUT)
     public Result thumbsupComment(
             @PathVariable("commentId")String commentId, HttpServletRequest request){
@@ -87,8 +85,8 @@ public class ApiCommentController {
         return Result.ok("点赞成功");
     }
 
-    @ApiOperation(value="删除评论", notes="根据url的id来指定删除评论")
-    @ApiImplicitParam(name = "commentId", value = "评论ID", required = true, dataType = "String")
+    @Operation(summary="删除评论", description="根据url的id来指定删除评论")
+    @Parameter(name = "commentId", description = "评论ID", required = true)
     @RequestMapping(value="/{commentId}", method=RequestMethod.DELETE)
     public Result deleteTopic(@PathVariable String commentId) {
         Comment comment= commentService.getComment(commentId);
@@ -100,9 +98,9 @@ public class ApiCommentController {
     }
 
 
-    @ApiOperation(value="回复评论", notes="回复指定的评论")
+    @Operation(summary="回复评论", description="回复指定的评论")
     @RequestMapping(value="/reply",method = RequestMethod.POST)
-    public Result reply(@ApiParam(value = "回复内容", required = true) @RequestBody ReplyDto dto,
+    public Result reply(@RequestBody ReplyDto dto,
                           HttpServletRequest request){
 
         User loginUser=userService.getUser((String)request.getAttribute(Constants.API_LOGIN_USER_ID_KEY));
@@ -134,11 +132,10 @@ public class ApiCommentController {
     }
 
 
-    @ApiOperation(value="举报评论", notes="举报违规的评论")
+    @Operation(summary="举报评论", description="举报违规的评论")
     @RequestMapping(value="/ban/{commentId}",method = RequestMethod.PUT)
-    public Result banComment(
-            @ApiParam(value = "评论ID", required = true) @PathVariable("commentId") String commentId,
-            @ApiParam(value = "举报原因", required = true) @RequestBody ReportInfo reportInfo,
+    public Result banComment(@PathVariable("commentId") String commentId,
+            @RequestBody ReportInfo reportInfo,
             HttpServletRequest request){
 
         User loginUser=userService.getUser((String)request.getAttribute(Constants.API_LOGIN_USER_ID_KEY));

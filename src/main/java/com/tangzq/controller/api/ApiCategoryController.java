@@ -5,16 +5,14 @@ import com.tangzq.model.Category;
 import com.tangzq.response.Result;
 import com.tangzq.service.CategoryService;
 import com.tangzq.vo.PageVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,15 +21,13 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/category")
-@Api(value = "分类API", description = "博客分类接口",tags = "Category",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "分类API")
 public class ApiCategoryController {
 
     @Autowired
     private CategoryService categoryService;
 
-    @ApiOperation(value="获取所有的分类", notes="将取得所有的博客分类数据")
+    @Operation(summary="获取所有的分类", description="将取得所有的博客分类数据")
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public Result allCategory(){
         List<Category> catList=categoryService.findAll();
@@ -45,7 +41,7 @@ public class ApiCategoryController {
      * 分页加载栏目列表
      * @return
      */
-    @ApiOperation(value="分页获取分类列表", notes="将取得所有的博客分类数据")
+    @Operation(summary="分页获取分类列表", description="将取得所有的博客分类数据")
     @RequestMapping(value="/list",method = RequestMethod.POST)
     public Result listCategory(@RequestBody PageVo pageVo){
         return Result.ok("分页获取栏目成功",categoryService.findByPage(pageVo.getPageNO(),pageVo.getPageSize()));
@@ -56,7 +52,7 @@ public class ApiCategoryController {
      * @param dto
      * @return
      */
-    @ApiOperation(value="添加分类", notes="添加分类信息")
+    @Operation(summary="添加分类", description="添加分类信息")
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public Result addCategory(@RequestBody CategoryDto dto){
         if(null==dto|| StringUtils.isEmpty(dto.getCatName())||StringUtils.isEmpty(dto.getCatDir())){
@@ -75,18 +71,16 @@ public class ApiCategoryController {
         }
     }
 
-    @ApiOperation(value="获取分类详细信息", notes="根据url的id来获取分类详细信息")
-    @ApiImplicitParam(name = "id", value = "分类ID", required = true, dataType = "String")
+    @Operation(summary="获取分类详细信息", description="根据url的id来获取分类详细信息")
+    @Parameter(name = "id",description = "分类ID",in = ParameterIn.PATH)
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public Result getCategory(@PathVariable String id) {
         return Result.ok("成功",categoryService.getCategory(id));
     }
 
 
-    @ApiOperation(value="更新分类详细信息", notes="根据url的id来指定更新对象，并根据传过来的分类信息更新")
-    @ApiImplicitParams({
-       @ApiImplicitParam(name = "id", value = "分类ID", required = true, dataType = "String"),
-    })
+    @Operation(summary="更新分类详细信息", description="根据url的id来指定更新对象，并根据传过来的分类信息更新")
+    @Parameter(name = "id",description = "分类ID",in = ParameterIn.PATH)
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     public Result updateCategory(@PathVariable String id, @RequestBody CategoryDto dto) {
         if(StringUtils.isEmpty(dto.getCatName())||StringUtils.isEmpty(dto.getCatDir())){
@@ -104,8 +98,8 @@ public class ApiCategoryController {
         return Result.ok("更新分类成功",updatedCat);
     }
 
-    @ApiOperation(value="删除分类", notes="根据url的id来指定删除分类")
-    @ApiImplicitParam(name = "id", value = "分类ID", required = true, dataType = "String")
+    @Operation(summary="删除分类", description="根据url的id来指定删除分类")
+    @Parameter(name = "id",description = "分类ID",in = ParameterIn.PATH)
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public Result deleteCategory(@PathVariable String id) {
         categoryService.deleteCategory(id);

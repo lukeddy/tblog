@@ -4,8 +4,8 @@ import com.tangzq.response.Result;
 import com.tangzq.service.UserService;
 import com.tangzq.utils.Constants;
 import com.tangzq.vo.UserInfoVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/user")
-@Api(value = "获取用户信息API", description = "用户信息接口",tags = "User")
+@Tag(name = "获取用户信息API", description = "用户信息接口")
 public class ApiUserController {
 
     @Autowired
     private UserService userService;
 
-    @ApiOperation(value="用户信息", notes="获取登陆用户信息")
+    @Operation(summary="用户信息", description="获取登陆用户信息")
     @RequestMapping(value = "/info",method = RequestMethod.GET)
     public Result getUserInfo(HttpServletRequest request) {
         UserInfoVo userInfo=userService.getUserInfo((String)request.getAttribute(Constants.API_LOGIN_USER_ID_KEY));
