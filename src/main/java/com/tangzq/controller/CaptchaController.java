@@ -14,7 +14,7 @@ import java.io.IOException;
 
 /**
  * 验证码控制器
- * @author tangzhiqiang
+ * @author luke
  */
 @Controller
 @RequestMapping("/captcha")

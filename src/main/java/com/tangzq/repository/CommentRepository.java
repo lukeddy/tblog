@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * 评论操作类
- * @author tangzhiqiang
+ * @author luke
  */
 @Repository
 public interface CommentRepository extends PagingAndSortingRepository<Comment,String>, CrudRepository<Comment,String> {

@@ -29,7 +29,7 @@ import org.springframework.web.util.WebUtils;
 
 /**
  * 帖子控制器
- * @author tangzhiqiang
+ * @author luke
  */
 @Controller
 @RequestMapping("/topic")

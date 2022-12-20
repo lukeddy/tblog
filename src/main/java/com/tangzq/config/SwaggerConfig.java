@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Swagger Bean对象构建配置
- * @author tangzhiqiang
+ * @author luke
  */
 @Configuration
 @EnableSwagger2

@@ -14,7 +14,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * @author tangzhiqiang
+ * @author luke
  */
 public class GravatarUtils {
     private static String hex(byte[] array) {

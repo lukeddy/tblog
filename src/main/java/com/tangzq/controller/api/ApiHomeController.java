@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 /**
  * 首页API
- * @author tangzhiqiang
+ * @author luke
  */
 @RestController
 @RequestMapping("/api/home")

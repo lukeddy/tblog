@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * 提供git信息控制器
- * @author tangzhiqiang
+ * @author luke
  */
 @RestController
 public class GitInfoController {

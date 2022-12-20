@@ -14,7 +14,7 @@ import java.io.IOException;
 
 /**
  * 登陆拦截器
- * @author tangzhiqiang
+ * @author luke
  */
 @Component
 public class LoginInterceptor extends WebContentInterceptor {

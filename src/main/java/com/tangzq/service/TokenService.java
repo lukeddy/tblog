@@ -2,7 +2,7 @@ package com.tangzq.service;
 
 /**
  * 生成Token接口
- * @author tangzhiqiang
+ * @author luke
  */
 public interface TokenService {
 

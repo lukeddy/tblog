@@ -14,7 +14,7 @@ import org.springframework.util.DigestUtils;
 
 /**
  * 应用启动入口类
- * @author tangzhiqiang
+ * @author luke
  */
 @Slf4j
 @SpringBootApplication

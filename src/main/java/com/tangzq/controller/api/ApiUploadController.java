@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 上传文件接口
- * @author tangzhiqiang
+ * @author luke
  */
 @RestController
 @RequestMapping("/api/upload")

@@ -7,7 +7,7 @@ import lombok.ToString;
 
 /**
  * 评论回复数据封装
- * @author tangzhiqiang
+ * @author luke
  */
 @Getter
 @Setter

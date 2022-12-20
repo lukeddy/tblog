@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * 评论业务逻辑
- * @author tangzhiqiang
+ * @author luke
  */
 public interface CommentService {
 

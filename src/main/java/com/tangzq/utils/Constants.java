@@ -2,7 +2,7 @@ package com.tangzq.utils;
 
 /**
  * 系统级信息
- * @author tangzhiqiang
+ * @author luke
  */
 public class Constants {
     public static final String ADMIN_NAME="admin";

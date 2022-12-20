@@ -9,7 +9,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
  * 全局异常处理器
- * @author tangzhiqiang
+ * @author luke
  */
 @ControllerAdvice
 @Slf4j

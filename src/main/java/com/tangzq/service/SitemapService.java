@@ -3,7 +3,7 @@ package com.tangzq.service;
 import java.net.MalformedURLException;
 
 /**
- * @author tangzhiqiang sitemap生成器
+ * @author luke sitemap生成器
  */
 public interface SitemapService {
      String createSitemap() throws MalformedURLException;

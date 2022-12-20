@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 
 /**
  * Sitemap控制器
- * @author tangzhiqiang
+ * @author luke
  */
 @Slf4j
 @Controller

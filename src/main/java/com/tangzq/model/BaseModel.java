@@ -17,7 +17,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author tangzhiqiang
+ * @author luke
  */
 @Getter
 @Setter

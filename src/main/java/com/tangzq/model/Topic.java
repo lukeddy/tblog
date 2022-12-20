@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author tangzhiqiang
+ * @author luke
  */
 @Document(collection = "topics")
 @Getter

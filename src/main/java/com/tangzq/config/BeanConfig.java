@@ -8,7 +8,7 @@ import org.springframework.core.io.ClassPathResource;
 
 /**
  * Bean配置
- * @author tangzhiqiang
+ * @author luke
  */
 @Configuration
 public class BeanConfig {

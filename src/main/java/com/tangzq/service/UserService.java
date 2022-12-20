@@ -5,7 +5,7 @@ import com.tangzq.vo.RegisterUserVo;
 import com.tangzq.vo.UserInfoVo;
 
 /**
- * @author tangzhiqiang
+ * @author luke
  */
 public interface UserService {
 

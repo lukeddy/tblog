@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @author tangzhiqiang
+ * @author luke
  */
 @Controller
 public class TagController {

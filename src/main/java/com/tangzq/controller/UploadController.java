@@ -19,7 +19,7 @@ import java.io.IOException;
 
 /**
  * 恩建上传控制器
- * @author tangzhiqiang
+ * @author luke
  */
 @Controller
 @RequestMapping("/upload")

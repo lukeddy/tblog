@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 收藏控制器
- * @author tangzhiqiang
+ * @author luke
  */
 @Controller
 @RequestMapping("/like")

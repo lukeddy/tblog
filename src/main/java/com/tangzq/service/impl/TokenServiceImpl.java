@@ -15,7 +15,7 @@ import java.util.Date;
 
 /**
  * Token接口实现类
- * @author tangzhiqiang
+ * @author luke
  */
 @Slf4j
 @Service

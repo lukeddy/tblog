@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * 帖子操作类
- * @author tangzhiqiang
+ * @author luke
  */
 @Repository
 public interface TopicRepository extends PagingAndSortingRepository<Topic,String>, CrudRepository<Topic,String> {

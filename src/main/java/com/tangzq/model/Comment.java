@@ -12,7 +12,7 @@ import java.util.Set;
 
 /**
  * 评论Model
- * @author tangzhiqiang
+ * @author luke
  */
 @Getter
 @Setter

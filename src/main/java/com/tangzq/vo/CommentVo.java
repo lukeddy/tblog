@@ -7,7 +7,7 @@ import lombok.ToString;
 
 /**
  * Comment VO类
- * @author tangzhiqiang
+ * @author luke
  */
 @Getter
 @Setter

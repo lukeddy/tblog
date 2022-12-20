@@ -17,7 +17,7 @@ import java.io.IOException;
 
 /**
  * API拦截器
- * @author tangzhiqiang
+ * @author luke
  */
 @Component
 public class ApiInterceptor extends WebContentInterceptor {

@@ -10,7 +10,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * 举报理由封装类
- * @author tangzhiqiang
+ * @author luke
  */
 @Getter
 @Setter

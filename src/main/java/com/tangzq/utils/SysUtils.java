@@ -10,7 +10,7 @@ import java.util.UUID;
 
 /**
  * 系统工具类
- * @author tangzhiqiang
+ * @author luke
  */
 public class SysUtils {
 

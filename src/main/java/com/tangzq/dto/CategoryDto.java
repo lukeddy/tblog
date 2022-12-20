@@ -7,7 +7,7 @@ import lombok.ToString;
 
 /**
  * 分类页面数据封装
- * @author tangzhiqiang
+ * @author luke
  */
 @Getter
 @Setter

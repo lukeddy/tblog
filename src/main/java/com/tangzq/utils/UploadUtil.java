@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author tangzhiqiang
+ * @author luke
  */
 public class UploadUtil {
 

@@ -22,7 +22,7 @@ import java.util.*;
 
 
 /**
- * @author tangzhiqiang
+ * @author luke
  */
 @Service
 public class TopicServiceImpl implements TopicService {

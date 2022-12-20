@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * RSS控制器
- * @author tangzhiqiang
+ * @author luke
  */
 @Controller
 public class RssController {

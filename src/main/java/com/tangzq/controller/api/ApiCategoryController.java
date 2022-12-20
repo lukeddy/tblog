@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * 测试api
- * @author tangzhiqiang
+ * @author luke
  */
 @RestController
 @RequestMapping("/api/category")

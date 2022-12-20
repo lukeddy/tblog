@@ -28,7 +28,7 @@ import static com.tangzq.utils.Constants.VCODE_SESSION_KEY;
 
 /**
  * 首页控制器
- * @author tangzhiqiang
+ * @author luke
  */
 @Controller
 @Slf4j

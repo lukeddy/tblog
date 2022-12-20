@@ -8,7 +8,7 @@ import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * @author tangzhiqiang
+ * @author luke
  */
 @Document(collection = "users")
 @Getter
